@@ -52,7 +52,7 @@ func getAdjacentNodes():
 	var adjacentNodes = {}
 	for dirChar in directions:
 		var vector = directions[dirChar]
-		var directionNode = move_and_collide(vector*(tileSize-1),true,true,true)
+		var directionNode = move_and_collide(vector*tileSize/2,true,true,true)
 		adjacentNodes[dirChar] = directionNode
 		#print(dirChar," is ",directionNode)
 	return adjacentNodes
