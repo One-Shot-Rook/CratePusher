@@ -3,8 +3,9 @@ extends KinematicBody2D
 var moving = false
 var direction:Vector2
 var tileSize:float
-var moveSpeed:float = 60
+var moveSpeed:float = 45
 var rng = RandomNumberGenerator.new()
+var interactable = null
 
 var directions = {
 	"U":Vector2( 0,-1),
@@ -17,6 +18,14 @@ func _ready():
 	tileSize = get_parent().scale[0] * 32
 	enableMoveUI()
 
+func move(setDirection:Vector2):
+	Globals.progressGamePhase() # ACTION -> MOVE
+	direction = setDirection
+	moving = true
+	rng.randomize()
+	$audioMove.pitch_scale = rng.randf_range(0.8,1.2)
+	$audioMove.play()
+
 func _physics_process(delta):
 	if not moving:
 		return
@@ -26,15 +35,7 @@ func _physics_process(delta):
 		direction = Vector2.ZERO
 		var tempPos = position - 16*Vector2.ONE
 		position = Vector2( stepify(tempPos[0],32) + 16 , stepify(tempPos[1],32) + 16 ) # Snap position to grid
-		get_tree().call_group("movable","enableMoveUI")
-
-func move(setDirection:Vector2):
-	get_tree().call_group("movable","disableMoveUI")
-	direction = setDirection
-	moving = true
-	rng.randomize()
-	$audioMove.pitch_scale = rng.randf_range(0.8,1.2)
-	$audioMove.play()
+		Globals.updatePhase(self,"stopped") # MOVE (DONE)
 
 func enableMoveUI():
 	var adjacentNodes = getAdjacentNodes()
@@ -56,6 +57,23 @@ func getAdjacentNodes():
 		adjacentNodes[dirChar] = directionNode
 		#print(dirChar," is ",directionNode)
 	return adjacentNodes
+
+
+func actionPhase():
+	enableMoveUI()
+
+func movePhase():
+	if not moving:
+		Globals.updatePhase(self,"auto") # MOVE (DONE)
+	disableMoveUI()
+
+func effectPhase():
+	Globals.updatePhase(self,"auto") # EFFECT (DONE)
+
+func displayPhase():
+	Globals.updatePhase(self,"auto") # DISPLAY (DONE)
+
+
 
 func _on_areaU_pressed():
 	move(Vector2(0,-1))

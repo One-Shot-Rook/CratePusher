@@ -19,6 +19,11 @@ config/name="CratePusher"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://Globals.gd"
+Phases="*res://Phases.gd"
+
 [display]
 
 window/size/width=1080
@@ -32,6 +37,12 @@ window/stretch/aspect="keep"
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="Wall"
+2d_physics/layer_2="Crates"
+2d_physics/layer_3="Interactable"
 
 [rendering]
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Sounds/snd_button.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Sprites/img_button.png" type="Texture" id=2]
+[ext_resource path="res://bodyButton.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15, 15 )
+
+[node name="bodyButton" type="Area2D" groups=[
+"button",
+"object",
+]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="audioClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
