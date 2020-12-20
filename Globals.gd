@@ -100,9 +100,10 @@ func getButtonStates(signalID:int):
 # reset Move Counter for a new Level
 func initMoveCount():
 	moveCount = 0
-	get_tree().get_root().get_node("Main/UI/moveCountLabel").text = String(moveCount)
+	get_tree().get_root().get_node("Main/UI/bottomBar/Label").text = "Moves: " + str(moveCount)
 	
 
 func incMoveCount():
 	moveCount += 1
-	get_tree().get_root().get_node("Main/UI/moveCountLabel").text = String(moveCount)	
+	get_tree().get_root().get_node("Main/UI/bottomBar/Label").text = "Moves: " + str(moveCount)	
+
