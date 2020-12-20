@@ -1,10 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Sprites/img_crate.png" type="Texture" id=1]
-[ext_resource path="res://bodyCrate.gd" type="Script" id=2]
+[ext_resource path="res://Objects/bodyCrate.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Sprites/img_direction.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Resources/res_direction.tres" type="Shape2D" id=4]
 [ext_resource path="res://Assets/Sounds/snd_crate.wav" type="AudioStream" id=5]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15, 15 )

@@ -8,7 +8,8 @@ func _ready():
 	dir.list_dir_begin(true,true)
 	var pathString = dir.get_next()
 	while pathString != "":
-		createLevelButton(pathString)
+		if "level" in pathString:
+			createLevelButton(pathString)
 		pathString = dir.get_next()
 
 func createLevelButton(pathString:String):
