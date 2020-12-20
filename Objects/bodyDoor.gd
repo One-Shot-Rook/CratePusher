@@ -21,13 +21,20 @@ func closeDoor():
 	$sprite.play("",true)
 	$audioClose.play()
 
-func doesDoorOpen():
+func shouldDoorBEOpen():
 	var buttonStates = Globals.getButtonStates(signalID)
 	match doorMode:
 		DOORMODE.SINGLE:
 			return (true in buttonStates)
 		DOORMODE.ALL:
 			return not(false in buttonStates)
+
+func canClose():
+	var crateArray = get_tree().get_nodes_in_group("crate")
+	for crate in crateArray:
+		if (crate.position-position).length() < 16:
+			return false
+	return true
 
 func actionPhase():
 	pass
@@ -39,10 +46,10 @@ func effectPhase():
 	Globals.updateObjectPhaseID(self,"auto") # EFFECT (DONE)
 
 func reactPhase():
-	if doesDoorOpen():
+	if shouldDoorBEOpen():
 		if not open:
 			openDoor()
 	else:
-		if open:
+		if open and canClose():
 			closeDoor()
 	Globals.updateObjectPhaseID(self,"done") # REACT (DONE)

@@ -32,6 +32,15 @@ func areStatesAligned():
 			return false
 	return true
 
+func checkForMovement():
+	var crateArray = get_tree().get_nodes_in_group("crate")
+	for crate in crateArray:
+		if crate.moving:
+			print(crate.name," is still moving!")
+			return
+	print("No crates moving!")
+	progressGamePhase()
+
 # begin the next phase
 func progressGamePhase():
 	# Updating game phase
