@@ -7,12 +7,11 @@ export var movable:bool = true
 var moving = false
 var direction:Vector2
 var moveSpeed:float = 45
-var moveAmount:int = 99
-var fromPosition:Vector2
+var distanceToMove:float = 0.0
 
 var interactable = null
 
-var MOVE_MAX = 99
+var MOVE_MAX = 9999
 enum WEIGHTMODE{LIGHT,MEDIUM,HEAVY}
 export(WEIGHTMODE) var weightID = WEIGHTMODE.MEDIUM
 
@@ -28,14 +27,10 @@ var directions = {
 func _ready():
 	tileSize = get_parent().scale[0] * 32
 	snapPositionToGrid()
-	recordCurrentPosition()
 	enableMoveUI()
 
-func recordCurrentPosition():
-	fromPosition = position
-
 func move(setDirection:Vector2,distance=MOVE_MAX):
-	moveAmount = distance
+	distanceToMove = distance
 	direction = setDirection
 	moving = true
 	if Globals.gamePhase == Phases.ACTION:
@@ -47,21 +42,23 @@ func move(setDirection:Vector2,distance=MOVE_MAX):
 func stop(reason="wall"):
 	moving = false
 	direction = Vector2.ZERO
+	distanceToMove = 0.0
 	snapPositionToGrid()
-	recordCurrentPosition()
 	if reason != "crate":
 		Globals.checkForMovement() # potentially MOVE (DONE)
 
 func _physics_process(delta):
 	if not moving:
 		return
-	var collisionInfo = move_and_collide(moveSpeed*direction*delta*60)
+	var moveVector = moveSpeed*direction*delta*60
+	var collisionInfo = move_and_collide(moveVector)
+	distanceToMove -= moveVector.length()
 	if outOfMovement():
 		stop("friction")
 	elif collisionInfo: # We've collided with something
 		if collisionInfo.collider.is_in_group("crate"): # If we've hit another crate
 			var crate = collisionInfo.collider
-			var pushDistance = max(0,weightID-crate.weightID)
+			var pushDistance = max(0,weightID-crate.weightID)*tileSize
 			print(" !!! PUSH = ",pushDistance," !!!")
 			crate.move(direction,pushDistance)
 			stop("crate")
@@ -69,10 +66,7 @@ func _physics_process(delta):
 			stop()
 
 func outOfMovement():
-	if moveAmount == MOVE_MAX:
-		return false
-	print(moveAmount)
-	if (fromPosition-position).length() >= tileSize*moveAmount/3:
+	if distanceToMove <= 0:
 		return true
 	return false
 

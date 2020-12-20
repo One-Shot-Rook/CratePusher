@@ -20,8 +20,13 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 script = ExtResource( 4 )
 
 [node name="bodyCrate" parent="." instance=ExtResource( 3 )]
-position = Vector2( 208, 240 )
+position = Vector2( 208, 240.943 )
 movable = false
+
+[node name="bodyCrate2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 208, 210.302 )
+movable = false
+weightID = 0
 
 [node name="bodyDoor" parent="." instance=ExtResource( 1 )]
 position = Vector2( 208, 368 )
@@ -31,4 +36,4 @@ rotation = 1.5708
 position = Vector2( 208, 112 )
 
 [node name="bodyCrateRed" parent="." instance=ExtResource( 6 )]
-position = Vector2( 208, 304 )
+position = Vector2( 208, 304.943 )
