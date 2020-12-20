@@ -9,6 +9,7 @@ var open:bool = false
 
 func openDoor():
 	open = true
+	$occluder.visible = false
 	$shape.disabled = true
 	$sprite.frame = 0
 	$sprite.play()
@@ -16,6 +17,7 @@ func openDoor():
 
 func closeDoor():
 	open = false
+	$occluder.visible = true
 	$shape.disabled = false
 	$sprite.frame = 7
 	$sprite.play("",true)

@@ -44,8 +44,7 @@ func stop(reason="wall"):
 	direction = Vector2.ZERO
 	distanceToMove = 0.0
 	snapPositionToGrid()
-	if reason != "crate":
-		Globals.checkForMovement() # potentially MOVE (DONE)
+	Globals.checkForMovement() # potentially MOVE (DONE)
 
 func _physics_process(delta):
 	if not moving:
