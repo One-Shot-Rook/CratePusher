@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=1]
+[ext_resource path="res://MenuScene.gd" type="Script" id=2]
+[ext_resource path="res://gridLevels.gd" type="Script" id=3]
+
+[node name="MenuScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="panelMenu" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vboxMenu" type="VBoxContainer" parent="panelMenu"]
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayBtn" type="Button" parent="panelMenu/vboxMenu"]
+margin_top = 468.0
+margin_right = 648.0
+margin_bottom = 537.0
+theme = ExtResource( 1 )
+text = "Play"
+
+[node name="SettingsBtn" type="Button" parent="panelMenu/vboxMenu"]
+margin_top = 541.0
+margin_right = 648.0
+margin_bottom = 610.0
+theme = ExtResource( 1 )
+text = "Settings"
+
+[node name="CreditsBtn" type="Button" parent="panelMenu/vboxMenu"]
+margin_top = 614.0
+margin_right = 648.0
+margin_bottom = 683.0
+theme = ExtResource( 1 )
+text = "Credits"
+
+[node name="panelLevels" type="Panel" parent="."]
+margin_top = -1920.0
+margin_right = 1080.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gridLevels" type="GridContainer" parent="panelLevels"]
+anchor_right = 1.0
+anchor_bottom = 0.9
+margin_left = 60.0
+margin_top = 60.0
+margin_right = -60.0
+margin_bottom = -60.0
+columns = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackBtn" type="Button" parent="panelLevels"]
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+text = "back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="panelMenu/vboxMenu/PlayBtn" to="." method="_on_PlayBtn_pressed"]
+[connection signal="pressed" from="panelMenu/vboxMenu/SettingsBtn" to="." method="_on_SettingsBtn_pressed"]
+[connection signal="pressed" from="panelMenu/vboxMenu/CreditsBtn" to="." method="_on_CreditsBtn_pressed"]
+[connection signal="pressed" from="panelLevels/BackBtn" to="." method="_on_BackBtn_pressed"]
