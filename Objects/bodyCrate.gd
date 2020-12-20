@@ -39,7 +39,7 @@ func move(setDirection:Vector2,distance=MOVE_MAX):
 	$audioMove.pitch_scale = rng.randf_range(0.8,1.2)
 	$audioMove.play()
 
-func stop(reason="wall"):
+func stop(_reason="wall"):
 	moving = false
 	direction = Vector2.ZERO
 	distanceToMove = 0.0
