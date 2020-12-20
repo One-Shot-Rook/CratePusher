@@ -6,6 +6,8 @@ var buttonSignals = {}			# buttonSignals[signalID:int][buttonNode:Area2D] = bool
 onready var gamePhase = Phases.ACTION
 onready var next_gamePhase = Phases.MOVE
 
+var moveCount:int
+
 
 
 ### PHASES ###
@@ -94,3 +96,13 @@ func getButtonStates(signalID:int):
 		buttonStates.append(isButtonActive)
 	return buttonStates
 # e.g. getButtonStates(signalID = 2) = [true,false,true]
+
+# reset Move Counter for a new Level
+func initMoveCount():
+	moveCount = 0
+	get_tree().get_root().get_node("Main/UI/moveCountLabel").text = String(moveCount)
+	
+
+func incMoveCount():
+	moveCount += 1
+	get_tree().get_root().get_node("Main/UI/moveCountLabel").text = String(moveCount)	
