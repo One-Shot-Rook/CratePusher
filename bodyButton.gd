@@ -4,22 +4,17 @@ export var signalID:int
 var pressed:bool = false
 var newState:bool = false
 
-func _ready():
-	pass # Replace with function body.
+
 
 func updateState():
 	#print("update")
 	#print(pressed,"->",newState)
-	# If we have changed state
 	var newState = isButtonPressed()
-	if newState == true:
-		if pressed == false:
-			$audioClick.play()
-		get_tree().call_group("door","openDoor",signalID)
-	else:
-		get_tree().call_group("door","closeDoor",signalID)
+	if newState == true and not pressed: # If the button was just pressed
+		$audioClick.play()
 	pressed = newState
-	Globals.updatePhase(self,"effect") # EFFECT (DONE)
+	Globals.updateSignal(signalID,self,newState)
+	Globals.updateObjectPhaseID(self,"effect") # EFFECT (DONE)
 
 func isButtonPressed():
 	var crateArray = get_tree().get_nodes_in_group("crate")
@@ -32,11 +27,11 @@ func actionPhase():
 	pass
 
 func movePhase():
-	Globals.updatePhase(self,"auto") # MOVE (DONE)
+	Globals.updateObjectPhaseID(self,"auto") # MOVE (DONE)
 
 func effectPhase():
 	updateState()
 
-func displayPhase():
-	Globals.updatePhase(self,"auto") # DISPLAY (DONE)
+func reactPhase():
+	Globals.updateObjectPhaseID(self,"auto") # REACT (DONE)
 

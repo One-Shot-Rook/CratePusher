@@ -1,41 +1,48 @@
 extends KinematicBody2D
 
 export var signalID:int
+enum DOORMODE{SINGLE,ALL}
+export(DOORMODE) var doorMode
 var open:bool = false
 
-func _ready():
-	pass # Replace with function body.
 
-func openDoor(active_signalID):
-	if active_signalID != signalID or open:
-		Globals.updatePhase(self,"open (no change)") # EFFECT (DONE)
-		return
+
+func openDoor():
 	open = true
 	$shape.disabled = true
 	$sprite.frame = 0
 	$sprite.play()
 	$audioOpen.play()
-	Globals.updatePhase(self,"open") # EFFECT (DONE)
 
-func closeDoor(active_signalID):
-	if active_signalID != signalID or not open:
-		Globals.updatePhase(self,"close (no change)") # EFFECT (DONE)
-		return
+func closeDoor():
 	open = false
 	$shape.disabled = false
 	$sprite.frame = 7
 	$sprite.play("",true)
 	$audioClose.play()
-	Globals.updatePhase(self,"close") # EFFECT (DONE)
+
+func doesDoorOpen():
+	var buttonStates = Globals.getButtonStates(signalID)
+	match doorMode:
+		DOORMODE.SINGLE:
+			return (true in buttonStates)
+		DOORMODE.ALL:
+			return not(false in buttonStates)
 
 func actionPhase():
 	pass
 
 func movePhase():
-	Globals.updatePhase(self,"auto") # MOVE (DONE)
+	Globals.updateObjectPhaseID(self,"auto") # MOVE (DONE)
 
 func effectPhase():
-	pass # Intentional
+	Globals.updateObjectPhaseID(self,"auto") # EFFECT (DONE)
 
-func displayPhase():
-	Globals.updatePhase(self,"auto") # DISPLAY (DONE)
+func reactPhase():
+	if doesDoorOpen():
+		if not open:
+			openDoor()
+	else:
+		if open:
+			closeDoor()
+	Globals.updateObjectPhaseID(self,"done") # REACT (DONE)

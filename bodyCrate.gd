@@ -14,8 +14,11 @@ var directions = {
 	"L":Vector2(-1, 0)
 	}
 
+
+
 func _ready():
 	tileSize = get_parent().scale[0] * 32
+	snapPositionToGrid()
 	enableMoveUI()
 
 func move(setDirection:Vector2):
@@ -33,9 +36,12 @@ func _physics_process(delta):
 	if collisionInfo:
 		moving = false
 		direction = Vector2.ZERO
-		var tempPos = position - 16*Vector2.ONE
-		position = Vector2( stepify(tempPos[0],32) + 16 , stepify(tempPos[1],32) + 16 ) # Snap position to grid
-		Globals.updatePhase(self,"stopped") # MOVE (DONE)
+		snapPositionToGrid()
+		Globals.updateObjectPhaseID(self,"stopped") # MOVE (DONE)
+
+func snapPositionToGrid():
+	var tempPos = position - 16*Vector2.ONE
+	position = Vector2( stepify(tempPos[0],32) + 16 , stepify(tempPos[1],32) + 16 )
 
 func enableMoveUI():
 	var adjacentNodes = getAdjacentNodes()
@@ -64,14 +70,14 @@ func actionPhase():
 
 func movePhase():
 	if not moving:
-		Globals.updatePhase(self,"auto") # MOVE (DONE)
+		Globals.updateObjectPhaseID(self,"auto") # MOVE (DONE)
 	disableMoveUI()
 
 func effectPhase():
-	Globals.updatePhase(self,"auto") # EFFECT (DONE)
+	Globals.updateObjectPhaseID(self,"auto") # EFFECT (DONE)
 
-func displayPhase():
-	Globals.updatePhase(self,"auto") # DISPLAY (DONE)
+func reactPhase():
+	Globals.updateObjectPhaseID(self,"auto") # REACT (DONE)
 
 
 

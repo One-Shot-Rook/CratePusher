@@ -1,4 +1,5 @@
-extends Node2D
+extends TileMap
 
 func _ready():
-	Globals.initialseObjectStates(get_tree().get_nodes_in_group("object"))
+	Globals.initialiseObjectPhases()
+	Globals.initialiseButtonSignals()

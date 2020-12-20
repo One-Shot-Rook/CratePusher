@@ -20,12 +20,11 @@ animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "default",
-"speed": 7.0
+"speed": 9.0
 } ]
 
 [node name="bodyDoor" type="KinematicBody2D" groups=[
 "door",
-"environment",
 "object",
 ]]
 collision_mask = 2
