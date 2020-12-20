@@ -2,7 +2,6 @@ extends Area2D
 
 export var signalID:int
 var pressed:bool = false
-var newState:bool = false
 
 
 
