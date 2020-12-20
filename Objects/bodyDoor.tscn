@@ -23,7 +23,7 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[sub_resource type="OccluderPolygon2D" id=4]
+[sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( 0, -32, 0, 32 )
 
 [node name="bodyDoor" type="KinematicBody2D" groups=[
@@ -49,4 +49,4 @@ stream = ExtResource( 3 )
 stream = ExtResource( 1 )
 
 [node name="occluder" type="LightOccluder2D" parent="."]
-occluder = SubResource( 4 )
+occluder = SubResource( 3 )

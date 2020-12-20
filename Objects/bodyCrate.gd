@@ -113,12 +113,16 @@ func reactPhase():
 
 func _on_areaU_pressed():
 	move(Vector2(0,-1))
+	Globals.incMoveCount()
 
 func _on_areaR_pressed():
 	move(Vector2(+1,0))
+	Globals.incMoveCount()
 
 func _on_areaD_pressed():
 	move(Vector2(0,+1))
+	Globals.incMoveCount()
 
 func _on_areaL_pressed():
 	move(Vector2(-1,0))
+	Globals.incMoveCount()

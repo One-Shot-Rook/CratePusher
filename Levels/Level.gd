@@ -5,3 +5,4 @@ func startLevel(pathString):
 	for childTileMap in get_children():
 		childTileMap.free()
 	add_child(load("res://Levels/"+pathString).instance())
+	
