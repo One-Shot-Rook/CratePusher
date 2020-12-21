@@ -5,9 +5,7 @@
 [ext_resource path="res://Assets/Sprites/img_direction.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Resources/res_direction.tres" type="Shape2D" id=4]
 [ext_resource path="res://Assets/Sounds/snd_crate.wav" type="AudioStream" id=5]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15, 15 )
+[ext_resource path="res://Assets/Resources/shape_crate.tres" type="Shape2D" id=6]
 
 [node name="bodyCrate" type="KinematicBody2D" groups=[
 "crate",
@@ -25,7 +23,7 @@ movable = false
 weightID = 0
 
 [node name="shape" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = ExtResource( 6 )
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

@@ -20,7 +20,7 @@ func initialiseObjectPhases():
 	#print("objectPhases = ",objectPhases)
 
 # update phaseID for a given object
-func updateObjectPhaseID(object,debugString=""):
+func updateObjectPhaseID(object,_debugString=""):
 	#print(object.name," -> ",next_gamePhase," ",debugString)
 	objectPhases[object] = next_gamePhase
 	if areStatesAligned():
