@@ -18,10 +18,28 @@ func _on_btnPlay_pressed():
 	tween.start()
 
 func _on_btnSettings_pressed():
-	pass # Replace with function body.
+	tween.interpolate_property(
+		self, 
+		"rect_position", 
+		rect_position, 
+		Vector2(1080,0), 
+		0.5, 
+		Tween.TRANS_CUBIC, 
+		Tween.EASE_IN_OUT
+	)
+	tween.start()
 
 func _on_btnCredits_pressed():
-	pass # Replace with function body.
+	tween.interpolate_property(
+		self, 
+		"rect_position", 
+		rect_position, 
+		Vector2(-1080,0), 
+		0.5, 
+		Tween.TRANS_CUBIC, 
+		Tween.EASE_IN_OUT
+	)
+	tween.start()
 
 func _on_btnBack_pressed():
 	tween.interpolate_property(
@@ -29,6 +47,19 @@ func _on_btnBack_pressed():
 		"rect_position", 
 		rect_position, 
 		Vector2(0,0), 
+		0.5, 
+		Tween.TRANS_CUBIC, 
+		Tween.EASE_IN_OUT
+	)
+	tween.start()
+
+
+func _on_btnShop_pressed():
+	tween.interpolate_property(
+		self, 
+		"rect_position", 
+		rect_position, 
+		Vector2(0,-1920), 
 		0.5, 
 		Tween.TRANS_CUBIC, 
 		Tween.EASE_IN_OUT
