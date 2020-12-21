@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://MenuScene.gd" type="Script" id=2]
 [ext_resource path="res://gridLevels.gd" type="Script" id=3]
+[ext_resource path="res://Assets/UI/btn_menu_pressed.tres" type="StyleBox" id=4]
+[ext_resource path="res://Assets/UI/btn_menu_normal.tres" type="StyleBox" id=5]
+[ext_resource path="res://Assets/UI/btn_back_pressed.tres" type="StyleBox" id=7]
+[ext_resource path="res://Assets/UI/btn_back_normal.tres" type="StyleBox" id=8]
 
 [node name="MenuScene" type="Control"]
 anchor_right = 1.0
@@ -20,40 +24,93 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="vboxButtons" type="VBoxContainer" parent="panelMenu"]
-anchor_left = 0.2
-anchor_top = 0.2
-anchor_right = 0.8
-anchor_bottom = 0.8
-custom_constants/separation = 64
-alignment = 1
+[node name="gridButtons" type="GridContainer" parent="panelMenu"]
+margin_left = 90.0
+margin_top = 470.0
+margin_right = 990.0
+margin_bottom = 1370.0
+rect_min_size = Vector2( 900, 900 )
+columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="btnPlay" type="Button" parent="panelMenu/vboxButtons"]
-margin_top = 324.0
-margin_right = 648.0
-margin_bottom = 449.0
+[node name="MarginContainer" type="MarginContainer" parent="panelMenu/gridButtons"]
+margin_right = 300.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 300 )
+
+[node name="btnPlay" type="Button" parent="panelMenu/gridButtons"]
+margin_left = 304.0
+margin_right = 604.0
+margin_bottom = 300.0
 focus_mode = 0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
 enabled_focus_mode = 0
 text = "Play"
 
-[node name="btnSettings" type="Button" parent="panelMenu/vboxButtons"]
-margin_top = 513.0
-margin_right = 648.0
-margin_bottom = 638.0
+[node name="MarginContainer2" type="MarginContainer" parent="panelMenu/gridButtons"]
+margin_left = 608.0
+margin_right = 908.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 300 )
+
+[node name="btnSettings" type="Button" parent="panelMenu/gridButtons"]
+margin_top = 304.0
+margin_right = 300.0
+margin_bottom = 604.0
 focus_mode = 0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
 enabled_focus_mode = 0
 text = "Settings"
 
-[node name="btnCredits" type="Button" parent="panelMenu/vboxButtons"]
-margin_top = 702.0
-margin_right = 648.0
-margin_bottom = 827.0
+[node name="MarginContainer3" type="MarginContainer" parent="panelMenu/gridButtons"]
+margin_left = 304.0
+margin_top = 304.0
+margin_right = 604.0
+margin_bottom = 604.0
+rect_min_size = Vector2( 300, 300 )
+
+[node name="btnCredits" type="Button" parent="panelMenu/gridButtons"]
+margin_left = 608.0
+margin_top = 304.0
+margin_right = 908.0
+margin_bottom = 604.0
 focus_mode = 0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
 enabled_focus_mode = 0
 text = "Credits"
+
+[node name="MarginContainer4" type="MarginContainer" parent="panelMenu/gridButtons"]
+margin_top = 608.0
+margin_right = 300.0
+margin_bottom = 908.0
+rect_min_size = Vector2( 300, 300 )
+
+[node name="btnShop" type="Button" parent="panelMenu/gridButtons"]
+margin_left = 304.0
+margin_top = 608.0
+margin_right = 604.0
+margin_bottom = 908.0
+focus_mode = 0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+enabled_focus_mode = 0
+text = "Shop"
+
+[node name="MarginContainer5" type="MarginContainer" parent="panelMenu/gridButtons"]
+margin_left = 608.0
+margin_top = 608.0
+margin_right = 908.0
+margin_bottom = 908.0
+rect_min_size = Vector2( 300, 300 )
 
 [node name="panelLevels" type="Panel" parent="."]
 margin_top = -1920.0
@@ -76,22 +133,106 @@ __meta__ = {
 }
 
 [node name="btnBack" type="Button" parent="panelLevels"]
-anchor_top = 0.9
-anchor_right = 1.0
+anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
+margin_left = 476.0
+margin_top = -144.0
+margin_bottom = -16.0
+rect_min_size = Vector2( 128, 128 )
 focus_mode = 0
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/normal = ExtResource( 8 )
 enabled_focus_mode = 0
-text = "back"
+text = "Back"
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Tween" type="Tween" parent="."]
-[connection signal="pressed" from="panelMenu/vboxButtons/btnPlay" to="." method="_on_btnPlay_pressed"]
-[connection signal="pressed" from="panelMenu/vboxButtons/btnSettings" to="." method="_on_btnSettings_pressed"]
-[connection signal="pressed" from="panelMenu/vboxButtons/btnCredits" to="." method="_on_btnCredits_pressed"]
+
+[node name="panelSettings" type="Panel" parent="."]
+margin_left = -1080.0
+margin_bottom = 1920.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnBack2" type="Button" parent="panelSettings"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -144.0
+margin_top = 896.0
+margin_right = -16.0
+rect_min_size = Vector2( 128, 128 )
+focus_mode = 0
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/normal = ExtResource( 8 )
+enabled_focus_mode = 0
+text = "Back"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="panelCredits" type="Panel" parent="."]
+margin_left = 1080.0
+margin_right = 2160.0
+margin_bottom = 1920.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnBack3" type="Button" parent="panelCredits"]
+margin_left = 16.0
+margin_top = 876.0
+margin_right = 144.0
+rect_min_size = Vector2( 128, 128 )
+focus_mode = 0
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/normal = ExtResource( 8 )
+enabled_focus_mode = 0
+text = "Back"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="panelShop" type="Panel" parent="."]
+margin_top = 1920.0
+margin_right = 1080.0
+margin_bottom = 3840.0
+
+[node name="btnBack4" type="Button" parent="panelShop"]
+margin_left = 476.0
+margin_top = 16.0
+rect_min_size = Vector2( 128, 128 )
+focus_mode = 0
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/normal = ExtResource( 8 )
+enabled_focus_mode = 0
+text = "Back"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="panelMenu/gridButtons/btnPlay" to="." method="_on_btnPlay_pressed"]
+[connection signal="pressed" from="panelMenu/gridButtons/btnSettings" to="." method="_on_btnSettings_pressed"]
+[connection signal="pressed" from="panelMenu/gridButtons/btnCredits" to="." method="_on_btnCredits_pressed"]
+[connection signal="pressed" from="panelMenu/gridButtons/btnShop" to="." method="_on_btnShop_pressed"]
+[connection signal="button_down" from="panelLevels/btnBack" to="panelLevels/btnBack" method="_on_btnBack_button_down"]
+[connection signal="button_up" from="panelLevels/btnBack" to="panelLevels/btnBack" method="_on_btnBack_button_up"]
 [connection signal="pressed" from="panelLevels/btnBack" to="." method="_on_btnBack_pressed"]
+[connection signal="button_down" from="panelSettings/btnBack2" to="panelSettings/btnBack2" method="_on_btnBack_button_down"]
+[connection signal="button_up" from="panelSettings/btnBack2" to="panelSettings/btnBack2" method="_on_btnBack_button_up"]
+[connection signal="pressed" from="panelSettings/btnBack2" to="." method="_on_btnBack_pressed"]
+[connection signal="button_down" from="panelCredits/btnBack3" to="panelCredits/btnBack3" method="_on_btnBack_button_down"]
+[connection signal="button_up" from="panelCredits/btnBack3" to="panelCredits/btnBack3" method="_on_btnBack_button_up"]
+[connection signal="pressed" from="panelCredits/btnBack3" to="." method="_on_btnBack_pressed"]
+[connection signal="button_down" from="panelShop/btnBack4" to="panelShop/btnBack4" method="_on_btnBack_button_down"]
+[connection signal="button_up" from="panelShop/btnBack4" to="panelShop/btnBack4" method="_on_btnBack_button_up"]
+[connection signal="pressed" from="panelShop/btnBack4" to="." method="_on_btnBack_pressed"]
