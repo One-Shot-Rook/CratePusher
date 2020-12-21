@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://MenuScene.gd" type="Script" id=2]
 [ext_resource path="res://gridLevels.gd" type="Script" id=3]
 
 [node name="MenuScene" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -32,7 +34,7 @@ __meta__ = {
 [node name="btnPlay" type="Button" parent="panelMenu/vboxButtons"]
 margin_top = 324.0
 margin_right = 648.0
-margin_bottom = 502.0
+margin_bottom = 449.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Play"
@@ -40,7 +42,7 @@ text = "Play"
 [node name="btnSettings" type="Button" parent="panelMenu/vboxButtons"]
 margin_top = 513.0
 margin_right = 648.0
-margin_bottom = 586.0
+margin_bottom = 638.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Settings"
@@ -48,7 +50,7 @@ text = "Settings"
 [node name="btnCredits" type="Button" parent="panelMenu/vboxButtons"]
 margin_top = 702.0
 margin_right = 648.0
-margin_bottom = 670.0
+margin_bottom = 827.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Credits"
