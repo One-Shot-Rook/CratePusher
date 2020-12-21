@@ -7,7 +7,7 @@ var buttonSignals = {}			# buttonSignals[signalID:int][buttonNode:Area2D] = bool
 onready var gamePhase = Phases.ACTION
 onready var next_gamePhase = Phases.MOVE
 
-
+var buttonColors = [Color.red,Color.blue,Color.green,Color.yellow,Color.purple]
 
 ### PHASES ###
 
@@ -96,4 +96,7 @@ func getButtonStates(signalID:int):
 		buttonStates.append(isButtonActive)
 	return buttonStates
 # e.g. getButtonStates(signalID = 2) = [true,false,true]
+
+func getButtonColor(signalID):
+	return buttonColors[signalID%buttonColors.size()]
 

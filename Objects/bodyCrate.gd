@@ -31,6 +31,7 @@ func _ready():
 		enableMoveUI()
 	else:
 		disableMoveUI()
+	
 
 func move(setDirection:Vector2,distance=MOVE_MAX):
 	# Can the crate move in that direction at all
