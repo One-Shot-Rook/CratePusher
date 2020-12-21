@@ -32,7 +32,7 @@ __meta__ = {
 }
 
 [node name="btnPlay" type="Button" parent="panelMenu/vboxButtons"]
-margin_top = 468.0
+margin_top = 324.0
 margin_right = 648.0
 margin_bottom = 449.0
 focus_mode = 0
@@ -40,7 +40,7 @@ enabled_focus_mode = 0
 text = "Play"
 
 [node name="btnSettings" type="Button" parent="panelMenu/vboxButtons"]
-margin_top = 541.0
+margin_top = 513.0
 margin_right = 648.0
 margin_bottom = 638.0
 focus_mode = 0
@@ -48,7 +48,7 @@ enabled_focus_mode = 0
 text = "Settings"
 
 [node name="btnCredits" type="Button" parent="panelMenu/vboxButtons"]
-margin_top = 614.0
+margin_top = 702.0
 margin_right = 648.0
 margin_bottom = 827.0
 focus_mode = 0
