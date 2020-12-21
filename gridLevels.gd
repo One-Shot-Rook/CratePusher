@@ -21,4 +21,4 @@ func createLevelButton(pathString:String):
 
 func levelPressed(levelName:String):
 	LevelData.setCurrentLevel(levelName)
-	get_tree().change_scene("res://Levels/Main.tscn")
+	var _ERROR_CODE = get_tree().change_scene("res://Levels/Main.tscn")
