@@ -3,10 +3,9 @@ extends Node
 var objectPhases = {}			# objectPhases[buttonNode:Area2D] = phaseID:int (Phases.X)
 var buttonSignals = {}			# buttonSignals[signalID:int][buttonNode:Area2D] = bool
 
+
 onready var gamePhase = Phases.ACTION
 onready var next_gamePhase = Phases.MOVE
-
-var moveCount:int
 
 
 
@@ -18,11 +17,11 @@ func initialiseObjectPhases():
 	objectPhases = {}
 	for object in objectArray:
 		objectPhases[object] = Phases.ACTION
-	print("objectPhases = ",objectPhases)
+	#print("objectPhases = ",objectPhases)
 
 # update phaseID for a given object
 func updateObjectPhaseID(object,debugString=""):
-	print(object.name," -> ",next_gamePhase," ",debugString)
+	#print(object.name," -> ",next_gamePhase," ",debugString)
 	objectPhases[object] = next_gamePhase
 	if areStatesAligned():
 		progressGamePhase()
@@ -38,16 +37,16 @@ func checkForMovement():
 	var crateArray = get_tree().get_nodes_in_group("crate")
 	for crate in crateArray:
 		if crate.moving:
-			print(crate.name," is still moving!")
+			#print(crate.name," is still moving!")
 			return
-	print("No crates moving!")
+	#print("No crates moving!")
 	progressGamePhase()
 
 # begin the next phase
 func progressGamePhase():
 	# Updating game phase
 	gamePhase = next_gamePhase
-	print("\nGAMEPHASE: ",gamePhase)
+	#print("\nGAMEPHASE: ",gamePhase)
 	next_gamePhase = (gamePhase+1)%4
 	# Force all objects to current game phase
 	for object in objectPhases:
@@ -58,6 +57,7 @@ func progressGamePhase():
 # call all objects to perform the corresponding built-in phase-function
 func processPhase():
 	if gamePhase == Phases.ACTION:
+		LevelData.tryCompleteLevel()
 		get_tree().call_group("object","actionPhase")
 	elif gamePhase == Phases.MOVE:
 		get_tree().call_group("object","movePhase")
@@ -80,7 +80,7 @@ func initialiseButtonSignals():
 			buttonSignals[button.signalID][button] = false
 		else:
 			buttonSignals[button.signalID] = {button:false}
-	print("buttonSignals = ",buttonSignals)
+	#print("buttonSignals = ",buttonSignals)
 
 
 # update signal state given signalID, button object and the new state
@@ -96,14 +96,4 @@ func getButtonStates(signalID:int):
 		buttonStates.append(isButtonActive)
 	return buttonStates
 # e.g. getButtonStates(signalID = 2) = [true,false,true]
-
-# reset Move Counter for a new Level
-func initMoveCount():
-	moveCount = 0
-	get_tree().get_root().get_node("Main/UI/bottomBar/Label").text = "Moves: " + str(moveCount)
-	
-
-func incMoveCount():
-	moveCount += 1
-	get_tree().get_root().get_node("Main/UI/bottomBar/Label").text = "Moves: " + str(moveCount)	
 

@@ -27,14 +27,18 @@ var directions = {
 func _ready():
 	tileSize = get_parent().scale[0] * 32
 	snapPositionToGrid()
-	enableMoveUI()
+	if movable:
+		enableMoveUI()
+	else:
+		disableMoveUI()
 
 func move(setDirection:Vector2,distance=MOVE_MAX):
+	# Can the crate move in that direction at all
+	if move_and_collide(setDirection*tileSize,true,true,true):
+		return
 	distanceToMove = distance
 	direction = setDirection
 	moving = true
-	if Globals.gamePhase == Phases.ACTION:
-		Globals.progressGamePhase() # ACTION -> MOVE
 	rng.randomize()
 	$audioMove.pitch_scale = rng.randf_range(0.8,1.2)
 	$audioMove.play()
@@ -58,7 +62,7 @@ func _physics_process(delta):
 		if collisionInfo.collider.is_in_group("crate"): # If we've hit another crate
 			var crate = collisionInfo.collider
 			var pushDistance = max(0,weightID-crate.weightID)*tileSize
-			print(" !!! PUSH = ",pushDistance," !!!")
+			#print(" !!! PUSH = ",pushDistance," !!!")
 			crate.move(direction,pushDistance)
 			stop("crate")
 		else:
@@ -74,7 +78,7 @@ func snapPositionToGrid():
 	position = Vector2( stepify(tempPos[0],32) + 16 , stepify(tempPos[1],32) + 16 )
 
 func enableMoveUI():
-	if not movable:
+	if not movable or LevelData.levelComplete:
 		return
 	var adjacentNodes = getAdjacentNodes()
 	for dirChar in adjacentNodes:
@@ -110,19 +114,7 @@ func reactPhase():
 	Globals.updateObjectPhaseID(self,"auto") # REACT (DONE)
 
 
-
-func _on_areaU_pressed():
-	move(Vector2(0,-1))
-	Globals.incMoveCount()
-
-func _on_areaR_pressed():
-	move(Vector2(+1,0))
-	Globals.incMoveCount()
-
-func _on_areaD_pressed():
-	move(Vector2(0,+1))
-	Globals.incMoveCount()
-
-func _on_areaL_pressed():
-	move(Vector2(-1,0))
-	Globals.incMoveCount()
+func _on_direction_pressed(extra_arg_0):
+	Globals.progressGamePhase() # ACTION -> MOVE
+	move(extra_arg_0)
+	LevelData.incrementMoveCount()

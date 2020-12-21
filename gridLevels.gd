@@ -15,12 +15,11 @@ func _ready():
 func createLevelButton(pathString:String):
 	var btnLevel = Button.new()
 	btnLevel.size_flags_horizontal = Button.SIZE_EXPAND_FILL
-	btnLevel.text = pathString.split(".")[0]
-	btnLevel.connect("pressed",self,"levelPressed",[pathString])
+	var levelName = pathString.split(".")[0]
+	btnLevel.text = levelName
+	btnLevel.connect("pressed",self,"levelPressed",[levelName])
 	add_child(btnLevel)
 
-func levelPressed(pathString:String):
-	get_tree().get_root().add_child(mainScene)
+func levelPressed(levelName:String):
+	LevelData.setCurrentLevel(levelName)
 	get_tree().change_scene("res://Levels/Main.tscn")
-	var Level = get_tree().get_root().get_node("Main/Level")
-	Level.startLevel(pathString)

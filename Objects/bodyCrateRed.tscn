@@ -11,6 +11,7 @@ extents = Vector2( 15, 15 )
 
 [node name="bodyCrateRed" type="KinematicBody2D" groups=[
 "crate",
+"movable",
 "object",
 ]]
 z_index = 1
@@ -20,7 +21,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-weightID = 2
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -57,7 +57,7 @@ shape = ExtResource( 4 )
 [node name="audioMove" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
 volume_db = -5.0
-[connection signal="pressed" from="Directions/areaU" to="." method="_on_areaU_pressed"]
-[connection signal="pressed" from="Directions/areaR" to="." method="_on_areaR_pressed"]
-[connection signal="pressed" from="Directions/areaD" to="." method="_on_areaD_pressed"]
-[connection signal="pressed" from="Directions/areaL" to="." method="_on_areaL_pressed"]
+[connection signal="pressed" from="Directions/areaU" to="." method="_on_direction_pressed" binds= [ Vector2( 0, -1 ) ]]
+[connection signal="pressed" from="Directions/areaR" to="." method="_on_direction_pressed" binds= [ Vector2( 1, 0 ) ]]
+[connection signal="pressed" from="Directions/areaD" to="." method="_on_direction_pressed" binds= [ Vector2( 0, 1 ) ]]
+[connection signal="pressed" from="Directions/areaL" to="." method="_on_direction_pressed" binds= [ Vector2( -1, 0 ) ]]

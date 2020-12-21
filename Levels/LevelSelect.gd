@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-onready var Level = get_tree().get_root().get_node("Main/Level")
+onready var LevelNode = get_tree().get_root().get_node("Main/LevelNode")
 
 func _ready():
 	var dir = Directory.new()
@@ -15,6 +15,7 @@ func _ready():
 func createLevelButton(pathString:String):
 	var btnLevel = Button.new()
 	btnLevel.size_flags_horizontal = Button.SIZE_EXPAND_FILL
-	btnLevel.text = pathString.split(".")[0]
-	btnLevel.connect("button_down",Level,"startLevel",[pathString])
+	var levelName = pathString.split(".")[0]
+	btnLevel.text = levelName
+	btnLevel.connect("button_down",LevelNode,"startLevel",[levelName])
 	add_child(btnLevel)

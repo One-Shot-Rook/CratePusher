@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 Globals="*res://Globals.gd"
 Phases="*res://Phases.gd"
+LevelData="*res://LevelData.gd"
 
 [display]
 
@@ -31,7 +32,7 @@ window/size/height=1920
 window/size/test_width=540
 window/size/test_height=960
 window/handheld/orientation="portrait"
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [input_devices]

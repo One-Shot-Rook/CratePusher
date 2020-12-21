@@ -1,8 +1,8 @@
-extends Node2D
+extends TileMap
 
-func startLevel(pathString):
-	print("PRESSED ",pathString)
-	for childTileMap in get_children():
-		childTileMap.free()
-	add_child(load("res://Levels/"+pathString).instance())
-	
+var LevelNode = get_parent()
+
+func _ready():
+	Globals.initialiseObjectPhases()
+	Globals.initialiseButtonSignals()
+	LevelData.initialiseMoveCount()

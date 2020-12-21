@@ -1,6 +1,7 @@
 extends Area2D
 
 export var signalID:int
+export var levelGoal:bool
 var pressed:bool = false
 
 
@@ -19,6 +20,8 @@ func isButtonPressed():
 	var crateArray = get_tree().get_nodes_in_group("crate")
 	for crate in crateArray:
 		if (crate.position-position).length() < 16:
+			if levelGoal:
+				LevelData.levelComplete = true
 			return true
 	return false
 
