@@ -1,7 +1,5 @@
 extends GridContainer
 
-var mainScene = preload("res://Levels/Main.tscn").instance()
-
 func _ready():
 	var dir = Directory.new()
 	dir.open("res://Levels")
