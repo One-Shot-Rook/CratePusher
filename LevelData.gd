@@ -1,7 +1,7 @@
 extends Node
 
 var levelData = {
-	"level0":{
+	"levelX":{
 		"moves":[23,25,27]
 	}
 }

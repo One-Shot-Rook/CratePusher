@@ -53,7 +53,6 @@ func _on_btnBack_pressed():
 	)
 	tween.start()
 
-
 func _on_btnShop_pressed():
 	tween.interpolate_property(
 		self, 
@@ -65,3 +64,6 @@ func _on_btnShop_pressed():
 		Tween.EASE_IN_OUT
 	)
 	tween.start()
+
+func _on_btnReset_pressed():
+	SaveData.resetSaveData()
