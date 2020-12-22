@@ -120,13 +120,12 @@ __meta__ = {
 }
 
 [node name="gridLevels" type="GridContainer" parent="panelLevels"]
-anchor_right = 1.0
-anchor_bottom = 0.9
-margin_left = 60.0
-margin_top = 60.0
-margin_right = -60.0
-margin_bottom = -60.0
-columns = 3
+margin_left = 110.0
+margin_top = 240.0
+rect_min_size = Vector2( 860, 1080 )
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+columns = 4
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -1,5 +1,7 @@
 extends GridContainer
 
+var load_btnLevel = load("res://btnLevel.tscn")
+
 func _ready():
 	var dir = Directory.new()
 	dir.open("res://Levels")
@@ -11,11 +13,11 @@ func _ready():
 		pathString = dir.get_next()
 
 func createLevelButton(pathString:String):
-	var btnLevel = Button.new()
-	btnLevel.size_flags_horizontal = Button.SIZE_EXPAND_FILL
-	var levelName = pathString.split(".")[0]
+	var btnLevel = load_btnLevel.instance()
+	#btnLevel.size_flags_horizontal = Button.SIZE_EXPAND_FILL
+	var levelName = pathString.split(".")[0].trim_prefix("level")
 	btnLevel.text = levelName
-	btnLevel.enabled_focus_mode = Control.FOCUS_NONE
+	#btnLevel.enabled_focus_mode = Control.FOCUS_NONE
 	btnLevel.connect("pressed",self,"levelPressed",[levelName])
 
 	add_child(btnLevel)

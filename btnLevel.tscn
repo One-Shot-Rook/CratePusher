@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Sprites/img_star.webp" type="Texture" id=1]
+[ext_resource path="res://Assets/UI/btn_level_dark.tres" type="StyleBox" id=2]
+[ext_resource path="res://Assets/UI/btn_level_light.tres" type="StyleBox" id=3]
+[ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=4]
+
+[node name="btnLevel" type="Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -880.0
+margin_bottom = -1720.0
+rect_min_size = Vector2( 200, 200 )
+focus_mode = 0
+theme = ExtResource( 4 )
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/normal = ExtResource( 2 )
+custom_colors/font_color = Color( 0.737255, 0.8, 0.862745, 1 )
+custom_colors/font_color_pressed = Color( 0.2, 0.305882, 0.407843, 1 )
+enabled_focus_mode = 0
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ctnStars" type="HBoxContainer" parent="."]
+margin_left = 25.0
+margin_top = 100.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="ctnStars"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="ctnStars"]
+margin_left = 50.0
+margin_right = 100.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="ctnStars"]
+margin_left = 100.0
+margin_right = 150.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
