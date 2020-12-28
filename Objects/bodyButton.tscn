@@ -45,6 +45,7 @@ texture = ExtResource( 2 )
 stream = ExtResource( 1 )
 
 [node name="partGoal" type="Particles2D" parent="."]
+visible = false
 position = Vector2( 0, 8 )
 amount = 32
 preprocess = 1.0

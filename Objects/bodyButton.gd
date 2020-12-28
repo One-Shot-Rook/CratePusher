@@ -8,6 +8,7 @@ func _ready():
 	$spriteBase/spriteCenter.modulate = Globals.getButtonColor(signalID)
 	$spriteBase/spriteCenter.modulate.a = int(not levelGoal)
 	$partGoal.emitting = levelGoal
+	$partGoal.visible = levelGoal
 	$spriteBase.visible = not levelGoal
 	if levelGoal:
 		$audioClick.stream = load("res://Assets/Sounds/snd_alert.wav")

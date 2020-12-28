@@ -35,24 +35,28 @@ visible = false
 position = Vector2( -16, -48 )
 normal = ExtResource( 3 )
 shape = ExtResource( 4 )
+passby_press = true
 
 [node name="areaR" type="TouchScreenButton" parent="Directions"]
 position = Vector2( 48, -16 )
 rotation = 1.5708
 normal = ExtResource( 3 )
 shape = ExtResource( 4 )
+passby_press = true
 
 [node name="areaD" type="TouchScreenButton" parent="Directions"]
 position = Vector2( 16, 48 )
 rotation = 3.14159
 normal = ExtResource( 3 )
 shape = ExtResource( 4 )
+passby_press = true
 
 [node name="areaL" type="TouchScreenButton" parent="Directions"]
 position = Vector2( -48, 16 )
 rotation = 4.71239
 normal = ExtResource( 3 )
 shape = ExtResource( 4 )
+passby_press = true
 
 [node name="audioMove" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )

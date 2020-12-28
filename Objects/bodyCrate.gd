@@ -119,3 +119,7 @@ func _on_direction_pressed(extra_arg_0):
 	Globals.progressGamePhase() # ACTION -> MOVE
 	move(extra_arg_0)
 	LevelData.incrementMoveCount()
+
+
+func _on_Area2D_mouse_exited():
+	print("leave")

@@ -23,5 +23,6 @@ func createLevelButton(pathString:String):
 	add_child(btnLevel)
 
 func levelPressed(levelName:String):
+	Music.changeTrack(load("res://Assets/Sounds/mus_ambience.wav"))
 	LevelData.setCurrentLevel(levelName)
 	var _ERROR_CODE = get_tree().change_scene("res://Levels/Main.tscn")

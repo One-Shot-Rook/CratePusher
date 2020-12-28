@@ -18,4 +18,5 @@ func createLevelButton(pathString:String):
 	var levelName = pathString.split(".")[0]
 	btnLevel.text = levelName
 	btnLevel.connect("button_down",LevelNode,"startLevel",[levelName])
+	btnLevel.connect("button_down",Music,"changeTrack",[load("res://Assets/Sounds/mus_ambience.wav")])
 	add_child(btnLevel)
