@@ -1,6 +1,6 @@
 extends Control
 
-onready var tween = get_node("Tween")
+onready var twnPanel = get_node("twnPanel")
 
 var rng = RandomNumberGenerator.new()
 
@@ -21,11 +21,15 @@ var pitchDict = {
 	}
 var pitchRanges = [
 	pitchDict["C"],
+	pitchDict["C"],
 	pitchDict["D"],
+	pitchDict["E"],
 	pitchDict["E"],
 	pitchDict["F"],
 	pitchDict["G"],
+	pitchDict["G"],
 	]
+var noteArray = pitchRanges.duplicate(true)
 
 func _ready():
 	rect_position = Vector2.ZERO
@@ -33,17 +37,22 @@ func _ready():
 func buttonWasPressed():
 	var sndButton = AudioStreamPlayer.new()
 	sndButton.stream = load("res://Assets/Sounds/snd_boop.wav")
+	if noteArray.empty():
+		noteArray = pitchRanges.duplicate(true)
 	rng.randomize()
-	var pitch = pitchRanges[rng.randi_range(0,pitchRanges.size()-1)]
+	var noteIndex = rng.randi_range(0,noteArray.size()-1)
+	var pitch = noteArray[noteIndex]
+	noteArray.remove(noteIndex)
 	sndButton.pitch_scale = pitch
 	sndButton.volume_db = -25
+	sndButton.bus = "Music"
 	sndButton.connect("finished",sndButton,"queue_free")
 	add_child(sndButton)
 	sndButton.play()
 
 func _on_btnPlay_pressed():
 	buttonWasPressed()
-	tween.interpolate_property(
+	twnPanel.interpolate_property(
 		self, 
 		"rect_position", 
 		rect_position, 
@@ -52,11 +61,11 @@ func _on_btnPlay_pressed():
 		Tween.TRANS_CUBIC, 
 		Tween.EASE_IN_OUT
 	)
-	tween.start()
+	twnPanel.start()
 
 func _on_btnSettings_pressed():
 	buttonWasPressed()
-	tween.interpolate_property(
+	twnPanel.interpolate_property(
 		self, 
 		"rect_position", 
 		rect_position, 
@@ -65,11 +74,11 @@ func _on_btnSettings_pressed():
 		Tween.TRANS_CUBIC, 
 		Tween.EASE_IN_OUT
 	)
-	tween.start()
+	twnPanel.start()
 
 func _on_btnCredits_pressed():
 	buttonWasPressed()
-	tween.interpolate_property(
+	twnPanel.interpolate_property(
 		self, 
 		"rect_position", 
 		rect_position, 
@@ -78,11 +87,11 @@ func _on_btnCredits_pressed():
 		Tween.TRANS_CUBIC, 
 		Tween.EASE_IN_OUT
 	)
-	tween.start()
+	twnPanel.start()
 
 func _on_btnShop_pressed():
 	buttonWasPressed()
-	tween.interpolate_property(
+	twnPanel.interpolate_property(
 		self, 
 		"rect_position", 
 		rect_position, 
@@ -91,11 +100,11 @@ func _on_btnShop_pressed():
 		Tween.TRANS_CUBIC, 
 		Tween.EASE_IN_OUT
 	)
-	tween.start()
+	twnPanel.start()
 
 func _on_btnBack_pressed():
 	buttonWasPressed()
-	tween.interpolate_property(
+	twnPanel.interpolate_property(
 		self, 
 		"rect_position", 
 		rect_position, 
@@ -104,8 +113,13 @@ func _on_btnBack_pressed():
 		Tween.TRANS_CUBIC, 
 		Tween.EASE_IN_OUT
 	)
-	tween.start()
+	twnPanel.start()
 
 func _on_btnReset_pressed():
-	buttonWasPressed()
 	SaveData.resetSaveData()
+
+func _on_btnNote_pressed():
+	buttonWasPressed()
+	rng.randomize()
+	var randColor = Color(rng.randf_range(0,1),rng.randf_range(0,1),rng.randf_range(0,1))
+	$panelMenu/gridButtons/MarginContainer3/btnNote.modulate = randColor

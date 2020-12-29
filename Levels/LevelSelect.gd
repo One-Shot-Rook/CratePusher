@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends GridContainer
 
 onready var LevelNode = get_tree().get_root().get_node("Main/LevelNode")
 

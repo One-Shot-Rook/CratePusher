@@ -33,9 +33,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelSelect" type="HBoxContainer" parent="LevelUI"]
+[node name="LevelSelect" type="GridContainer" parent="LevelUI"]
 anchor_right = 1.0
 margin_bottom = 100.0
+columns = 6
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -84,6 +85,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="sndNarrator" type="AudioStreamPlayer" parent="LevelUI"]
+[node name="sndNarrator" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-bus = "Narrator"
+bus = "Voice"

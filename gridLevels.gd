@@ -18,11 +18,5 @@ func createLevelButton(pathString:String):
 	var levelName = pathString.split(".")[0]
 	btnLevel.text = levelName.trim_prefix("level")
 	#btnLevel.enabled_focus_mode = Control.FOCUS_NONE
-	btnLevel.connect("pressed",self,"levelPressed",[levelName])
-
+	btnLevel.connect("pressed",get_parent(),"levelPressed",[levelName])
 	add_child(btnLevel)
-
-func levelPressed(levelName:String):
-	Music.changeTrack(load("res://Assets/Sounds/mus_ambience.wav"))
-	LevelData.setCurrentLevel(levelName)
-	var _ERROR_CODE = get_tree().change_scene("res://Levels/Main.tscn")

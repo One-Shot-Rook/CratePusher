@@ -1,18 +1,30 @@
 extends Node
 
-var levelProgress = {
-	
-}
+var levelProgress = {}
+var audioLevels = {"Master":0,"Voice":0,"Music":0,"SFX":0}
 
 var saveVariables = [
-	"levelProgress"
+	"levelProgress",
+	"audioLevels"
 ]
+
+func updateAudioLevels():
+	audioLevels["Master"] = AudioServer.get_bus_volume_db(0)
+	audioLevels["Voice"]  = AudioServer.get_bus_volume_db(1)
+	audioLevels["Music"]  = AudioServer.get_bus_volume_db(2)
+	audioLevels["SFX"]    = AudioServer.get_bus_volume_db(3)
 
 func updateLevelStars(levelID, stars):
 	if levelProgress[levelID]["Stars"] > stars:
 		return
 	levelProgress[levelID]["Stars"] = stars
 	saveGame()
+
+func applyLoadedVariables():
+	AudioServer.set_bus_volume_db(0,audioLevels["Master"])
+	AudioServer.set_bus_volume_db(1,audioLevels["Voice"])
+	AudioServer.set_bus_volume_db(2,audioLevels["Music"])
+	AudioServer.set_bus_volume_db(3,audioLevels["SFX"])
 
 func _ready():
 	initialiseData()
@@ -42,6 +54,7 @@ func createSaveData(): # Copy the state of the game to a save dict
 func loadSaveData(saveData): # Set the state of the game from a save dict
 	for variable in saveData:
 		set(variable,saveData[variable])
+	applyLoadedVariables()
 
 func saveGame(): # Create save file
 	var saveFile = File.new()

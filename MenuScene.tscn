@@ -1,12 +1,18 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://MenuScene.gd" type="Script" id=2]
 [ext_resource path="res://gridLevels.gd" type="Script" id=3]
 [ext_resource path="res://Assets/UI/btn_menu_pressed.tres" type="StyleBox" id=4]
 [ext_resource path="res://Assets/UI/btn_menu_normal.tres" type="StyleBox" id=5]
+[ext_resource path="res://Assets/UI/btn_menu_disabled.tres" type="StyleBox" id=6]
 [ext_resource path="res://Assets/UI/btn_back_pressed.tres" type="StyleBox" id=7]
 [ext_resource path="res://Assets/UI/btn_back_normal.tres" type="StyleBox" id=8]
+[ext_resource path="res://panelSettings.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Sounds/snd_crate.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Speech/nar_trying_again_clean.wav" type="AudioStream" id=11]
+[ext_resource path="res://panelLevels.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Sprites/img_note.webp" type="Texture" id=13]
 
 [node name="MenuScene" type="Control"]
 anchor_right = 1.0
@@ -25,10 +31,14 @@ __meta__ = {
 }
 
 [node name="gridButtons" type="GridContainer" parent="panelMenu"]
-margin_left = 90.0
-margin_top = 470.0
-margin_right = 990.0
-margin_bottom = 1370.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -450.0
+margin_top = -450.0
+margin_right = 450.0
+margin_bottom = 450.0
 rect_min_size = Vector2( 900, 900 )
 columns = 3
 __meta__ = {
@@ -47,6 +57,7 @@ margin_bottom = 300.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 5 )
 enabled_focus_mode = 0
 text = "Play"
@@ -64,16 +75,35 @@ margin_bottom = 604.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 5 )
 enabled_focus_mode = 0
 text = "Settings"
 
-[node name="MarginContainer3" type="MarginContainer" parent="panelMenu/gridButtons"]
+[node name="MarginContainer3" type="ColorRect" parent="panelMenu/gridButtons"]
 margin_left = 304.0
 margin_top = 304.0
 margin_right = 604.0
 margin_bottom = 604.0
 rect_min_size = Vector2( 300, 300 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="btnNote" type="TextureButton" parent="panelMenu/gridButtons/MarginContainer3"]
+anchor_left = 0.506667
+anchor_top = 0.506667
+anchor_right = 0.506667
+anchor_bottom = 0.506667
+margin_left = -70.0
+margin_top = -70.0
+margin_right = 70.0
+margin_bottom = 70.0
+action_mode = 0
+texture_normal = ExtResource( 13 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="btnCredits" type="Button" parent="panelMenu/gridButtons"]
 margin_left = 608.0
@@ -83,6 +113,7 @@ margin_bottom = 604.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 5 )
 enabled_focus_mode = 0
 text = "Credits"
@@ -101,7 +132,9 @@ margin_bottom = 908.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 5 )
+disabled = true
 enabled_focus_mode = 0
 text = "Shop"
 
@@ -115,6 +148,7 @@ rect_min_size = Vector2( 300, 300 )
 [node name="panelLevels" type="Panel" parent="."]
 margin_top = -1920.0
 margin_right = 1080.0
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -149,16 +183,131 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="."]
+[node name="twnBeginLevel" type="Tween" parent="panelLevels"]
+
+[node name="modBeginLevel" type="CanvasModulate" parent="panelLevels"]
+position = Vector2( 0, 1920 )
 
 [node name="panelSettings" type="Panel" parent="."]
 margin_left = -1080.0
 margin_bottom = 1920.0
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="btnBack2" type="Button" parent="panelSettings"]
+[node name="gridOptions" type="GridContainer" parent="panelSettings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -200.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="labMaster" type="Label" parent="panelSettings/gridOptions"]
+margin_right = 488.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Master Volume"
+
+[node name="sliderMaster" type="HSlider" parent="panelSettings/gridOptions"]
+margin_left = 492.0
+margin_right = 980.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -80.0
+max_value = 24.0
+step = 4.0
+rounded = true
+
+[node name="labVoice" type="Label" parent="panelSettings/gridOptions"]
+margin_top = 65.0
+margin_right = 488.0
+margin_bottom = 126.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Voice Volume"
+
+[node name="sliderVoice" type="HSlider" parent="panelSettings/gridOptions"]
+margin_left = 492.0
+margin_top = 65.0
+margin_right = 980.0
+margin_bottom = 126.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -80.0
+max_value = 24.0
+step = 4.0
+rounded = true
+
+[node name="labMusic" type="Label" parent="panelSettings/gridOptions"]
+margin_top = 130.0
+margin_right = 488.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Music Volume"
+
+[node name="sliderMusic" type="HSlider" parent="panelSettings/gridOptions"]
+margin_left = 492.0
+margin_top = 130.0
+margin_right = 980.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -80.0
+max_value = 24.0
+step = 4.0
+rounded = true
+
+[node name="labSFX" type="Label" parent="panelSettings/gridOptions"]
+margin_top = 195.0
+margin_right = 488.0
+margin_bottom = 256.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "SFX Volume"
+
+[node name="sliderSFX" type="HSlider" parent="panelSettings/gridOptions"]
+margin_left = 492.0
+margin_top = 195.0
+margin_right = 980.0
+margin_bottom = 256.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -80.0
+max_value = 24.0
+step = 4.0
+rounded = true
+
+[node name="hbox" type="HBoxContainer" parent="panelSettings"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -150.0
+margin_bottom = -15.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnReset" type="Button" parent="panelSettings/hbox"]
+margin_left = 360.0
+margin_right = 720.0
+margin_bottom = 135.0
+rect_min_size = Vector2( 360, 0 )
+text = "Reset Save Data"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnBack" type="Button" parent="panelSettings"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -144.0
@@ -176,17 +325,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="btnReset" type="Button" parent="panelSettings"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 360.0
-margin_top = -144.0
-margin_bottom = -16.0
-rect_min_size = Vector2( 360, 0 )
-text = "Reset Save Data"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="sndVoice" type="AudioStreamPlayer" parent="panelSettings"]
+stream = ExtResource( 11 )
+bus = "Voice"
+
+[node name="sndSFX" type="AudioStreamPlayer" parent="panelSettings"]
+stream = ExtResource( 10 )
+volume_db = -5.0
+bus = "SFX"
 
 [node name="panelCredits" type="Panel" parent="."]
 margin_left = 1080.0
@@ -196,7 +342,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="btnBack3" type="Button" parent="panelCredits"]
+[node name="btnBack" type="Button" parent="panelCredits"]
 margin_left = 16.0
 margin_top = 876.0
 margin_right = 144.0
@@ -216,8 +362,11 @@ __meta__ = {
 margin_top = 1920.0
 margin_right = 1080.0
 margin_bottom = 3840.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="btnBack4" type="Button" parent="panelShop"]
+[node name="btnBack" type="Button" parent="panelShop"]
 margin_left = 476.0
 margin_top = 16.0
 rect_min_size = Vector2( 128, 128 )
@@ -231,12 +380,20 @@ expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="twnPanel" type="Tween" parent="."]
 [connection signal="pressed" from="panelMenu/gridButtons/btnPlay" to="." method="_on_btnPlay_pressed"]
 [connection signal="pressed" from="panelMenu/gridButtons/btnSettings" to="." method="_on_btnSettings_pressed"]
+[connection signal="pressed" from="panelMenu/gridButtons/MarginContainer3/btnNote" to="." method="_on_btnNote_pressed"]
 [connection signal="pressed" from="panelMenu/gridButtons/btnCredits" to="." method="_on_btnCredits_pressed"]
 [connection signal="pressed" from="panelMenu/gridButtons/btnShop" to="." method="_on_btnShop_pressed"]
 [connection signal="pressed" from="panelLevels/btnBack" to="." method="_on_btnBack_pressed"]
-[connection signal="pressed" from="panelSettings/btnBack2" to="." method="_on_btnBack_pressed"]
-[connection signal="pressed" from="panelSettings/btnReset" to="." method="_on_btnReset_pressed"]
-[connection signal="pressed" from="panelCredits/btnBack3" to="." method="_on_btnBack_pressed"]
-[connection signal="pressed" from="panelShop/btnBack4" to="." method="_on_btnBack_pressed"]
+[connection signal="value_changed" from="panelSettings/gridOptions/sliderMaster" to="panelSettings" method="_on_sliderMaster_value_changed"]
+[connection signal="value_changed" from="panelSettings/gridOptions/sliderVoice" to="panelSettings" method="_on_sliderVoice_value_changed"]
+[connection signal="value_changed" from="panelSettings/gridOptions/sliderMusic" to="panelSettings" method="_on_sliderMusic_value_changed"]
+[connection signal="value_changed" from="panelSettings/gridOptions/sliderSFX" to="panelSettings" method="_on_sliderSFX_value_changed"]
+[connection signal="pressed" from="panelSettings/hbox/btnReset" to="." method="_on_btnReset_pressed"]
+[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelCredits/btnBack" to="." method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelShop/btnBack" to="." method="_on_btnBack_pressed"]

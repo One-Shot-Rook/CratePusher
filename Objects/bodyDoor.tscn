@@ -44,9 +44,11 @@ frames = SubResource( 2 )
 
 [node name="audioOpen" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+bus = "SFX"
 
 [node name="audioClose" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )
+bus = "SFX"
 
 [node name="occluder" type="LightOccluder2D" parent="."]
 occluder = SubResource( 3 )
