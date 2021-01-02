@@ -33,15 +33,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelSelect" type="GridContainer" parent="LevelUI"]
-anchor_right = 1.0
-margin_bottom = 100.0
-columns = 6
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="bottomBar" type="HBoxContainer" parent="LevelUI"]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -85,6 +76,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="topBar" type="HBoxContainer" parent="LevelUI"]
+anchor_right = 1.0
+margin_bottom = 100.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect" type="GridContainer" parent="LevelUI/topBar"]
+visible = false
+margin_left = 736.0
+margin_right = 736.0
+margin_bottom = 125.0
+columns = 6
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnMenu" type="Button" parent="LevelUI/topBar"]
+margin_left = 740.0
+margin_right = 908.0
+margin_bottom = 125.0
+text = "Menu"
+
+[node name="btnReset" type="Button" parent="LevelUI/topBar"]
+margin_left = 912.0
+margin_right = 1080.0
+margin_bottom = 125.0
+text = "Reset"
+
 [node name="sndNarrator" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 bus = "Voice"
+[connection signal="pressed" from="LevelUI/topBar/btnMenu" to="LevelNode" method="_on_btnMenu_pressed"]
+[connection signal="pressed" from="LevelUI/topBar/btnReset" to="LevelNode" method="_on_btnReset_pressed"]
