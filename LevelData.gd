@@ -3,6 +3,9 @@ extends Node
 var levelData = {
 	"levelX":{
 		"moves":[23,25,27]
+	},
+	"level7":{
+		"moves":[28,31,35]
 	}
 }
 
