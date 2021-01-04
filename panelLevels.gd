@@ -15,7 +15,7 @@ func levelPressed(levelName:String):
 		1,Tween.TRANS_CUBIC,Tween.EASE_IN
 	)
 	$twnBeginLevel.start()
-	Music.changeTrack(load("res://Assets/Sounds/mus_ambience.wav"))
+	Music.stopTrack()
 	LevelData.setCurrentLevel(levelName)
 
 func goToLevel():

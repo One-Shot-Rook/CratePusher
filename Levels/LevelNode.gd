@@ -15,6 +15,4 @@ func _on_btnReset_pressed():
 
 
 func _on_btnMenu_pressed():
-	for childTileMap in get_children():
-		childTileMap.free()
 	var _ERROR_CODE = get_tree().change_scene("res://MenuScene.tscn")

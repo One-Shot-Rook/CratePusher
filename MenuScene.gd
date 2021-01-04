@@ -32,6 +32,7 @@ var pitchRanges = [
 var noteArray = pitchRanges.duplicate(true)
 
 func _ready():
+	Music.startTrack(Music.theme_Menu)
 	rect_position = Vector2.ZERO
 
 func buttonWasPressed():
@@ -117,6 +118,7 @@ func _on_btnBack_pressed():
 
 func _on_btnReset_pressed():
 	SaveData.resetSaveData()
+	get_tree().call_group("stars","updateUI")
 
 func _on_btnNote_pressed():
 	buttonWasPressed()
