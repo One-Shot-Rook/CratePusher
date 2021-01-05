@@ -35,7 +35,7 @@ func _ready():
 	Music.startTrack(Music.theme_Menu)
 	rect_position = Vector2.ZERO
 
-func buttonWasPressed():
+func buttonWasPressed() -> void:
 	var sndButton = AudioStreamPlayer.new()
 	sndButton.stream = load("res://Assets/Sounds/snd_boop.wav")
 	if noteArray.empty():
