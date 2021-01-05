@@ -1,7 +1,10 @@
 extends Node
 
 var levelData = {
-	"levelX":{
+	"level01":{
+		"moves":[5,7,9]
+	},
+	"level10":{
 		"moves":[23,25,27]
 	},
 	"level7":{
@@ -23,6 +26,14 @@ func tryCompleteLevel():
 func setCurrentLevel(levelName):
 	levelComplete = false
 	currentLevel = levelName
+
+func set_level_next():
+	var nextLvlName = int(currentLevel.trim_prefix("level").trim_prefix("0"))+1
+	if nextLvlName < 10:
+		nextLvlName = "0" + str(nextLvlName)
+	nextLvlName = "level" + str(nextLvlName)
+	if SaveData.levelProgress.has(nextLvlName):
+		currentLevel = nextLvlName
 
 # reset moveCount
 func initialiseMoveCount():

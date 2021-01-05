@@ -16,7 +16,7 @@ func createLevelButton(pathString:String):
 	var btnLevel = load_btnLevel.instance()
 	#btnLevel.size_flags_horizontal = Button.SIZE_EXPAND_FILL
 	var levelName = pathString.split(".")[0]
-	btnLevel.text = levelName.trim_prefix("level")
+	btnLevel.text = levelName.trim_prefix("level").trim_prefix("0")
 	#btnLevel.enabled_focus_mode = Control.FOCUS_NONE
 	btnLevel.connect("pressed",get_parent(),"levelPressed",[levelName])
 	add_child(btnLevel)

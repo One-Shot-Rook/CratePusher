@@ -85,4 +85,32 @@ text = "Continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="btnReplay" type="Button" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.6
+margin_left = 50.0
+margin_top = 200.0
+margin_right = -50.0
+margin_bottom = 200.0
+text = "Replay"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnMenu" type="Button" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.6
+margin_left = 50.0
+margin_top = 400.0
+margin_right = -50.0
+margin_bottom = 400.0
+text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="btnContinue" to="." method="_on_btnContinue_pressed"]
+[connection signal="pressed" from="btnReplay" to="." method="_on_btnReplay_pressed"]
+[connection signal="pressed" from="btnMenu" to="." method="_on_btnMenu_pressed"]

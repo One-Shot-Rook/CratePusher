@@ -8,7 +8,18 @@ func _ready():
 			texStar.modulate = dimColor
 	
 	SaveData.updateLevelStars(LevelData.currentLevel, LevelData.stars)
+	get_tree().call_group("UI","updateUI")
 
 func _on_btnContinue_pressed():
+	LevelData.set_level_next()
 	queue_free()
 	get_tree().call_group("level","startLevel")
+
+
+func _on_btnReplay_pressed():
+	queue_free()
+	get_tree().call_group("level","startLevel")
+
+
+func _on_btnMenu_pressed():
+	get_tree().change_scene("res://MenuScene.tscn")
