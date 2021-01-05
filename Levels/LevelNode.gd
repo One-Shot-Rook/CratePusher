@@ -8,3 +8,11 @@ func startLevel(levelName=LevelData.currentLevel):
 		childTileMap.free()
 	LevelData.setCurrentLevel(levelName)
 	add_child(load("res://Levels/"+levelName+".tscn").instance())
+
+
+func _on_btnReset_pressed():
+	startLevel()
+
+
+func _on_btnMenu_pressed():
+	var _ERROR_CODE = get_tree().change_scene("res://MenuScene.tscn")
