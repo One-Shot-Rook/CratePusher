@@ -183,11 +183,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="twnBeginLevel" type="Tween" parent="panelLevels"]
-
-[node name="modBeginLevel" type="CanvasModulate" parent="panelLevels"]
-position = Vector2( 0, 1920 )
-
 [node name="panelSettings" type="Panel" parent="."]
 margin_left = -1080.0
 margin_bottom = 1920.0

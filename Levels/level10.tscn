@@ -40,12 +40,10 @@ signalID = 1
 position = Vector2( 304, 240 )
 
 [node name="bodyButton2" parent="." instance=ExtResource( 2 )]
-modulate = Color( 0.654902, 1, 0.529412, 1 )
 position = Vector2( 208, 496 )
 signalID = 1
 
 [node name="bodyButton3" parent="." instance=ExtResource( 2 )]
-modulate = Color( 0.380392, 0.592157, 1, 1 )
 position = Vector2( 80, 496 )
 signalID = 2
 levelGoal = true

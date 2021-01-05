@@ -7,7 +7,7 @@ var buttonSignals = {}			# buttonSignals[signalID:int][buttonNode:Area2D] = bool
 onready var gamePhase = Phases.ACTION
 onready var next_gamePhase = Phases.MOVE
 
-var buttonColors = [Color.red,Color.blue,Color.green,Color.yellow,Color.purple]
+var buttonColors = [Color.red,Color.blue,Color.green,Color.yellow,Color.purple,Color.darkgoldenrod]
 
 ### PHASES ###
 

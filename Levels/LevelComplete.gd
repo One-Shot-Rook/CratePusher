@@ -22,4 +22,4 @@ func _on_btnReplay_pressed():
 
 
 func _on_btnMenu_pressed():
-	get_tree().change_scene("res://MenuScene.tscn")
+	Transition.transitionScene("res://MenuScene.tscn",true)
