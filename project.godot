@@ -26,6 +26,7 @@ Phases="*res://Phases.gd"
 LevelData="*res://LevelData.gd"
 SaveData="*res://SaveData.gd"
 Music="*res://MusicNode.tscn"
+Transition="*res://TransitionNode.tscn"
 
 [display]
 

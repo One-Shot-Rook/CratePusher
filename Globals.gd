@@ -7,7 +7,7 @@ var buttonSignals = {}			# buttonSignals[signalID:int][buttonNode:Area2D] = bool
 onready var gamePhase = Phases.ACTION
 onready var next_gamePhase = Phases.MOVE
 
-var buttonColors = [Color.red,Color.blue,Color.green,Color.yellow,Color.purple]
+var buttonColors = [Color.red,Color.blue,Color.green,Color.yellow,Color.purple,Color.darkgoldenrod]
 
 ### PHASES ###
 
@@ -16,8 +16,9 @@ func initialiseObjectPhases():
 	var objectArray = get_tree().get_nodes_in_group("object")
 	objectPhases = {}
 	for object in objectArray:
-		objectPhases[object] = Phases.ACTION
+		objectPhases[object] = gamePhase
 	#print("objectPhases = ",objectPhases)
+	
 
 # update phaseID for a given object
 func updateObjectPhaseID(object,_debugString="") -> void:

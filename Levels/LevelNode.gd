@@ -15,4 +15,4 @@ func _on_btnReset_pressed():
 
 
 func _on_btnMenu_pressed():
-	var _ERROR_CODE = get_tree().change_scene("res://MenuScene.tscn")
+	Transition.transitionScene("res://MenuScene.tscn",true)

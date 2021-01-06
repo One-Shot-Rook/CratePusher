@@ -5,7 +5,8 @@ enum DOORMODE{SINGLE,ALL}
 export(DOORMODE) var doorMode
 var open:bool = false
 
-
+func _ready():
+	$sprColor.self_modulate = Globals.getButtonColor(signalID)
 
 func openDoor():
 	open = true

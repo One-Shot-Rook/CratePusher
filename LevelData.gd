@@ -4,6 +4,9 @@ var levelData = {
 	"level01":{
 		"moves":[5,7,9]
 	},
+	"level04":{
+		"moves":[12,14,19]
+	},
 	"level10":{
 		"moves":[23,25,27]
 	},
