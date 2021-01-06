@@ -36,8 +36,7 @@ movable = true
 
 [node name="bodyButton3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 208, 592 )
-signalID = 6
-levelGoal = true
+is_level_goal = true
 
 [node name="bodyDoor" parent="." instance=ExtResource( 3 )]
 position = Vector2( 144, 592 )
@@ -66,23 +65,23 @@ signalID = 2
 
 [node name="bodyButton" parent="." instance=ExtResource( 5 )]
 position = Vector2( 304, 112 )
-signalID = 2
+signal_id = 1
 
 [node name="bodyButton2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 240, 144 )
-signalID = 1
+signal_id = 2
 
 [node name="bodyButton4" parent="." instance=ExtResource( 5 )]
 position = Vector2( 176, 176 )
 
 [node name="bodyButton5" parent="." instance=ExtResource( 5 )]
 position = Vector2( 304, 400 )
-signalID = 3
+signal_id = 3
 
 [node name="bodyButton6" parent="." instance=ExtResource( 5 )]
 position = Vector2( 304, 432 )
-signalID = 4
+signal_id = 4
 
 [node name="bodyButton7" parent="." instance=ExtResource( 5 )]
 position = Vector2( 304, 464 )
-signalID = 5
+signal_id = 5

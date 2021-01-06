@@ -35,5 +35,4 @@ movable = true
 
 [node name="bodyButton2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 144, 208 )
-signalID = 1
-levelGoal = true
+is_level_goal = true

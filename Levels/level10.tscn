@@ -24,6 +24,9 @@ position = Vector2( 304, 80 )
 [node name="bodyCrateRed2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 208, 208 )
 
+[node name="bodyButton" parent="." instance=ExtResource( 2 )]
+position = Vector2( 304, 240 )
+
 [node name="bodyDoor" parent="." instance=ExtResource( 1 )]
 position = Vector2( 176, 176 )
 rotation = 1.5708
@@ -32,18 +35,14 @@ rotation = 1.5708
 position = Vector2( 208, 304 )
 rotation = 1.5708
 
+[node name="bodyButton2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 208, 496 )
+signal_id = 1
+
 [node name="bodyDoor3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 112, 496 )
 signalID = 1
 
-[node name="bodyButton" parent="." instance=ExtResource( 2 )]
-position = Vector2( 304, 240 )
-
-[node name="bodyButton2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 208, 496 )
-signalID = 1
-
 [node name="bodyButton3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 496 )
-signalID = 2
-levelGoal = true
+is_level_goal = true

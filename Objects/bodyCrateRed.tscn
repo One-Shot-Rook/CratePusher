@@ -13,8 +13,6 @@
 "object",
 ]]
 z_index = 1
-collision_layer = 2
-collision_mask = 3
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -60,7 +58,10 @@ passby_press = true
 stream = ExtResource( 5 )
 volume_db = -5.0
 bus = "SFX"
+
+[node name="twnMove" type="Tween" parent="."]
 [connection signal="pressed" from="Directions/areaU" to="." method="_on_direction_pressed" binds= [ Vector2( 0, -1 ) ]]
 [connection signal="pressed" from="Directions/areaR" to="." method="_on_direction_pressed" binds= [ Vector2( 1, 0 ) ]]
 [connection signal="pressed" from="Directions/areaD" to="." method="_on_direction_pressed" binds= [ Vector2( 0, 1 ) ]]
 [connection signal="pressed" from="Directions/areaL" to="." method="_on_direction_pressed" binds= [ Vector2( -1, 0 ) ]]
+[connection signal="tween_completed" from="twnMove" to="." method="_move"]

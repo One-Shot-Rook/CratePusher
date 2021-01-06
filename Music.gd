@@ -26,7 +26,6 @@ func stopTrack():
 	twnError = twnVolumeDB.start()
 
 func startTrack(stream:AudioStream):
-	print("start ",stream)
 	sndMusic.stop()
 	sndMusic.stream = stream
 	sndMusic.play()
