@@ -35,8 +35,10 @@ func _ready():
 
 func move(setDirection:Vector2,distance=MOVE_MAX):
 	# Can the crate move in that direction at all
-	if move_and_collide(setDirection*tileSize,true,true,true):
-		return
+	var collisionInfo = move_and_collide(setDirection*tileSize,true,true,true)
+	if collisionInfo:
+		if not collisionInfo.collider.is_in_group("hole"):
+			return
 	distanceToMove = distance
 	direction = setDirection
 	moving = true
@@ -44,7 +46,10 @@ func move(setDirection:Vector2,distance=MOVE_MAX):
 	$audioMove.pitch_scale = rng.randf_range(0.8,1.2)
 	$audioMove.play()
 
-func stop(_reason="wall"):
+func stop(reason="wall"):
+	if not moving:
+		return
+	print(str(name)+": "+reason)
 	moving = false
 	direction = Vector2.ZERO
 	distanceToMove = 0.0
@@ -65,7 +70,15 @@ func _physics_process(delta):
 			var pushDistance = max(0,weightID-crate.weightID)*tileSize
 			#print(" !!! PUSH = ",pushDistance," !!!")
 			crate.move(direction,pushDistance)
-			stop("crate")
+			stop("crate -> "+str(pushDistance/48))
+		if collisionInfo.collider.is_in_group("hole"): # If we've hit a hole
+			print("hole")
+			var hole = collisionInfo.collider
+			hole.fillWith($sprite.texture.resource_path)
+			visible = false
+			$shape.disabled = true
+			position = hole.position
+			stop("hole")
 		else:
 			stop()
 
@@ -97,6 +110,9 @@ func getAdjacentNodes():
 	for dirChar in directions:
 		var vector = directions[dirChar]
 		var directionNode = move_and_collide(vector*tileSize/2,true,true,true)
+		if directionNode:
+			if directionNode.collider.is_in_group("hole"):
+				directionNode = null
 		adjacentNodes[dirChar] = directionNode
 		#print(dirChar," is ",directionNode)
 	return adjacentNodes

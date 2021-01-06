@@ -16,8 +16,9 @@ func initialiseObjectPhases():
 	var objectArray = get_tree().get_nodes_in_group("object")
 	objectPhases = {}
 	for object in objectArray:
-		objectPhases[object] = Phases.ACTION
+		objectPhases[object] = gamePhase
 	#print("objectPhases = ",objectPhases)
+	
 
 # update phaseID for a given object
 func updateObjectPhaseID(object,_debugString="") -> void:
