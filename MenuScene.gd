@@ -24,6 +24,7 @@ var pitchRanges = [
 	pitchDict["E"],
 	pitchDict["G"],
 	]
+
 var noteArray = pitchRanges.duplicate(true)
 
 func _ready():
@@ -114,6 +115,7 @@ func _on_btnBack_pressed():
 func _on_btnReset_pressed():
 	SaveData.resetSaveData()
 	get_tree().call_group("stars","updateUI")
+
 func _on_btnNote_pressed():
 	buttonWasPressed()
 	rng.randomize()
