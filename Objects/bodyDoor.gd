@@ -1,15 +1,24 @@
 class_name Door
+tool
 extends KinematicBody2D
 
-export var signalID:int
-enum DOORMODE{SINGLE,ALL}
-export(DOORMODE) var doorMode
+export var signal_id:int setget set_signal_id, get_signal_id
+enum DoorMode{SINGLE,ALL}
+export(DoorMode) var door_mode
 var is_open:bool = false
+
+func set_signal_id(new_signal_id):
+	signal_id = new_signal_id
+	update_ui()
+func get_signal_id() -> int: return signal_id
 
 func get_class() -> String: return "Door"
 
 func _ready():
-	$sprColor.self_modulate = Globals.get_button_color(signalID)
+	update_ui()
+
+func update_ui():
+	$sprColor.self_modulate = Globals.get_button_color(signal_id)
 
 func open_door():
 	if is_open:
@@ -32,14 +41,14 @@ func close_door():
 	$audioClose.play()
 
 func update_open_or_close() -> void:
-	var button_states = Globals.get_button_states(signalID)
-	match doorMode:
-		DOORMODE.SINGLE:
+	var button_states = Globals.get_button_states(signal_id)
+	match door_mode:
+		DoorMode.SINGLE:
 			if (true in button_states):
 				open_door()
 			else:
 				close_door()
-		DOORMODE.ALL:
+		DoorMode.ALL:
 			print(button_states)
 			if not(false in button_states):
 				open_door()

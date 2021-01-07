@@ -17,5 +17,5 @@ func fill_with(resource_path):
 		return
 	is_filled = true
 	$sprSunk.texture = load(resource_path)
-	$shape.disabled = true
+	
 

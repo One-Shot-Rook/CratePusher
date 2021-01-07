@@ -4,6 +4,8 @@ extends KinematicBody2D
 enum WeightMode{LIGHT,MEDIUM,HEAVY}
 export(WeightMode) var weight_id = WeightMode.MEDIUM
 export var movable:bool = true
+enum SpeedMode{SLOW,FAST}
+export(SpeedMode) var speed_mode = SpeedMode.SLOW
 
 var tile_size:float
 var rng := RandomNumberGenerator.new()
@@ -30,6 +32,8 @@ func _ready():
 		enable_move_ui()
 	else:
 		disable_move_ui()
+	if speed_mode == SpeedMode.SLOW:
+		move_time *= 2
 
 
 func start_moving(new_move_direction:Vector2,new_move_distance=MOVE_DISTANCE_MAX) -> void:
@@ -43,30 +47,18 @@ func start_moving(new_move_direction:Vector2,new_move_distance=MOVE_DISTANCE_MAX
 
 func _move(_object=null, _key=":position") -> bool:
 	
+	if speed_mode == SpeedMode.SLOW:
+		Globals.update_buttons_off()
+	
 	snap_to_tile()
 	
 	if move_distance <= 0:
 		stop_moving("friction")
 	move_distance -= 1
 	
-	# React to what we're on
-	var object_currently_colliding = get_object_currently_colliding()
-	if object_currently_colliding:
-		print("currently on: ",object_currently_colliding.get_class())
-		match object_currently_colliding.get_class():
-			"Hole":
-				var hole:Hole = object_currently_colliding
-				if hole.is_filled:
-					continue
-				hole.fill_with($sprite.texture.resource_path)
-				stop_moving("fell into hole")
-				queue_free()
-	
-	if not is_moving:
-		return false
-	
 	# React to what's ahead
 	var objects_in_move_direction = get_objects_in_move_direction()
+	print("Objects ahead: ",objects_in_move_direction)
 	for object in objects_in_move_direction:
 		match object.get_class():
 			"TileMap":
@@ -78,11 +70,28 @@ func _move(_object=null, _key=":position") -> bool:
 			"Crate":
 				var crate:Crate = object
 				var push_distance = max(0,weight_id-crate.weight_id)
-				crate.start_moving(move_direction,push_distance)
+				if push_distance > 0:
+					crate.start_moving(move_direction,push_distance)
 				stop_moving("crate -> "+str(push_distance/48))
+	
+	# React to what we're on
+	var object_currently_colliding = get_object_currently_colliding()
+	if object_currently_colliding:
+		print("currently on: ",object_currently_colliding.get_class())
+		match object_currently_colliding.get_class():
+			"Hole":
+				if speed_mode == SpeedMode.FAST and is_moving:
+					continue
+				var hole:Hole = object_currently_colliding
+				if hole.is_filled:
+					continue
+				hole.fill_with($sprite.texture.resource_path)
+				stop_moving("fell into hole")
+				queue_free()
 	
 	if not is_moving:
 		return false
+	
 	
 	# Move to next tile
 	move_to_position = position + move_direction * tile_size
@@ -110,9 +119,10 @@ func get_objects_in_move_direction() -> Array:
 	for object in object_array:
 		if (object.position - (position+move_direction*tile_size)).length() <= COLLISION_RADIUS:
 			objects.append(object)
-	var collision_data = move_and_collide(move_direction*tile_size/3,true,true,true)
-	if collision_data:
-		objects.append(collision_data.collider)
+	if objects.empty(): # If there are no objects scan for walls
+		var collision_data = move_and_collide(move_direction*tile_size/3,true,true,true)
+		if collision_data:
+			objects.append(collision_data.collider)
 	return objects
 
 

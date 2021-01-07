@@ -38,6 +38,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 4 )
 
 [node name="spriteCenter" type="Sprite" parent="spriteBase"]
+modulate = Color( 1, 0, 0, 1 )
 texture = ExtResource( 2 )
 
 [node name="audioClick" type="AudioStreamPlayer2D" parent="."]
@@ -47,6 +48,7 @@ bus = "SFX"
 [node name="partGoal" type="Particles2D" parent="."]
 visible = false
 position = Vector2( 0, 8 )
+emitting = false
 amount = 32
 preprocess = 1.0
 process_material = SubResource( 2 )

@@ -1,3 +1,4 @@
+tool
 extends Node
 
 var button_signals = {}			# buttonSignals[signal_id:int][buttonNode:Area2D] = bool
@@ -13,13 +14,15 @@ func update_move_ui() -> void:
 			return
 	yield(get_tree().create_timer(STAGE_WAIT_TIME), "timeout")
 	get_tree().call_group("button","update_on_or_off")
-	yield(get_tree().create_timer(STAGE_WAIT_TIME), "timeout")
+	yield(get_tree().create_timer(0.015), "timeout")
 	get_tree().call_group("door","update_open_or_close")
-	yield(get_tree().create_timer(STAGE_WAIT_TIME), "timeout")
+	yield(get_tree().create_timer(0.015), "timeout")
 	get_tree().call_group("crate","enable_move_ui")
 	print("\n [NEW]\n")
 
-
+func update_buttons_off():
+	get_tree().call_group("button","update_on_or_off",true)
+	get_tree().call_group("door","update_open_or_close")
 
 ### SIGNALS ###
 
@@ -29,13 +32,10 @@ func initialiseButtonSignals() -> void:
 	button_signals = {}
 	for button in buttonArray:
 		if button.is_level_goal:
-			print("miss")
-			pass
-		elif button_signals.has(button.signal_id):
-			print("add")
+			continue
+		if button_signals.has(button.signal_id):
 			button_signals[button.signal_id][button] = false
 		else:
-			print("create")
 			button_signals[button.signal_id] = {button:false}
 		print(button_signals)
 	#print("button_signals = ",button_signals)
