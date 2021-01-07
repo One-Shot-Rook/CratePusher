@@ -21,10 +21,10 @@ script = ExtResource( 2 )
 
 [node name="button(1)" parent="." instance=ExtResource( 6 )]
 position = Vector2( 208, 336 )
-signal_id = 1
 
 [node name="button(0)" parent="." instance=ExtResource( 6 )]
 position = Vector2( 208, 400 )
+signal_id = 1
 
 [node name="bodyHole" parent="." instance=ExtResource( 3 )]
 position = Vector2( 208, 464 )

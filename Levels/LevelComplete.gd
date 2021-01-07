@@ -3,9 +3,7 @@ extends Control
 export var dimColor:Color
 
 func _ready():
-	for texStar in $hboxStars.get_children():
-		if int(texStar.name[-1]) > LevelData.stars:
-			texStar.modulate = dimColor
+	$texChip.texture = load("res://Assets/UI/img_chip_" + str(LevelData.stars) + ".png")
 	
 	SaveData.updateLevelStars(LevelData.currentLevel, LevelData.stars)
 	get_tree().call_group("UI","updateUI")

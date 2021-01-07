@@ -12,6 +12,4 @@ func updateUI():
 	if not SaveData.levelProgress.has("level" + tempName):
 		SaveData.resetSaveData()
 	stars = SaveData.levelProgress["level" + tempName]["Stars"]
-	for texStar in $ctnStars.get_children():
-		if int(texStar.name[-1]) > stars:
-			texStar.modulate = Color(0,0,0,1)
+	$texChip.texture = load("res://Assets/UI/img_chip_" + str(stars) + ".png")
