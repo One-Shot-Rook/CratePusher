@@ -21,7 +21,7 @@ script = ExtResource( 6 )
 
 [node name="bodyButton" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 176 )
-levelGoal = true
+is_level_goal = true
 
 [node name="bodyHole" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 240 )

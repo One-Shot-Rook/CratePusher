@@ -1,58 +1,54 @@
+class_name Door
 extends KinematicBody2D
 
 export var signalID:int
 enum DOORMODE{SINGLE,ALL}
 export(DOORMODE) var doorMode
-var open:bool = false
+var is_open:bool = false
+
+func get_class() -> String: return "Door"
 
 func _ready():
-	$sprColor.self_modulate = Globals.getButtonColor(signalID)
+	$sprColor.self_modulate = Globals.get_button_color(signalID)
 
-func openDoor():
-	open = true
+func open_door():
+	if is_open:
+		return
+	is_open = true
 	$occluder.visible = false
 	$shape.disabled = true
 	$sprite.frame = 0
 	$sprite.play()
 	$audioOpen.play()
 
-func closeDoor():
-	open = false
+func close_door():
+	if not is_open or not can_close():
+		return
+	is_open = false
 	$occluder.visible = true
 	$shape.disabled = false
 	$sprite.frame = 7
 	$sprite.play("",true)
 	$audioClose.play()
 
-func shouldDoorBEOpen():
-	var buttonStates = Globals.getButtonStates(signalID)
+func update_open_or_close() -> void:
+	var button_states = Globals.get_button_states(signalID)
 	match doorMode:
 		DOORMODE.SINGLE:
-			return (true in buttonStates)
+			if (true in button_states):
+				open_door()
+			else:
+				close_door()
 		DOORMODE.ALL:
-			return not(false in buttonStates)
+			print(button_states)
+			if not(false in button_states):
+				open_door()
+			else:
+				close_door()
 
-func canClose():
+func can_close():
 	var crateArray = get_tree().get_nodes_in_group("crate")
 	for crate in crateArray:
 		if (crate.position-position).length() < 16:
 			return false
 	return true
-
-func actionPhase():
-	pass
-
-func movePhase():
-	Globals.updateObjectPhaseID(self,"auto") # MOVE (DONE)
-
-func effectPhase():
-	Globals.updateObjectPhaseID(self,"auto") # EFFECT (DONE)
-
-func reactPhase():
-	if shouldDoorBEOpen():
-		if not open:
-			openDoor()
-	else:
-		if open and canClose():
-			closeDoor()
-	Globals.updateObjectPhaseID(self,"done") # REACT (DONE)

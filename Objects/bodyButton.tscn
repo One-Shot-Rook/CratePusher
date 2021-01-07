@@ -25,8 +25,7 @@ color = Color( 1, 0.647059, 0.647059, 1 )
 "button",
 "object",
 ]]
-collision_layer = 4
-collision_mask = 2
+collision_layer = 2147483649
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true

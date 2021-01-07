@@ -14,7 +14,7 @@
 [ext_resource path="res://Assets/Sprites/img_door_color.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15, 15 )
+extents = Vector2( 16, 16 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -31,7 +31,6 @@ polygon = PoolVector2Array( 0, -32, 0, 32 )
 "door",
 "object",
 ]]
-collision_mask = 2
 script = ExtResource( 11 )
 __meta__ = {
 "_edit_group_": true

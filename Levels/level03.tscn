@@ -31,7 +31,6 @@ position = Vector2( 240, 176 )
 [node name="bodyButton" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 176 )
 
-[node name="bodyButton2" parent="." instance=ExtResource( 2 )]
+[node name="bodyButtonGoal" parent="." instance=ExtResource( 2 )]
 position = Vector2( 304, 176 )
-signalID = 1
-levelGoal = true
+is_level_goal = true

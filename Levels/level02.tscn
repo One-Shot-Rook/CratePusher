@@ -25,12 +25,12 @@ rotation = 1.5708
 [node name="bodyButton" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 80 )
 
+[node name="bodyButtonGoal" parent="." instance=ExtResource( 2 )]
+position = Vector2( 144, 240 )
+is_level_goal = true
+
 [node name="bodyCrateRed" parent="." instance=ExtResource( 3 )]
 position = Vector2( 144, 80 )
 
 [node name="bodyCrateRed2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 144, 112 )
-
-[node name="bodyButton2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 144, 240 )
-levelGoal = true

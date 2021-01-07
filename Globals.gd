@@ -1,103 +1,63 @@
 extends Node
 
-var objectPhases = {}			# objectPhases[buttonNode:Area2D] = phaseID:int (Phases.X)
-var buttonSignals = {}			# buttonSignals[signalID:int][buttonNode:Area2D] = bool
-
-
-onready var gamePhase = Phases.ACTION
-onready var next_gamePhase = Phases.MOVE
-
+var button_signals = {}			# buttonSignals[signal_id:int][buttonNode:Area2D] = bool
 var buttonColors = [Color.red,Color.blue,Color.green,Color.yellow,Color.purple,Color.darkgoldenrod]
 
-### PHASES ###
+var STAGE_WAIT_TIME = 0.07
 
-# generate objectPhases
-func initialiseObjectPhases():
-	var objectArray = get_tree().get_nodes_in_group("object")
-	objectPhases = {}
-	for object in objectArray:
-		objectPhases[object] = gamePhase
-	#print("objectPhases = ",objectPhases)
-	
-
-# update phaseID for a given object
-func updateObjectPhaseID(object,_debugString="") -> void:
-	#print(object.name," -> ",next_gamePhase," ",debugString)
-	objectPhases[object] = next_gamePhase
-	if areStatesAligned():
-		progressGamePhase()
-
-# return whether all states are at the next gamePhase (i.e. done with the previous gamePhase)
-func areStatesAligned() -> bool:
-	for object in objectPhases:
-		if objectPhases[object] != next_gamePhase:
-			return false
-	return true
-
-func checkForMovement() -> void:
-	var crateArray = get_tree().get_nodes_in_group("crate")
-	for crate in crateArray:
-		if crate.moving:
-			#print(crate.name," is still moving!")
+func update_move_ui() -> void:
+	var crate_array = get_tree().get_nodes_in_group("crate")
+	for crate in crate_array:
+		if crate.is_moving:
+			get_tree().call_group("crate","disable_move_ui")
 			return
-	#print("No crates moving!")
-	progressGamePhase()
-
-# begin the next phase
-func progressGamePhase() -> void:
-	# Updating game phase
-	gamePhase = next_gamePhase
-	#print("\nGAMEPHASE: ",gamePhase)
-	next_gamePhase = (gamePhase+1)%4
-	# Force all objects to current game phase
-	for object in objectPhases:
-		objectPhases[object] = gamePhase
-	# START OF PHASE
-	processPhase()
-
-# call all objects to perform the corresponding built-in phase-function
-func processPhase() -> void:
-	if gamePhase == Phases.ACTION:
-		LevelData.tryCompleteLevel()
-		get_tree().call_group("object","actionPhase")
-	elif gamePhase == Phases.MOVE:
-		get_tree().call_group("object","movePhase")
-	elif gamePhase == Phases.EFFECT:
-		get_tree().call_group("object","effectPhase")
-	elif gamePhase == Phases.REACT:
-		get_tree().call_group("object","reactPhase")
+	yield(get_tree().create_timer(STAGE_WAIT_TIME), "timeout")
+	get_tree().call_group("button","update_on_or_off")
+	yield(get_tree().create_timer(STAGE_WAIT_TIME), "timeout")
+	get_tree().call_group("door","update_open_or_close")
+	yield(get_tree().create_timer(STAGE_WAIT_TIME), "timeout")
+	get_tree().call_group("crate","enable_move_ui")
+	print("\n [NEW]\n")
 
 
 
 ### SIGNALS ###
 
-
-# generate buttonSignals
+# generate button_signals
 func initialiseButtonSignals() -> void:
 	var buttonArray = get_tree().get_nodes_in_group("button")
-	buttonSignals = {}
+	button_signals = {}
 	for button in buttonArray:
-		if buttonSignals.has(button.signalID):
-			buttonSignals[button.signalID][button] = false
+		if button.is_level_goal:
+			print("miss")
+			pass
+		elif button_signals.has(button.signal_id):
+			print("add")
+			button_signals[button.signal_id][button] = false
 		else:
-			buttonSignals[button.signalID] = {button:false}
-	#print("buttonSignals = ",buttonSignals)
+			print("create")
+			button_signals[button.signal_id] = {button:false}
+		print(button_signals)
+	#print("button_signals = ",button_signals)
 
 
-# update signal state given signalID, button object and the new state
-func updateSignal(signalID:int, button:Area2D, newState:bool) -> void:
-	buttonSignals[signalID][button] = newState
-# e.g. updateSignal(2, [Area2D:1423], true) --> buttonSignals[2][[Area2D:1423]] = true
+# update signal state given signal_id, button object and the new state
+func update_signal_id(signal_id:int, button:ButtonFloor, newState:bool) -> void:
+	if button.is_level_goal:
+		return
+	button_signals[signal_id][button] = newState
+# e.g. updateSignal(2, [Area2D:1423], true) --> button_signals[2][[Area2D:1423]] = true
 
 
-# return Array of button states for a given signalID
-func getButtonStates(signalID:int) -> Array:
-	var buttonStates = []
-	for isButtonActive in buttonSignals[signalID].values():
-		buttonStates.append(isButtonActive)
-	return buttonStates
-# e.g. getButtonStates(signalID = 2) = [true,false,true]
+# return Array of button states for a given signal_id
+func get_button_states(signal_id:int) -> Array:
+	var button_states = []
+	for is_button_active in button_signals[signal_id].values():
+		button_states.append(is_button_active)
+	return button_states
+# e.g. getButtonStates(signal_id = 2) = [true,false,true]
 
-func getButtonColor(signalID) -> Color:
-	return buttonColors[signalID%buttonColors.size()]
+
+func get_button_color(signal_id) -> Color:
+	return buttonColors[signal_id%buttonColors.size()]
 
