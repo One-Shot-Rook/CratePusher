@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Levels/LevelComplete.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sprites/img_star.webp" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/font_main.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/UI/img_chip_4.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -35,45 +35,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="hboxStars" type="HBoxContainer" parent="."]
-anchor_top = 0.2
-anchor_right = 1.0
-anchor_bottom = 0.4
-margin_left = 20.0
-margin_right = -20.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="texStar1" type="TextureRect" parent="hboxStars"]
-margin_right = 344.0
-margin_bottom = 384.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
-
-[node name="texStar2" type="TextureRect" parent="hboxStars"]
-margin_left = 348.0
-margin_right = 692.0
-margin_bottom = 384.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
-
-[node name="texStar3" type="TextureRect" parent="hboxStars"]
-margin_left = 696.0
-margin_right = 1040.0
-margin_bottom = 384.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
 
 [node name="btnContinue" type="Button" parent="."]
 anchor_top = 0.5
@@ -111,6 +72,14 @@ text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="texChip" type="TextureRect" parent="."]
+margin_left = 290.0
+margin_top = 340.0
+margin_right = 790.0
+margin_bottom = 840.0
+texture = ExtResource( 4 )
+stretch_mode = 6
 [connection signal="pressed" from="btnContinue" to="." method="_on_btnContinue_pressed"]
 [connection signal="pressed" from="btnReplay" to="." method="_on_btnReplay_pressed"]
 [connection signal="pressed" from="btnMenu" to="." method="_on_btnMenu_pressed"]

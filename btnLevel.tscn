@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Assets/Sprites/img_star.webp" type="Texture" id=1]
 [ext_resource path="res://Assets/UI/btn_level_dark.tres" type="StyleBox" id=2]
 [ext_resource path="res://Assets/UI/btn_level_light.tres" type="StyleBox" id=3]
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=4]
 [ext_resource path="res://btnLevel.gd" type="Script" id=5]
+[ext_resource path="res://Assets/UI/img_chip_4.png" type="Texture" id=6]
 
 [node name="btnLevel" type="Button" groups=[
 "UI",
@@ -29,36 +29,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ctnStars" type="HBoxContainer" parent="."]
-margin_left = 25.0
-margin_top = 100.0
-custom_constants/separation = 0
+[node name="texChip" type="TextureRect" parent="."]
+margin_left = 50.0
+margin_top = 75.0
+margin_right = 150.0
+margin_bottom = 175.0
+texture = ExtResource( 6 )
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="tesStar1" type="TextureRect" parent="ctnStars"]
-margin_right = 50.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 5
-
-[node name="texStar2" type="TextureRect" parent="ctnStars"]
-margin_left = 50.0
-margin_right = 100.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 5
-
-[node name="texStar3" type="TextureRect" parent="ctnStars"]
-margin_left = 100.0
-margin_right = 150.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 5

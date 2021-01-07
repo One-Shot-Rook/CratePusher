@@ -2,19 +2,19 @@ extends Node
 
 var levelData = {
 	"level01":{
-		"moves":[5,7,9]
+		"moves":[5,6,7,9]
 	},
 	"level04":{
-		"moves":[12,14,19]
+		"moves":[12,14,17,21]
 	},
 	"level10":{
-		"moves":[23,25,27]
+		"moves":[23,24,27,29]
 	},
 	"level11":{
-		"moves":[19,21,25]
+		"moves":[19,20,24,28]
 	},
 	"level7":{
-		"moves":[28,31,35]
+		"moves":[28,29,32,35]
 	}
 }
 
@@ -22,7 +22,7 @@ var levelComplete:bool = false
 
 var currentLevel:String
 var moveCount:int
-var stars:int = 3
+var stars:int = 4
 
 func tryCompleteLevel():
 	if not levelComplete:
@@ -56,7 +56,7 @@ func incrementMoveCount():
 func updateCurrentStars():
 	if not levelData.has(currentLevel):
 		return
-	stars = 3
+	stars = 4
 	for moveCriteria in levelData[currentLevel]["moves"]:
 		if moveCount <= moveCriteria:
 			return stars
