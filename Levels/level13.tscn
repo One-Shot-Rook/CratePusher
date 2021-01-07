@@ -23,14 +23,13 @@ script = ExtResource( 2 )
 [node name="bodyDoor" parent="." instance=ExtResource( 7 )]
 position = Vector2( 144, 336 )
 rotation = 1.5708
-signal_id = 1
 
 [node name="bodyButton" parent="." instance=ExtResource( 6 )]
 position = Vector2( 208, 336 )
-signal_id = 1
 
 [node name="bodyButton2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 208, 400 )
+signal_id = 1
 
 [node name="bodyCrateRed" parent="." instance=ExtResource( 4 )]
 position = Vector2( 80, 496 )
@@ -46,6 +45,7 @@ position = Vector2( 208, 368 )
 
 [node name="bodyDoor2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 272, 400 )
+signal_id = 1
 
 [node name="bodyButton3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 208, 240 )
