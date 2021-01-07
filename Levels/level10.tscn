@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Objects/bodyDoor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/bodyCrateRed.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=4]
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=5]
+[ext_resource path="res://Objects/bodyCrateBlue.tscn" type="PackedScene" id=6]
 
 [node name="TileMap" type="TileMap"]
 scale = Vector2( 3, 3 )
@@ -20,9 +21,6 @@ script = ExtResource( 4 )
 
 [node name="bodyCrateRed" parent="." instance=ExtResource( 3 )]
 position = Vector2( 304, 80 )
-
-[node name="bodyCrateRed2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 208, 208 )
 
 [node name="bodyButton" parent="." instance=ExtResource( 2 )]
 position = Vector2( 304, 240 )
@@ -41,8 +39,11 @@ signal_id = 1
 
 [node name="bodyDoor3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 112, 496 )
-signalID = 1
+signal_id = 1
 
 [node name="bodyButton3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 496 )
 is_level_goal = true
+
+[node name="bodyCrateBlue" parent="." instance=ExtResource( 6 )]
+position = Vector2( 208, 208 )

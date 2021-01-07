@@ -5,7 +5,7 @@
 [ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=4]
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=5]
-[ext_resource path="res://Objects/bodyCrateRed.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/bodyCrateBlue.tscn" type="PackedScene" id=6]
 
 [node name="TileMap" type="TileMap"]
 scale = Vector2( 3, 3 )
@@ -33,5 +33,5 @@ position = Vector2( 208, 112 )
 position = Vector2( 208, 432 )
 is_level_goal = true
 
-[node name="bodyCrateRed" parent="." instance=ExtResource( 6 )]
-position = Vector2( 208, 304.943 )
+[node name="bodyCrateBlue" parent="." instance=ExtResource( 6 )]
+position = Vector2( 208, 304 )
