@@ -8,7 +8,7 @@ var void_dots_tile_id_offset = -6
 var LevelNode = get_parent()
 
 func _ready():
-	Globals.initialiseButtonSignals()
+	Globals.initialise_buttons()
 	LevelData.initialiseMoveCount()
 	randomiseBackgroundTiles()
 

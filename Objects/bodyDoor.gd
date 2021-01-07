@@ -9,15 +9,16 @@ var is_open:bool = false
 
 func set_signal_id(new_signal_id):
 	signal_id = new_signal_id
-	update_ui()
+	initialise_door()
 func get_signal_id() -> int: return signal_id
 
 func get_class() -> String: return "Door"
 
 func _ready():
-	update_ui()
+	initialise_door()
 
-func update_ui():
+func initialise_door():
+	name = "door" + "("+str(signal_id)+")"
 	$sprColor.self_modulate = Globals.get_button_color(signal_id)
 
 func open_door():
@@ -56,6 +57,7 @@ func update_open_or_close() -> void:
 				close_door()
 
 func can_close():
+	return true
 	var crateArray = get_tree().get_nodes_in_group("crate")
 	for crate in crateArray:
 		if (crate.position-position).length() < 16:

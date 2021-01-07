@@ -24,10 +24,6 @@ var currentLevel:String
 var moveCount:int
 var stars:int = 3
 
-func tryCompleteLevel():
-	if not levelComplete:
-		return
-	get_tree().call_group("level","endLevel")
 
 func setCurrentLevel(levelName):
 	levelComplete = false

@@ -21,7 +21,7 @@ scale = 3.0
 scale_random = 0.5
 color = Color( 1, 0.647059, 0.647059, 1 )
 
-[node name="bodyButton" type="Area2D" groups=[
+[node name="button(0)" type="Area2D" groups=[
 "button",
 "object",
 ]]
@@ -47,6 +47,7 @@ bus = "SFX"
 
 [node name="partGoal" type="Particles2D" parent="."]
 visible = false
+modulate = Color( 1, 0.501961, 0.501961, 1 )
 position = Vector2( 0, 8 )
 emitting = false
 amount = 32
