@@ -45,7 +45,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://Globals.gd"
-Phases="*res://Phases.gd"
 LevelData="*res://LevelData.gd"
 SaveData="*res://SaveData.gd"
 Music="*res://MusicNode.tscn"

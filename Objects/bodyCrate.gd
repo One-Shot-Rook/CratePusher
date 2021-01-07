@@ -1,11 +1,16 @@
 class_name Crate
+tool
 extends KinematicBody2D
 
-enum WeightMode{LIGHT,MEDIUM,HEAVY}
-export(WeightMode) var weight_id = WeightMode.MEDIUM
-export var movable:bool = true
+enum CrateType{WOODEN,RED,BLUE}
 enum SpeedMode{SLOW,FAST}
-export(SpeedMode) var speed_mode = SpeedMode.SLOW
+enum WeightMode{LIGHT,MEDIUM,HEAVY}
+
+export(CrateType) var crate_type = CrateType.WOODEN setget set_crate_type, get_crate_type
+
+var weight_id = WeightMode.MEDIUM
+var speed_mode = SpeedMode.SLOW
+var is_movable:bool = false
 
 var tile_size:float
 var rng := RandomNumberGenerator.new()
@@ -13,7 +18,7 @@ var rng := RandomNumberGenerator.new()
 var is_moving := false
 var move_direction:Vector2
 var move_to_position:Vector2
-var move_time := 0.05			# In seconds
+var move_time := 0.08			# In seconds
 var move_distance := 0			# In tiles
 var MOVE_DISTANCE_MAX := 9999	# In tiles
 
@@ -23,17 +28,49 @@ var COLLISION_RADIUS := 4
 
 var directions = {"U":Vector2( 0,-1),"R":Vector2(+1, 0),"D":Vector2( 0,+1),"L":Vector2(-1, 0)}
 
+func set_crate_type(new_crate_type):
+	crate_type = new_crate_type
+	initialise_crate()
+func get_crate_type() -> int: return crate_type
+
 func get_class() -> String: return "Crate"
 
+
 func _ready():
+	initialise_crate()
 	tile_size = 32
 	snap_to_tile()
-	if movable:
+	if is_movable:
 		enable_move_ui()
 	else:
 		disable_move_ui()
 	if speed_mode == SpeedMode.SLOW:
 		move_time *= 2
+
+
+func initialise_crate():
+	match crate_type:
+		CrateType.WOODEN:
+			name = "crate(Wooden)"
+			weight_id = WeightMode.LIGHT
+			speed_mode = SpeedMode.SLOW
+			is_movable = false
+			$sprite.texture = load("res://Assets/Sprites/img_crate.png")
+			$sprite.scale = Vector2.ONE
+		CrateType.RED:
+			name = "crate(Red)"
+			weight_id = WeightMode.MEDIUM
+			speed_mode = SpeedMode.SLOW
+			is_movable = true
+			$sprite.texture = load("res://Assets/Sprites/img_crate_red.png")
+			$sprite.scale = Vector2.ONE
+		CrateType.BLUE:
+			name = "crate(Blue)"
+			weight_id = WeightMode.LIGHT
+			speed_mode = SpeedMode.FAST
+			is_movable = true
+			$sprite.texture = load("res://Assets/Sprites/img_crate_blue.png")
+			$sprite.scale = Vector2.ONE * 0.4
 
 
 func start_moving(new_move_direction:Vector2,new_move_distance=MOVE_DISTANCE_MAX) -> void:
@@ -44,6 +81,7 @@ func start_moving(new_move_direction:Vector2,new_move_distance=MOVE_DISTANCE_MAX
 	# Can the crate move in that direction at all
 	if _move():
 		play_move_sound()
+
 
 func _move(_object=null, _key=":position") -> bool:
 	
@@ -58,7 +96,7 @@ func _move(_object=null, _key=":position") -> bool:
 	
 	# React to what's ahead
 	var objects_in_move_direction = get_objects_in_move_direction()
-	print("Objects ahead: ",objects_in_move_direction)
+	#print("Objects ahead: ",objects_in_move_direction)
 	for object in objects_in_move_direction:
 		match object.get_class():
 			"TileMap":
@@ -69,7 +107,8 @@ func _move(_object=null, _key=":position") -> bool:
 					stop_moving("Door")
 			"Crate":
 				var crate:Crate = object
-				var push_distance = max(0,weight_id-crate.weight_id)
+				var push_distance = weight_id-crate.weight_id
+				print("PUSH ",name," ["+str(weight_id)+"|"+str(crate.weight_id)+"]",str(crate.name))
 				if push_distance > 0:
 					crate.start_moving(move_direction,push_distance)
 				stop_moving("crate -> "+str(push_distance/48))
@@ -77,7 +116,7 @@ func _move(_object=null, _key=":position") -> bool:
 	# React to what we're on
 	var object_currently_colliding = get_object_currently_colliding()
 	if object_currently_colliding:
-		print("currently on: ",object_currently_colliding.get_class())
+		#print("currently on: ",object_currently_colliding.get_class())
 		match object_currently_colliding.get_class():
 			"Hole":
 				if speed_mode == SpeedMode.FAST and is_moving:
@@ -106,7 +145,7 @@ func _move(_object=null, _key=":position") -> bool:
 func stop_moving(reason="wall"):
 	if not is_moving:
 		return
-	print(str(name)+" stopped because "+reason)
+	#print(str(name)+" stopped because "+reason)
 	is_moving = false
 	move_direction = Vector2.ZERO
 	move_distance = 0
@@ -160,7 +199,7 @@ func snap_to_tile() -> void:
 
 
 func enable_move_ui() -> void:
-	if not movable or LevelData.levelComplete:
+	if not is_movable or LevelData.levelComplete:
 		return
 	var adjacent_objects = get_objects_adjacent()
 	for dirChar in adjacent_objects:
@@ -182,7 +221,3 @@ func play_move_sound():
 func _on_direction_pressed(new_move_direction:Vector2):
 	start_moving(new_move_direction)
 	LevelData.incrementMoveCount()
-
-
-func _on_Area2D_mouse_exited():
-	print("leave")

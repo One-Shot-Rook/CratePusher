@@ -7,18 +7,17 @@
 [ext_resource path="res://Assets/Sounds/snd_crate.wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Resources/shape_crate.tres" type="Shape2D" id=6]
 
-[node name="bodyCrate" type="KinematicBody2D" groups=[
+[node name="crate(Wooden)" type="KinematicBody2D" groups=[
 "crate",
 "movable",
 "object",
 ]]
+position = Vector2( 16, 16 )
 z_index = 1
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-weight_id = 0
-movable = false
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = ExtResource( 6 )
