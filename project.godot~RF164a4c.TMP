@@ -1,0 +1,75 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "ButtonFloor",
+"language": "GDScript",
+"path": "res://Objects/bodyButton.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Crate",
+"language": "GDScript",
+"path": "res://Objects/bodyCrate.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Door",
+"language": "GDScript",
+"path": "res://Objects/bodyDoor.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Hole",
+"language": "GDScript",
+"path": "res://Objects/bodyHole.gd"
+} ]
+_global_script_class_icons={
+"ButtonFloor": "",
+"Crate": "",
+"Door": "",
+"Hole": ""
+}
+
+[application]
+
+config/name="CratePusher"
+run/main_scene="res://MenuScene.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://Globals.gd"
+LevelData="*res://LevelData.gd"
+SaveData="*res://SaveData.gd"
+Music="*res://MusicNode.tscn"
+Transition="*res://TransitionNode.tscn"
+
+[display]
+
+window/size/width=1080
+window/size/height=1920
+window/size/test_width=540
+window/size/test_height=960
+window/handheld/orientation="portrait"
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="Wall"
+2d_physics/layer_2="Crates"
+2d_physics/layer_3="Interactable"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
