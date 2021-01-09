@@ -35,6 +35,7 @@ margin_top = 75.0
 margin_right = 150.0
 margin_bottom = 175.0
 texture = ExtResource( 6 )
+expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
