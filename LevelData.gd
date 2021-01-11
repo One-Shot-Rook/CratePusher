@@ -2,20 +2,41 @@ extends Node
 
 var levelData = {
 	"level01":{
-		"moves":[5,6,7,9]
+		"moves":[6,7,8,10]
+	},
+	"level02":{
+		"moves":[5,6,8,10]
+	},
+	"level03":{
+		"moves":[6,7,8,10]
 	},
 	"level04":{
-		"moves":[12,14,17,21]
+		"moves":[6,7,9,11]
+	},
+	"level05":{
+		"moves":[7,8,10,12]
+	},
+	"level06":{
+		"moves":[19,21,24,27]
+	},
+	"level07":{
+		"moves":[12,13,15,18]
+	},
+	"level08":{
+		"moves":[19,20,22,25]
+	},
+	"level09":{
+		"moves":[13,14,16,19]
 	},
 	"level10":{
-		"moves":[23,24,27,29]
+		"moves":[9,10,12,14]
 	},
 	"level11":{
-		"moves":[19,20,24,28]
+		"moves":[9,10,12,14]
 	},
-	"level7":{
-		"moves":[28,29,32,35]
-	}
+	"level12":{
+		"moves":[8,9,11,13]
+	},
 }
 
 var levelComplete:bool = false

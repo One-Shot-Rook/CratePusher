@@ -1,5 +1,5 @@
 class_name Crate
-tool
+#tool
 extends KinematicBody2D
 
 enum CrateType{WOODEN,RED,BLUE}
