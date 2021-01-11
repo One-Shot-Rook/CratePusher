@@ -46,6 +46,7 @@ func _ready():
 		disable_move_ui()
 	if speed_mode == SpeedMode.SLOW:
 		move_time *= 2
+	react_to_currently_colliding()
 
 
 func initialise_crate():
@@ -95,38 +96,10 @@ func _move(_object=null, _key=":position") -> bool:
 	move_distance -= 1
 	
 	# React to what's ahead
-	var objects_in_move_direction = get_objects_in_move_direction()
-	#print("Objects ahead: ",objects_in_move_direction)
-	for object in objects_in_move_direction:
-		match object.get_class():
-			"TileMap":
-				stop_moving("Wall")
-			"Door":
-				var door:Door = object
-				if not door.is_open:
-					stop_moving("Door")
-			"Crate":
-				var crate:Crate = object
-				var push_distance = weight_id-crate.weight_id
-				print("PUSH ",name," ["+str(weight_id)+"|"+str(crate.weight_id)+"]",str(crate.name))
-				if push_distance > 0:
-					crate.start_moving(move_direction,push_distance)
-				stop_moving("crate -> "+str(push_distance/48))
+	react_to_move_direction()
 	
 	# React to what we're on
-	var object_currently_colliding = get_object_currently_colliding()
-	if object_currently_colliding:
-		#print("currently on: ",object_currently_colliding.get_class())
-		match object_currently_colliding.get_class():
-			"Hole":
-				if speed_mode == SpeedMode.FAST and is_moving:
-					continue
-				var hole:Hole = object_currently_colliding
-				if hole.is_filled:
-					continue
-				hole.fill_with($sprite.texture.resource_path)
-				stop_moving("fell into hole")
-				queue_free()
+	react_to_currently_colliding()
 	
 	if not is_moving:
 		return false
@@ -152,6 +125,26 @@ func stop_moving(reason="wall"):
 	Globals.update_move_ui()
 
 
+func react_to_move_direction():
+	var objects_in_move_direction = get_objects_in_move_direction()
+	#print("Objects ahead: ",objects_in_move_direction)
+	for object in objects_in_move_direction:
+		match object.get_class():
+			"TileMap":
+				stop_moving("Wall")
+			"Door":
+				var door:Door = object
+				if not door.is_open:
+					stop_moving("Door")
+			"Crate":
+				var crate:Crate = object
+				var push_distance = weight_id-crate.weight_id
+				print("PUSH ",name," ["+str(weight_id)+"|"+str(crate.weight_id)+"]",str(crate.name))
+				if push_distance > 0:
+					crate.start_moving(move_direction,push_distance)
+				stop_moving("crate -> "+str(push_distance/48))
+
+
 func get_objects_in_move_direction() -> Array:
 	var objects = []
 	var object_array = get_tree().get_nodes_in_group("object")
@@ -163,6 +156,22 @@ func get_objects_in_move_direction() -> Array:
 		if collision_data:
 			objects.append(collision_data.collider)
 	return objects
+
+
+func react_to_currently_colliding():
+	var object_currently_colliding = get_object_currently_colliding()
+	if object_currently_colliding:
+		#print("currently on: ",object_currently_colliding.get_class())
+		match object_currently_colliding.get_class():
+			"Hole":
+				if speed_mode == SpeedMode.FAST and is_moving:
+					continue
+				var hole:Hole = object_currently_colliding
+				if hole.is_filled:
+					continue
+				hole.fill_with($sprite.texture.resource_path)
+				stop_moving("fell into hole")
+				queue_free()
 
 
 func get_object_currently_colliding() -> Node:
