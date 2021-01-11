@@ -32,6 +32,8 @@ position = Vector2( 208, 208 )
 [node name="door(0)" parent="." instance=ExtResource( 1 )]
 position = Vector2( 208, 336 )
 rotation = 1.5708
+signal_id = 0
+door_mode = 0
 
 [node name="button(0)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 240 )
