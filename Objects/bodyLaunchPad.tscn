@@ -17,7 +17,7 @@ animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "default",
-"speed": 24.0
+"speed": 60.0
 } ]
 
 [node name="bodyLaunchPad" type="Node2D" groups=[
@@ -25,14 +25,16 @@ animations = [ {
 "object",
 ]]
 script = ExtResource( 1 )
-primary_color = Color( 0.32549, 0.627451, 0.847059, 1 )
-secondary_color = Color( 0.917647, 0.666667, 0.309804, 1 )
+primary_color = Color( 0.447059, 0.701961, 0.890196, 1 )
+secondary_color = Color( 0.309804, 0.533333, 0.917647, 1 )
 
 [node name="sprite_1" type="AnimatedSprite" parent="."]
-modulate = Color( 0.32549, 0.627451, 0.847059, 1 )
-frames = SubResource( 1 )
-
-[node name="sprite_2" type="AnimatedSprite" parent="."]
-modulate = Color( 0.917647, 0.666667, 0.309804, 1 )
+modulate = Color( 0.447059, 0.701961, 0.890196, 1 )
 frames = SubResource( 1 )
 frame = 5
+playing = true
+
+[node name="sprite_2" type="AnimatedSprite" parent="."]
+modulate = Color( 0.309804, 0.533333, 0.917647, 1 )
+frames = SubResource( 1 )
+playing = true
