@@ -1,0 +1,38 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Objects/bodyLaunchPad.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/launch_pad/3.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/launch_pad/9.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/launch_pad/2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/launch_pad/7.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/launch_pad/1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/launch_pad/8.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/launch_pad/6.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/launch_pad/5.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/launch_pad/4.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/launch_pad/0.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[node name="bodyLaunchPad" type="Node2D" groups=[
+"hole",
+"object",
+]]
+script = ExtResource( 1 )
+primary_color = Color( 0.32549, 0.627451, 0.847059, 1 )
+secondary_color = Color( 0.917647, 0.666667, 0.309804, 1 )
+
+[node name="sprite_1" type="AnimatedSprite" parent="."]
+modulate = Color( 0.32549, 0.627451, 0.847059, 1 )
+frames = SubResource( 1 )
+
+[node name="sprite_2" type="AnimatedSprite" parent="."]
+modulate = Color( 0.917647, 0.666667, 0.309804, 1 )
+frames = SubResource( 1 )
+frame = 5
