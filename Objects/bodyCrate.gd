@@ -18,7 +18,7 @@ var rng := RandomNumberGenerator.new()
 var is_moving := false
 var move_direction:Vector2
 var move_to_position:Vector2
-var move_time := 0.08			# In seconds
+var move_time := 0.06			# In seconds
 var move_distance := 0			# In tiles
 var MOVE_DISTANCE_MAX := 9999	# In tiles
 

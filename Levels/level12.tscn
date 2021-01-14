@@ -24,7 +24,7 @@ position = Vector2( 80, 528 )
 crate_type = 2
 
 [node name="crate(Wooden)2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 240, 528 )
+position = Vector2( 208, 496 )
 
 [node name="crate(Wooden)4" parent="." instance=ExtResource( 7 )]
 position = Vector2( 208, 368 )
