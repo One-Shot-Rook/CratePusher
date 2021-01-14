@@ -13,6 +13,7 @@ func update_move_ui() -> void:
 	for crate in crate_array:
 		if crate.is_moving:
 			get_tree().call_group("crate","disable_move_ui")
+			print(crate," is still moving")
 			return
 	yield(get_tree().create_timer(STAGE_WAIT_TIME), "timeout")
 	get_tree().call_group("button","update_on_or_off")
@@ -42,7 +43,7 @@ func initialise_buttons() -> void:
 			button_signals[button.signal_id][button] = false
 		else:
 			button_signals[button.signal_id] = {button:false}
-		print(button_signals)
+		#print(button_signals)
 	print("button_signals = ",button_signals)
 	print("button_goals = ",button_goals)
 

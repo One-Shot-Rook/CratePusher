@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Hole",
 "language": "GDScript",
 "path": "res://Objects/bodyHole.gd"
+}, {
+"base": "Node2D",
+"class": "LaunchPad",
+"language": "GDScript",
+"path": "res://Objects/bodyLaunchPad.gd"
 } ]
 _global_script_class_icons={
 "ButtonFloor": "",
 "Crate": "",
 "Door": "",
-"Hole": ""
+"Hole": "",
+"LaunchPad": ""
 }
 
 [application]

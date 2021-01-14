@@ -16,6 +16,7 @@ var tile_size:float
 var rng := RandomNumberGenerator.new()
 
 var is_moving := false
+var should_stop_moving:= false
 var move_direction:Vector2
 var move_to_position:Vector2
 var move_time := 0.06			# In seconds
@@ -83,8 +84,9 @@ func start_moving(new_move_direction:Vector2,new_move_distance=MOVE_DISTANCE_MAX
 	if _move():
 		play_move_sound()
 
-
 func _move(_object=null, _key=":position") -> bool:
+	
+	should_stop_moving = false
 	
 	if speed_mode == SpeedMode.SLOW:
 		Globals.update_buttons_off()
@@ -92,7 +94,7 @@ func _move(_object=null, _key=":position") -> bool:
 	snap_to_tile()
 	
 	if move_distance <= 0:
-		stop_moving("friction")
+		should_stop_moving = true
 	move_distance -= 1
 	
 	# React to what's ahead
@@ -100,6 +102,9 @@ func _move(_object=null, _key=":position") -> bool:
 	
 	# React to what we're on
 	react_to_currently_colliding()
+	
+	if should_stop_moving:
+		stop_moving()
 	
 	if not is_moving:
 		return false
@@ -113,9 +118,8 @@ func _move(_object=null, _key=":position") -> bool:
 	$twnMove.start()
 	
 	return true
-	
 
-func stop_moving(reason="wall"):
+func stop_moving(_reason="wall"):
 	if not is_moving:
 		return
 	#print(str(name)+" stopped because "+reason)
@@ -125,25 +129,26 @@ func stop_moving(reason="wall"):
 	Globals.update_move_ui()
 
 
+
 func react_to_move_direction():
 	var objects_in_move_direction = get_objects_in_move_direction()
 	#print("Objects ahead: ",objects_in_move_direction)
 	for object in objects_in_move_direction:
 		match object.get_class():
 			"TileMap":
-				stop_moving("Wall")
+				should_stop_moving = true
 			"Door":
 				var door:Door = object
 				if not door.is_open:
-					stop_moving("Door")
+					should_stop_moving = true
 			"Crate":
 				var crate:Crate = object
 				var push_distance = weight_id-crate.weight_id
-				print("PUSH ",name," ["+str(weight_id)+"|"+str(crate.weight_id)+"]",str(crate.name))
+				#print("PUSH ",name," ["+str(weight_id)+"|"+str(crate.weight_id)+"]",str(crate.name))
 				if push_distance > 0:
 					crate.start_moving(move_direction,push_distance)
-				stop_moving("crate -> "+str(push_distance/48))
-
+				should_stop_moving = true
+				#print("crate -> "+str(push_distance/48))
 
 func get_objects_in_move_direction() -> Array:
 	var objects = []
@@ -158,6 +163,7 @@ func get_objects_in_move_direction() -> Array:
 	return objects
 
 
+
 func react_to_currently_colliding():
 	var object_currently_colliding = get_object_currently_colliding()
 	if object_currently_colliding:
@@ -170,9 +176,14 @@ func react_to_currently_colliding():
 				if hole.is_filled:
 					continue
 				hole.fill_with($sprite.texture.resource_path)
-				stop_moving("fell into hole")
+				should_stop_moving = true
 				queue_free()
-
+			"LaunchPad":
+				print("LAUNCH")
+				var launch_pad:LaunchPad = object_currently_colliding
+				move_direction = launch_pad.get_direction_vector()
+				move_distance = MOVE_DISTANCE_MAX
+				should_stop_moving = false
 
 func get_object_currently_colliding() -> Node:
 	var object_array = get_tree().get_nodes_in_group("object")
@@ -182,6 +193,7 @@ func get_object_currently_colliding() -> Node:
 		if (object.position - position).length() <= COLLISION_RADIUS:
 			return object
 	return null
+
 
 
 func get_objects_adjacent() -> Dictionary:
@@ -198,13 +210,14 @@ func get_objects_adjacent() -> Dictionary:
 	return adjacent_objects
 
 
+
 func has_move_distance() -> bool:
 	return (move_distance > 0)
-
 
 func snap_to_tile() -> void:
 	var shifted_position = position - 16*Vector2.ONE
 	position = Vector2( stepify(shifted_position[0],32) + 16 , stepify(shifted_position[1],32) + 16 )
+
 
 
 func enable_move_ui() -> void:
@@ -216,15 +229,16 @@ func enable_move_ui() -> void:
 		get_node("Directions/area"+dirChar).visible = (adjacentNode == null)
 	$Directions.visible = true
 
-
 func disable_move_ui() -> void:
 	$Directions.visible = false
+
 
 
 func play_move_sound():
 	rng.randomize()
 	$audioMove.pitch_scale = rng.randf_range(0.8,1.2)
 	$audioMove.play()
+
 
 
 func _on_direction_pressed(new_move_direction:Vector2):
