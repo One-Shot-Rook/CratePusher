@@ -1,4 +1,4 @@
-class_name Door
+class_name Door, "res://icons/Door.svg"
 tool
 extends KinematicBody2D
 
@@ -6,6 +6,29 @@ export var signal_id:int setget set_signal_id, get_signal_id
 enum DoorMode{SINGLE,ALL}
 export(DoorMode) var door_mode
 var is_open:bool = false
+
+func _get_property_list() -> Array:
+	return [
+		{
+			name = "Door",
+			type = TYPE_NIL,
+			usage = PROPERTY_USAGE_CATEGORY | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "signal_id",
+			type = TYPE_INT,
+			hint = PROPERTY_HINT_RANGE,
+			hint_string = "0,6",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "door_mode",
+			type = TYPE_INT,
+			hint = PROPERTY_HINT_ENUM,
+			hint_string = "Single,All",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+	]
 
 func set_signal_id(new_signal_id):
 	signal_id = new_signal_id

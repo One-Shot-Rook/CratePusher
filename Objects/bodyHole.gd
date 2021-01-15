@@ -1,8 +1,23 @@
-class_name Hole
-extends KinematicBody2D
+class_name Hole, "res://icons/Hole.svg"
+tool
+extends Node2D
 
 export var is_bottomless:bool = false
 var is_filled = false
+
+func _get_property_list() -> Array:
+	return [
+		{
+			name = "Hole",
+			type = TYPE_NIL,
+			usage = PROPERTY_USAGE_CATEGORY | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "is_bottomless",
+			type = TYPE_BOOL,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+	]
 
 func get_class() -> String: return "Hole"
 

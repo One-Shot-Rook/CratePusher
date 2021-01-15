@@ -1,4 +1,4 @@
-class_name LaunchPad
+class_name LaunchPad, "res://icons/LaunchPad.svg"
 tool
 extends Node2D
 
@@ -8,6 +8,32 @@ enum Direction{UP,RIGHT,DOWN,LEFT}
 export(Direction) var direction setget set_direction
 
 var direction_vectors = [Vector2.UP,Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT]
+
+func _get_property_list() -> Array:
+	return [
+		{
+			name = "LaunchPad",
+			type = TYPE_NIL,
+			usage = PROPERTY_USAGE_CATEGORY | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "direction",
+			type = TYPE_INT,
+			hint = PROPERTY_HINT_ENUM,
+			hint_string = "Up,Right,Down,Left",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "primary_color",
+			type = TYPE_COLOR,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "secondary_color",
+			type = TYPE_COLOR,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+	]
 
 func set_primary_color(color):
 	primary_color = color
