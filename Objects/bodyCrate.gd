@@ -53,6 +53,10 @@ func set_crate_type(new_crate_type):
 
 func get_crate_type() -> int: return crate_type
 
+func set_mouse_pressed(new_is_mouse_pressed):
+	is_mouse_pressed = new_is_mouse_pressed
+	update_highlight()
+
 func get_class() -> String: return "Crate"
 
 
@@ -65,9 +69,9 @@ func _ready():
 	else:
 		disable_move_ui()
 	if speed_mode == SpeedMode.SLOW:
-		move_time *= 2
+		move_time *= 1.5
 	react_to_currently_colliding()
-
+	update_ui()
 
 func initialise_crate():
 	match crate_type:
@@ -76,28 +80,37 @@ func initialise_crate():
 			weight_id = WeightMode.LIGHT
 			speed_mode = SpeedMode.SLOW
 			is_movable = false
-			$sprite.texture = load("res://Assets/Sprites/img_crate.png")
-			$sprite.scale = Vector2.ONE
-			$Directions.modulate = Color.beige
 			normal_pitch_scale = 1.0
 		CrateType.RED:
 			name = "crate(Red)"
 			weight_id = WeightMode.MEDIUM
 			speed_mode = SpeedMode.SLOW
 			is_movable = true
-			$sprite.texture = load("res://Assets/Sprites/img_crate_red.png")
-			$sprite.scale = Vector2.ONE
-			$Directions.modulate = Color.lightcoral
 			normal_pitch_scale = 1.0
 		CrateType.BLUE:
 			name = "crate(Blue)"
 			weight_id = WeightMode.LIGHT
 			speed_mode = SpeedMode.FAST
 			is_movable = true
+			normal_pitch_scale = 1.5
+
+func update_ui():
+	match crate_type:
+		CrateType.WOODEN:
+			$sprite.texture = load("res://Assets/Sprites/img_crate.png")
+			$sprite.scale = Vector2.ONE
+			$Directions.modulate = Color.beige
+		CrateType.RED:
+			$sprite.texture = load("res://Assets/Sprites/img_crate_red.png")
+			$sprite.scale = Vector2.ONE
+			$Directions.modulate = Color.lightcoral
+		CrateType.BLUE:
 			$sprite.texture = load("res://Assets/Sprites/img_crate_blue.png")
 			$sprite.scale = Vector2.ONE * 0.4
 			$Directions.modulate = Color.dodgerblue
-			normal_pitch_scale = 1.5
+
+func update_highlight():
+	$sprite.modulate.a = 1 + int(is_mouse_pressed)
 
 
 func start_moving(new_move_direction:Vector2,new_move_distance=MOVE_DISTANCE_MAX) -> void:
@@ -272,40 +285,31 @@ func direction_pressed(new_move_direction:Vector2):
 	start_moving(new_move_direction)
 	LevelData.incrementMoveCount()
 
+func get_nearest_direction(vector:Vector2):
+	var nearest_direction = directions["U"]
+	for vector_direction in directions.values():
+		var direction_distance = (vector_direction-vector).length()
+		var nearest_distance = (nearest_direction-vector).length()
+		if direction_distance < nearest_distance:
+			nearest_direction = vector_direction
+	return nearest_direction
 
-func _on_crateWooden_input_event(_viewport, event, _shape_idx):
-	
+
+
+func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
-		
 		if event.button_index == BUTTON_LEFT:
-			
-			is_mouse_pressed = event.pressed
+			set_mouse_pressed(event.pressed)
 
 
-func _on_crateWooden_mouse_exited():
+func _on_mouse_exited():
 	
 	if is_moving:
 		return
 	
 	if is_mouse_pressed:
 		
-		is_mouse_pressed = false
-		
+		set_mouse_pressed(false)
 		var local_mouse_position = get_local_mouse_position()
-		
-		var nearest_direction = directions["U"]
-		for vector_direction in directions.values():
-			var direction_distance = (vector_direction-local_mouse_position).length()
-			var nearest_distance = (nearest_direction-local_mouse_position).length()
-			if direction_distance < nearest_distance:
-				nearest_direction = vector_direction
+		var nearest_direction = get_nearest_direction(local_mouse_position)
 		direction_pressed(nearest_direction)
-
-
-
-
-
-
-
-
-
