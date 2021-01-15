@@ -1,59 +1,57 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=1]
-[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/bodyDoor.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Levels/Level.gd" type="Script" id=5]
-[ext_resource path="res://Objects/bodyHole.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/bodyHole.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/bodyDoor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=4]
+[ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=5]
+[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=6]
 
 [node name="TileMap" type="TileMap"]
 scale = Vector2( 3, 3 )
 z_index = 1
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 5 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
 cell_tile_origin = 1
 centered_textures = true
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 196610, 3, 0, 196611, 3, 0, 196612, 3, 0, 196613, 3, 0, 196614, 3, 0, 196615, 3, 0, 196616, 3, 0, 196617, 3, 0, 196618, 3, 0, 196619, 3, 0, 262145, 3, 0, 262155, 3, 0, 327682, 3, 0, 327683, 3, 0, 327684, 3, 0, 327685, 3, 0, 327686, 3, 0, 327687, 3, 0, 327688, 3, 0, 327689, 3, 0, 327691, 3, 0, 393219, 3, 0, 393225, 3, 0, 393227, 3, 0, 458755, 3, 0, 458757, 3, 0, 458758, 3, 0, 458759, 3, 0, 458760, 3, 0, 458761, 3, 0, 458763, 3, 0, 524291, 3, 0, 524293, 3, 0, 524297, 3, 0, 524299, 3, 0, 589827, 3, 0, 589829, 3, 0, 589830, 3, 0, 589831, 3, 0, 589832, 3, 0, 589833, 3, 0, 589835, 3, 0, 655363, 3, 0, 655365, 3, 0, 655369, 3, 0, 655371, 3, 0, 720899, 3, 0, 720905, 3, 0, 720907, 3, 0, 786435, 3, 0, 786443, 3, 0, 851971, 3, 0, 851972, 3, 0, 851973, 3, 0, 851975, 3, 0, 851976, 3, 0, 851977, 3, 0, 851978, 3, 0, 917509, 3, 0, 917511, 3, 0, 983042, 3, 0, 983043, 3, 0, 983044, 3, 0, 983047, 3, 0, 983048, 3, 0, 1048577, 3, 0, 1048585, 3, 0, 1114113, 3, 0, 1114121, 3, 0, 1179650, 3, 0, 1179651, 3, 0, 1179652, 3, 0, 1179653, 3, 0, 1179657, 3, 0, 1245190, 3, 0, 1245191, 3, 0, 1245192, 3, 0 )
-script = ExtResource( 5 )
+tile_data = PoolIntArray( 196609, 1610612741, 65536, 196610, 1610612741, 0, 196611, 1610612741, 0, 196612, 1610612741, 0, 196613, 1610612741, 0, 196614, 1610612741, 0, 196615, 1610612741, 0, 196616, 1610612741, 0, 196617, 1610612741, 0, 196618, 1610612741, 0, 196619, -1073741819, 65536, 262145, -1610612731, 0, 262155, -1073741819, 0, 327681, -1610612731, 65536, 327682, 5, 0, 327683, -1073741819, 131074, 327684, -1610612731, 131072, 327685, -1610612731, 131072, 327686, -1610612731, 131072, 327687, -1610612731, 131072, 327688, -1610612731, 131072, 327689, 5, 196608, 327691, -1073741819, 0, 393219, -1610612731, 0, 393225, 1610612741, 131072, 393227, -1073741819, 0, 458755, -1610612731, 0, 458757, -1073741819, 1, 458758, 5, 0, 458759, 5, 0, 458760, 5, 0, 458761, 5, 131073, 458763, -1073741819, 0, 524291, -1610612731, 0, 524293, -1073741819, 0, 524297, -1610612731, 0, 524299, -1073741819, 0, 589827, -1610612731, 0, 589829, 1610612741, 131073, 589830, 1610612741, 0, 589831, 1610612741, 0, 589832, 1610612741, 0, 589833, 5, 131074, 589835, -1073741819, 0, 655363, -1610612731, 0, 655365, 1610612741, 2, 655369, 1610612741, 131072, 655371, -1073741819, 0, 720899, -1610612731, 0, 720905, 1610612741, 2, 720907, -1073741819, 0, 786435, -1610612731, 0, 786443, -1073741819, 0, 851971, -1610612731, 65536, 851972, 5, 0, 851973, 5, 1, 851975, -1073741819, 1, 851976, 5, 0, 851977, 5, 0, 851978, 5, 0, 851979, 5, 65536, 917509, -1610612731, 0, 917511, -1073741819, 0, 983041, 1610612741, 65536, 983042, 1610612741, 0, 983043, 1610612741, 0, 983044, 1610612741, 0, 983045, -1610612731, 1, 983047, 1610612741, 1, 983048, 1610612741, 0, 983049, -1073741819, 65536, 1048577, -1610612731, 0, 1048585, -1073741819, 0, 1114113, -1610612731, 0, 1114121, -1073741819, 0, 1179649, -1610612731, 65536, 1179650, 5, 0, 1179651, 5, 0, 1179652, 5, 0, 1179653, 5, 1, 1179657, -1073741819, 0, 1245189, -1610612731, 65536, 1245190, 5, 0, 1245191, 5, 0, 1245192, 5, 0, 1245193, 5, 65536 )
+script = ExtResource( 4 )
 
-[node name="crate(Blue)" parent="." instance=ExtResource( 7 )]
+[node name="crate(Blue)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 80, 528 )
 crate_type = 2
 crate_type = 2
 
-[node name="crate(Wooden)2" parent="." instance=ExtResource( 7 )]
+[node name="crate(Wooden)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 208, 496 )
 
-[node name="crate(Wooden)2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 208, 496 )
-
-[node name="bodyHole" parent="." instance=ExtResource( 6 )]
-position = Vector2( 208, 496 )
-
-[node name="door(0)" parent="." instance=ExtResource( 4 )]
-position = Vector2( 144, 336 )
-rotation = 1.5708
-signal_id = 0
-door_mode = 0
-
-[node name="door(1)" parent="." instance=ExtResource( 4 )]
-position = Vector2( 304, 400 )
-signal_id = 1
-door_mode = 0
-
-[node name="button(0)" parent="." instance=ExtResource( 2 )]
+[node name="crate(Wooden)2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 208, 336 )
 
-[node name="button(1)" parent="." instance=ExtResource( 2 )]
+[node name="bodyHole" parent="." instance=ExtResource( 1 )]
+position = Vector2( 208, 496 )
+
+[node name="door(0)" parent="." instance=ExtResource( 2 )]
+position = Vector2( 144, 336 )
+rotation = 1.5708
+
+[node name="door(1)" parent="." instance=ExtResource( 2 )]
+position = Vector2( 304, 400 )
+signal_id = 1
+signal_id = 1
+
+[node name="button(0)" parent="." instance=ExtResource( 6 )]
+position = Vector2( 208, 336 )
+
+[node name="button(0)2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 208, 400 )
 signal_id = 1
 signal_id = 1
 
-[node name="goal(Blue)" parent="." instance=ExtResource( 2 )]
+[node name="goal(Blue)" parent="." instance=ExtResource( 6 )]
 position = Vector2( 80, 144 )
 is_level_goal = true
 goal_type = 1

@@ -16,28 +16,32 @@ cell_tile_origin = 1
 centered_textures = true
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 196611, 3, 0, 196612, 3, 0, 196613, 3, 0, 196615, 3, 0, 196616, 3, 0, 196617, 3, 0, 262146, 3, 0, 262150, 3, 0, 262154, 3, 0, 327682, 3, 0, 327690, 3, 0, 393218, 3, 0, 393226, 3, 0, 458754, 3, 0, 458762, 3, 0, 524290, 3, 0, 524298, 3, 0, 589826, 3, 0, 589834, 3, 0, 655362, 3, 0, 655365, 3, 0, 655370, 3, 0, 720898, 3, 0, 720906, 3, 0, 786434, 3, 0, 786442, 3, 0, 851971, 3, 0, 851972, 3, 0, 851973, 3, 0, 851975, 3, 0, 851976, 3, 0, 851977, 3, 0, 917510, 3, 0 )
+tile_data = PoolIntArray( 196610, 1610612741, 65536, 196611, 1610612741, 0, 196612, 1610612741, 0, 196613, 1610612741, 0, 196614, 1610612741, 65537, 196615, 1610612741, 0, 196616, 1610612741, 0, 196617, 1610612741, 0, 196618, -1073741819, 65536, 262146, -1610612731, 0, 262150, 1610612741, 2, 262154, -1073741819, 0, 327682, -1610612731, 0, 327690, -1073741819, 0, 393218, -1610612731, 0, 393226, -1073741819, 0, 458754, -1610612731, 0, 458762, -1073741819, 0, 524290, -1610612731, 0, 524298, -1073741819, 0, 589826, -1610612731, 0, 589834, -1073741819, 0, 655362, -1610612731, 0, 655365, -1073741819, 3, 655370, -1073741819, 0, 720898, -1610612731, 0, 720906, -1073741819, 0, 786434, -1610612731, 0, 786442, -1073741819, 0, 851970, -1610612731, 65536, 851971, 5, 0, 851972, 5, 0, 851973, 5, 1, 851975, -1073741819, 1, 851976, 5, 0, 851977, 5, 0, 851978, 5, 65536, 917509, -1610612731, 65536, 917510, 5, 0, 917511, 5, 65536 )
 script = ExtResource( 5 )
 
 [node name="goal(Red)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 432 )
 is_level_goal = true
+is_level_goal = true
 
 [node name="crate(Red)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 112, 176 )
 crate_type = 1
+crate_type = 1
 
-[node name="crate(Red)2" parent="." instance=ExtResource( 3 )]
+[node name="crate(Wooden)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 336 )
 
 [node name="bodyLaunchPad" parent="." instance=ExtResource( 4 )]
 position = Vector2( 112, 208 )
 rotation = 3.14159
 direction = 2
+direction = 2
 
 [node name="bodyLaunchPad2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 112, 368 )
 rotation = 1.5708
+direction = 1
 direction = 1
 
 [node name="bodyLaunchPad3" parent="." instance=ExtResource( 4 )]
@@ -46,4 +50,5 @@ position = Vector2( 272, 368 )
 [node name="bodyLaunchPad4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 272, 176 )
 rotation = 4.71239
+direction = 3
 direction = 3
