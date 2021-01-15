@@ -38,6 +38,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="background"]
+position = Vector2( -2459.47, -1679.14 )
+amount = 80
+lifetime = 7.0
+preprocess = 10.0
+emission_shape = 2
+emission_rect_extents = Vector2( 3000, 3000 )
+direction = Vector2( 1, 1 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 2000.0
+initial_velocity_random = 0.5
+angular_velocity = 120.0
+angular_velocity_random = 0.5
+scale_amount = 16.0
+color = Color( 1, 1, 1, 0.619608 )
+
 [node name="panelMenu" type="Control" parent="."]
 use_parent_material = true
 anchor_right = 1.0

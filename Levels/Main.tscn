@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Levels/LevelNode.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=2]
@@ -8,10 +8,20 @@
 [ext_resource path="res://Levels/Main.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Sprites/img_black_bg.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Shaders/shader_background/water_with_shadow_material.tres" type="Material" id=8]
+[ext_resource path="res://Assets/Fonts/font_main.ttf" type="DynamicFontData" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 200
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 120
+font_data = ExtResource( 9 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 theme = ExtResource( 2 )
 script = ExtResource( 6 )
 __meta__ = {
@@ -22,6 +32,7 @@ __meta__ = {
 material = ExtResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 texture = ExtResource( 7 )
 expand = true
 __meta__ = {
@@ -42,6 +53,7 @@ script = ExtResource( 1 )
 light_mask = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -53,37 +65,46 @@ z_index = 1
 [node name="levelComplete" type="Control" parent="LevelUI/Z_IndexAdjuster"]
 margin_right = 1080.0
 margin_bottom = 1920.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="bottomBar" type="HBoxContainer" parent="LevelUI"]
+[node name="bottomBar" type="Control" parent="LevelUI"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -100.0
+
+[node name="labMoveCount" type="Label" parent="LevelUI/bottomBar"]
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -256.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.368627, 0.368627, 0.368627, 1 )
+text = "0"
+valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="labMoveCount" type="Label" parent="LevelUI/bottomBar"]
-margin_right = 538.0
-margin_bottom = 100.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Moves: 0"
-align = 1
-valign = 1
-
 [node name="labStars" type="Label" parent="LevelUI/bottomBar"]
-margin_left = 542.0
-margin_right = 1080.0
-margin_bottom = 100.0
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -211.0
+margin_right = -48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Stars: 3"
-align = 1
-valign = 1
+custom_fonts/font = SubResource( 2 )
+text = "* * * * "
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="labNarrator" type="Label" parent="LevelUI"]
 visible = false

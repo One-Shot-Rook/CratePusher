@@ -15,6 +15,8 @@ var is_movable:bool = false
 var tile_size:float
 var rng := RandomNumberGenerator.new()
 
+var is_mouse_pressed := false
+
 var is_moving := false
 var should_stop_moving:= false
 var move_direction:Vector2
@@ -23,7 +25,7 @@ var move_time := 0.04			# In seconds
 var move_distance := 0			# In tiles
 var MOVE_DISTANCE_MAX := 9999	# In tiles
 
-var interactable:Node = null
+var normal_pitch_scale := 1.0
 
 var COLLISION_RADIUS := 4
 
@@ -48,6 +50,7 @@ func _get_property_list() -> Array:
 func set_crate_type(new_crate_type):
 	crate_type = new_crate_type
 	initialise_crate()
+
 func get_crate_type() -> int: return crate_type
 
 func get_class() -> String: return "Crate"
@@ -75,6 +78,8 @@ func initialise_crate():
 			is_movable = false
 			$sprite.texture = load("res://Assets/Sprites/img_crate.png")
 			$sprite.scale = Vector2.ONE
+			$Directions.modulate = Color.beige
+			normal_pitch_scale = 1.0
 		CrateType.RED:
 			name = "crate(Red)"
 			weight_id = WeightMode.MEDIUM
@@ -82,6 +87,8 @@ func initialise_crate():
 			is_movable = true
 			$sprite.texture = load("res://Assets/Sprites/img_crate_red.png")
 			$sprite.scale = Vector2.ONE
+			$Directions.modulate = Color.lightcoral
+			normal_pitch_scale = 1.0
 		CrateType.BLUE:
 			name = "crate(Blue)"
 			weight_id = WeightMode.LIGHT
@@ -89,6 +96,8 @@ func initialise_crate():
 			is_movable = true
 			$sprite.texture = load("res://Assets/Sprites/img_crate_blue.png")
 			$sprite.scale = Vector2.ONE * 0.4
+			$Directions.modulate = Color.dodgerblue
+			normal_pitch_scale = 1.5
 
 
 func start_moving(new_move_direction:Vector2,new_move_distance=MOVE_DISTANCE_MAX) -> void:
@@ -242,7 +251,7 @@ func enable_move_ui() -> void:
 	var adjacent_objects = get_objects_adjacent()
 	for dirChar in adjacent_objects:
 		var adjacentNode = adjacent_objects[dirChar]
-		get_node("Directions/area"+dirChar).visible = (adjacentNode == null)
+		get_node("Directions/spr"+dirChar).visible = (adjacentNode == null)
 	$Directions.visible = true
 
 func disable_move_ui() -> void:
@@ -252,11 +261,51 @@ func disable_move_ui() -> void:
 
 func play_move_sound():
 	rng.randomize()
-	$audioMove.pitch_scale = rng.randf_range(0.8,1.2)
+	print(normal_pitch_scale)
+	print(name," ",normal_pitch_scale + rng.randf_range(-0.2,+0.2))
+	$audioMove.pitch_scale = normal_pitch_scale + rng.randf_range(-0.2,+0.2)
 	$audioMove.play()
 
 
 
-func _on_direction_pressed(new_move_direction:Vector2):
+func direction_pressed(new_move_direction:Vector2):
 	start_moving(new_move_direction)
 	LevelData.incrementMoveCount()
+
+
+func _on_crateWooden_input_event(_viewport, event, _shape_idx):
+	
+	if event is InputEventMouseButton:
+		
+		if event.button_index == BUTTON_LEFT:
+			
+			is_mouse_pressed = event.pressed
+
+
+func _on_crateWooden_mouse_exited():
+	
+	if is_moving:
+		return
+	
+	if is_mouse_pressed:
+		
+		is_mouse_pressed = false
+		
+		var local_mouse_position = get_local_mouse_position()
+		
+		var nearest_direction = directions["U"]
+		for vector_direction in directions.values():
+			var direction_distance = (vector_direction-local_mouse_position).length()
+			var nearest_distance = (nearest_direction-local_mouse_position).length()
+			if direction_distance < nearest_distance:
+				nearest_direction = vector_direction
+		direction_pressed(nearest_direction)
+
+
+
+
+
+
+
+
+

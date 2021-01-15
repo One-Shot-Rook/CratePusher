@@ -5,16 +5,16 @@
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/shadow_color = Color( 1, 0, 0, 1 )
+shader_param/shadow_color = Color( 0, 0.811765, 1, 1 )
 shader_param/rotation_angle_base = 0.0
 shader_param/rotate_over_time = true
-shader_param/rotate_speed = 0.1
+shader_param/rotate_speed = 0.09
 shader_param/tile_factor = 8.0
 shader_param/aspect_ratio = 0.629033
 shader_param/texture_offset_scale = Vector2( 1, 0.5 )
 shader_param/texture_offset_height = 0.04
 shader_param/texture_offset_time_scale = 0.03
-shader_param/sine_time_scale = 3.0
+shader_param/sine_time_scale = 0.7
 shader_param/sine_offset_scale = Vector2( 0.4, 0.4 )
 shader_param/sine_wave_size = 0.4
 shader_param/texture_offset_uv = ExtResource( 2 )

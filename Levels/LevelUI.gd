@@ -3,8 +3,10 @@ extends Control
 var LevelComplete_load = load("res://Levels/LevelComplete.tscn")
 
 func updateUI():
-	$bottomBar/labMoveCount.text = "Moves: " + str(LevelData.moveCount)
-	$bottomBar/labStars.text = "Stars: " + str(LevelData.stars)
+	$bottomBar/labMoveCount.text = str(LevelData.moveCount)
+	$bottomBar/labStars.text = ""
+	for _star in range(LevelData.stars):
+		$bottomBar/labStars.text += "* "
 
 func endLevel():
 	var LevelComplete = LevelComplete_load.instance()
