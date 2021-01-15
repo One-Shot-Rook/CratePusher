@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 enum BUS_CHANNELS{MASTER,NARRATOR,MUSIC,SFX}
 var initialChanges = true

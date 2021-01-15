@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Levels/LevelNode.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=2]
@@ -6,12 +6,24 @@
 [ext_resource path="res://Levels/LevelUI.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Speech/nar_trying_again_clean.wav" type="AudioStream" id=5]
 [ext_resource path="res://Levels/Main.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Sprites/img_black_bg.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Shaders/shader_background/water_with_shadow_material.tres" type="Material" id=8]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="TextureRect" parent="."]
+material = ExtResource( 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -31,6 +43,16 @@ light_mask = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Z_IndexAdjuster" type="Node2D" parent="LevelUI"]
+z_index = 1
+
+[node name="levelComplete" type="Control" parent="LevelUI/Z_IndexAdjuster"]
+margin_right = 1080.0
+margin_bottom = 1920.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

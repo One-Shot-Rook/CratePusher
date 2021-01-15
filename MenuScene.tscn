@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://MenuScene.gd" type="Script" id=2]
@@ -13,8 +13,11 @@
 [ext_resource path="res://Assets/Speech/nar_trying_again_clean.wav" type="AudioStream" id=11]
 [ext_resource path="res://panelLevels.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Sprites/img_note.webp" type="Texture" id=13]
+[ext_resource path="res://Assets/Shaders/shader_background/water_with_shadow_material.tres" type="Material" id=14]
+[ext_resource path="res://Assets/Sprites/img_black_bg.png" type="Texture" id=15]
 
 [node name="MenuScene" type="Control"]
+material = ExtResource( 14 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -23,12 +26,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="panelMenu" type="Panel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="background" type="TextureRect" parent="."]
+use_parent_material = true
+margin_left = -1080.0
+margin_top = -1920.0
+margin_right = 2160.0
+margin_bottom = 3840.0
+texture = ExtResource( 15 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="panelMenu" type="Control" parent="."]
+use_parent_material = true
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="gridButtons" type="GridContainer" parent="panelMenu"]
 anchor_left = 0.5
@@ -145,13 +158,11 @@ margin_right = 908.0
 margin_bottom = 908.0
 rect_min_size = Vector2( 300, 300 )
 
-[node name="panelLevels" type="Panel" parent="."]
+[node name="panelLevels" type="Control" parent="."]
+use_parent_material = true
 margin_top = -1920.0
 margin_right = 1080.0
 script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="gridLevels" type="GridContainer" parent="panelLevels"]
 margin_left = 110.0
@@ -183,13 +194,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="panelSettings" type="Panel" parent="."]
+[node name="panelSettings" type="Control" parent="."]
+use_parent_material = true
 margin_left = -1080.0
 margin_bottom = 1920.0
 script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="gridOptions" type="GridContainer" parent="panelSettings"]
 anchor_right = 1.0
@@ -329,13 +338,11 @@ stream = ExtResource( 10 )
 volume_db = -5.0
 bus = "SFX"
 
-[node name="panelCredits" type="Panel" parent="."]
+[node name="panelCredits" type="Control" parent="."]
+use_parent_material = true
 margin_left = 1080.0
 margin_right = 2160.0
 margin_bottom = 1920.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="btnBack" type="Button" parent="panelCredits"]
 margin_left = 16.0
@@ -353,13 +360,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="panelShop" type="Panel" parent="."]
+[node name="panelShop" type="Control" parent="."]
+use_parent_material = true
 margin_top = 1920.0
 margin_right = 1080.0
 margin_bottom = 3840.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="btnBack" type="Button" parent="panelShop"]
 margin_left = 476.0

@@ -8,4 +8,4 @@ func updateUI():
 
 func endLevel():
 	var LevelComplete = LevelComplete_load.instance()
-	add_child(LevelComplete)
+	$Z_IndexAdjuster/levelComplete.add_child(LevelComplete)
