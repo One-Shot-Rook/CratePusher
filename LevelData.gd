@@ -35,7 +35,7 @@ var levelData = {
 		"moves":[9,10,12,14]
 	},
 	"level12":{
-		"moves":[8,9,11,13]
+		"moves":[7,8,10,12]
 	},
 }
 

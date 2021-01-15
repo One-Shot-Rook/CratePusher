@@ -24,8 +24,8 @@ position = Vector2( 80, 528 )
 crate_type = 2
 crate_type = 2
 
-[node name="crate(Wooden)" parent="." instance=ExtResource( 7 )]
-position = Vector2( 208, 336 )
+[node name="crate(Wooden)2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 208, 496 )
 
 [node name="crate(Wooden)2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 208, 496 )
@@ -36,11 +36,13 @@ position = Vector2( 208, 496 )
 [node name="door(0)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 144, 336 )
 rotation = 1.5708
+signal_id = 0
+door_mode = 0
 
 [node name="door(1)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 304, 400 )
 signal_id = 1
-signal_id = 1
+door_mode = 0
 
 [node name="button(0)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 336 )
