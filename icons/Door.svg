@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="16"
+   viewBox="0 0 16 16"
+   width="16"
+   version="1.1"
+   id="svg38"
+   sodipodi:docname="Door.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata44">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs42">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 8 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="16 : 8 : 1"
+       inkscape:persp3d-origin="8 : 5.3333333 : 1"
+       id="perspective56" />
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10000"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     id="namedview40"
+     showgrid="true"
+     inkscape:zoom="16"
+     inkscape:cx="20.993768"
+     inkscape:cy="14.762994"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg38"
+     inkscape:snap-to-guides="false"
+     showguides="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid52" />
+  </sodipodi:namedview>
+  <rect
+     style="fill:#a5b7f3;fill-opacity:1;stroke-width:1.07648"
+     id="rect87"
+     width="5"
+     height="12"
+     x="2"
+     y="2" />
+  <rect
+     style="fill:#a5b7f3;fill-opacity:1;stroke-width:1.07648"
+     id="rect89"
+     width="5"
+     height="12"
+     x="9"
+     y="2" />
+  <rect
+     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.735378"
+     id="rect1004"
+     width="2"
+     height="14"
+     x="1"
+     y="1" />
+  <rect
+     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.735378"
+     id="rect1006"
+     width="1.9999998"
+     height="14"
+     x="13"
+     y="1" />
+</svg>

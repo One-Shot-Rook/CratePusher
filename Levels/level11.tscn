@@ -23,14 +23,14 @@ script = ExtResource( 6 )
 [node name="door(0)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 144, 336 )
 rotation = 1.5708
-signal_id = 0
-door_mode = 0
 
 [node name="button(0)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 272 )
 
 [node name="goal(Red)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 400 )
+is_level_goal = true
+goal_type = 1
 is_level_goal = true
 goal_type = 1
 
@@ -46,6 +46,7 @@ position = Vector2( 144, 432 )
 [node name="crate(Wooden)3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 240, 80 )
 
-[node name="crate(Red)" parent="." instance=ExtResource( 5 )]
+[node name="crate(Blue)" parent="." instance=ExtResource( 5 )]
 position = Vector2( 112, 144 )
+crate_type = 2
 crate_type = 2

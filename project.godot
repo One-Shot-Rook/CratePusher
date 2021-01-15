@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Objects/bodyDoor.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Node2D",
 "class": "Hole",
 "language": "GDScript",
 "path": "res://Objects/bodyHole.gd"
@@ -35,11 +35,11 @@ _global_script_classes=[ {
 "path": "res://Objects/bodyLaunchPad.gd"
 } ]
 _global_script_class_icons={
-"ButtonFloor": "",
-"Crate": "",
-"Door": "",
-"Hole": "",
-"LaunchPad": ""
+"ButtonFloor": "res://icons/ButtonFloor.svg",
+"Crate": "res://icons/Crate.svg",
+"Door": "res://icons/Door.svg",
+"Hole": "res://icons/Hole.svg",
+"LaunchPad": "res://icons/LaunchPad.svg"
 }
 
 [application]

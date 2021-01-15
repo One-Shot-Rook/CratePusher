@@ -20,15 +20,16 @@ format = 1
 tile_data = PoolIntArray( 196610, 3, 0, 196611, 3, 0, 196612, 3, 0, 196613, 3, 0, 196614, 3, 0, 196615, 3, 0, 196616, 3, 0, 196617, 3, 0, 196618, 3, 0, 196619, 3, 0, 262145, 3, 0, 262155, 3, 0, 327682, 3, 0, 327683, 3, 0, 327684, 3, 0, 327685, 3, 0, 327686, 3, 0, 327687, 3, 0, 327688, 3, 0, 327689, 3, 0, 327691, 3, 0, 393219, 3, 0, 393225, 3, 0, 393227, 3, 0, 458755, 3, 0, 458757, 3, 0, 458758, 3, 0, 458759, 3, 0, 458760, 3, 0, 458761, 3, 0, 458763, 3, 0, 524291, 3, 0, 524293, 3, 0, 524297, 3, 0, 524299, 3, 0, 589827, 3, 0, 589829, 3, 0, 589830, 3, 0, 589831, 3, 0, 589832, 3, 0, 589833, 3, 0, 589835, 3, 0, 655363, 3, 0, 655365, 3, 0, 655369, 3, 0, 655371, 3, 0, 720899, 3, 0, 720905, 3, 0, 720907, 3, 0, 786435, 3, 0, 786443, 3, 0, 851971, 3, 0, 851972, 3, 0, 851973, 3, 0, 851975, 3, 0, 851976, 3, 0, 851977, 3, 0, 851978, 3, 0, 917509, 3, 0, 917511, 3, 0, 983042, 3, 0, 983043, 3, 0, 983044, 3, 0, 983047, 3, 0, 983048, 3, 0, 1048577, 3, 0, 1048585, 3, 0, 1114113, 3, 0, 1114121, 3, 0, 1179650, 3, 0, 1179651, 3, 0, 1179652, 3, 0, 1179653, 3, 0, 1179657, 3, 0, 1245190, 3, 0, 1245191, 3, 0, 1245192, 3, 0 )
 script = ExtResource( 5 )
 
-[node name="crate(Wooden)" parent="." instance=ExtResource( 7 )]
+[node name="crate(Blue)" parent="." instance=ExtResource( 7 )]
 position = Vector2( 80, 528 )
+crate_type = 2
 crate_type = 2
 
 [node name="crate(Wooden)2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 208, 496 )
 
-[node name="crate(Wooden)4" parent="." instance=ExtResource( 7 )]
-position = Vector2( 208, 368 )
+[node name="crate(Wooden)2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 208, 496 )
 
 [node name="bodyHole" parent="." instance=ExtResource( 6 )]
 position = Vector2( 208, 496 )
@@ -47,11 +48,14 @@ door_mode = 0
 [node name="button(0)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 336 )
 
-[node name="button(0)2" parent="." instance=ExtResource( 2 )]
+[node name="button(1)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 208, 400 )
 signal_id = 1
+signal_id = 1
 
-[node name="button(0)3" parent="." instance=ExtResource( 2 )]
+[node name="goal(Blue)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 144 )
+is_level_goal = true
+goal_type = 1
 is_level_goal = true
 goal_type = 1

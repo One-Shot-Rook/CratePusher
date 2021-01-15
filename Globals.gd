@@ -16,6 +16,9 @@ func update_move_ui() -> void:
 			print(crate," is still moving")
 			return
 	yield(get_tree().create_timer(STAGE_WAIT_TIME), "timeout")
+	react_to_crate_positions()
+
+func react_to_crate_positions():
 	get_tree().call_group("button","update_on_or_off")
 	yield(get_tree().create_timer(0.015), "timeout")
 	get_tree().call_group("door","update_open_or_close")

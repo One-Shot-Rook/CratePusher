@@ -1,5 +1,5 @@
-class_name ButtonFloor
-#tool
+class_name ButtonFloor, "res://icons/ButtonFloor.svg"
+tool
 extends Area2D
 
 export var signal_id:int setget set_signal_id, get_signal_id
@@ -9,6 +9,34 @@ export(GoalType) var goal_type = GoalType.RED setget set_goal_type, get_goal_typ
 var GoalText = ["Red","Blue"]
 
 var is_pressed:bool = false
+
+func _get_property_list() -> Array:
+	return [
+		{
+			name = "ButtonFloor",
+			type = TYPE_NIL,
+			usage = PROPERTY_USAGE_CATEGORY | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "signal_id",
+			type = TYPE_INT,
+			hint = PROPERTY_HINT_RANGE,
+			hint_string = "0,6",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "is_level_goal",
+			type = TYPE_BOOL,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "goal_type",
+			type = TYPE_INT,
+			hint = PROPERTY_HINT_ENUM,
+			hint_string = "Red,Blue",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+	]
 
 func get_class() -> String: return "ButtonFloor"
 

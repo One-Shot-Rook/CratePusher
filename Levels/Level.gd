@@ -11,6 +11,7 @@ func _ready():
 	Globals.initialise_buttons()
 	LevelData.initialiseMoveCount()
 	randomiseBackgroundTiles()
+	Globals.react_to_crate_positions()
 
 func randomiseBackgroundTiles():
 	if not randomiseBackground:

@@ -1,5 +1,5 @@
-class_name Crate
-#tool
+class_name Crate, "res://icons/Crate.svg"
+tool
 extends KinematicBody2D
 
 enum CrateType{WOODEN,RED,BLUE}
@@ -19,7 +19,7 @@ var is_moving := false
 var should_stop_moving:= false
 var move_direction:Vector2
 var move_to_position:Vector2
-var move_time := 0.06			# In seconds
+var move_time := 0.04			# In seconds
 var move_distance := 0			# In tiles
 var MOVE_DISTANCE_MAX := 9999	# In tiles
 
@@ -28,6 +28,22 @@ var interactable:Node = null
 var COLLISION_RADIUS := 4
 
 var directions = {"U":Vector2( 0,-1),"R":Vector2(+1, 0),"D":Vector2( 0,+1),"L":Vector2(-1, 0)}
+
+func _get_property_list() -> Array:
+	return [
+		{
+			name = "Crate",
+			type = TYPE_NIL,
+			usage = PROPERTY_USAGE_CATEGORY | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "crate_type",
+			type = TYPE_INT,
+			hint = PROPERTY_HINT_ENUM,
+			hint_string = "Wooden,Red,Blue",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+	]
 
 func set_crate_type(new_crate_type):
 	crate_type = new_crate_type
