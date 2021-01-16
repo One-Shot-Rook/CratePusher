@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Levels/LevelNode.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=2]
@@ -16,6 +16,10 @@ font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 120
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 100
 font_data = ExtResource( 9 )
 
 [node name="Main" type="Control"]
@@ -121,10 +125,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="topBar" type="HBoxContainer" parent="LevelUI"]
+[node name="topBar" type="Control" parent="LevelUI"]
 anchor_right = 1.0
-margin_bottom = 100.0
-alignment = 2
+
+[node name="labLevelName" type="Label" parent="LevelUI/topBar"]
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 15.0
+margin_right = -50.0
+margin_bottom = 252.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.368627, 0.368627, 0.368627, 1 )
+text = "1-1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -140,20 +155,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="btnMenu" type="Button" parent="LevelUI/topBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelUI/topBar"]
+anchor_right = 1.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnReset" type="Button" parent="LevelUI/topBar/HBoxContainer"]
+margin_left = 568.0
+margin_right = 736.0
+margin_bottom = 125.0
+text = "Reset"
+
+[node name="btnMenu" type="Button" parent="LevelUI/topBar/HBoxContainer"]
 margin_left = 740.0
 margin_right = 908.0
 margin_bottom = 125.0
 text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="btnReset" type="Button" parent="LevelUI/topBar"]
+[node name="btnBack" type="Button" parent="LevelUI/topBar/HBoxContainer"]
 margin_left = 912.0
+margin_right = 994.0
+margin_bottom = 125.0
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnNext" type="Button" parent="LevelUI/topBar/HBoxContainer"]
+margin_left = 998.0
 margin_right = 1080.0
 margin_bottom = 125.0
-text = "Reset"
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="sndNarrator" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 bus = "Voice"
-[connection signal="pressed" from="LevelUI/topBar/btnMenu" to="LevelNode" method="_on_btnMenu_pressed"]
-[connection signal="pressed" from="LevelUI/topBar/btnReset" to="LevelNode" method="_on_btnReset_pressed"]
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnReset" to="LevelNode" method="_on_btnReset_pressed"]
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnMenu" to="LevelNode" method="_on_btnMenu_pressed"]
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnBack" to="LevelNode" method="_on_btnBack_pressed"]

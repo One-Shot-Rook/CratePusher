@@ -7,6 +7,7 @@ func updateUI():
 	$bottomBar/labStars.text = ""
 	for _star in range(LevelData.stars):
 		$bottomBar/labStars.text += "* "
+	$topBar/labLevelName.text = LevelData.current_world + "-" + LevelData.currentLevel.right(5)
 
 func endLevel():
 	var LevelComplete = LevelComplete_load.instance()
