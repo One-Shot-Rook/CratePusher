@@ -95,19 +95,23 @@ func initialise_crate():
 			normal_pitch_scale = 1.5
 
 func update_ui():
+	$trailParticles.emitting = false
 	match crate_type:
 		CrateType.WOODEN:
 			$sprite.texture = load("res://Assets/Sprites/img_crate.png")
 			$sprite.scale = Vector2.ONE
 			$Directions.modulate = Color.beige
+			$trailParticles.modulate = Color.beige
 		CrateType.RED:
 			$sprite.texture = load("res://Assets/Sprites/img_crate_red.png")
 			$sprite.scale = Vector2.ONE
 			$Directions.modulate = Color.lightcoral
+			$trailParticles.modulate = Color.lightcoral
 		CrateType.BLUE:
 			$sprite.texture = load("res://Assets/Sprites/img_crate_blue.png")
 			$sprite.scale = Vector2.ONE * 0.4
 			$Directions.modulate = Color.dodgerblue
+			$trailParticles.modulate = Color.dodgerblue
 
 func update_highlight():
 	$sprite.modulate.a = 1 + int(is_mouse_pressed)
@@ -124,6 +128,8 @@ func start_moving(new_move_direction:Vector2,new_move_distance=MOVE_DISTANCE_MAX
 
 func _move(_object=null, _key=":position") -> bool:
 	
+	$trailParticles.emitting = true
+	$trailParticles.direction = -move_direction
 	should_stop_moving = false
 	
 	if speed_mode == SpeedMode.SLOW:
@@ -142,6 +148,7 @@ func _move(_object=null, _key=":position") -> bool:
 	react_to_currently_colliding()
 	
 	if should_stop_moving:
+		$trailParticles.emitting = false
 		stop_moving()
 	
 	if not is_moving:
