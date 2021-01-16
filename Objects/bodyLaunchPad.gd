@@ -51,8 +51,8 @@ func get_class() -> String: return "LaunchPad"
 
 func update_ui():
 	if Engine.editor_hint:
-		$sprite_1.modulate = primary_color
-		$sprite_2.modulate = secondary_color
+		$aniMiddle.modulate = secondary_color
+		$sprBack.modulate = primary_color
 		rotation_degrees = direction * 90
 
 func get_direction_vector():

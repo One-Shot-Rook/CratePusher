@@ -7,10 +7,9 @@
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=5]
 
 [node name="TileMap" type="TileMap"]
-scale = Vector2( 3, 3 )
 z_index = 1
 tile_set = ExtResource( 5 )
-cell_size = Vector2( 32, 32 )
+cell_size = Vector2( 96, 96 )
 cell_quadrant_size = 32
 cell_tile_origin = 1
 centered_textures = true
@@ -20,18 +19,18 @@ tile_data = PoolIntArray( 0, 6, 8, 1, 6, 10, 2, 6, 10, 3, 6, 10, 4, 6, 10, 5, 6,
 script = ExtResource( 4 )
 
 [node name="door(0)" parent="." instance=ExtResource( 1 )]
-position = Vector2( 208, 336 )
+position = Vector2( 624, 1008 )
 rotation = 1.5708
 
 [node name="button(0)" parent="." instance=ExtResource( 2 )]
-position = Vector2( 208, 304 )
+position = Vector2( 624, 912 )
 
 [node name="goal(Red)" parent="." instance=ExtResource( 2 )]
-position = Vector2( 208, 400 )
+position = Vector2( 624, 1200 )
 is_level_goal = true
 is_level_goal = true
 
 [node name="crate(Red)" parent="." instance=ExtResource( 3 )]
-position = Vector2( 240, 176 )
+position = Vector2( 720, 528 )
 crate_type = 1
 crate_type = 1

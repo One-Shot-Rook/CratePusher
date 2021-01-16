@@ -23,9 +23,9 @@ func get_class() -> String: return "Hole"
 
 func _ready():
 	if is_bottomless:
-		$sprite.texture = load("res://Assets/Sprites/img_hole_endless.png")
+		$sprite.texture = load("res://Assets/Sprites/svg_hole_bottomless.svg")
 	else:
-		$sprite.texture = load("res://Assets/Sprites/img_hole_fill.png")
+		$sprite.texture = load("res://Assets/Sprites/svg_hole_fillable.svg")
 
 func fill_with(resource_path):
 	if is_bottomless or is_filled:

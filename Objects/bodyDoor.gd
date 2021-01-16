@@ -60,7 +60,7 @@ func close_door():
 	is_open = false
 	$occluder.visible = true
 	$shape.disabled = false
-	$sprite.frame = 7
+	$sprite.frame = 9
 	$sprite.play("",true)
 	$audioClose.play()
 

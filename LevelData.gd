@@ -1,6 +1,6 @@
 extends Node
 
-var levelData = {
+var level_data = {
 	"level01":{
 		"moves":[6,7,8,10]
 	},
@@ -39,44 +39,44 @@ var levelData = {
 	},
 }
 
-var levelComplete:bool = false
+var level_complete:bool = false
 
-var currentLevel:String
-
-var moveCount:int
+var current_level:String
+var current_world := "1"
+var move_count:int
 var stars:int = 4
 
 
 func setCurrentLevel(levelName):
-	levelComplete = false
-	currentLevel = levelName
+	level_complete = false
+	current_level = levelName
 
 func set_level_next():
-	var nextLvlName = int(currentLevel.trim_prefix("level").trim_prefix("0"))+1
+	var nextLvlName = int(current_level.trim_prefix("level").trim_prefix("0"))+1
 	if nextLvlName < 10:
 		nextLvlName = "0" + str(nextLvlName)
 	nextLvlName = "level" + str(nextLvlName)
 	if SaveData.levelProgress.has(nextLvlName):
-		currentLevel = nextLvlName
+		current_level = nextLvlName
 
-# reset moveCount
+# reset move_count
 func initialiseMoveCount():
-	moveCount = 0
+	move_count = 0
 	updateCurrentStars()
 	get_tree().call_group("UI","updateUI")
 
-# increment moveCount
+# increment move_count
 func incrementMoveCount():
-	moveCount += 1
+	move_count += 1
 	updateCurrentStars()
 	get_tree().call_group("UI","updateUI")
 
 func updateCurrentStars():
-	if not levelData.has(currentLevel):
+	if not level_data.has(current_level):
 		return
 	stars = 4
-	for moveCriteria in levelData[currentLevel]["moves"]:
-		if moveCount <= moveCriteria:
+	for move_criteria in level_data[current_level]["moves"]:
+		if move_count <= move_criteria:
 			return stars
 		stars -= 1
 	return stars

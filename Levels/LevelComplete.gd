@@ -5,7 +5,7 @@ export var dimColor:Color
 func _ready():
 	$texChip.texture = load("res://Assets/UI/img_chip_" + str(LevelData.stars) + ".png")
 	
-	SaveData.updateLevelStars(LevelData.currentLevel, LevelData.stars)
+	SaveData.updateLevelStars(LevelData.current_level, LevelData.stars)
 	get_tree().call_group("UI","updateUI")
 
 func _on_btnContinue_pressed():

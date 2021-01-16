@@ -1,33 +1,35 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Sounds/snd_close.wav" type="AudioStream" id=1]
-[ext_resource path="res://Assets/Sprites/door/img_door_2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/door/svg_door_8.svg" type="Texture" id=2]
 [ext_resource path="res://Assets/Sounds/snd_open.wav" type="AudioStream" id=3]
-[ext_resource path="res://Assets/Sprites/door/img_door_4.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Sprites/door/img_door_6.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprites/door/img_door_3.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/door/img_door_0.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/door/img_door_7.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/door/img_door_1.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Sprites/door/img_door_5.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/door/svg_door_1.svg" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/door/svg_door_3.svg" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/door/svg_door_4.svg" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/door/svg_door_5.svg" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/door/svg_door_signal.svg" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/door/svg_door_0.svg" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/door/svg_door_9.svg" type="Texture" id=10]
 [ext_resource path="res://Objects/bodyDoor.gd" type="Script" id=11]
-[ext_resource path="res://Assets/Sprites/img_door_color.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/door/svg_door_2.svg" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/door/svg_door_7.svg" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/door/svg_door_6.svg" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 2 ), ExtResource( 10 ) ],
 "loop": false,
 "name": "default",
-"speed": 8.0
+"speed": 12.0
 } ]
 
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( 0, -32, 0, 32 )
 
-[node name="bodyDoor" type="KinematicBody2D" groups=[
+[node name="door(0)" type="KinematicBody2D" groups=[
 "door",
 "object",
 ]]
@@ -40,10 +42,12 @@ __meta__ = {
 shape = SubResource( 1 )
 
 [node name="sprite" type="AnimatedSprite" parent="."]
+modulate = Color( 0.615686, 0.615686, 0.615686, 1 )
 frames = SubResource( 2 )
 
 [node name="sprColor" type="Sprite" parent="."]
-texture = ExtResource( 12 )
+self_modulate = Color( 1, 0, 0, 1 )
+texture = ExtResource( 8 )
 
 [node name="audioOpen" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
