@@ -19,7 +19,7 @@ tile_data = PoolIntArray( 0, 6, 8, 1, 6, 10, 2, 6, 10, 3, 6, 10, 4, 6, 10, 5, 6,
 script = ExtResource( 4 )
 
 [node name="goal(Red)" parent="." instance=ExtResource( 2 )]
-position = Vector2( 912, 912 )
+position = Vector2( 912, 816 )
 is_level_goal = true
 is_level_goal = true
 

@@ -56,7 +56,7 @@ func update_signal_id(signal_id:int, button:ButtonFloor, newState:bool) -> void:
 	if button.is_level_goal:
 		return
 	button_signals[signal_id][button] = newState
-	print("button_signals = ",button_signals)
+	#print("button_signals = ",button_signals)
 # e.g. updateSignal(2, [Area2D:1423], true) --> button_signals[2][[Area2D:1423]] = true
 
 

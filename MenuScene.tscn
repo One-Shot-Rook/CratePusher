@@ -202,6 +202,9 @@ margin_top = 240.0
 margin_right = 1038.0
 margin_bottom = 1320.0
 rect_min_size = Vector2( 128, 128 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="btnLeft" type="Button" parent="panelLevels"]
 margin_left = 42.0
@@ -460,8 +463,8 @@ __meta__ = {
 [connection signal="pressed" from="panelMenu/gridButtons/MarginContainer3/btnNote" to="." method="_on_btnNote_pressed"]
 [connection signal="pressed" from="panelMenu/gridButtons/btnCredits" to="." method="_on_btnCredits_pressed"]
 [connection signal="pressed" from="panelMenu/gridButtons/btnShop" to="." method="_on_btnShop_pressed"]
-[connection signal="pressed" from="panelLevels/btnRight" to="panelLevels" method="_on_btnRight_pressed"]
-[connection signal="pressed" from="panelLevels/btnLeft" to="panelLevels" method="_on_btnLeft_pressed"]
+[connection signal="pressed" from="panelLevels/btnRight" to="panelLevels" method="_on_btn_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="panelLevels/btnLeft" to="panelLevels" method="_on_btn_pressed" binds= [ -1 ]]
 [connection signal="pressed" from="panelLevels/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderMaster" to="panelSettings" method="_on_sliderMaster_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderVoice" to="panelSettings" method="_on_sliderVoice_value_changed"]

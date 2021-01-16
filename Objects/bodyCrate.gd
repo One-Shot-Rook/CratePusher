@@ -27,7 +27,7 @@ var MOVE_DISTANCE_MAX := 9999	# In tiles
 
 var normal_pitch_scale := 1.0
 
-var COLLISION_RADIUS := 4
+var COLLISION_RADIUS := 32
 
 var directions = {"U":Vector2( 0,-1),"R":Vector2(+1, 0),"D":Vector2( 0,+1),"L":Vector2(-1, 0)}
 
@@ -73,6 +73,11 @@ func _ready():
 		move_time *= 1.5
 	react_to_currently_colliding()
 	update_ui()
+
+func _enter_tree():
+	if not Engine.editor_hint:
+		return
+	#construct_self()
 
 func initialise_crate():
 	match crate_type:
@@ -216,14 +221,15 @@ func react_to_currently_colliding():
 		#print("currently on: ",object_currently_colliding.get_class())
 		match object_currently_colliding.get_class():
 			"Hole":
-				if speed_mode == SpeedMode.FAST and is_moving:
+				if speed_mode == SpeedMode.FAST and not should_stop_moving:
 					continue
 				var hole:Hole = object_currently_colliding
 				if hole.is_filled:
 					continue
 				hole.fill_with($sprite.texture.resource_path)
 				should_stop_moving = true
-				queue_free()
+				disappear()
+				#queue_free()
 			"LaunchPad":
 				print("LAUNCH")
 				var launch_pad:LaunchPad = object_currently_colliding
@@ -256,13 +262,24 @@ func get_objects_adjacent() -> Dictionary:
 	return adjacent_objects
 
 
+func disappear():
+	is_movable = false
+	visible = false
+	$shape.disabled = true
+	remove_from_group("object")
+
+func reappear():
+	is_movable = true
+	visible = true
+	$shape.disabled = false
+	add_to_group("object")
 
 func has_move_distance() -> bool:
 	return (move_distance > 0)
 
 func snap_to_tile() -> void:
 	var shifted_position = position - 16*Vector2.ONE
-	position = Vector2( stepify(shifted_position[0],32) + 16 , stepify(shifted_position[1],32) + 16 )
+	position = Vector2( stepify(shifted_position[0],tile_size) + tile_size/2 , stepify(shifted_position[1],tile_size) + tile_size/2 )
 
 
 
@@ -282,8 +299,6 @@ func disable_move_ui() -> void:
 
 func play_move_sound():
 	rng.randomize()
-	print(normal_pitch_scale)
-	print(name," ",normal_pitch_scale + rng.randf_range(-0.2,+0.2))
 	$audioMove.pitch_scale = normal_pitch_scale + rng.randf_range(-0.2,+0.2)
 	$audioMove.play()
 
@@ -305,6 +320,10 @@ func get_nearest_direction(vector:Vector2):
 
 
 func _on_input_event(_viewport, event, _shape_idx):
+	
+	if not is_movable:
+		return
+	
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			set_mouse_pressed(event.pressed)
@@ -321,3 +340,42 @@ func _on_mouse_exited():
 		var local_mouse_position = get_local_mouse_position()
 		var nearest_direction = get_nearest_direction(local_mouse_position)
 		direction_pressed(nearest_direction)
+
+
+
+func construct_self():
+	
+	#Add shape
+	var shape = CollisionShape2D.new()
+	shape.name = "shape"
+	shape.shape = load("res://Assets/Resources/shape_crate.tres")
+	add_child(shape)
+	
+	# Add sprite
+	var sprite = Sprite.new()
+	shape.name = "sprite"
+	add_child(sprite)
+	
+	# Add audioMove
+	var audioMove = AudioStreamPlayer2D.new()
+	audioMove.volume_db = -5
+	audioMove.bus = "SFX"
+	add_child(audioMove)
+	
+	# Add twnMove
+	var twnMove = Tween.new()
+	twnMove.connect("tween_completed",self,"_move")
+	add_child(twnMove)
+	
+	initialise_crate()
+	
+	update_ui()
+	
+
+
+
+
+
+
+
+

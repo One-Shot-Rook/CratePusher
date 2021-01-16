@@ -31,7 +31,7 @@ func _ready():
 	Music.startTrack(Music.theme_Menu)
 	rect_position = Vector2.ZERO
 
-func buttonWasPressed() -> void:
+func button_was_pressed() -> void:
 	var sndButton = AudioStreamPlayer.new()
 	sndButton.stream = load("res://Assets/Sounds/snd_boop.wav")
 	if noteArray.empty():
@@ -48,7 +48,7 @@ func buttonWasPressed() -> void:
 	sndButton.play()
 
 func _on_btnPlay_pressed():
-	buttonWasPressed()
+	button_was_pressed()
 	twnPanel.interpolate_property(
 		self, 
 		"rect_position", 
@@ -61,7 +61,7 @@ func _on_btnPlay_pressed():
 	twnPanel.start()
 
 func _on_btnSettings_pressed():
-	buttonWasPressed()
+	button_was_pressed()
 	twnPanel.interpolate_property(
 		self, 
 		"rect_position", 
@@ -74,7 +74,7 @@ func _on_btnSettings_pressed():
 	twnPanel.start()
 
 func _on_btnCredits_pressed():
-	buttonWasPressed()
+	button_was_pressed()
 	twnPanel.interpolate_property(
 		self, 
 		"rect_position", 
@@ -87,7 +87,7 @@ func _on_btnCredits_pressed():
 	twnPanel.start()
 
 func _on_btnShop_pressed():
-	buttonWasPressed()
+	button_was_pressed()
 	twnPanel.interpolate_property(
 		self, 
 		"rect_position", 
@@ -100,7 +100,7 @@ func _on_btnShop_pressed():
 	twnPanel.start()
 
 func _on_btnBack_pressed():
-	buttonWasPressed()
+	button_was_pressed()
 	twnPanel.interpolate_property(
 		self, 
 		"rect_position", 
@@ -117,7 +117,7 @@ func _on_btnReset_pressed():
 	get_tree().call_group("level_select","updateUI")
 
 func _on_btnNote_pressed():
-	buttonWasPressed()
+	button_was_pressed()
 	rng.randomize()
 	var randColor = Color(rng.randf_range(0,1),rng.randf_range(0,1),rng.randf_range(0,1))
 	$panelMenu/gridButtons/MarginContainer3/btnNote.modulate = randColor
