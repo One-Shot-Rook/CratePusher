@@ -266,7 +266,7 @@ func snap_to_tile() -> void:
 
 
 func enable_move_ui() -> void:
-	if not is_movable or LevelData.levelComplete:
+	if not is_movable or LevelData.level_complete:
 		return
 	var adjacent_objects = get_objects_adjacent()
 	for dirChar in adjacent_objects:

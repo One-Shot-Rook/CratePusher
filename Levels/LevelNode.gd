@@ -3,11 +3,11 @@ extends Node2D
 func _ready():
 	startLevel()
 
-func startLevel(levelName=LevelData.currentLevel):
-	for childTileMap in get_children():
-		childTileMap.free()
-	LevelData.setCurrentLevel(levelName)
-	add_child(load("res://Levels/"+levelName+".tscn").instance())
+func startLevel(level_name=LevelData.current_level):
+	for child_TileMap in get_children():
+		child_TileMap.free()
+	LevelData.setCurrentLevel(level_name)
+	add_child(load("res://Levels/"+level_name+".tscn").instance())
 
 
 func _on_btnReset_pressed():
