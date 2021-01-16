@@ -8,10 +8,9 @@
 [ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=6]
 
 [node name="TileMap" type="TileMap"]
-scale = Vector2( 3, 3 )
 z_index = 1
 tile_set = ExtResource( 5 )
-cell_size = Vector2( 32, 32 )
+cell_size = Vector2( 96, 96 )
 cell_quadrant_size = 32
 cell_tile_origin = 1
 centered_textures = true
@@ -21,44 +20,35 @@ tile_data = PoolIntArray( 0, 6, 8, 1, 6, 10, 2, 6, 10, 3, 6, 10, 4, 6, 10, 5, 6,
 script = ExtResource( 4 )
 
 [node name="crate(Blue)" parent="." instance=ExtResource( 3 )]
-position = Vector2( 48, 528 )
+position = Vector2( 144, 1584 )
 crate_type = 2
 crate_type = 2
 
-[node name="crate(Wooden)2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 176, 496 )
-
-[node name="crate(Wooden)3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 176, 336 )
+[node name="crate(Wooden)" parent="." instance=ExtResource( 3 )]
+position = Vector2( 528, 1008 )
 
 [node name="bodyHole" parent="." instance=ExtResource( 1 )]
-position = Vector2( 176, 496 )
+position = Vector2( 528, 1488 )
 
 [node name="door(0)" parent="." instance=ExtResource( 2 )]
-position = Vector2( 112, 336 )
+position = Vector2( 336, 1008 )
 rotation = 1.5708
-signal_id = 0
-door_mode = 0
-signal_id = 0
-door_mode = 0
 
 [node name="door(1)" parent="." instance=ExtResource( 2 )]
-position = Vector2( 304, 400 )
+position = Vector2( 912, 1200 )
 signal_id = 1
-door_mode = 0
 signal_id = 1
-door_mode = 0
 
 [node name="button(0)" parent="." instance=ExtResource( 6 )]
-position = Vector2( 176, 336 )
+position = Vector2( 528, 1008 )
 
 [node name="button(0)2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 176, 400 )
+position = Vector2( 528, 1200 )
 signal_id = 1
 signal_id = 1
 
 [node name="goal(Blue)" parent="." instance=ExtResource( 6 )]
-position = Vector2( 80, 144 )
+position = Vector2( 240, 432 )
 is_level_goal = true
 goal_type = 1
 is_level_goal = true

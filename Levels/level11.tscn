@@ -8,10 +8,9 @@
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=6]
 
 [node name="TileMap" type="TileMap"]
-scale = Vector2( 3, 3 )
 z_index = 1
 tile_set = ExtResource( 6 )
-cell_size = Vector2( 32, 32 )
+cell_size = Vector2( 96, 96 )
 cell_quadrant_size = 32
 cell_tile_origin = 1
 centered_textures = true
@@ -21,32 +20,32 @@ tile_data = PoolIntArray( 0, 6, 8, 1, 6, 10, 2, 6, 10, 3, 6, 10, 4, 6, 10, 5, 6,
 script = ExtResource( 5 )
 
 [node name="door(0)" parent="." instance=ExtResource( 2 )]
-position = Vector2( 144, 336 )
+position = Vector2( 432, 1008 )
 rotation = 1.5708
 
 [node name="button(0)" parent="." instance=ExtResource( 3 )]
-position = Vector2( 144, 272 )
+position = Vector2( 432, 816 )
 
 [node name="goal(Blue)" parent="." instance=ExtResource( 3 )]
-position = Vector2( 208, 400 )
+position = Vector2( 624, 1200 )
 is_level_goal = true
 goal_type = 1
 is_level_goal = true
 goal_type = 1
 
 [node name="bodyHole" parent="." instance=ExtResource( 4 )]
-position = Vector2( 208, 144 )
+position = Vector2( 624, 432 )
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 1 )]
-position = Vector2( 176, 272 )
+position = Vector2( 528, 816 )
 
 [node name="crate(Wooden)2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 144, 432 )
+position = Vector2( 432, 1296 )
 
 [node name="crate(Wooden)3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 240, 80 )
+position = Vector2( 720, 240 )
 
 [node name="crate(Blue)" parent="." instance=ExtResource( 1 )]
-position = Vector2( 112, 144 )
+position = Vector2( 336, 432 )
 crate_type = 2
 crate_type = 2

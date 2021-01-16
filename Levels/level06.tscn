@@ -7,10 +7,9 @@
 [ext_resource path="res://Levels/Level.gd" type="Script" id=6]
 
 [node name="TileMap" type="TileMap"]
-scale = Vector2( 3, 3 )
 z_index = 1
 tile_set = ExtResource( 1 )
-cell_size = Vector2( 32, 32 )
+cell_size = Vector2( 96, 96 )
 cell_quadrant_size = 32
 cell_tile_origin = 1
 centered_textures = true
@@ -20,22 +19,22 @@ tile_data = PoolIntArray( 0, 6, 8, 1, 6, 10, 2, 6, 10, 3, 6, 10, 4, 6, 10, 5, 6,
 script = ExtResource( 6 )
 
 [node name="crate(Red)" parent="." instance=ExtResource( 5 )]
-position = Vector2( 176, 80 )
+position = Vector2( 528, 240 )
 crate_type = 1
 crate_type = 1
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 5 )]
-position = Vector2( 176, 176 )
+position = Vector2( 528, 528 )
 
 [node name="bodyHole" parent="." instance=ExtResource( 3 )]
-position = Vector2( 112, 208 )
+position = Vector2( 336, 624 )
 
 [node name="bodyHole2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 176, 208 )
+position = Vector2( 528, 624 )
 is_bottomless = true
 is_bottomless = true
 
 [node name="goal(Red)" parent="." instance=ExtResource( 2 )]
-position = Vector2( 176, 368 )
+position = Vector2( 528, 1104 )
 is_level_goal = true
 is_level_goal = true

@@ -1,20 +1,24 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Objects/bodyLaunchPad.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sprites/launch_pad/3.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sprites/launch_pad/9.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/launch_pad/2.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Sprites/launch_pad/7.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprites/launch_pad/1.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/launch_pad/8.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/launch_pad/6.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/launch_pad/5.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Sprites/launch_pad/4.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Sprites/launch_pad/0.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_0.svg" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_5.svg" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_3.svg" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_front.svg" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_back.svg" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_1.svg" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_6.svg" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_7.svg" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_8.svg" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_2.svg" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_9.svg" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_4.svg" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_10.svg" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/launch_pad/svg_launch_pad_11.svg" type="Texture" id=15]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 13 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "default",
 "speed": 60.0
@@ -27,14 +31,18 @@ animations = [ {
 script = ExtResource( 1 )
 primary_color = Color( 0.447059, 0.701961, 0.890196, 1 )
 secondary_color = Color( 0.309804, 0.533333, 0.917647, 1 )
+primary_color = Color( 0.447059, 0.701961, 0.890196, 1 )
+secondary_color = Color( 0.309804, 0.533333, 0.917647, 1 )
 
-[node name="sprite_1" type="AnimatedSprite" parent="."]
+[node name="sprBack" type="Sprite" parent="."]
 modulate = Color( 0.447059, 0.701961, 0.890196, 1 )
-frames = SubResource( 1 )
-frame = 5
-playing = true
+texture = ExtResource( 6 )
 
-[node name="sprite_2" type="AnimatedSprite" parent="."]
+[node name="aniMiddle" type="AnimatedSprite" parent="."]
 modulate = Color( 0.309804, 0.533333, 0.917647, 1 )
 frames = SubResource( 1 )
+frame = 8
 playing = true
+
+[node name="sprFront" type="Sprite" parent="."]
+texture = ExtResource( 5 )

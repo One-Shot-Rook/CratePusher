@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Sounds/snd_button.wav" type="AudioStream" id=1]
-[ext_resource path="res://Assets/Sprites/img_button_center.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/svg_button_base.svg" type="Texture" id=2]
 [ext_resource path="res://Objects/bodyButton.gd" type="Script" id=3]
-[ext_resource path="res://Assets/Sprites/img_button_base.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/svg_button_center.svg" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15, 15 )
@@ -12,12 +12,12 @@ extents = Vector2( 15, 15 )
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 50.0
+initial_velocity = 150.0
 orbit_velocity = 1.0
 orbit_velocity_random = 0.0
 radial_accel = 1.0
 radial_accel_random = 0.2
-scale = 3.0
+scale = 9.0
 scale_random = 0.5
 color = Color( 1, 0.647059, 0.647059, 1 )
 
@@ -35,11 +35,11 @@ __meta__ = {
 shape = SubResource( 1 )
 
 [node name="spriteBase" type="Sprite" parent="."]
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 
 [node name="spriteCenter" type="Sprite" parent="spriteBase"]
 modulate = Color( 1, 0, 0, 1 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 
 [node name="audioClick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )

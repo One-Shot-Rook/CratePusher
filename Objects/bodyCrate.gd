@@ -8,9 +8,9 @@ enum WeightMode{LIGHT,MEDIUM,HEAVY}
 
 export(CrateType) var crate_type = CrateType.WOODEN setget set_crate_type, get_crate_type
 
-var weight_id = WeightMode.MEDIUM
-var speed_mode = SpeedMode.SLOW
-var is_movable:bool = false
+var weight_id:int = WeightMode.MEDIUM
+var speed_mode:int = SpeedMode.SLOW
+var is_movable := false
 
 var tile_size:float
 var rng := RandomNumberGenerator.new()
@@ -50,6 +50,7 @@ func _get_property_list() -> Array:
 func set_crate_type(new_crate_type):
 	crate_type = new_crate_type
 	initialise_crate()
+	update_ui()
 
 func get_crate_type() -> int: return crate_type
 
@@ -62,7 +63,7 @@ func get_class() -> String: return "Crate"
 
 func _ready():
 	initialise_crate()
-	tile_size = 32
+	tile_size = 96
 	snap_to_tile()
 	if is_movable:
 		enable_move_ui()
@@ -98,18 +99,18 @@ func update_ui():
 	$trailParticles.emitting = false
 	match crate_type:
 		CrateType.WOODEN:
-			$sprite.texture = load("res://Assets/Sprites/img_crate.png")
-			$sprite.scale = Vector2.ONE
+			$sprite.texture = load("res://Assets/Sprites/svg_crate_wooden.svg")
+			$sprite.modulate = Color.burlywood
 			$Directions.modulate = Color.beige
 			$trailParticles.modulate = Color.beige
 		CrateType.RED:
-			$sprite.texture = load("res://Assets/Sprites/img_crate_red.png")
-			$sprite.scale = Vector2.ONE
+			$sprite.texture = load("res://Assets/Sprites/svg_crate_red.svg")
+			$sprite.modulate = Color.lightcoral
 			$Directions.modulate = Color.lightcoral
 			$trailParticles.modulate = Color.lightcoral
 		CrateType.BLUE:
-			$sprite.texture = load("res://Assets/Sprites/img_crate_blue.png")
-			$sprite.scale = Vector2.ONE * 0.4
+			$sprite.texture = load("res://Assets/Sprites/svg_crate_blue.svg")
+			$sprite.modulate = Color.dodgerblue
 			$Directions.modulate = Color.dodgerblue
 			$trailParticles.modulate = Color.dodgerblue
 
@@ -202,7 +203,7 @@ func get_objects_in_move_direction() -> Array:
 		if (object.position - (position+move_direction*tile_size)).length() <= COLLISION_RADIUS:
 			objects.append(object)
 	if objects.empty(): # If there are no objects scan for walls
-		var collision_data = move_and_collide(move_direction*tile_size/3,true,true,true)
+		var collision_data = move_and_collide(move_direction*tile_size,true,true,true)
 		if collision_data:
 			objects.append(collision_data.collider)
 	return objects
@@ -245,7 +246,7 @@ func get_objects_adjacent() -> Dictionary:
 	var adjacent_objects = {}
 	for dirChar in directions:
 		var potential_direction = directions[dirChar]
-		var collision_data = move_and_collide(potential_direction*tile_size*3,true,true,true)
+		var collision_data = move_and_collide(potential_direction*tile_size,true,true,true)
 		var object = null
 		if collision_data: # If something is in that direction
 			object = collision_data.collider
