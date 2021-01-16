@@ -1,12 +1,24 @@
 extends Node
 
+var maxWorlds = 2
+var currentWorld:int = 1 setget set_currentWorld, get_currentWorld
 var levelProgress = {}
 var audioLevels = {"Master":0,"Voice":0,"Music":0,"SFX":0}
 
 var saveVariables = [
 	"levelProgress",
-	"audioLevels"
+	"audioLevels",
+	"currentWorld"
 ]
+
+func set_currentWorld(value) -> bool:
+	if value > maxWorlds or value < 1:
+		return false
+	currentWorld = value
+	return true
+
+func get_currentWorld() -> int:
+	return currentWorld
 
 func updateAudioLevels():
 	audioLevels["Master"] = AudioServer.get_bus_volume_db(0)

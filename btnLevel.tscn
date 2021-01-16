@@ -7,8 +7,7 @@
 [ext_resource path="res://Assets/UI/img_chip_4.png" type="Texture" id=6]
 
 [node name="btnLevel" type="Button" groups=[
-"UI",
-"stars",
+"level_select",
 ]]
 anchor_right = 1.0
 anchor_bottom = 1.0

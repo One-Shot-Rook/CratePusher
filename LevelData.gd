@@ -42,6 +42,7 @@ var levelData = {
 var levelComplete:bool = false
 
 var currentLevel:String
+
 var moveCount:int
 var stars:int = 4
 

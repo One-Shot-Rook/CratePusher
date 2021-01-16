@@ -7,7 +7,8 @@ func startLevel(levelName=LevelData.currentLevel):
 	for childTileMap in get_children():
 		childTileMap.free()
 	LevelData.setCurrentLevel(levelName)
-	add_child(load("res://Levels/"+levelName+".tscn").instance())
+	var loadpath = "res://Levels/World" + str(SaveData.get_currentWorld()) + "/" + levelName + ".tscn"
+	add_child(load(loadpath).instance())
 
 
 func _on_btnReset_pressed():

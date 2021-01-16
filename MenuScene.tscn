@@ -174,19 +174,75 @@ margin_right = 908.0
 margin_bottom = 908.0
 rect_min_size = Vector2( 300, 300 )
 
-[node name="panelLevels" type="Control" parent="."]
+[node name="panelLevels" type="Control" parent="." groups=[
+"level_select",
+]]
 use_parent_material = true
 margin_top = -1920.0
 margin_right = 1080.0
 script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="gridLevels" type="GridContainer" parent="panelLevels"]
-margin_left = 110.0
+[node name="worldLabel" type="Label" parent="panelLevels"]
+margin_left = 256.0
+margin_top = 48.0
+margin_right = 768.0
+margin_bottom = 176.0
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnRight" type="Button" parent="panelLevels"]
+margin_left = 910.0
 margin_top = 240.0
-rect_min_size = Vector2( 860, 1080 )
+margin_right = 1038.0
+margin_bottom = 1320.0
+rect_min_size = Vector2( 128, 128 )
+
+[node name="btnLeft" type="Button" parent="panelLevels"]
+margin_left = 42.0
+margin_top = 240.0
+margin_right = 170.0
+margin_bottom = 1320.0
+rect_min_size = Vector2( 128, 128 )
+
+[node name="hboxWorlds" type="HBoxContainer" parent="panelLevels"]
+show_behind_parent = true
+margin_left = 210.0
+margin_top = 240.0
+margin_right = 1950.0
+margin_bottom = 1320.0
+rect_min_size = Vector2( 1740, 1080 )
+mouse_filter = 2
+custom_constants/separation = 420
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gridLevel1" type="GridContainer" parent="panelLevels/hboxWorlds"]
+margin_right = 660.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 660, 1080 )
 custom_constants/vseparation = 20
 custom_constants/hseparation = 20
-columns = 4
+columns = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gridLevel2" type="GridContainer" parent="panelLevels/hboxWorlds"]
+margin_left = 1080.0
+margin_right = 1740.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 660, 1080 )
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+columns = 3
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -197,6 +253,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 476.0
 margin_top = -144.0
+margin_right = 604.0
 margin_bottom = -16.0
 rect_min_size = Vector2( 128, 128 )
 focus_mode = 0
@@ -403,13 +460,15 @@ __meta__ = {
 [connection signal="pressed" from="panelMenu/gridButtons/MarginContainer3/btnNote" to="." method="_on_btnNote_pressed"]
 [connection signal="pressed" from="panelMenu/gridButtons/btnCredits" to="." method="_on_btnCredits_pressed"]
 [connection signal="pressed" from="panelMenu/gridButtons/btnShop" to="." method="_on_btnShop_pressed"]
+[connection signal="pressed" from="panelLevels/btnRight" to="panelLevels" method="_on_btnRight_pressed"]
+[connection signal="pressed" from="panelLevels/btnLeft" to="panelLevels" method="_on_btnLeft_pressed"]
 [connection signal="pressed" from="panelLevels/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderMaster" to="panelSettings" method="_on_sliderMaster_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderVoice" to="panelSettings" method="_on_sliderVoice_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderMusic" to="panelSettings" method="_on_sliderMusic_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderSFX" to="panelSettings" method="_on_sliderSFX_value_changed"]
 [connection signal="pressed" from="panelSettings/hbox/btnReset" to="." method="_on_btnReset_pressed"]
-[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelShop/btnBack" to="." method="_on_btnBack_pressed"]

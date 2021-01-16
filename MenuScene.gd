@@ -114,7 +114,7 @@ func _on_btnBack_pressed():
 
 func _on_btnReset_pressed():
 	SaveData.resetSaveData()
-	get_tree().call_group("stars","updateUI")
+	get_tree().call_group("level_select","updateUI")
 
 func _on_btnNote_pressed():
 	buttonWasPressed()
