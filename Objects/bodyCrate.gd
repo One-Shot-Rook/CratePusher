@@ -46,6 +46,45 @@ func _get_property_list() -> Array:
 			hint_string = "Wooden,Red,Blue,Purple",
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
+		{
+			name = "weight_id",
+			type = TYPE_INT,
+			hint = PROPERTY_HINT_ENUM,
+			hint_string = "Light,Medium,Heavy",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "speed_mode",
+			type = TYPE_INT,
+			hint = PROPERTY_HINT_ENUM,
+			hint_string = "Slow,Fast",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "is_movable",
+			type = TYPE_BOOL,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "Movement",
+			type = TYPE_NIL,
+			hint_string = "move_",
+			usage = PROPERTY_USAGE_GROUP | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "move_distance_standard",
+			type = TYPE_INT,
+			hint = PROPERTY_HINT_RANGE,
+			hint_string = "0,9999",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "move_time",
+			type = TYPE_REAL,
+			hint = PROPERTY_HINT_RANGE,
+			hint_string = "0.01,1",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
 	]
 
 func set_crate_type(new_crate_type):
@@ -84,7 +123,7 @@ func initialise_crate():
 			name = "crate(Wooden)"
 			weight_id = WeightMode.LIGHT
 			speed_mode = SpeedMode.SLOW
-			move_distance_standard = 0
+			move_distance_standard = MOVE_DISTANCE_MAX
 			move_time = 0.06
 			is_movable = false
 			normal_pitch_scale = 1.0
