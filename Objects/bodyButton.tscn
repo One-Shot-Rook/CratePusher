@@ -1,12 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Sounds/snd_button.wav" type="AudioStream" id=1]
 [ext_resource path="res://Assets/Sprites/svg_button_base.svg" type="Texture" id=2]
 [ext_resource path="res://Objects/bodyButton.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Sprites/svg_button_center.svg" type="Texture" id=4]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15, 15 )
 
 [sub_resource type="ParticlesMaterial" id=2]
 flag_disable_z = true
@@ -21,18 +18,14 @@ scale = 9.0
 scale_random = 0.5
 color = Color( 1, 0.647059, 0.647059, 1 )
 
-[node name="button(0)" type="Area2D" groups=[
+[node name="button(0)" type="Node2D" groups=[
 "button",
 "object",
 ]]
-collision_layer = 2147483649
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
-
-[node name="shape" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
 
 [node name="spriteBase" type="Sprite" parent="."]
 texture = ExtResource( 2 )

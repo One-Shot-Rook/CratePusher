@@ -47,7 +47,7 @@ var move_count:int
 var stars:int = 4
 
 
-func setCurrentLevel(levelName):
+func set_current_level(levelName):
 	level_complete = false
 	current_level = levelName
 

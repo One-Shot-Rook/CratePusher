@@ -8,7 +8,7 @@ var audioLevels = {"Master":0,"Voice":0,"Music":0,"SFX":0}
 var saveVariables = [
 	"levelProgress",
 	"audioLevels",
-	"currentWorld"
+	"current_world"
 ]
 
 func set_current_world(value) -> bool:
@@ -17,8 +17,7 @@ func set_current_world(value) -> bool:
 	current_world = value
 	return true
 
-func get_current_world() -> int:
-	return current_world
+func get_current_world() -> int: return current_world
 
 func updateAudioLevels():
 	audioLevels["Master"] = AudioServer.get_bus_volume_db(0)

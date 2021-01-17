@@ -1,6 +1,6 @@
 class_name ButtonFloor, "res://icons/ButtonFloor.svg"
 tool
-extends Area2D
+extends Node2D
 
 export var signal_id:int setget set_signal_id, get_signal_id
 export var is_level_goal:bool setget set_is_level_goal, get_is_level_goal
