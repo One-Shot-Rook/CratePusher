@@ -272,6 +272,9 @@ use_parent_material = true
 margin_left = -1080.0
 margin_bottom = 1920.0
 script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="gridOptions" type="GridContainer" parent="panelSettings"]
 anchor_right = 1.0

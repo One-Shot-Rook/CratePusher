@@ -9,7 +9,7 @@ func _ready():
 	updateUI()
 
 func updateUI():
-	$worldLabel.text = "World - " + str(SaveData.get_currentWorld())
+	$worldLabel.text = "World - " + str(SaveData.get_current_world())
 
 func levelPressed(levelName:String):
 	print("pressed")
@@ -23,12 +23,12 @@ func levelPressed(levelName:String):
 
 func _on_btnRight_pressed():
 	get_parent().buttonWasPressed()
-	if SaveData.set_currentWorld(SaveData.get_currentWorld() + 1):
+	if SaveData.set_current_world(SaveData.get_current_world() + 1):
 		twnPanel.interpolate_property(
 			$hboxWorlds, 
 			"rect_position", 
 			$hboxWorlds.rect_position, 
-			Vector2(210, 240) + Vector2((SaveData.get_currentWorld()-1)*-1080,0),
+			Vector2(210, 240) + Vector2((SaveData.get_current_world()-1)*-1080,0),
 			0.5, 
 			Tween.TRANS_CUBIC, 
 			Tween.EASE_IN_OUT
@@ -39,12 +39,12 @@ func _on_btnRight_pressed():
 
 func _on_btnLeft_pressed():
 	get_parent().buttonWasPressed()
-	if SaveData.set_currentWorld(SaveData.get_currentWorld() - 1):
+	if SaveData.set_current_world(SaveData.get_current_world() - 1):
 		twnPanel.interpolate_property(
 			$hboxWorlds, 
 			"rect_position", 
 			$hboxWorlds.rect_position, 
-			Vector2(210, 240) + Vector2((SaveData.get_currentWorld()-1)*-1080,0),
+			Vector2(210, 240) + Vector2((SaveData.get_current_world()-1)*-1080,0),
 			0.5, 
 			Tween.TRANS_CUBIC, 
 			Tween.EASE_IN_OUT

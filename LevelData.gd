@@ -1,40 +1,40 @@
 extends Node
 
 var level_data = {
-	"level01":{
+	"1-01":{
 		"moves":[6,7,8,10]
 	},
-	"level02":{
+	"1-02":{
 		"moves":[5,6,8,10]
 	},
-	"level03":{
+	"1-03":{
 		"moves":[6,7,8,10]
 	},
-	"level04":{
+	"1-04":{
 		"moves":[6,7,9,11]
 	},
-	"level05":{
+	"1-05":{
 		"moves":[7,8,10,12]
 	},
-	"level06":{
+	"1-06":{
 		"moves":[19,21,24,27]
 	},
-	"level07":{
+	"1-07":{
 		"moves":[12,13,15,18]
 	},
-	"level08":{
+	"1-08":{
 		"moves":[19,20,22,25]
 	},
-	"level09":{
+	"1-09":{
 		"moves":[13,14,16,19]
 	},
-	"level10":{
+	"1-10":{
 		"moves":[9,10,12,14]
 	},
-	"level11":{
+	"1-11":{
 		"moves":[9,10,12,14]
 	},
-	"level12":{
+	"1-12":{
 		"moves":[7,8,10,12]
 	},
 }
@@ -52,10 +52,12 @@ func setCurrentLevel(levelName):
 	current_level = levelName
 
 func set_level_next():
-	var nextLvlName = int(current_level.trim_prefix("level").trim_prefix("0"))+1
+	var nextLvlName = int(current_level.split("-")[1])+1
+	if nextLvlName > 15:
+		Transition.transitionScene("res://MenuScene.tscn",true)
 	if nextLvlName < 10:
 		nextLvlName = "0" + str(nextLvlName)
-	nextLvlName = "level" + str(nextLvlName)
+	nextLvlName = str(SaveData.current_world) + "-" + str(nextLvlName)
 	if SaveData.levelProgress.has(nextLvlName):
 		current_level = nextLvlName
 

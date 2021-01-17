@@ -30,10 +30,12 @@ door_mode = 0
 [node name="button(0)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 432, 816 )
 
-[node name="goal(Red)" parent="." instance=ExtResource( 3 )]
+[node name="goal(Blue)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 624, 1200 )
 is_level_goal = true
+goal_type = 1
 is_level_goal = true
+goal_type = 1
 
 [node name="bodyHole" parent="." instance=ExtResource( 4 )]
 position = Vector2( 624, 432 )

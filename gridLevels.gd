@@ -16,6 +16,6 @@ func _ready():
 func createLevelButton(pathString:String):
 	var btnLevel = load_btnLevel.instance()
 	var levelName = pathString.split(".")[0]
-	btnLevel.text = levelName.trim_prefix("level").trim_prefix("0")
-	btnLevel.connect("pressed",get_parent().get_parent(),"levelPressed",[levelName])
+	btnLevel.text = name.trim_prefix("gridLevel") + "-" + levelName.trim_prefix("level")
+	btnLevel.connect("pressed",get_parent().get_parent(),"levelPressed",[name.trim_prefix("gridLevel") + "-" + levelName.trim_prefix("level")])
 	add_child(btnLevel)

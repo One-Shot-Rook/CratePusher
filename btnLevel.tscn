@@ -22,7 +22,7 @@ custom_styles/normal = ExtResource( 2 )
 custom_colors/font_color = Color( 0.737255, 0.8, 0.862745, 1 )
 custom_colors/font_color_pressed = Color( 0.2, 0.305882, 0.407843, 1 )
 enabled_focus_mode = 0
-text = "1"
+text = "1-01"
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false

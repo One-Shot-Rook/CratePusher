@@ -3,11 +3,12 @@ extends Node2D
 func _ready():
 	startLevel()
 
-func startLevel(levelName=LevelData.currentLevel):
+func startLevel(levelName=LevelData.current_level):
 	for childTileMap in get_children():
 		childTileMap.free()
 	LevelData.setCurrentLevel(levelName)
-	var loadpath = "res://Levels/World" + str(SaveData.get_currentWorld()) + "/" + levelName + ".tscn"
+	print(levelName.split("-")[1])
+	var loadpath = "res://Levels/World" + str(SaveData.get_current_world()) + "/" + "level" + levelName.split("-")[1] + ".tscn"
 	add_child(load(loadpath).instance())
 
 
