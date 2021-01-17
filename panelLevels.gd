@@ -22,7 +22,6 @@ func levelPressed(levelName:String):
 
 
 func _on_btn_pressed(world_change:int):
-	print(world_change)
 	get_parent().button_was_pressed()
 	if SaveData.set_current_world(SaveData.current_world + world_change):
 		twnPanel.interpolate_property(
