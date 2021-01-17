@@ -27,7 +27,6 @@ __meta__ = {
 }
 
 [node name="spriteBase" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 2 )
 
 [node name="spriteCenter" type="Sprite" parent="spriteBase"]
@@ -39,6 +38,7 @@ stream = ExtResource( 1 )
 bus = "SFX"
 
 [node name="partGoal" type="Particles2D" parent="."]
+visible = false
 position = Vector2( 0, 8 )
 amount = 32
 preprocess = 1.0
