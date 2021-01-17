@@ -42,16 +42,21 @@ signal_id = 1
 [node name="goal(Blue)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 1488 )
 is_level_goal = true
-goal_type = 1
+goal_type = 2
 is_level_goal = true
-goal_type = 1
+goal_type = 2
 
 [node name="crate(Blue)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 624, 624 )
 crate_type = 2
 crate_type = 2
+speed_mode = 1
+is_movable = true
+move_time = 0.04
 
 [node name="crate(Red)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 912, 240 )
 crate_type = 1
 crate_type = 1
+weight_id = 1
+is_movable = true

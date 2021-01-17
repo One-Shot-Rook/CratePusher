@@ -23,6 +23,8 @@ script = ExtResource( 4 )
 position = Vector2( 144, 1584 )
 crate_type = 1
 crate_type = 1
+weight_id = 1
+is_movable = true
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 528, 1584 )

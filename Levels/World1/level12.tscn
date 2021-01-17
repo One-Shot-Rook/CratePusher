@@ -23,6 +23,9 @@ script = ExtResource( 4 )
 position = Vector2( 144, 1584 )
 crate_type = 2
 crate_type = 2
+speed_mode = 1
+is_movable = true
+move_time = 0.04
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 528, 1008 )
@@ -50,6 +53,6 @@ signal_id = 1
 [node name="goal(Blue)" parent="." instance=ExtResource( 6 )]
 position = Vector2( 240, 432 )
 is_level_goal = true
-goal_type = 1
+goal_type = 2
 is_level_goal = true
-goal_type = 1
+goal_type = 2
