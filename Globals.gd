@@ -4,7 +4,7 @@ extends Node
 var button_signals = {}			# button_signals[signal_id:int][buttonNode:Area2D] = bool
 var button_goals = {}			# button_goals[buttonNode:Area2D] = bool
 var button_colors = [Color.red,Color.blue,Color.green,Color.yellow,Color.purple,Color.darkgoldenrod]
-var crate_colors = ["ff8080","187bcd"]
+var crate_colors = [Color.burlywood,Color.lightcoral,Color.dodgerblue,Color.mediumslateblue]
 
 var STAGE_WAIT_TIME = 0.07
 

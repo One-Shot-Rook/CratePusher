@@ -4,9 +4,9 @@ extends Node2D
 
 export var signal_id:int setget set_signal_id, get_signal_id
 export var is_level_goal:bool setget set_is_level_goal, get_is_level_goal
-enum GoalType{RED,BLUE}
+enum GoalType{WOODEN,RED,BLUE,PURPLE}
 export(GoalType) var goal_type = GoalType.RED setget set_goal_type, get_goal_type
-var GoalText = ["Red","Blue"]
+var GoalText = ["Wooden","Red","Blue","Purple"]
 
 var is_pressed:bool = false
 
@@ -33,7 +33,7 @@ func _get_property_list() -> Array:
 			name = "goal_type",
 			type = TYPE_INT,
 			hint = PROPERTY_HINT_ENUM,
-			hint_string = "Red,Blue",
+			hint_string = "Wooden,Red,Blue,Purple",
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
 	]
@@ -79,9 +79,13 @@ func update_on_or_off(off_only=false):
 
 func activate_button(crate):
 	if not is_pressed: # If the button was just pressed
-		$audioClick.play()
+		if is_level_goal:
+			if goal_type == crate.crate_type:
+				$audioClick.play()
+		else:
+			$audioClick.play()
 	is_pressed = true
-	if is_level_goal and goal_type+1 == crate.crate_type:
+	if is_level_goal and goal_type == crate.crate_type:
 		$partGoal.modulate = Color(0.2,0.2,0.2)
 		Globals.update_goal(self)
 		crate.queue_free()

@@ -5,7 +5,7 @@
 [ext_resource path="res://Objects/bodyButton.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Sprites/svg_button_center.svg" type="Texture" id=4]
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=1]
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
 gravity = Vector3( 0, 0, 0 )
@@ -16,7 +16,6 @@ radial_accel = 1.0
 radial_accel_random = 0.2
 scale = 9.0
 scale_random = 0.5
-color = Color( 1, 0.647059, 0.647059, 1 )
 
 [node name="button(0)" type="Node2D" groups=[
 "button",
@@ -28,6 +27,7 @@ __meta__ = {
 }
 
 [node name="spriteBase" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 2 )
 
 [node name="spriteCenter" type="Sprite" parent="spriteBase"]
@@ -39,10 +39,7 @@ stream = ExtResource( 1 )
 bus = "SFX"
 
 [node name="partGoal" type="Particles2D" parent="."]
-visible = false
-modulate = Color( 1, 0.501961, 0.501961, 1 )
 position = Vector2( 0, 8 )
-emitting = false
 amount = 32
 preprocess = 1.0
-process_material = SubResource( 2 )
+process_material = SubResource( 1 )

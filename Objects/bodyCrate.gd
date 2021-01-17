@@ -2,7 +2,7 @@ class_name Crate, "res://icons/Crate.svg"
 tool
 extends KinematicBody2D
 
-enum CrateType{WOODEN,RED,BLUE}
+enum CrateType{WOODEN,RED,BLUE,PURPLE}
 enum SpeedMode{SLOW,FAST}
 enum WeightMode{LIGHT,MEDIUM,HEAVY}
 
@@ -18,12 +18,13 @@ var rng := RandomNumberGenerator.new()
 var is_mouse_pressed := false
 
 var is_moving := false
-var should_stop_moving:= false
+var should_stop_moving := false
 var move_direction:Vector2
 var move_to_position:Vector2
-var move_time := 0.04			# In seconds
-var move_distance := 0			# In tiles
-var MOVE_DISTANCE_MAX := 9999	# In tiles
+var move_time := 0.04				# In seconds
+var move_distance := 0				# In tiles
+var move_distance_standard := 9999	# In tiles
+var MOVE_DISTANCE_MAX := 9999		# In tiles
 
 var normal_pitch_scale := 1.0
 
@@ -42,7 +43,7 @@ func _get_property_list() -> Array:
 			name = "crate_type",
 			type = TYPE_INT,
 			hint = PROPERTY_HINT_ENUM,
-			hint_string = "Wooden,Red,Blue",
+			hint_string = "Wooden,Red,Blue,Purple",
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
 	]
@@ -69,8 +70,6 @@ func _ready():
 		enable_move_ui()
 	else:
 		disable_move_ui()
-	if speed_mode == SpeedMode.SLOW:
-		move_time *= 1.5
 	react_to_currently_colliding()
 	update_ui()
 
@@ -85,45 +84,55 @@ func initialise_crate():
 			name = "crate(Wooden)"
 			weight_id = WeightMode.LIGHT
 			speed_mode = SpeedMode.SLOW
+			move_distance_standard = 0
+			move_time = 0.06
 			is_movable = false
 			normal_pitch_scale = 1.0
 		CrateType.RED:
 			name = "crate(Red)"
 			weight_id = WeightMode.MEDIUM
 			speed_mode = SpeedMode.SLOW
+			move_distance_standard = MOVE_DISTANCE_MAX
+			move_time = 0.06
 			is_movable = true
 			normal_pitch_scale = 1.0
 		CrateType.BLUE:
 			name = "crate(Blue)"
 			weight_id = WeightMode.LIGHT
 			speed_mode = SpeedMode.FAST
+			move_distance_standard = MOVE_DISTANCE_MAX
+			move_time = 0.04
 			is_movable = true
 			normal_pitch_scale = 1.5
+		CrateType.PURPLE:
+			name = "crate(Purple)"
+			weight_id = WeightMode.HEAVY
+			speed_mode = SpeedMode.SLOW
+			move_time = 0.08
+			move_distance_standard = 2
+			is_movable = true
+			normal_pitch_scale = 0.7
 
 func update_ui():
 	$trailParticles.emitting = false
 	match crate_type:
 		CrateType.WOODEN:
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_wooden.svg")
-			$sprite.modulate = Color.burlywood
-			$Directions.modulate = Color.beige
-			$trailParticles.modulate = Color.beige
 		CrateType.RED:
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_red.svg")
-			$sprite.modulate = Color.lightcoral
-			$Directions.modulate = Color.lightcoral
-			$trailParticles.modulate = Color.lightcoral
 		CrateType.BLUE:
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_blue.svg")
-			$sprite.modulate = Color.dodgerblue
-			$Directions.modulate = Color.dodgerblue
-			$trailParticles.modulate = Color.dodgerblue
+		CrateType.PURPLE:
+			$sprite.texture = load("res://Assets/Sprites/svg_crate_red.svg")
+	$sprite.modulate =			Globals.get_crate_color(crate_type)
+	$Directions.modulate = 		Globals.get_crate_color(crate_type)
+	$trailParticles.modulate = 	Globals.get_crate_color(crate_type)
 
 func update_highlight():
 	$sprite.modulate.a = 1 + int(is_mouse_pressed)
 
 
-func start_moving(new_move_direction:Vector2,new_move_distance=MOVE_DISTANCE_MAX) -> void:
+func start_moving(new_move_direction:Vector2,new_move_distance=move_distance_standard) -> void:
 	move_distance = new_move_distance
 	move_direction = new_move_direction
 	is_moving = true
@@ -234,7 +243,7 @@ func react_to_currently_colliding():
 				print("LAUNCH")
 				var launch_pad:LaunchPad = object_currently_colliding
 				move_direction = launch_pad.get_direction_vector()
-				move_distance = MOVE_DISTANCE_MAX
+				move_distance = move_distance_standard
 				should_stop_moving = false
 
 func get_object_currently_colliding() -> Node:
