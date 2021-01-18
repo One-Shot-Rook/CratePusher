@@ -10,6 +10,7 @@ func _ready():
 
 func updateUI():
 	$worldLabel.text = "World - " + str(SaveData.get_current_world())
+	$hboxWorlds.rect_position = Vector2(210, 240) + Vector2((SaveData.current_world-1)*-1080,0)
 
 func levelPressed(levelName:String):
 	if changing:
