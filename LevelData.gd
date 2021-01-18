@@ -42,7 +42,7 @@ var level_data = {
 var level_complete:bool = false
 
 var current_level:String
-var current_world := "1"
+var levels_per_world := 15
 var move_count:int
 var stars:int = 4
 
@@ -53,7 +53,8 @@ func set_current_level(levelName):
 
 func set_level_next():
 	var nextLvlName = int(current_level.split("-")[1])+1
-	if nextLvlName > 15:
+	print(SaveData.current_world)
+	if nextLvlName - int(SaveData.current_world-1)*levels_per_world > 15:
 		Transition.transitionScene("res://MenuScene.tscn",true)
 	if nextLvlName < 10:
 		nextLvlName = "0" + str(nextLvlName)
