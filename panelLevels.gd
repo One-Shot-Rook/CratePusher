@@ -36,3 +36,4 @@ func _on_btn_pressed(world_change:int):
 		)
 		twnPanel.start()
 	get_tree().call_group("level_select","updateUI")
+	SaveData.saveGame()
