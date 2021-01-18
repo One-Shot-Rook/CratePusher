@@ -22,10 +22,6 @@ script = ExtResource( 5 )
 [node name="door(0)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 432, 1008 )
 rotation = 1.5708
-signal_id = 0
-door_mode = 0
-signal_id = 0
-door_mode = 0
 
 [node name="button(0)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 432, 816 )
@@ -33,9 +29,9 @@ position = Vector2( 432, 816 )
 [node name="goal(Blue)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 624, 1200 )
 is_level_goal = true
-goal_type = 1
+goal_type = 2
 is_level_goal = true
-goal_type = 1
+goal_type = 2
 
 [node name="bodyHole" parent="." instance=ExtResource( 4 )]
 position = Vector2( 624, 432 )
@@ -53,3 +49,6 @@ position = Vector2( 720, 240 )
 position = Vector2( 336, 432 )
 crate_type = 2
 crate_type = 2
+speed_mode = 1
+is_movable = true
+move_time = 0.04

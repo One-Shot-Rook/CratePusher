@@ -26,3 +26,6 @@ is_level_goal = true
 position = Vector2( 240, 528 )
 crate_type = 1
 crate_type = 1
+snap = false
+weight_id = 1
+is_movable = true

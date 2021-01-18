@@ -33,3 +33,5 @@ position = Vector2( 624, 816 )
 position = Vector2( 336, 624 )
 crate_type = 1
 crate_type = 1
+weight_id = 1
+is_movable = true
