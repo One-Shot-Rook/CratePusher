@@ -11,8 +11,9 @@ export(CrateType) var crate_type = CrateType.WOODEN setget set_crate_type, get_c
 var weight_id:int = WeightMode.MEDIUM
 var speed_mode:int = SpeedMode.SLOW
 var is_movable := false
+var snap := false setget snap_to_tile
 
-var tile_size:float
+var tile_size:float = 96
 var rng := RandomNumberGenerator.new()
 
 var is_mouse_pressed := false
@@ -30,7 +31,7 @@ var normal_pitch_scale := 1.0
 
 var COLLISION_RADIUS := 32
 
-var directions = {"U":Vector2( 0,-1),"R":Vector2(+1, 0),"D":Vector2( 0,+1),"L":Vector2(-1, 0)}
+var directions = {"U":Vector2.UP,"R":Vector2.RIGHT,"D":Vector2.DOWN,"L":Vector2.LEFT}
 
 func _get_property_list() -> Array:
 	return [
@@ -44,6 +45,11 @@ func _get_property_list() -> Array:
 			type = TYPE_INT,
 			hint = PROPERTY_HINT_ENUM,
 			hint_string = "Wooden,Red,Blue,Purple",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
+		{
+			name = "snap",
+			type = TYPE_BOOL,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
 		{
@@ -151,6 +157,7 @@ func initialise_crate():
 			move_distance_standard = 2
 			is_movable = true
 			normal_pitch_scale = 0.7
+	snap_to_tile()
 
 func update_ui():
 	$trailParticles.emitting = false
@@ -325,7 +332,7 @@ func reappear():
 func has_move_distance() -> bool:
 	return (move_distance > 0)
 
-func snap_to_tile() -> void:
+func snap_to_tile(blank=false) -> void:
 	var shifted_position = position - 16*Vector2.ONE
 	position = Vector2( stepify(shifted_position[0],tile_size) + tile_size/2 , stepify(shifted_position[1],tile_size) + tile_size/2 )
 
