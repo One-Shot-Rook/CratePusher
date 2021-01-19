@@ -1,9 +1,9 @@
 extends Node2D
 
-var origin = Vector2(0,0)
+var origin = Vector2(0,0) # point rotated around of
 var total_stars = 0 # number of stars achieved in level
 
-func start(value):
+func start(value=4):
 	total_stars = value
 	for child in get_children():
 		if "Sprite" in child.name:

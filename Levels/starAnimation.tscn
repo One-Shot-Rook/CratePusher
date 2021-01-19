@@ -8,17 +8,21 @@
 script = ExtResource( 2 )
 
 [node name="Sprite1" type="Sprite" parent="."]
+use_parent_material = true
 texture = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Sprite2" type="Sprite" parent="."]
+use_parent_material = true
 texture = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Sprite3" type="Sprite" parent="."]
+use_parent_material = true
 texture = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Sprite4" type="Sprite" parent="."]
+use_parent_material = true
 texture = ExtResource( 1 )
 script = ExtResource( 3 )
