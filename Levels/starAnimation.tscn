@@ -1,24 +1,30 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Sprites/svg_crate_red.svg" type="Texture" id=1]
-[ext_resource path="res://Levels/star_animation.gd" type="Script" id=2]
-[ext_resource path="res://Levels/star_animation_single.gd" type="Script" id=3]
+[ext_resource path="res://Levels/starAnimation.gd" type="Script" id=2]
 
 [node name="starAnimation" type="Node2D"]
+position = Vector2( 500, 500 )
 script = ExtResource( 2 )
 
-[node name="Sprite1" type="Sprite" parent="."]
+[node name="sprStar0" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-script = ExtResource( 3 )
 
-[node name="Sprite2" type="Sprite" parent="."]
+[node name="sprStar1" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-script = ExtResource( 3 )
 
-[node name="Sprite3" type="Sprite" parent="."]
+[node name="sprStar2" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-script = ExtResource( 3 )
 
-[node name="Sprite4" type="Sprite" parent="."]
+[node name="sprStar3" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-script = ExtResource( 3 )
+
+[node name="twnRotation" type="Tween" parent="."]
+repeat = true
+playback/repeat = true
+
+[node name="twnCycle" type="Tween" parent="."]
+repeat = true
+playback/repeat = true
+
+[node name="twnRadius" type="Tween" parent="."]
