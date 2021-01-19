@@ -6,6 +6,9 @@
 [node name="starAnimation" type="Node2D"]
 position = Vector2( 500, 500 )
 script = ExtResource( 2 )
+color_achieved = Color( 1, 1, 1, 1 )
+color_unachieved = Color( 0.188235, 0.188235, 0.188235, 1 )
+color_perfected = Color( 1, 0.94902, 0.396078, 1 )
 
 [node name="sprStar0" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -16,15 +19,15 @@ texture = ExtResource( 1 )
 [node name="sprStar2" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
-[node name="sprStar3" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-
 [node name="twnRotation" type="Tween" parent="."]
 repeat = true
 playback/repeat = true
+
+[node name="twnFade" type="Tween" parent="."]
 
 [node name="twnCycle" type="Tween" parent="."]
 repeat = true
 playback/repeat = true
 
 [node name="twnRadius" type="Tween" parent="."]
+[connection signal="tween_started" from="twnFade" to="." method="_on_twnFade_tween_started"]
