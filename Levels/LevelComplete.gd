@@ -3,8 +3,8 @@ extends Control
 export var dimColor:Color
 
 func _ready():
-	$texChip.texture = load("res://Assets/UI/img_chip_" + str(LevelData.stars) + ".png")
-	
+	#$texChip.texture = load("res://Assets/UI/img_chip_" + str(LevelData.stars) + ".png")
+	$starAnimation.start(LevelData.stars)
 	SaveData.updateLevelStars(LevelData.current_level, LevelData.stars)
 	get_tree().call_group("UI","updateUI")
 

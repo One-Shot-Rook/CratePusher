@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Levels/LevelComplete.gd" type="Script" id=1]
+[ext_resource path="res://Levels/starAnimation.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Fonts/font_main.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/UI/img_chip_4.png" type="Texture" id=4]
 
@@ -52,9 +53,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.6
 margin_left = 50.0
-margin_top = 200.0
+margin_top = 250.0
 margin_right = -50.0
-margin_bottom = 200.0
+margin_bottom = 250.0
 text = "Replay"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -65,15 +66,16 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.6
 margin_left = 50.0
-margin_top = 400.0
+margin_top = 500.0
 margin_right = -50.0
-margin_bottom = 400.0
+margin_bottom = 500.0
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="texChip" type="TextureRect" parent="."]
+visible = false
 margin_left = 290.0
 margin_top = 340.0
 margin_right = 790.0
@@ -84,6 +86,9 @@ stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="starAnimation" parent="." instance=ExtResource( 2 )]
+position = Vector2( 540, 600 )
 [connection signal="pressed" from="btnContinue" to="." method="_on_btnContinue_pressed"]
 [connection signal="pressed" from="btnReplay" to="." method="_on_btnReplay_pressed"]
 [connection signal="pressed" from="btnMenu" to="." method="_on_btnMenu_pressed"]
