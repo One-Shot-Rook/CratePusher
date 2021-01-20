@@ -332,7 +332,7 @@ func reappear():
 func has_move_distance() -> bool:
 	return (move_distance > 0)
 
-func snap_to_tile(blank=false) -> void:
+func snap_to_tile(_blank=false) -> void:
 	var shifted_position = position - 16*Vector2.ONE
 	position = Vector2( stepify(shifted_position[0],tile_size) + tile_size/2 , stepify(shifted_position[1],tile_size) + tile_size/2 )
 

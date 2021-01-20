@@ -33,19 +33,13 @@ _global_script_classes=[ {
 "class": "LaunchPad",
 "language": "GDScript",
 "path": "res://Objects/bodyLaunchPad.gd"
-}, {
-"base": "Node2D",
-"class": "MerryGo",
-"language": "GDScript",
-"path": "res://Levels/starAnimation.gd"
 } ]
 _global_script_class_icons={
 "ButtonFloor": "res://icons/ButtonFloor.svg",
 "Crate": "res://icons/Crate.svg",
 "Door": "res://icons/Door.svg",
 "Hole": "res://icons/Hole.svg",
-"LaunchPad": "res://icons/LaunchPad.svg",
-"MerryGo": ""
+"LaunchPad": "res://icons/LaunchPad.svg"
 }
 
 [application]
