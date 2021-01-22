@@ -205,8 +205,9 @@ func _move(_object=null, _key=":position") -> bool:
 	# React to what we're on
 	react_to_currently_colliding()
 	
-	# React to what's ahead
-	react_to_move_direction()
+	if not should_stop_moving:
+		# React to what's ahead
+		react_to_move_direction()
 	
 	
 	if should_stop_moving:
@@ -234,40 +235,6 @@ func stop_moving(_reason="wall"):
 	move_direction = Vector2.ZERO
 	move_distance = 0
 	Globals.update_move_ui()
-
-
-
-func react_to_move_direction():
-	var objects_in_move_direction = get_objects_in_move_direction()
-	#print("Objects ahead: ",objects_in_move_direction)
-	for object in objects_in_move_direction:
-		match object.get_class():
-			"TileMap":
-				should_stop_moving = true
-			"Door":
-				var door:Door = object
-				if not door.is_open:
-					should_stop_moving = true
-			"Crate":
-				var crate:Crate = object
-				var push_distance = weight_id-crate.weight_id
-				#print("PUSH ",name," ["+str(weight_id)+"|"+str(crate.weight_id)+"]",str(crate.name))
-				if push_distance > 0:
-					crate.start_moving(move_direction,push_distance)
-				should_stop_moving = true
-				#print("crate -> "+str(push_distance/48))
-
-func get_objects_in_move_direction() -> Array:
-	var objects = []
-	var object_array = get_tree().get_nodes_in_group("object")
-	for object in object_array:
-		if (object.position - (position+move_direction*tile_size)).length() <= COLLISION_RADIUS:
-			objects.append(object)
-	if objects.empty(): # If there are no objects scan for walls
-		var collision_data = move_and_collide(move_direction*tile_size*get_zoom_level(),true,true,true)
-		if collision_data:
-			objects.append(collision_data.collider)
-	return objects
 
 
 
@@ -306,6 +273,40 @@ func get_object_currently_colliding() -> Node:
 		if (object.position - position).length() <= COLLISION_RADIUS:
 			return object
 	return null
+
+
+
+func react_to_move_direction():
+	var objects_in_move_direction = get_objects_in_move_direction()
+	#print("Objects ahead: ",objects_in_move_direction)
+	for object in objects_in_move_direction:
+		match object.get_class():
+			"TileMap":
+				should_stop_moving = true
+			"Door":
+				var door:Door = object
+				if not door.is_open:
+					should_stop_moving = true
+			"Crate":
+				var crate:Crate = object
+				var push_distance = weight_id-crate.weight_id
+				#print("PUSH ",name," ["+str(weight_id)+"|"+str(crate.weight_id)+"]",str(crate.name))
+				if push_distance > 0:
+					crate.start_moving(move_direction,push_distance)
+				should_stop_moving = true
+				#print("crate -> "+str(push_distance/48))
+
+func get_objects_in_move_direction() -> Array:
+	var objects = []
+	var object_array = get_tree().get_nodes_in_group("object")
+	for object in object_array:
+		if (object.position - (position+move_direction*tile_size)).length() <= COLLISION_RADIUS:
+			objects.append(object)
+	if objects.empty(): # If there are no objects scan for walls
+		var collision_data = move_and_collide(move_direction*tile_size*get_zoom_level(),true,true,true)
+		if collision_data:
+			objects.append(collision_data.collider)
+	return objects
 
 
 
