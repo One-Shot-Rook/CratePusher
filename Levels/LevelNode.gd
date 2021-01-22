@@ -33,3 +33,13 @@ func _on_btnReset_pressed():
 
 func _on_btnMenu_pressed():
 	Transition.transitionScene("res://MenuScene.tscn",true)
+
+
+func _on_btnNext_pressed():
+	LevelData.set_level_next()
+	startLevel()
+
+
+func _on_btnBack_pressed():
+	LevelData.set_level_prev()
+	startLevel()

@@ -37,6 +37,21 @@ var level_data = {
 	"1-12":{
 		"moves":[7,8,10,12]
 	},
+	"1-16":{
+		"moves":[23,24,27,31]
+	},
+	"1-17":{
+		"moves":[10,11,13,16]
+	},
+	"1-18":{
+		"moves":[13,14,17,20]
+	},
+	"1-19":{
+		"moves":[7,8,10,12]
+	},
+	"1-20":{
+		"moves":[12,13,15,19]
+	},
 }
 
 var level_complete:bool = false
@@ -62,6 +77,16 @@ func set_level_next():
 	if SaveData.levelProgress.has(nextLvlName):
 		current_level = nextLvlName
 
+func set_level_prev():
+	var nextLvlName = int(current_level.split("-")[1])-1
+	print(SaveData.current_world)
+	if nextLvlName - int(SaveData.current_world-1)*levels_per_world < 1:
+		Transition.transitionScene("res://MenuScene.tscn",true)
+	if nextLvlName < 10:
+		nextLvlName = "0" + str(nextLvlName)
+	nextLvlName = str(SaveData.current_world) + "-" + str(nextLvlName)
+	if SaveData.levelProgress.has(nextLvlName):
+		current_level = nextLvlName
 # reset move_count
 func initialiseMoveCount():
 	move_count = 0

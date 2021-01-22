@@ -192,3 +192,5 @@ __meta__ = {
 }
 [connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnReset" to="LevelNode" method="_on_btnReset_pressed"]
 [connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnMenu" to="LevelNode" method="_on_btnMenu_pressed"]
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnBack" to="LevelNode" method="_on_btnBack_pressed"]
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnNext" to="LevelNode" method="_on_btnNext_pressed"]

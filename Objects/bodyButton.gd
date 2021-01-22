@@ -1,5 +1,5 @@
 class_name ButtonFloor, "res://icons/ButtonFloor.svg"
-tool
+#tool
 extends Node2D
 
 export var signal_id:int setget set_signal_id, get_signal_id

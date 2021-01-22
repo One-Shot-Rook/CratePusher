@@ -1,4 +1,4 @@
-tool
+#tool
 extends TileMap
 
 export var tile_set_floor_color:Color setget set_tile_set_floor_color
