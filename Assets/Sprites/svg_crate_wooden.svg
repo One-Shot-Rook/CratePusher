@@ -5,6 +5,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="96"
@@ -15,7 +16,31 @@
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="svg_crate_wooden.svg">
   <defs
-     id="defs2046" />
+     id="defs2046">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4663">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop4659" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop4661" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4663"
+       id="radialGradient4665"
+       cx="12.700006"
+       cy="12.7"
+       fx="12.700006"
+       fy="12.7"
+       r="11.90625"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(3.1999999,5.6239969e-5,-1.7977169e-7,3.2,-27.940016,-27.940714)" />
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -23,9 +48,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="10.915961"
-     inkscape:cx="88.369013"
-     inkscape:cy="49.777188"
+     inkscape:zoom="3.859375"
+     inkscape:cx="156.91217"
+     inkscape:cy="31.932588"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -50,7 +75,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -68,7 +93,7 @@
        rx="1.3229166"
        ry="1.3229166" />
     <rect
-       style="fill:#999999;fill-opacity:1;stroke-width:0.372071"
+       style="fill:url(#radialGradient4665);fill-opacity:1;stroke-width:0.372071"
        id="rect4397"
        width="23.8125"
        height="23.8125"
@@ -76,42 +101,6 @@
        y="0.79374999"
        rx="0.79374999"
        ry="0.79374999" />
-    <rect
-       style="fill:#b3b3b3;fill-opacity:1;stroke-width:0.363802"
-       id="rect4401"
-       width="23.283335"
-       height="23.283335"
-       x="1.0583333"
-       y="1.0583333"
-       rx="0.79374999"
-       ry="0.79374999" />
-    <rect
-       style="fill:#cccccc;fill-opacity:1;stroke-width:0.355533"
-       id="rect4403"
-       width="22.754168"
-       height="22.754168"
-       x="1.3229166"
-       y="1.3229166"
-       rx="0.79374999"
-       ry="0.79374999" />
-    <rect
-       style="fill:#e6e6e6;fill-opacity:1;stroke-width:0.347265"
-       id="rect4405"
-       width="22.225"
-       height="22.225"
-       x="1.5875"
-       y="1.5875"
-       ry="0.79374999"
-       rx="0.79374999" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke-width:0.338997"
-       id="rect5211"
-       width="21.695833"
-       height="21.695833"
-       x="1.8520833"
-       y="1.8520833"
-       ry="0.79374999"
-       rx="0.79374999" />
     <rect
        style="fill:#808080;stroke-width:0.256182"
        id="rect4429"

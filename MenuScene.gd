@@ -2,6 +2,8 @@ extends Control
 
 onready var twnPanel = get_node("twnPanel")
 
+export(Array,Color) var world_colors
+
 var rng = RandomNumberGenerator.new()
 
 var p = pow(2,1.0/12)
@@ -30,6 +32,11 @@ var noteArray = pitchRanges.duplicate(true)
 func _ready():
 	Music.startTrack(Music.theme_Menu)
 	rect_position = Vector2.ZERO
+	update_world_ui()
+
+func update_world_ui():
+	var world_color = world_colors[SaveData.get_current_world()-1]
+	material.set("shader_param/shadow_color",world_color)
 
 func button_was_pressed() -> void:
 	var sndButton = AudioStreamPlayer.new()

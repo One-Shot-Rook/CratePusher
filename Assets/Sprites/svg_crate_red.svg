@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="96"
@@ -15,7 +17,39 @@
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="svg_crate_red.svg">
   <defs
-     id="defs2046" />
+     id="defs2046">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4547">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop4543" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop4545" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4509"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop4507" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4547"
+       id="radialGradient4549"
+       cx="12.7"
+       cy="12.7"
+       fx="12.7"
+       fy="12.7"
+       r="12.435416"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(3.0638299,-3.4302656e-8,4.9342431e-7,3.0638299,-26.210646,-26.210638)" />
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -23,9 +57,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.4579805"
-     inkscape:cx="110.63019"
-     inkscape:cy="59.537553"
+     inkscape:zoom="2.7289903"
+     inkscape:cx="44.894404"
+     inkscape:cy="-18.792671"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -50,7 +84,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -68,48 +102,12 @@
        rx="4.7624998"
        ry="4.7624998" />
     <rect
-       style="fill:#999999;fill-opacity:1;stroke-width:0.256315"
-       id="rect4397"
-       width="23.8125"
-       height="23.8125"
-       x="0.79374999"
-       y="0.79374999"
-       rx="4.7624998"
-       ry="4.7624998" />
-    <rect
-       style="fill:#b3b3b3;fill-opacity:1;stroke-width:0.256315"
-       id="rect5290"
-       width="23.283333"
-       height="23.283333"
-       x="1.0583333"
-       y="1.0583333"
-       rx="4.7624998"
-       ry="4.7624998" />
-    <rect
-       style="fill:#cccccc;fill-opacity:1;stroke-width:0.256315"
-       id="rect5292"
-       width="22.754168"
-       height="22.754168"
-       x="1.3229166"
-       y="1.3229166"
-       rx="4.7624998"
-       ry="4.7624998" />
-    <rect
-       style="fill:#e6e6e6;fill-opacity:1;stroke-width:0.256315"
-       id="rect5294"
-       width="22.225"
-       height="22.225"
-       x="1.5875"
-       y="1.5875"
-       rx="4.7624998"
-       ry="4.7624998" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke-width:0.256315"
+       style="opacity:1;fill:url(#radialGradient4549);fill-opacity:1;stroke-width:0.29395208;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect5296"
-       width="21.695833"
-       height="21.695833"
-       x="1.8520833"
-       y="1.8520833"
+       width="24.870832"
+       height="24.870832"
+       x="0.26458332"
+       y="0.26458332"
        rx="4.7624998"
        ry="4.7624998" />
   </g>

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/svg_wall_right.svg-ebeec95ec679457b00c46d17f7ada547.stex"
+path="res://.import/svg_crate_red_only.svg-e45c3cb75838252113432138d2dfbff2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/svg_wall_right.svg"
-dest_files=[ "res://.import/svg_wall_right.svg-ebeec95ec679457b00c46d17f7ada547.stex" ]
+source_file="res://Assets/OLD/svg_crate_red_only.svg"
+dest_files=[ "res://.import/svg_crate_red_only.svg-e45c3cb75838252113432138d2dfbff2.stex" ]
 
 [params]
 

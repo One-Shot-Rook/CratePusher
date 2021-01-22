@@ -1,6 +1,6 @@
 extends GridContainer
 
-onready var LevelNode = get_tree().get_root().get_node("Main/LevelNode")
+onready var LevelNode = get_tree().get_root().get_node("Main/ViewportContainer/Viewport/LevelNode")
 
 func _ready():
 	var dir = Directory.new()

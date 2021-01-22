@@ -35,5 +35,6 @@ func _on_btn_pressed(world_change:int):
 			Tween.EASE_IN_OUT
 		)
 		twnPanel.start()
+		get_parent().update_world_ui()
 	get_tree().call_group("level_select","updateUI")
 	SaveData.saveGame()

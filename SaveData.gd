@@ -54,7 +54,7 @@ func initialiseData():
 			var path_string_level = dir_level.get_next()
 			while path_string_level != "":
 				if "level" in path_string_level:
-					var levelID = path_string_level.split(".")[0]#.trim_prefix("level")
+					#var levelID = path_string_level.split(".")[0]#.trim_prefix("level")
 					var level_key = (str(path_string_world.trim_prefix("World")) + "-" + str(path_string_level.trim_prefix("level"))).trim_suffix(".tscn")
 					levelProgress[level_key] = {"Stars":0, "Coins":[0]}
 				path_string_level = dir_level.get_next()
