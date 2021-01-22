@@ -324,11 +324,11 @@ func get_objects_adjacent() -> Dictionary:
 
 
 func get_zoom_level():
-	var parent = get_parent()
-	if parent.get_class() == "TileMap":
-		var grand_parent = parent.get_parent()
-		if grand_parent.get_class() == "Node2D":
-			return grand_parent.scale.x
+	var tile_map = get_parent()
+	if tile_map.get_class() == "TileMap":
+		var level_node = tile_map.get_parent()
+		if level_node.get_class() == "Node2D":
+			return level_node.scale.x
 	return 1
 
 

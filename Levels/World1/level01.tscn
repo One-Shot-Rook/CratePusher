@@ -9,7 +9,7 @@
 z_index = 1
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 96, 96 )
-cell_quadrant_size = 32
+cell_quadrant_size = 96
 cell_tile_origin = 1
 centered_textures = true
 collision_mask = 0
