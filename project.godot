@@ -50,9 +50,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Globals="*res://Globals.gd"
-LevelData="*res://LevelData.gd"
-SaveData="*res://SaveData.gd"
+Globals="*res://_Globals.gd"
+LevelData="*res://_LevelData.gd"
+SaveData="*res://_SaveData.gd"
 Music="*res://MusicNode.tscn"
 Transition="*res://TransitionNode.tscn"
 

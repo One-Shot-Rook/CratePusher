@@ -202,11 +202,11 @@ func _move(_object=null, _key=":position") -> bool:
 	if speed_mode == SpeedMode.SLOW:
 		Globals.update_buttons_off()
 	
-	# React to what's ahead
-	react_to_move_direction()
-	
 	# React to what we're on
 	react_to_currently_colliding()
+	
+	# React to what's ahead
+	react_to_move_direction()
 	
 	
 	if should_stop_moving:
@@ -324,11 +324,11 @@ func get_objects_adjacent() -> Dictionary:
 
 
 func get_zoom_level():
-	var parent = get_parent()
-	if parent.get_class() == "TileMap":
-		var grand_parent = parent.get_parent()
-		if grand_parent.get_class() == "Node2D":
-			return grand_parent.scale.x
+	var tile_map = get_parent()
+	if tile_map.get_class() == "TileMap":
+		var level_node = tile_map.get_parent()
+		if level_node.get_class() == "Node2D":
+			return level_node.scale.x
 	return 1
 
 
