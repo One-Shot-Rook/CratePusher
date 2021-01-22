@@ -12,28 +12,20 @@ func update_move_ui() -> void:
 	var crate_array = get_tree().get_nodes_in_group("crate")
 	for crate in crate_array:
 		if crate.is_moving:
-			get_tree().call_group("crate","disable_move_ui")
-			print(crate," is still moving")
+			get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFAULT,"crate","disable_move_ui")
+			#print(crate," is still moving")
 			return
-	yield(get_tree().create_timer(STAGE_WAIT_TIME), "timeout")
+	yield(get_tree().create_timer(0.015),"timeout")
 	react_to_crate_positions()
 
 func react_to_crate_positions():
-	get_tree().call_group("button","update_on_or_off")
-	yield(get_tree().create_timer(0.015), "timeout")
-	get_tree().call_group("door","update_open_or_close")
-	yield(get_tree().create_timer(0.015), "timeout")
-	get_tree().call_group("crate","enable_move_ui")
-	print("\n [NEW]\n")
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME,"button","update_on_or_off")
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME,"door","update_open_or_close")
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME,"crate","enable_move_ui")
 
 func update_buttons_off():
-	
-	for button in get_tree().get_nodes_in_group("button"):
-		button.update_on_or_off(true)
-	for door in get_tree().get_nodes_in_group("door"):
-		door.update_open_or_close()
-	
-	return true
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME,"button","update_on_or_off",true)
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME,"door","update_open_or_close")
 
 
 
@@ -41,10 +33,10 @@ func update_buttons_off():
 
 # generate button_signals
 func initialise_buttons() -> void:
-	var buttonArray = get_tree().get_nodes_in_group("button")
+	var button_array = get_tree().get_nodes_in_group("button")
 	button_signals = {}
 	button_goals = {}
-	for button in buttonArray:
+	for button in button_array:
 		if button.is_level_goal:
 			button_goals[button] = false
 		elif button_signals.has(button.signal_id):
@@ -67,7 +59,7 @@ func update_signal_id(signal_id:int, button:ButtonFloor, newState:bool) -> void:
 
 func update_goal(button:ButtonFloor):
 	button_goals[button] = true
-	print("button_goals = ",button_goals)
+	#print("button_goals = ",button_goals)
 	try_to_complete_level()
 
 
@@ -84,7 +76,7 @@ func try_to_complete_level():
 	for is_goal_complete in button_goals.values():
 		if not is_goal_complete:
 			return
-	get_tree().call_group("level","endLevel")
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME,"level","endLevel")
 
 
 func get_button_color(signal_id) -> Color:

@@ -202,11 +202,11 @@ func _move(_object=null, _key=":position") -> bool:
 	if speed_mode == SpeedMode.SLOW:
 		Globals.update_buttons_off()
 	
-	# React to what's ahead
-	react_to_move_direction()
-	
 	# React to what we're on
 	react_to_currently_colliding()
+	
+	# React to what's ahead
+	react_to_move_direction()
 	
 	
 	if should_stop_moving:

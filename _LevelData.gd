@@ -91,13 +91,13 @@ func set_level_prev():
 func initialiseMoveCount():
 	move_count = 0
 	updateCurrentStars()
-	get_tree().call_group("UI","updateUI")
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME,"UI","updateUI")
 
 # increment move_count
 func incrementMoveCount():
 	move_count += 1
 	updateCurrentStars()
-	get_tree().call_group("UI","updateUI")
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME,"UI","updateUI")
 
 func updateCurrentStars():
 	if not level_data.has(current_level):
