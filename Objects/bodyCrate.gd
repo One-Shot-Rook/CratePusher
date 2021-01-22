@@ -193,20 +193,21 @@ func _move(_object=null, _key=":position") -> bool:
 	$trailParticles.direction = -move_direction
 	should_stop_moving = false
 	
-	if speed_mode == SpeedMode.SLOW:
-		Globals.update_buttons_off()
-	
 	snap_to_tile()
 	
 	if move_distance <= 0:
 		should_stop_moving = true
 	move_distance -= 1
 	
+	if speed_mode == SpeedMode.SLOW:
+		var has_called = Globals.update_buttons_off()
+	
 	# React to what's ahead
 	react_to_move_direction()
 	
 	# React to what we're on
 	react_to_currently_colliding()
+	
 	
 	if should_stop_moving:
 		$trailParticles.emitting = false
@@ -263,7 +264,7 @@ func get_objects_in_move_direction() -> Array:
 		if (object.position - (position+move_direction*tile_size)).length() <= COLLISION_RADIUS:
 			objects.append(object)
 	if objects.empty(): # If there are no objects scan for walls
-		var collision_data = move_and_collide(move_direction*tile_size,true,true,true)
+		var collision_data = move_and_collide(move_direction*tile_size*get_zoom_level(),true,true,true)
 		if collision_data:
 			objects.append(collision_data.collider)
 	return objects
@@ -276,15 +277,20 @@ func react_to_currently_colliding():
 		#print("currently on: ",object_currently_colliding.get_class())
 		match object_currently_colliding.get_class():
 			"Hole":
-				if speed_mode == SpeedMode.FAST and not should_stop_moving:
-					continue
 				var hole:Hole = object_currently_colliding
 				if hole.is_filled:
+					continue
+				if speed_mode == SpeedMode.FAST and not should_stop_moving:
 					continue
 				hole.fill_with($sprite.texture.resource_path)
 				should_stop_moving = true
 				disappear()
 				#queue_free()
+			"ButtonFloor":
+				var button_floor:ButtonFloor = object_currently_colliding
+				if button_floor.is_level_goal_complete(self):
+					should_stop_moving = true
+					disappear()
 			"LaunchPad":
 				print("LAUNCH")
 				var launch_pad:LaunchPad = object_currently_colliding
@@ -307,7 +313,7 @@ func get_objects_adjacent() -> Dictionary:
 	var adjacent_objects = {}
 	for dirChar in directions:
 		var potential_direction = directions[dirChar]
-		var collision_data = move_and_collide(potential_direction*tile_size,true,true,true)
+		var collision_data = move_and_collide(potential_direction*tile_size*get_zoom_level(),true,true,true)
 		var object = null
 		if collision_data: # If something is in that direction
 			object = collision_data.collider
@@ -315,6 +321,15 @@ func get_objects_adjacent() -> Dictionary:
 				object = null
 		adjacent_objects[dirChar] = object
 	return adjacent_objects
+
+
+func get_zoom_level():
+	var parent = get_parent()
+	if parent.get_class() == "TileMap":
+		var grand_parent = parent.get_parent()
+		if grand_parent.get_class() == "Node2D":
+			return grand_parent.scale.x
+	return 1
 
 
 func disappear():

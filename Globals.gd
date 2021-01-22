@@ -27,8 +27,13 @@ func react_to_crate_positions():
 	print("\n [NEW]\n")
 
 func update_buttons_off():
-	get_tree().call_group("button","update_on_or_off",true)
-	get_tree().call_group("door","update_open_or_close")
+	
+	for button in get_tree().get_nodes_in_group("button"):
+		button.update_on_or_off(true)
+	for door in get_tree().get_nodes_in_group("door"):
+		door.update_open_or_close()
+	
+	return true
 
 
 

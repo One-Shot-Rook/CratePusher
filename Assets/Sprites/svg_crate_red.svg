@@ -48,7 +48,7 @@
        fy="12.7"
        r="12.435416"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(3.0638299,-3.4302656e-8,4.9342431e-7,3.0638299,-26.210646,-26.210638)" />
+       gradientTransform="matrix(2.9334542,-3.2842969e-8,4.7242755e-7,2.9334542,-24.554874,-24.554867)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -57,9 +57,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.7289903"
-     inkscape:cx="44.894404"
-     inkscape:cy="-18.792671"
+     inkscape:zoom="3.8593751"
+     inkscape:cx="154.70221"
+     inkscape:cy="86.580182"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -102,13 +102,13 @@
        rx="4.7624998"
        ry="4.7624998" />
     <rect
-       style="opacity:1;fill:url(#radialGradient4549);fill-opacity:1;stroke-width:0.29395208;stroke-miterlimit:4;stroke-dasharray:none"
+       style="opacity:1;fill:url(#radialGradient4549);fill-opacity:1;stroke-width:0.281444;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect5296"
-       width="24.870832"
-       height="24.870832"
-       x="0.26458332"
-       y="0.26458332"
-       rx="4.7624998"
-       ry="4.7624998" />
+       width="23.8125"
+       height="23.8125"
+       x="0.79374999"
+       y="0.79374999"
+       rx="4.5598402"
+       ry="4.5598402" />
   </g>
 </svg>

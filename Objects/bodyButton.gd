@@ -85,14 +85,18 @@ func activate_button(crate):
 		else:
 			$audioClick.play()
 	is_pressed = true
-	if is_level_goal and goal_type == crate.crate_type:
+	if is_level_goal_complete(crate):
 		$partGoal.modulate = Color(0.2,0.2,0.2)
 		Globals.update_goal(self)
-		crate.queue_free()
 	else:
 		Globals.update_signal_id(signal_id,self,is_pressed)
 
 func deactivate_button():
 	is_pressed = false
 	Globals.update_signal_id(signal_id,self,is_pressed)
+
+func is_level_goal_complete(crate):
+	return (is_level_goal and goal_type == crate.crate_type)
+
+
 

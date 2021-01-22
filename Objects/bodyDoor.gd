@@ -80,9 +80,8 @@ func update_open_or_close() -> void:
 				close_door()
 
 func can_close():
+	var crateArray = get_tree().get_nodes_in_group("crate")
+	for crate in crateArray:
+		if (crate.position-position).length() < 16:
+			return false
 	return true
-#	var crateArray = get_tree().get_nodes_in_group("crate")
-#	for crate in crateArray:
-#		if (crate.position-position).length() < 16:
-#			return false
-#	return true
