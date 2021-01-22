@@ -22,12 +22,12 @@ func stopTrack():
 	if not sndMusic.playing:
 		return
 	twnError = twnVolumeDB.connect("tween_all_completed",sndMusic,"stop",[],CONNECT_ONESHOT)
-	twnError = twnVolumeDB.interpolate_property(sndMusic,"volume_db",null,-80,1,Tween.TRANS_CUBIC,Tween.EASE_IN)
+	twnError = twnVolumeDB.interpolate_property(sndMusic,"volume_db",null,-80,1,Tween.TRANS_QUAD,Tween.EASE_IN)
 	twnError = twnVolumeDB.start()
 
 func startTrack(stream:AudioStream):
 	sndMusic.stop()
 	sndMusic.stream = stream
 	sndMusic.play()
-	twnError = twnVolumeDB.interpolate_property(sndMusic,"volume_db",null,-15,0.5,Tween.TRANS_CUBIC,Tween.EASE_IN)
+	twnError = twnVolumeDB.interpolate_property(sndMusic,"volume_db",null,-15,1,Tween.TRANS_QUAD,Tween.EASE_OUT)
 	twnError = twnVolumeDB.start()

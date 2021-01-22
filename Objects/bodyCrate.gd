@@ -200,7 +200,7 @@ func _move(_object=null, _key=":position") -> bool:
 	move_distance -= 1
 	
 	if speed_mode == SpeedMode.SLOW:
-		var has_called = Globals.update_buttons_off()
+		Globals.update_buttons_off()
 	
 	# React to what's ahead
 	react_to_move_direction()
@@ -334,13 +334,13 @@ func get_zoom_level():
 
 func disappear():
 	is_movable = false
-	visible = false
+	$sprite.visible = false
 	$shape.disabled = true
 	remove_from_group("object")
 
 func reappear():
 	is_movable = true
-	visible = true
+	$sprite.visible = true
 	$shape.disabled = false
 	add_to_group("object")
 

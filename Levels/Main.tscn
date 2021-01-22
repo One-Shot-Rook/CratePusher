@@ -53,9 +53,7 @@ script = ExtResource( 1 )
 stream = ExtResource( 5 )
 bus = "Voice"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="LevelUI" type="Control" parent="CanvasLayer" groups=[
+[node name="LevelUI" type="Control" parent="." groups=[
 "UI",
 "level",
 ]]
@@ -69,10 +67,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Z_IndexAdjuster" type="Node2D" parent="CanvasLayer/LevelUI"]
+[node name="Z_IndexAdjuster" type="Node2D" parent="LevelUI"]
 z_index = 1
 
-[node name="levelComplete" type="Control" parent="CanvasLayer/LevelUI/Z_IndexAdjuster"]
+[node name="levelComplete" type="Control" parent="LevelUI/Z_IndexAdjuster"]
 margin_right = 1080.0
 margin_bottom = 1920.0
 mouse_filter = 2
@@ -80,7 +78,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="bottomBar" type="Control" parent="CanvasLayer/LevelUI"]
+[node name="bottomBar" type="Control" parent="LevelUI"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -88,7 +86,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="labMoveCount" type="Label" parent="CanvasLayer/LevelUI/bottomBar"]
+[node name="labMoveCount" type="Label" parent="LevelUI/bottomBar"]
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 30.0
@@ -103,7 +101,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="labStars" type="Label" parent="CanvasLayer/LevelUI/bottomBar"]
+[node name="labStars" type="Label" parent="LevelUI/bottomBar"]
 anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -119,7 +117,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="labNarrator" type="Label" parent="CanvasLayer/LevelUI"]
+[node name="labNarrator" type="Label" parent="LevelUI"]
 visible = false
 anchor_top = 1.0
 anchor_right = 1.0
@@ -134,10 +132,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="topBar" type="Control" parent="CanvasLayer/LevelUI"]
+[node name="topBar" type="Control" parent="LevelUI"]
 anchor_right = 1.0
 
-[node name="labLevelName" type="Label" parent="CanvasLayer/LevelUI/topBar"]
+[node name="labLevelName" type="Label" parent="LevelUI/topBar"]
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 25.0
@@ -153,20 +151,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/LevelUI/topBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelUI/topBar"]
 anchor_right = 1.0
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="btnReset" type="Button" parent="CanvasLayer/LevelUI/topBar/HBoxContainer"]
+[node name="btnReset" type="Button" parent="LevelUI/topBar/HBoxContainer"]
 margin_left = 568.0
 margin_right = 736.0
 margin_bottom = 125.0
 text = "Reset"
 
-[node name="btnMenu" type="Button" parent="CanvasLayer/LevelUI/topBar/HBoxContainer"]
+[node name="btnMenu" type="Button" parent="LevelUI/topBar/HBoxContainer"]
 margin_left = 740.0
 margin_right = 908.0
 margin_bottom = 125.0
@@ -175,7 +173,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="btnBack" type="Button" parent="CanvasLayer/LevelUI/topBar/HBoxContainer"]
+[node name="btnBack" type="Button" parent="LevelUI/topBar/HBoxContainer"]
 margin_left = 912.0
 margin_right = 994.0
 margin_bottom = 125.0
@@ -184,7 +182,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="btnNext" type="Button" parent="CanvasLayer/LevelUI/topBar/HBoxContainer"]
+[node name="btnNext" type="Button" parent="LevelUI/topBar/HBoxContainer"]
 margin_left = 998.0
 margin_right = 1080.0
 margin_bottom = 125.0
@@ -192,5 +190,5 @@ text = ">"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="CanvasLayer/LevelUI/topBar/HBoxContainer/btnReset" to="LevelNode" method="_on_btnReset_pressed"]
-[connection signal="pressed" from="CanvasLayer/LevelUI/topBar/HBoxContainer/btnMenu" to="LevelNode" method="_on_btnMenu_pressed"]
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnReset" to="LevelNode" method="_on_btnReset_pressed"]
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnMenu" to="LevelNode" method="_on_btnMenu_pressed"]
