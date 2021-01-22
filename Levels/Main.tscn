@@ -134,6 +134,9 @@ __meta__ = {
 
 [node name="topBar" type="Control" parent="LevelUI"]
 anchor_right = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="labLevelName" type="Label" parent="LevelUI/topBar"]
 anchor_right = 0.5

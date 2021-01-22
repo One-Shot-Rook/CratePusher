@@ -24,39 +24,39 @@ position = Vector2( 912, 720 )
 [node name="door(0)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 528, 528 )
 rotation = 1.5708
+signal_id = 0
+door_mode = 0
+signal_id = 0
+door_mode = 0
 
 [node name="door(0)2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 624, 912 )
 rotation = 1.5708
+signal_id = 0
+door_mode = 0
+signal_id = 0
+door_mode = 0
 
 [node name="button(1)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 624, 1488 )
-signal_id = 1
 signal_id = 1
 
 [node name="door(1)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 336, 1488 )
 signal_id = 1
+door_mode = 0
 signal_id = 1
+door_mode = 0
 
 [node name="goal(Blue)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 1488 )
-is_level_goal = true
-goal_type = 2
 is_level_goal = true
 goal_type = 2
 
 [node name="crate(Blue)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 624, 624 )
 crate_type = 2
-crate_type = 2
-speed_mode = 1
-is_movable = true
-move_time = 0.04
 
 [node name="crate(Red)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 912, 240 )
 crate_type = 1
-crate_type = 1
-weight_id = 1
-is_movable = true
