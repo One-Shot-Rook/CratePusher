@@ -11,6 +11,7 @@ export(CrateType) var crate_type = CrateType.WOODEN setget set_crate_type, get_c
 var weight_id:int = WeightMode.MEDIUM
 var speed_mode:int = SpeedMode.SLOW
 var is_movable := false
+var is_interactable := true
 var snap := false setget snap_to_tile
 
 var tile_size:float = 96
@@ -205,8 +206,13 @@ func _move(_object=null, _key=":position") -> bool:
 	# React to what we're on
 	react_to_currently_colliding()
 	
-	# React to what's ahead
-	react_to_move_direction()
+	if not should_stop_moving:
+		# React to what's ahead
+		react_to_move_direction()
+		
+		if should_stop_moving:
+			# React to what we're on
+			react_to_currently_colliding()
 	
 	
 	if should_stop_moving:
@@ -234,6 +240,42 @@ func stop_moving(_reason="wall"):
 	move_direction = Vector2.ZERO
 	move_distance = 0
 	Globals.update_move_ui()
+
+
+
+func react_to_currently_colliding():
+	var object_currently_colliding = get_object_currently_colliding()
+	if object_currently_colliding:
+		#print("currently on: ",object_currently_colliding.get_class())
+		match object_currently_colliding.get_class():
+			"Hole":
+				var hole:Hole = object_currently_colliding
+				if hole.is_filled:
+					continue
+				if speed_mode == SpeedMode.FAST and not should_stop_moving:
+					continue
+				hole.fill_with($sprite.texture.resource_path)
+				should_stop_moving = true
+				disappear()
+			"ButtonFloor":
+				var button_floor:ButtonFloor = object_currently_colliding
+				if button_floor.is_level_goal_complete(self):
+					should_stop_moving = true
+					disappear()
+			"LaunchPad":
+				var launch_pad:LaunchPad = object_currently_colliding
+				move_direction = launch_pad.get_direction_vector()
+				move_distance = move_distance_standard - 1
+				should_stop_moving = false
+
+func get_object_currently_colliding() -> Node:
+	var object_array = get_tree().get_nodes_in_group("object")
+	for object in object_array:
+		if object == self:
+			continue
+		if (object.position - position).length() <= COLLISION_RADIUS:
+			return object
+	return null
 
 
 
@@ -268,44 +310,6 @@ func get_objects_in_move_direction() -> Array:
 		if collision_data:
 			objects.append(collision_data.collider)
 	return objects
-
-
-
-func react_to_currently_colliding():
-	var object_currently_colliding = get_object_currently_colliding()
-	if object_currently_colliding:
-		#print("currently on: ",object_currently_colliding.get_class())
-		match object_currently_colliding.get_class():
-			"Hole":
-				var hole:Hole = object_currently_colliding
-				if hole.is_filled:
-					continue
-				if speed_mode == SpeedMode.FAST and not should_stop_moving:
-					continue
-				hole.fill_with($sprite.texture.resource_path)
-				should_stop_moving = true
-				disappear()
-				#queue_free()
-			"ButtonFloor":
-				var button_floor:ButtonFloor = object_currently_colliding
-				if button_floor.is_level_goal_complete(self):
-					should_stop_moving = true
-					disappear()
-			"LaunchPad":
-				print("LAUNCH")
-				var launch_pad:LaunchPad = object_currently_colliding
-				move_direction = launch_pad.get_direction_vector()
-				move_distance = move_distance_standard
-				should_stop_moving = false
-
-func get_object_currently_colliding() -> Node:
-	var object_array = get_tree().get_nodes_in_group("object")
-	for object in object_array:
-		if object == self:
-			continue
-		if (object.position - position).length() <= COLLISION_RADIUS:
-			return object
-	return null
 
 
 
@@ -361,9 +365,11 @@ func enable_move_ui() -> void:
 		var adjacentNode = adjacent_objects[dirChar]
 		get_node("Directions/spr"+dirChar).visible = (adjacentNode == null)
 	$Directions.visible = true
+	is_interactable = true
 
 func disable_move_ui() -> void:
 	$Directions.visible = false
+	is_interactable = false
 
 
 
@@ -391,7 +397,7 @@ func get_nearest_direction(vector:Vector2):
 
 func _on_input_event(_viewport, event, _shape_idx):
 	
-	if not is_movable:
+	if not is_movable or not is_interactable:
 		return
 	
 	if event is InputEventMouseButton:
@@ -401,7 +407,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 
 func _on_mouse_exited():
 	
-	if is_moving:
+	if is_moving or not is_interactable:
 		return
 	
 	if is_mouse_pressed:

@@ -24,18 +24,10 @@ position = Vector2( 912, 720 )
 [node name="door(0)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 528, 528 )
 rotation = 1.5708
-signal_id = 0
-door_mode = 0
-signal_id = 0
-door_mode = 0
 
 [node name="door(0)2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 624, 912 )
 rotation = 1.5708
-signal_id = 0
-door_mode = 0
-signal_id = 0
-door_mode = 0
 
 [node name="button(1)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 624, 1488 )
@@ -44,9 +36,7 @@ signal_id = 1
 [node name="door(1)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 336, 1488 )
 signal_id = 1
-door_mode = 0
 signal_id = 1
-door_mode = 0
 
 [node name="goal(Blue)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 1488 )
