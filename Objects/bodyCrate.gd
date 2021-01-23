@@ -257,14 +257,12 @@ func react_to_currently_colliding():
 				hole.fill_with($sprite.texture.resource_path)
 				should_stop_moving = true
 				disappear()
-				#queue_free()
 			"ButtonFloor":
 				var button_floor:ButtonFloor = object_currently_colliding
 				if button_floor.is_level_goal_complete(self):
 					should_stop_moving = true
 					disappear()
 			"LaunchPad":
-				print("LAUNCH")
 				var launch_pad:LaunchPad = object_currently_colliding
 				move_direction = launch_pad.get_direction_vector()
 				move_distance = move_distance_standard - 1
