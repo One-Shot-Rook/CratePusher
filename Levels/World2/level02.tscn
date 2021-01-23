@@ -21,20 +21,16 @@ script = ExtResource( 5 )
 [node name="goal(Red)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 624, 1296 )
 is_level_goal = true
-is_level_goal = true
 
 [node name="crate(Red)" parent="." instance=ExtResource( 3 )]
-position = Vector2( 336, 528 )
+position = Vector2( 336, 432 )
 crate_type = 1
-crate_type = 1
-weight_id = 1
-is_movable = true
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 720, 1008 )
 
 [node name="bodyLaunchPad" parent="." instance=ExtResource( 4 )]
-position = Vector2( 336, 624 )
+position = Vector2( 336, 528 )
 rotation = 3.14159
 direction = 2
 direction = 2

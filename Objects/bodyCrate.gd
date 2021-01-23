@@ -11,6 +11,7 @@ export(CrateType) var crate_type = CrateType.WOODEN setget set_crate_type, get_c
 var weight_id:int = WeightMode.MEDIUM
 var speed_mode:int = SpeedMode.SLOW
 var is_movable := false
+var is_interactable := true
 var snap := false setget snap_to_tile
 
 var tile_size:float = 96
@@ -208,6 +209,10 @@ func _move(_object=null, _key=":position") -> bool:
 	if not should_stop_moving:
 		# React to what's ahead
 		react_to_move_direction()
+		
+		if should_stop_moving:
+			# React to what we're on
+			react_to_currently_colliding()
 	
 	
 	if should_stop_moving:
@@ -262,7 +267,7 @@ func react_to_currently_colliding():
 				print("LAUNCH")
 				var launch_pad:LaunchPad = object_currently_colliding
 				move_direction = launch_pad.get_direction_vector()
-				move_distance = move_distance_standard
+				move_distance = move_distance_standard - 1
 				should_stop_moving = false
 
 func get_object_currently_colliding() -> Node:
@@ -362,9 +367,11 @@ func enable_move_ui() -> void:
 		var adjacentNode = adjacent_objects[dirChar]
 		get_node("Directions/spr"+dirChar).visible = (adjacentNode == null)
 	$Directions.visible = true
+	is_interactable = true
 
 func disable_move_ui() -> void:
 	$Directions.visible = false
+	is_interactable = false
 
 
 
@@ -392,7 +399,7 @@ func get_nearest_direction(vector:Vector2):
 
 func _on_input_event(_viewport, event, _shape_idx):
 	
-	if not is_movable:
+	if not is_movable or not is_interactable:
 		return
 	
 	if event is InputEventMouseButton:
@@ -402,7 +409,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 
 func _on_mouse_exited():
 	
-	if is_moving:
+	if is_moving or not is_interactable:
 		return
 	
 	if is_mouse_pressed:

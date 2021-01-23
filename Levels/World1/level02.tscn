@@ -17,6 +17,12 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 262150, 6, 1, 262151, 6, 196610, 262152, 6, 3, 327685, 6, 1, 327686, 6, 131075, 327687, 7, 0, 327688, 6, 65536, 393220, 6, 1, 393221, 6, 131075, 393222, 7, 8, 393223, 7, 65543, 393224, 6, 65536, 458756, 6, 65536, 458757, 7, 8, 458758, 7, 65545, 458759, 7, 196619, 458760, 6, 65536, 524292, 6, 65536, 524293, 7, 65544, 524294, 7, 131083, 524295, 6, 1, 524296, 6, 131075, 589828, 6, 65536, 589829, 7, 196616, 589830, 7, 131079, 589831, 6, 65536, 655364, 6, 131073, 655365, 6, 3, 655366, 7, 65536, 655367, 6, 65536, 720901, 6, 65536, 720902, 7, 65536, 720903, 6, 65536, 786437, 6, 65536, 786438, 7, 131072, 786439, 6, 65536, 851973, 6, 131073, 851974, 6, 196610, 851975, 6, 131075 )
 script = ExtResource( 4 )
+star_requirements = {
+"1 star": 8,
+"2 star": 7,
+"3 star": 6,
+"flawless": 5
+}
 
 [node name="door(0)" parent="." instance=ExtResource( 1 )]
 position = Vector2( 624, 1008 )
@@ -28,11 +34,7 @@ position = Vector2( 624, 912 )
 [node name="goal(Red)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 624, 1200 )
 is_level_goal = true
-is_level_goal = true
 
 [node name="crate(Red)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 720, 528 )
 crate_type = 1
-crate_type = 1
-weight_id = 1
-is_movable = true

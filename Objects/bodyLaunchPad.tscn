@@ -41,7 +41,6 @@ texture = ExtResource( 6 )
 [node name="aniMiddle" type="AnimatedSprite" parent="."]
 modulate = Color( 0.309804, 0.533333, 0.917647, 1 )
 frames = SubResource( 1 )
-frame = 8
 playing = true
 
 [node name="sprFront" type="Sprite" parent="."]

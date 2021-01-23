@@ -2,6 +2,7 @@
 extends TileMap
 
 export var tile_set_floor_color:Color setget set_tile_set_floor_color
+export var star_requirements = {"flawless":0,"3 star":0,"2 star":0,"1 star":0}
 
 var LevelNode = get_parent()
 
