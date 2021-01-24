@@ -1,13 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Levels/LevelComplete.gd" type="Script" id=1]
 [ext_resource path="res://Levels/starAnimation.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Fonts/font_main.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/UI/img_chip_4.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Resources/key_backspace.tres" type="InputEventKey" id=5]
+[ext_resource path="res://Assets/Resources/key_enter.tres" type="InputEventKey" id=6]
+[ext_resource path="res://Assets/Resources/key_escape.tres" type="InputEventKey" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
 font_data = ExtResource( 3 )
+
+[sub_resource type="ShortCut" id=3]
+shortcut = ExtResource( 6 )
+
+[sub_resource type="ShortCut" id=4]
+shortcut = ExtResource( 5 )
+
+[sub_resource type="ShortCut" id=5]
+shortcut = ExtResource( 7 )
 
 [node name="LevelComplete" type="Control"]
 anchor_right = 1.0
@@ -43,6 +55,9 @@ anchor_right = 1.0
 anchor_bottom = 0.6
 margin_left = 50.0
 margin_right = -50.0
+focus_mode = 0
+enabled_focus_mode = 0
+shortcut = SubResource( 3 )
 text = "Continue"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -56,6 +71,9 @@ margin_left = 50.0
 margin_top = 250.0
 margin_right = -50.0
 margin_bottom = 250.0
+focus_mode = 0
+enabled_focus_mode = 0
+shortcut = SubResource( 4 )
 text = "Replay"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -69,6 +87,9 @@ margin_left = 50.0
 margin_top = 500.0
 margin_right = -50.0
 margin_bottom = 500.0
+focus_mode = 0
+enabled_focus_mode = 0
+shortcut = SubResource( 5 )
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false

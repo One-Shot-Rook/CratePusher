@@ -4,6 +4,9 @@ onready var twnPanel = get_node("twnPanel")
 
 export(Array,Color) var world_colors
 
+export(NodePath) var path_particles
+onready var partRain:CPUParticles2D = get_node(path_particles)
+
 var rng = RandomNumberGenerator.new()
 
 var p = pow(2,1.0/12)
@@ -30,6 +33,7 @@ var pitchRanges = [
 var noteArray = pitchRanges.duplicate(true)
 
 func _ready():
+	partRain.emitting = true
 	Music.startTrack(Music.theme_Menu)
 	rect_position = Vector2.ZERO
 	update_world_ui()

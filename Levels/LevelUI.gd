@@ -2,13 +2,18 @@ extends Control
 
 var LevelComplete_load = load("res://Levels/LevelComplete.tscn")
 
-func updateUI():
-	$bottomBar/labMoveCount.text = str(LevelData.move_count)
-	$bottomBar/labStars.text = ""
-	for _star in range(LevelData.stars):
-		$bottomBar/labStars.text += "* "
+func update_level_name():
 	$topBar/labLevelName.text = LevelData.current_level
 
-func endLevel():
+func update_move_count(move_count):
+	$bottomBar/labMoveCount.text = str(move_count)
+
+func update_stars(stars):
+	$bottomBar/labStars.text = ""
+	for _star in range(stars):
+		$bottomBar/labStars.text += "* "
+
+func complete_level(move_count,stars):
 	var LevelComplete = LevelComplete_load.instance()
 	$Z_IndexAdjuster/levelComplete.add_child(LevelComplete)
+	LevelComplete.update_ui(move_count,stars)

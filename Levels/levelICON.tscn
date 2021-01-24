@@ -1,0 +1,191 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Assets/Shaders/shader_background/water_with_shadow_material.tres" type="Material" id=1]
+[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Sprites/svg_direction.svg" type="Texture" id=3]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=4]
+[ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=5]
+[ext_resource path="res://Assets/Sprites/img_black_bg.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sounds/snd_crate.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Sprites/svg_crate_red.svg" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/svg_crate_wooden.svg" type="Texture" id=9]
+[ext_resource path="res://Objects/bodyDoor.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Resources/shape_crate.tres" type="Shape2D" id=11]
+[ext_resource path="res://Assets/Sprites/door/svg_door_9.svg" type="Texture" id=12]
+[ext_resource path="res://Objects/bodyHole.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Objects/bodyLaunchPad.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/Sprites/door/svg_door_signal.svg" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/door/svg_door_7.svg" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/door/svg_door_0.svg" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/door/svg_door_6.svg" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/door/svg_door_2.svg" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/door/svg_door_4.svg" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/door/svg_door_5.svg" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/door/svg_door_3.svg" type="Texture" id=22]
+[ext_resource path="res://Assets/Sounds/snd_close.wav" type="AudioStream" id=23]
+[ext_resource path="res://Assets/Sprites/door/svg_door_8.svg" type="Texture" id=24]
+[ext_resource path="res://Assets/Sounds/snd_open.wav" type="AudioStream" id=25]
+[ext_resource path="res://Assets/Sprites/door/svg_door_1.svg" type="Texture" id=26]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 47, 47 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 17 ), ExtResource( 26 ), ExtResource( 19 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 18 ), ExtResource( 16 ), ExtResource( 24 ), ExtResource( 12 ) ],
+"loop": false,
+"name": "default",
+"speed": 12.0
+} ]
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( 0, -32, 0, 32 )
+
+[node name="TileMap" type="TileMap" groups=[
+"active_level",
+]]
+z_index = 1
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 96
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 262145, 6, 1, 262146, 6, 196610, 262147, 6, 196610, 262148, 6, 2, 262149, 6, 196610, 262150, 6, 196610, 262151, 6, 3, 327681, 6, 65536, 327682, 7, 8, 327683, 7, 11, 327684, 6, 131072, 327685, 7, 8, 327686, 7, 11, 327687, 6, 65536, 393217, 6, 65536, 393218, 7, 196616, 393219, 7, 131082, 393220, 7, 10, 393221, 7, 65541, 393222, 7, 131083, 393223, 6, 131072, 458753, 6, 65537, 458754, 6, 196611, 458755, 7, 65544, 458756, 7, 131081, 458757, 7, 131081, 458758, 7, 65547, 458759, 7, 196611, 524289, 6, 65536, 524290, 7, 8, 524291, 7, 65545, 524292, 7, 196617, 524293, 7, 131077, 524294, 7, 131083, 524295, 6, 0, 589825, 6, 65536, 589826, 7, 196616, 589827, 7, 196619, 589828, 6, 0, 589829, 7, 196616, 589830, 7, 196619, 589831, 6, 65536, 655361, 6, 131073, 655362, 6, 196610, 655363, 6, 196610, 655364, 6, 131074, 655365, 6, 196610, 655366, 6, 196610, 655367, 6, 131075 )
+script = ExtResource( 4 )
+tile_set_floor_color = Color( 0.85098, 0.843137, 1, 1 )
+star_requirements = {
+"1 star": 9,
+"2 star": 8,
+"3 star": 7,
+"flawless": 6
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+material = ExtResource( 1 )
+margin_left = 48.0
+margin_top = 336.0
+margin_right = 816.0
+margin_bottom = 1104.0
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="crate(Red)" type="KinematicBody2D" parent="." groups=[
+"crate",
+"movable",
+"object",
+]]
+position = Vector2( 528, 720 )
+z_index = 1
+input_pickable = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="shape" type="CollisionShape2D" parent="crate(Red)"]
+shape = ExtResource( 11 )
+
+[node name="trailParticles" type="CPUParticles2D" parent="crate(Red)"]
+modulate = Color( 0.87, 0.72, 0.53, 1 )
+amount = 40
+preprocess = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+local_coords = false
+texture = ExtResource( 8 )
+emission_shape = 2
+emission_rect_extents = Vector2( 47, 47 )
+direction = Vector2( -1, 0 )
+spread = 1.0
+gravity = Vector2( 0, 5 )
+initial_velocity = 200.0
+scale_amount = 0.06
+scale_amount_random = 0.2
+color = Color( 1, 1, 1, 0.498039 )
+
+[node name="sprite" type="Sprite" parent="crate(Red)"]
+modulate = Color( 0.87, 0.72, 0.53, 1 )
+texture = ExtResource( 9 )
+
+[node name="Directions" type="Node2D" parent="crate(Red)"]
+visible = false
+modulate = Color( 0.87, 0.72, 0.53, 1 )
+
+[node name="sprU" type="Sprite" parent="crate(Red)/Directions"]
+position = Vector2( 0, -96 )
+texture = ExtResource( 3 )
+
+[node name="sprR" type="Sprite" parent="crate(Red)/Directions"]
+position = Vector2( 96, 0 )
+rotation = 1.5708
+texture = ExtResource( 3 )
+
+[node name="sprD" type="Sprite" parent="crate(Red)/Directions"]
+position = Vector2( 0, 96 )
+rotation = 3.14159
+texture = ExtResource( 3 )
+
+[node name="sprL" type="Sprite" parent="crate(Red)/Directions"]
+position = Vector2( -96, 0 )
+rotation = 4.71239
+texture = ExtResource( 3 )
+
+[node name="audioMove" type="AudioStreamPlayer2D" parent="crate(Red)"]
+stream = ExtResource( 7 )
+volume_db = -5.0
+bus = "SFX"
+
+[node name="twnMove" type="Tween" parent="crate(Red)"]
+
+[node name="bodyLaunchPad" parent="." instance=ExtResource( 14 )]
+position = Vector2( 336, 528 )
+rotation = 3.14159
+direction = 2
+direction = 2
+
+[node name="door(0)" type="KinematicBody2D" parent="." groups=[
+"door",
+"object",
+]]
+position = Vector2( 720, 720 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="shape" type="CollisionShape2D" parent="door(0)"]
+shape = SubResource( 1 )
+
+[node name="sprite" type="AnimatedSprite" parent="door(0)"]
+modulate = Color( 0.615686, 0.615686, 0.615686, 1 )
+frames = SubResource( 2 )
+frame = 7
+
+[node name="sprColor" type="Sprite" parent="door(0)"]
+self_modulate = Color( 1, 0, 0, 1 )
+texture = ExtResource( 15 )
+
+[node name="audioOpen" type="AudioStreamPlayer2D" parent="door(0)"]
+stream = ExtResource( 25 )
+bus = "SFX"
+
+[node name="audioClose" type="AudioStreamPlayer2D" parent="door(0)"]
+stream = ExtResource( 23 )
+bus = "SFX"
+
+[node name="occluder" type="LightOccluder2D" parent="door(0)"]
+occluder = SubResource( 3 )
+
+[node name="bodyHole" parent="." instance=ExtResource( 13 )]
+position = Vector2( 624, 912 )
+
+[node name="button(0)" parent="." instance=ExtResource( 2 )]
+position = Vector2( 336, 720 )
+[connection signal="input_event" from="crate(Red)" to="crate(Red)" method="_on_input_event"]
+[connection signal="mouse_exited" from="crate(Red)" to="crate(Red)" method="_on_mouse_exited"]
+[connection signal="tween_completed" from="crate(Red)/twnMove" to="crate(Red)" method="_move"]

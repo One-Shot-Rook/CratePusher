@@ -13,7 +13,7 @@ func startLevel(levelName=LevelData.current_level):
 	var loadpath = "res://Levels/World" + str(SaveData.get_current_world()) + "/" + "level" + levelName.split("-")[1] + ".tscn"
 	var levelXX = load(loadpath).instance()
 	current_level_node = levelXX
-	add_child(levelXX)
+	add_child(current_level_node)
 	
 	center_level()
 

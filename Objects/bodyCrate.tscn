@@ -19,12 +19,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-snap = false
-weight_id = 0
-speed_mode = 0
-is_movable = false
-move_distance_standard = 9999
-move_time = 0.06
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = ExtResource( 6 )

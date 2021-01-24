@@ -2,6 +2,14 @@ class_name Crate, "res://icons/Crate.svg"
 #tool
 extends KinematicBody2D
 
+signal crate_move_inputted
+signal crate_move_started
+signal crate_step_finished
+signal crate_move_finished
+
+var keys_pressed = []
+var crate_keys = [KEY_0,KEY_1,KEY_2,KEY_3]
+
 enum CrateType{WOODEN,RED,BLUE,PURPLE}
 enum SpeedMode{SLOW,FAST}
 enum WeightMode{LIGHT,MEDIUM,HEAVY}
@@ -11,7 +19,7 @@ export(CrateType) var crate_type = CrateType.WOODEN setget set_crate_type, get_c
 var weight_id:int = WeightMode.MEDIUM
 var speed_mode:int = SpeedMode.SLOW
 var is_movable := false
-var is_interactable := true
+var is_interactable := true setget set_is_interactable
 var snap := false setget snap_to_tile
 
 var tile_size:float = 96
@@ -94,6 +102,13 @@ func _get_property_list() -> Array:
 		},
 	]
 
+func set_is_interactable(new_is_interactable) -> void:
+	is_interactable = new_is_interactable
+	if is_interactable:
+		enable_move_ui()
+	else:
+		disable_move_ui()
+
 func set_crate_type(new_crate_type):
 	crate_type = new_crate_type
 	initialise_crate()
@@ -103,7 +118,7 @@ func get_crate_type() -> int: return crate_type
 
 func set_mouse_pressed(new_is_mouse_pressed):
 	is_mouse_pressed = new_is_mouse_pressed
-	update_highlight()
+	set_highlight(new_is_mouse_pressed)
 
 func get_class() -> String: return "Crate"
 
@@ -175,15 +190,16 @@ func update_ui():
 	$Directions.modulate = 		Globals.get_crate_color(crate_type)
 	$trailParticles.modulate = 	Globals.get_crate_color(crate_type)
 
-func update_highlight():
-	$sprite.modulate.a = 1 + int(is_mouse_pressed)
+func set_highlight(should_highlight):
+	$sprite.modulate.a = 1 + int(should_highlight)
 
 
 func start_moving(new_move_direction:Vector2,new_move_distance=move_distance_standard) -> void:
 	move_distance = new_move_distance
 	move_direction = new_move_direction
 	is_moving = true
-	Globals.update_move_ui()
+	#Globals.update_move_ui()
+	emit_signal("crate_move_started")
 	# Can the crate move in that direction at all
 	if _move():
 		play_move_sound()
@@ -200,8 +216,8 @@ func _move(_object=null, _key=":position") -> bool:
 		should_stop_moving = true
 	move_distance -= 1
 	
-	if speed_mode == SpeedMode.SLOW:
-		Globals.update_buttons_off()
+	#if speed_mode == SpeedMode.SLOW:
+	#	Globals.update_buttons_off()
 	
 	# React to what we're on
 	react_to_currently_colliding()
@@ -230,6 +246,8 @@ func _move(_object=null, _key=":position") -> bool:
 			Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$twnMove.start()
 	
+	emit_signal("crate_step_finished")
+	
 	return true
 
 func stop_moving(_reason="wall"):
@@ -239,7 +257,9 @@ func stop_moving(_reason="wall"):
 	is_moving = false
 	move_direction = Vector2.ZERO
 	move_distance = 0
-	Globals.update_move_ui()
+	print("crate_move_finished")
+	emit_signal("crate_move_finished")
+	#Globals.update_move_ui()
 
 
 
@@ -356,7 +376,6 @@ func snap_to_tile(_blank=false) -> void:
 	position = Vector2( stepify(shifted_position[0],tile_size) + tile_size/2 , stepify(shifted_position[1],tile_size) + tile_size/2 )
 
 
-
 func enable_move_ui() -> void:
 	if not is_movable or LevelData.level_complete:
 		return
@@ -381,8 +400,10 @@ func play_move_sound():
 
 
 func direction_pressed(new_move_direction:Vector2):
+	if not is_interactable:
+		return
+	emit_signal("crate_move_inputted")
 	start_moving(new_move_direction)
-	LevelData.incrementMoveCount()
 
 func get_nearest_direction(vector:Vector2):
 	var nearest_direction = directions["U"]
@@ -404,7 +425,6 @@ func _on_input_event(_viewport, event, _shape_idx):
 		if event.button_index == BUTTON_LEFT:
 			set_mouse_pressed(event.pressed)
 
-
 func _on_mouse_exited():
 	
 	if is_moving or not is_interactable:
@@ -417,6 +437,26 @@ func _on_mouse_exited():
 		var nearest_direction = get_nearest_direction(local_mouse_position)
 		direction_pressed(nearest_direction)
 
+
+func _unhandled_key_input(event):
+	
+	if event.pressed and not event.scancode in keys_pressed:
+		keys_pressed.append(event.scancode)
+	
+	if crate_keys[crate_type] in keys_pressed:
+		set_highlight(event.pressed)
+		
+		if KEY_UP in keys_pressed:
+			direction_pressed(Vector2.UP)
+		elif KEY_RIGHT in keys_pressed:
+			direction_pressed(Vector2.RIGHT)
+		elif KEY_DOWN in keys_pressed:
+			direction_pressed(Vector2.DOWN)
+		elif KEY_LEFT in keys_pressed:
+			direction_pressed(Vector2.LEFT)
+	
+	if not event.pressed and event.scancode in keys_pressed:
+		keys_pressed.erase(event.scancode)
 
 
 func construct_self():

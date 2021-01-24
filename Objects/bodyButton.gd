@@ -2,6 +2,10 @@ class_name ButtonFloor, "res://icons/ButtonFloor.svg"
 #tool
 extends Node2D
 
+signal button_pressed
+signal button_released
+signal level_goal_completed
+
 export var signal_id:int setget set_signal_id, get_signal_id
 export var is_level_goal:bool setget set_is_level_goal, get_is_level_goal
 enum GoalType{WOODEN,RED,BLUE,PURPLE}
@@ -66,7 +70,6 @@ func initialise_button():
 	else:
 		$audioClick.stream = load("res://Assets/Sounds/snd_button.wav")
 		name = "button" + "("+str(signal_id)+")"
-	
 
 func update_on_or_off(off_only=false):
 	var crate_array = get_tree().get_nodes_in_group("crate")
@@ -87,13 +90,13 @@ func activate_button(crate):
 	is_pressed = true
 	if is_level_goal_complete(crate):
 		$partGoal.modulate = Color(0.2,0.2,0.2)
-		Globals.update_goal(self)
-	else:
-		Globals.update_signal_id(signal_id,self,is_pressed)
+		emit_signal("level_goal_completed")
+	elif not is_level_goal:
+		emit_signal("button_pressed")
 
 func deactivate_button():
 	is_pressed = false
-	Globals.update_signal_id(signal_id,self,is_pressed)
+	emit_signal("button_released")
 
 func is_level_goal_complete(crate):
 	return (is_level_goal and goal_type == crate.crate_type)
