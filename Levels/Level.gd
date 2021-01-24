@@ -11,8 +11,9 @@ func set_tile_set_floor_color(new_color):
 	tile_set.tile_set_modulate(tile_set.get_tiles_ids()[2],tile_set_floor_color)
 
 func _ready():
-	Globals.initialise_buttons()
+	LevelData.set_star_requirements(star_requirements)
 	LevelData.initialiseMoveCount()
+	Globals.initialise_buttons()
 	Globals.react_to_crate_positions()
 	#print(get_tile_map_rect())
 	tile_set.tile_set_modulate(tile_set.get_tiles_ids()[1],Color(1,1,1,0))

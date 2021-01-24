@@ -63,7 +63,10 @@ var current_level:String
 var levels_per_world := 15
 var move_count:int
 var stars:int = 4
+var star_requirements = {}
 
+func set_star_requirements(new_star_requirements):
+	star_requirements = new_star_requirements
 
 func set_current_level(levelName):
 	level_complete = false
@@ -105,9 +108,13 @@ func incrementMoveCount():
 func updateCurrentStars():
 	if not level_data.has(current_level):
 		return
-	stars = 4
-	for move_criteria in level_data[current_level]["moves"]:
-		if move_count <= move_criteria:
-			return stars
-		stars -= 1
-	return stars
+	if move_count <= star_requirements["flawless"]:
+		stars = 4
+	elif move_count <= star_requirements["3 star"]:
+		stars = 3
+	elif move_count <= star_requirements["2 star"]:
+		stars = 2
+	elif move_count <= star_requirements["1 star"]:
+		stars = 1
+	else:
+		stars = 0

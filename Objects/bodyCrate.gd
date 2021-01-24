@@ -2,6 +2,9 @@ class_name Crate, "res://icons/Crate.svg"
 #tool
 extends KinematicBody2D
 
+var keys_pressed = []
+var crate_keys = [KEY_0,KEY_1,KEY_2,KEY_3]
+
 enum CrateType{WOODEN,RED,BLUE,PURPLE}
 enum SpeedMode{SLOW,FAST}
 enum WeightMode{LIGHT,MEDIUM,HEAVY}
@@ -103,7 +106,7 @@ func get_crate_type() -> int: return crate_type
 
 func set_mouse_pressed(new_is_mouse_pressed):
 	is_mouse_pressed = new_is_mouse_pressed
-	update_highlight()
+	set_highlight(new_is_mouse_pressed)
 
 func get_class() -> String: return "Crate"
 
@@ -175,8 +178,8 @@ func update_ui():
 	$Directions.modulate = 		Globals.get_crate_color(crate_type)
 	$trailParticles.modulate = 	Globals.get_crate_color(crate_type)
 
-func update_highlight():
-	$sprite.modulate.a = 1 + int(is_mouse_pressed)
+func set_highlight(should_highlight):
+	$sprite.modulate.a = 1 + int(should_highlight)
 
 
 func start_moving(new_move_direction:Vector2,new_move_distance=move_distance_standard) -> void:
@@ -381,6 +384,8 @@ func play_move_sound():
 
 
 func direction_pressed(new_move_direction:Vector2):
+	if not is_interactable:
+		return
 	start_moving(new_move_direction)
 	LevelData.incrementMoveCount()
 
@@ -404,7 +409,6 @@ func _on_input_event(_viewport, event, _shape_idx):
 		if event.button_index == BUTTON_LEFT:
 			set_mouse_pressed(event.pressed)
 
-
 func _on_mouse_exited():
 	
 	if is_moving or not is_interactable:
@@ -417,6 +421,26 @@ func _on_mouse_exited():
 		var nearest_direction = get_nearest_direction(local_mouse_position)
 		direction_pressed(nearest_direction)
 
+
+func _unhandled_key_input(event):
+	
+	if event.pressed and not event.scancode in keys_pressed:
+		keys_pressed.append(event.scancode)
+	
+	if crate_keys[crate_type] in keys_pressed:
+		set_highlight(event.pressed)
+		
+		if KEY_UP in keys_pressed:
+			direction_pressed(Vector2.UP)
+		elif KEY_RIGHT in keys_pressed:
+			direction_pressed(Vector2.RIGHT)
+		elif KEY_DOWN in keys_pressed:
+			direction_pressed(Vector2.DOWN)
+		elif KEY_LEFT in keys_pressed:
+			direction_pressed(Vector2.LEFT)
+	
+	if not event.pressed and event.scancode in keys_pressed:
+		keys_pressed.erase(event.scancode)
 
 
 func construct_self():

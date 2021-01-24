@@ -2,6 +2,11 @@ class_name LaunchPad, "res://icons/LaunchPad.svg"
 tool
 extends Node2D
 
+export(NodePath) var path_sprBack
+onready var sprBack:Sprite
+export(NodePath) var path_aniMiddle
+onready var aniMiddle:AnimatedSprite
+
 export var primary_color:Color setget set_primary_color
 export var secondary_color:Color setget set_secondary_color
 enum Direction{UP,RIGHT,DOWN,LEFT}

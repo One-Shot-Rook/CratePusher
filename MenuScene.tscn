@@ -26,6 +26,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 world_colors = [ Color( 0, 0.811765, 1, 1 ), Color( 0, 0.968627, 0.105882, 1 ) ]
+path_particles = NodePath("background/partRain")
 
 [node name="background" type="TextureRect" parent="."]
 use_parent_material = true
@@ -39,8 +40,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="background"]
+[node name="partRain" type="CPUParticles2D" parent="background"]
 position = Vector2( -2459.47, -1679.14 )
+emitting = false
 amount = 80
 lifetime = 7.0
 preprocess = 10.0
