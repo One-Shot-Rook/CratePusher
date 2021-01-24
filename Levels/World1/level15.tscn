@@ -28,11 +28,18 @@ star_requirements = {
 [node name="door(0)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 720, 720 )
 rotation = 1.5708
-door_mode = 1
-door_mode = 1
+door_mode = null
+
+[node name="door(1)" parent="." instance=ExtResource( 4 )]
+position = Vector2( 720, 624 )
+rotation = 1.5708
+signal_id = 1
+signal_id = 1
+door_mode = null
 
 [node name="button(0)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 720, 1008 )
+signal_id = 1
 
 [node name="button(0)2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 624, 816 )

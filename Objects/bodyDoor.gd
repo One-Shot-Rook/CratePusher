@@ -3,8 +3,6 @@ tool
 extends KinematicBody2D
 
 export var signal_id:int setget set_signal_id, get_signal_id
-enum DoorMode{SINGLE,ALL}
-export(DoorMode) var door_mode
 var is_open:bool = false
 
 func _get_property_list() -> Array:
@@ -44,6 +42,17 @@ func initialise_door():
 	name = "door" + "("+str(signal_id)+")"
 	$sprColor.self_modulate = Globals.get_button_color(signal_id)
 
+func update_open_or_closed(closed_only=false):
+	var button_array = get_tree().get_nodes_in_group("button")
+	for button in button_array:
+		if button.signal_id != signal_id or button.is_level_goal:
+			continue
+		if button.is_pressed:
+			if not closed_only:
+				open_door()
+			return
+	close_door()
+
 func open_door():
 	if is_open:
 		return
@@ -63,21 +72,6 @@ func close_door():
 	$sprite.frame = 9
 	$sprite.play("",true)
 	$audioClose.play()
-
-func update_open_or_close() -> void:
-	var button_states = Globals.get_button_states(signal_id)
-	match door_mode:
-		DoorMode.SINGLE:
-			if (true in button_states):
-				open_door()
-			else:
-				close_door()
-		DoorMode.ALL:
-			print(button_states)
-			if not(false in button_states):
-				open_door()
-			else:
-				close_door()
 
 func can_close():
 	var crateArray = get_tree().get_nodes_in_group("crate")
