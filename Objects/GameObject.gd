@@ -1,4 +1,4 @@
-class_name GameObject
+class_name GameObject, "res://icons/GameObject.svg"
 extends Node2D
 
 var Level

@@ -48,7 +48,7 @@ _global_script_class_icons={
 "ButtonFloor": "res://icons/ButtonFloor.svg",
 "Crate": "res://icons/Crate.svg",
 "Door": "res://icons/Door.svg",
-"GameObject": "",
+"GameObject": "res://icons/GameObject.svg",
 "Hole": "res://icons/Hole.svg",
 "LaunchPad": "res://icons/LaunchPad.svg",
 "TileMapLevel": ""
