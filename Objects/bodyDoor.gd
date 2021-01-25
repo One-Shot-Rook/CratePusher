@@ -1,6 +1,6 @@
 class_name Door, "res://icons/Door.svg"
 tool
-extends KinematicBody2D
+extends GameObject
 
 export var signal_id:int setget set_signal_id, get_signal_id
 var is_open:bool = false

@@ -29,7 +29,11 @@ star_requirements = {
 [node name="goal(Red)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 624, 1200 )
 is_level_goal = true
+is_level_goal = true
 
 [node name="crate(Red)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 528 )
 crate_type = 1
+crate_type = 1
+weight_id = 1
+is_movable = true

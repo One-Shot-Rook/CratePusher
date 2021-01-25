@@ -1,6 +1,6 @@
 class_name Hole, "res://icons/Hole.svg"
 tool
-extends Node2D
+extends GameObject
 
 export var is_bottomless:bool = false
 var is_filled = false

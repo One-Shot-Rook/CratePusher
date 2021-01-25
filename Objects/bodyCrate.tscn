@@ -7,20 +7,32 @@
 [ext_resource path="res://Assets/Sounds/snd_crate.wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Resources/shape_crate.tres" type="Shape2D" id=6]
 
-[node name="crate(Wooden)" type="KinematicBody2D" groups=[
+[node name="crate(Wooden)" type="Node2D" groups=[
 "crate",
 "movable",
 "object",
 ]]
 position = Vector2( 48, 48 )
 z_index = 1
-input_pickable = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+snap = null
+weight_id = 0
+speed_mode = 0
+is_movable = false
+move_distance_standard = 9999
+move_time = 0.06
 
-[node name="shape" type="CollisionShape2D" parent="."]
+[node name="areaMouse" type="Area2D" parent="."]
+gravity_vec = Vector2( 0, 0 )
+gravity = 0.0
+monitoring = false
+monitorable = false
+collision_mask = 0
+
+[node name="shape" type="CollisionShape2D" parent="areaMouse"]
 shape = ExtResource( 6 )
 
 [node name="trailParticles" type="CPUParticles2D" parent="."]
@@ -75,6 +87,6 @@ volume_db = -5.0
 bus = "SFX"
 
 [node name="twnMove" type="Tween" parent="."]
-[connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="areaMouse" to="." method="_on_mouse_input_event"]
+[connection signal="mouse_exited" from="areaMouse" to="." method="_on_mouse_exited"]
 [connection signal="tween_completed" from="twnMove" to="." method="_move"]
