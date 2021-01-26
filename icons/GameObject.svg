@@ -48,9 +48,11 @@
      inkscape:window-y="-6"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg32" />
-  <path
-     d="m8 2a6 6 0 0 0 -6 6 6 6 0 0 0 6 6 6 6 0 0 0 6-6 6 6 0 0 0 -6-6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1 -4 4 4 4 0 0 1 -4-4 4 4 0 0 1 4-4z"
-     fill="#a5efac"
-     id="path30"
-     style="fill:#a574d5;fill-opacity:1" />
+  <rect
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.998922"
+     id="rect943"
+     width="12"
+     height="12"
+     x="2"
+     y="2" />
 </svg>

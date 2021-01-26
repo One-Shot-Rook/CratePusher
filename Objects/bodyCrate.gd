@@ -183,7 +183,7 @@ func update_ui():
 	$trailParticles.modulate = 	Globals.get_crate_color(crate_type)
 
 func set_highlight(should_highlight):
-	$sprite.modulate.a = 1 + int(should_highlight)
+	$sprite.material.set_shader_param("is_highlighted",should_highlight)
 
 
 
@@ -421,6 +421,9 @@ func _unhandled_key_input(event):
 	if not event.pressed and event.scancode in keys_pressed:
 		keys_pressed.erase(event.scancode)
 	
+	if event.scancode == crate_keys[crate_type]:
+		set_highlight(event.pressed)
+	
 	if event.scancode in keys_pressed:
 		return
 	
@@ -428,7 +431,6 @@ func _unhandled_key_input(event):
 		keys_pressed.append(event.scancode)
 	
 	if crate_keys[crate_type] in keys_pressed:
-		set_highlight(event.pressed)
 		
 		if KEY_UP in keys_pressed:
 			direction_pressed(Vector2.UP)

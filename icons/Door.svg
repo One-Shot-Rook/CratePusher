@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -45,46 +45,47 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="2560"
-     inkscape:window-height="1377"
+     inkscape:window-width="1368"
+     inkscape:window-height="850"
      id="namedview40"
      showgrid="true"
      inkscape:zoom="16"
-     inkscape:cx="20.993768"
-     inkscape:cy="14.762994"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:cx="14.774333"
+     inkscape:cy="14.689847"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg38"
      inkscape:snap-to-guides="false"
-     showguides="false">
+     showguides="false"
+     inkscape:document-rotation="0">
     <inkscape:grid
        type="xygrid"
        id="grid52" />
   </sodipodi:namedview>
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:1.07648"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.962833"
      id="rect87"
-     width="5"
+     width="4"
      height="12"
-     x="2"
+     x="3"
      y="2" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:1.07648"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.962833"
      id="rect89"
-     width="5"
+     width="4"
      height="12"
      x="9"
      y="2" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.735378"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.735378"
      id="rect1004"
      width="2"
      height="14"
      x="1"
      y="1" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.735378"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.735378"
      id="rect1006"
      width="1.9999998"
      height="14"
