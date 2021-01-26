@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -45,26 +45,27 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="2560"
-     inkscape:window-height="1377"
+     inkscape:window-width="1368"
+     inkscape:window-height="850"
      id="namedview40"
      showgrid="true"
-     inkscape:zoom="45.254834"
-     inkscape:cx="16.138902"
-     inkscape:cy="9.248589"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:zoom="32"
+     inkscape:cx="7.050916"
+     inkscape:cy="6.6564483"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg38"
      inkscape:snap-to-guides="false"
      showguides="false"
-     inkscape:snap-grids="true">
+     inkscape:snap-grids="true"
+     inkscape:document-rotation="0">
     <inkscape:grid
        type="xygrid"
        id="grid52" />
   </sodipodi:namedview>
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.519991"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.519991"
      id="rect1004"
      width="14"
      height="1"
@@ -72,13 +73,13 @@
      y="1"
      ry="0.5" />
   <circle
-     style="fill:#a5b7f3;fill-opacity:1"
+     style="fill:#b09fff;fill-opacity:1"
      id="path1016"
      cx="8"
      cy="8"
      r="4" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.519991"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.519991"
      id="rect1018"
      width="14"
      height="1"
@@ -86,7 +87,7 @@
      y="14"
      ry="0.5" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.519991"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.519991"
      id="rect1022"
      width="14"
      height="1"
@@ -95,7 +96,7 @@
      ry="0.5"
      transform="rotate(90)" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.519991"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.519991"
      id="rect1024"
      width="14"
      height="1"

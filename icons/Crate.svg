@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -45,100 +45,101 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="2560"
-     inkscape:window-height="1377"
+     inkscape:window-width="1368"
+     inkscape:window-height="850"
      id="namedview40"
      showgrid="true"
-     inkscape:zoom="44.547727"
-     inkscape:cx="10.127666"
-     inkscape:cy="8.8218812"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:zoom="22.273864"
+     inkscape:cx="11.560317"
+     inkscape:cy="11.594929"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg38">
+     inkscape:current-layer="svg38"
+     inkscape:document-rotation="0">
     <inkscape:grid
        type="xygrid"
        id="grid52" />
   </sodipodi:namedview>
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.481421"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.481421"
      id="rect50"
      width="12"
      height="1"
      x="2"
      y="2" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.481421"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.481421"
      id="rect50-7"
      width="12"
      height="1"
      x="2"
      y="13" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.439475"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.439475"
      id="rect87"
      width="1"
      height="10"
      x="2"
      y="3" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.439475"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.439475"
      id="rect89"
      width="1"
      height="10"
      x="13"
      y="3" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.367691"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.367691"
      id="rect91"
      width="7"
      height="1"
      x="3"
      y="4" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.367691"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.367691"
      id="rect93"
      width="7"
      height="1"
      x="6"
      y="6" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.367691"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.367691"
      id="rect95"
      width="7"
      height="1"
      x="3"
      y="9" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.367691"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.367691"
      id="rect97"
      width="7"
      height="1"
      x="6"
      y="11" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.138974"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.138974"
      id="rect99"
      width="1"
      height="1"
      x="3"
      y="6" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.138974"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.138974"
      id="rect101"
      width="1"
      height="1"
      x="12"
      y="4" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.138974"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.138974"
      id="rect103"
      width="1"
      height="1"
      x="12"
      y="9" />
   <rect
-     style="fill:#a5b7f3;fill-opacity:1;stroke-width:0.138974"
+     style="fill:#b09fff;fill-opacity:1;stroke-width:0.138974"
      id="rect105"
      width="1"
      height="1"

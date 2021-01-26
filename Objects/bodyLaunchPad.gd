@@ -1,6 +1,6 @@
 class_name LaunchPad, "res://icons/LaunchPad.svg"
 tool
-extends Node2D
+extends GameObject
 
 export(NodePath) var path_sprBack
 onready var sprBack:Sprite

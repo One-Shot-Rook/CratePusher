@@ -1,6 +1,6 @@
 class_name ButtonFloor, "res://icons/ButtonFloor.svg"
-#tool
-extends Node2D
+tool
+extends GameObject
 
 signal button_pressed
 signal button_released
@@ -72,9 +72,8 @@ func initialise_button():
 		name = "button" + "("+str(signal_id)+")"
 
 func update_on_or_off(off_only=false):
-	var crate_array = get_tree().get_nodes_in_group("crate")
-	for crate in crate_array:
-		if (position - crate.position).length() < 4:
+	for crate in Level.objects.Crate:
+		if position == crate.position:
 			if not off_only:
 				activate_button(crate)
 			return
