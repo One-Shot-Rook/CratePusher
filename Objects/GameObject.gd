@@ -7,10 +7,9 @@ func _enter_tree():
 	Level = get_tile_map()
 
 func get_tile_map():
-	var potLevel = get_parent()
-	print(potLevel.get_class())
-	if potLevel.get_class() == "TileMap":
-		return potLevel
+	var pot_level = get_parent()
+	if pot_level.get_class() == "TileMap":
+		return pot_level
 	return null
 
 func snap_to_tile(_blank=false) -> void:

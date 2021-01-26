@@ -11,7 +11,7 @@ func set_current_level(levelName):
 
 func set_level_next():
 	var nextLvlName = int(current_level.split("-")[1])+1
-	print(SaveData.current_world)
+	#print(SaveData.current_world)
 	if nextLvlName > 15:
 		Transition.transitionScene("res://MenuScene.tscn",true)
 	if nextLvlName < 10:
@@ -22,7 +22,7 @@ func set_level_next():
 
 func set_level_prev():
 	var nextLvlName = int(current_level.split("-")[1])-1
-	print(SaveData.current_world)
+	#print(SaveData.current_world)
 	if nextLvlName < 1:
 		Transition.transitionScene("res://MenuScene.tscn",true)
 	if nextLvlName < 10:

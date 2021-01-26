@@ -5,21 +5,21 @@ extends TileMap
 signal all_crate_moves_finished
 signal all_level_goals_completed(move_count,stars)
 
-var tiles = {}
-
 enum TileID{
 	TILE_VOID = 3,
 	TILE_WALL = 6,
-	TILE_FLOOR = 7
+	TILE_FLOOR = 7,
 	}
 
+export var tile_set_floor_color:Color setget set_tile_set_floor_color
+export var star_requirements = {"flawless":0,"3 star":0,"2 star":0,"1 star":0}
+
+var tiles = {}
 var objects = {}
 
 var move_count:int
 var stars:int = 4
-
-export var tile_set_floor_color:Color setget set_tile_set_floor_color
-export var star_requirements = {"flawless":0,"3 star":0,"2 star":0,"1 star":0}
+var _err
 
 func set_tile_set_floor_color(new_color):
 	tile_set_floor_color = new_color
@@ -47,7 +47,8 @@ func check_level_goals_completed():
 		if button_floor.is_level_goal and not button_floor.is_pressed:
 			return
 	#print("all_level_goals_completed")
-	emit_signal("all_level_goals_completed")
+	emit_signal("all_level_goals_completed",move_count,stars)
+	SaveData.updateLevelStars(LevelData.current_level,stars)
 
 func detect_objects():
 	objects = {}
@@ -87,7 +88,8 @@ func connect_object_signals():
 			crate_from.connect("crate_move_finished",button_floor,"update_on_or_off")
 		crate_from.connect("crate_move_finished",self,"check_crate_moves_finished")
 		crate_from.connect("crate_move_inputted",self,"increment_move_count")
-		var _err = connect("all_crate_moves_finished",crate_from,"set_is_interactable",[true])
+		_err = connect("all_crate_moves_finished",crate_from,"set_is_interactable",[true])
+		_err = connect("all_crate_moves_finished",crate_from,"check_for_next_move")
 	# Button signals
 	for button_floor in objects.ButtonFloor:
 		if button_floor.is_level_goal:
@@ -101,9 +103,7 @@ func connect_object_signals():
 func connect_main_signals():
 	if not get_parent():
 		return
-	var _err
-	_err = connect("all_level_goals_completed",get_parent().get_node("../LevelUI"),"complete_level",[move_count,stars],CONNECT_ONESHOT)
-	_err = connect("all_level_goals_completed",SaveData,"updateLevelStars",[LevelData.current_level,stars],CONNECT_ONESHOT)
+	_err = connect("all_level_goals_completed",get_parent().get_node("../LevelUI"),"complete_level",[],CONNECT_ONESHOT)
 
 # reset move_count
 func initialise_move_count():

@@ -5,12 +5,13 @@ var current_level_node
 func _ready():
 	startLevel()
 
-func startLevel(levelName=LevelData.current_level):
+func startLevel(level_name=LevelData.current_level):
+	print(" [LEVEL] ",level_name)
 	if current_level_node:
 		current_level_node.free()
-	LevelData.set_current_level(levelName)
-	print(levelName.split("-")[1])
-	var loadpath = "res://Levels/World" + str(SaveData.get_current_world()) + "/" + "level" + levelName.split("-")[1] + ".tscn"
+	LevelData.set_current_level(level_name)
+	#print(level_name.split("-")[1])
+	var loadpath = "res://Levels/World" + str(SaveData.get_current_world()) + "/" + "level" + level_name.split("-")[1] + ".tscn"
 	var levelXX = load(loadpath).instance()
 	current_level_node = levelXX
 	add_child(current_level_node)
