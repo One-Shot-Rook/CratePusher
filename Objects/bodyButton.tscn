@@ -21,10 +21,12 @@ scale_random = 0.5
 "button",
 "object",
 ]]
+position = Vector2( 48, 48 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
+snap = false
 
 [node name="spriteBase" type="Sprite" parent="."]
 texture = ExtResource( 2 )

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=1]
-[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=5]
 [ext_resource path="res://Objects/bodyHole.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=7]
@@ -19,33 +19,49 @@ tile_data = PoolIntArray( 65536, 6, 1, 65537, 6, 196610, 65538, 6, 196610, 65539
 script = ExtResource( 5 )
 star_requirements = {
 "1 star": 15,
-"2 star": 12,
-"3 star": 10,
-"flawless": 8
+"2 star": 13,
+"3 star": 11,
+"flawless": 10
 }
 
 [node name="crate(Red)" parent="." instance=ExtResource( 7 )]
 position = Vector2( 528, 720 )
 crate_type = 1
+crate_type = 1
+snap = false
+weight_id = 1
+is_playable = true
+snap = false
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 7 )]
 position = Vector2( 336, 912 )
+snap = false
+is_playable = false
+snap = false
 
 [node name="crate(Wooden)2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 720, 720 )
+snap = false
+is_playable = false
+snap = false
 
 [node name="crate(Wooden)3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 528, 1104 )
+snap = false
+is_playable = false
+snap = false
 
 [node name="bodyHole" parent="." instance=ExtResource( 6 )]
 position = Vector2( 336, 1008 )
+snap = false
 
 [node name="bodyHole3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 528, 1200 )
+snap = false
 
 [node name="bodyHole2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 816, 720 )
+snap = false
 
 [node name="goal(Red)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 816, 1200 )
-is_level_goal = true

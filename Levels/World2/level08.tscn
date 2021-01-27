@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=2]
-[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/bodyLaunchPad.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/bodyHole.tscn" type="PackedScene" id=6]
@@ -20,28 +20,38 @@ tile_data = PoolIntArray( 131074, 6, 1, 131075, 6, 196610, 131076, 6, 196610, 13
 script = ExtResource( 1 )
 
 [node name="crate(Red)" parent="." instance=ExtResource( 4 )]
-position = Vector2( 432, 528 )
-crate_type = 3
-
-[node name="crate(Red)2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 432, 816 )
-
-[node name="crate(Red)3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 624, 816 )
 crate_type = 1
+crate_type = 1
+weight_id = 1
+is_playable = true
 
-[node name="button(0)" parent="." instance=ExtResource( 3 )]
-position = Vector2( 720, 1200 )
-is_level_goal = true
-goal_type = 3
+[node name="crate(Purple)" parent="." instance=ExtResource( 4 )]
+position = Vector2( 432, 528 )
+crate_type = 3
+crate_type = 3
+weight_id = 2
+is_playable = true
+move_distance_standard = 2
+move_time = 0.16
+
+[node name="crate(Wooden)" parent="." instance=ExtResource( 4 )]
+position = Vector2( 432, 816 )
 
 [node name="bodyLaunchPad" parent="." instance=ExtResource( 5 )]
 position = Vector2( 528, 432 )
 rotation = 3.14159
 direction = 2
 direction = 2
+snap = false
 
 [node name="bodyHole" parent="." instance=ExtResource( 6 )]
 position = Vector2( 432, 720 )
 is_bottomless = true
 is_bottomless = true
+snap = false
+
+[node name="goal(Purple)" parent="." instance=ExtResource( 3 )]
+position = Vector2( 720, 1200 )
+goal_type = 3
+goal_type = 3

@@ -48,40 +48,42 @@ func initialise_door():
 
 
 
-func update_open_or_closed(closed_only=false):
-	var button_array = get_tree().get_nodes_in_group("button")
-	for button in button_array:
-		if button.signal_id != signal_id or button.is_level_goal:
-			continue
-		if button.is_pressed:
-			if not closed_only:
-				open_door()
-			return
-	close_door()
-
-func open_door():
+func open_door(animate:bool):
 	if is_open:
 		return
 	is_open = true
 	$occluder.visible = false
-	$shape.disabled = true
-	$sprite.frame = 0
-	$sprite.play()
-	$audioOpen.play()
+	if animate:
+		animate_open()
+	else:
+		$sprite.frame = $sprite.frames.get_frame_count("default") - 1
 
-func close_door():
+func close_door(animate:bool):
 	if not is_open or not can_close():
 		return
 	is_open = false
 	$occluder.visible = true
-	$shape.disabled = false
-	$sprite.frame = 9
-	$sprite.play("",true)
-	$audioClose.play()
+	if animate:
+		animate_close()
+	else:
+		$sprite.frame = 0
 
 func can_close():
 	var crateArray = get_tree().get_nodes_in_group("crate")
 	for crate in crateArray:
-		if (crate.position-position).length() < 16:
+		if (crate.position-position).length() < tile_size/2:
 			return false
 	return true
+
+func animate_close():
+	$sprite.play("",true) # reverse the animation
+	$audioOpen.stop()
+	$audioClose.play()
+
+func animate_open():
+	$sprite.play() # play the animation
+	$audioClose.stop()
+	$audioOpen.play()
+
+
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Objects/bodyHole.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/bodyDoor.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Levels/Level.gd" type="Script" id=4]
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=5]
 [ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=7]
 
 [node name="TileMap" type="TileMap"]
 z_index = 1
@@ -28,12 +29,22 @@ star_requirements = {
 [node name="crate(Blue)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 144, 1584 )
 crate_type = 2
+crate_type = 2
+snap = false
+speed_mode = 1
+is_playable = true
+move_time = 0.08
+snap = false
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 528, 1008 )
+snap = false
+is_playable = false
+snap = false
 
 [node name="bodyHole" parent="." instance=ExtResource( 1 )]
 position = Vector2( 528, 1488 )
+snap = false
 
 [node name="door(0)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 336, 1008 )
@@ -47,11 +58,12 @@ signal_id = 1
 [node name="button(0)" parent="." instance=ExtResource( 6 )]
 position = Vector2( 528, 1008 )
 
-[node name="button(0)2" parent="." instance=ExtResource( 6 )]
+[node name="button(1)" parent="." instance=ExtResource( 6 )]
 position = Vector2( 528, 1200 )
 signal_id = 1
+signal_id = 1
 
-[node name="goal(Blue)" parent="." instance=ExtResource( 6 )]
+[node name="goal(Blue)" parent="." instance=ExtResource( 7 )]
 position = Vector2( 240, 432 )
-is_level_goal = true
+goal_type = 2
 goal_type = 2

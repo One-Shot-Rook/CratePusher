@@ -2,6 +2,7 @@ class_name TileMapLevel
 #tool
 extends TileMap
 
+signal level_initialised
 signal all_crate_moves_finished
 signal all_level_goals_completed(move_count,stars)
 
@@ -33,7 +34,7 @@ func _ready():
 	detect_objects()
 	connect_object_signals()
 	connect_main_signals()
-	emit_signal("all_crate_moves_finished")
+	emit_signal("level_initialised")
 
 func check_crate_moves_finished():
 	for crate in objects.Crate:
@@ -43,15 +44,15 @@ func check_crate_moves_finished():
 	emit_signal("all_crate_moves_finished")
 
 func check_level_goals_completed():
-	for button_floor in objects.ButtonFloor:
-		if button_floor.is_level_goal and not button_floor.is_pressed:
+	for goal in objects.Goal:
+		if not goal.is_complete:
 			return
 	#print("all_level_goals_completed")
 	emit_signal("all_level_goals_completed",move_count,stars)
 	SaveData.updateLevelStars(LevelData.current_level,stars)
 
 func detect_objects():
-	objects = {}
+	objects = { "Crate":[], "ButtonFloor":[], "Door":[], "Goal":[], "LaunchPad":[] }
 	for object in get_children():
 		if not objects.has(object.get_class()):
 			objects[object.get_class()] = []
@@ -78,27 +79,32 @@ func detect_tile_positions():
 func connect_object_signals():
 	# Crate signals
 	for crate_from in objects.Crate:
-		# Disabling interactables
+		_err = connect("level_initialised",crate_from,"set_is_interactable",[true])
+		# Letting other crates know when we've started moving
 		for crate_to in objects.Crate:
 			crate_from.connect("crate_move_started",crate_to,"set_is_interactable",[false])
 		# Letting buttons know when we've moved on/off of them
 		for button_floor in objects.ButtonFloor:
 			if crate_from.speed_mode == Crate.SpeedMode.SLOW:
-				crate_from.connect("crate_step_finished",button_floor,"update_on_or_off",[true])
+				crate_from.connect("crate_step_finished",button_floor,"update_off")
 			crate_from.connect("crate_move_stopped",button_floor,"update_on_or_off")
+		# Letting goals know when we could be on them
+		for goal in objects.Goal:
+			crate_from.connect("crate_step_finished",goal,"try_to_complete")
 		crate_from.connect("crate_move_finished",self,"check_crate_moves_finished")
 		crate_from.connect("crate_move_inputted",self,"increment_move_count")
 		_err = connect("all_crate_moves_finished",crate_from,"set_is_interactable",[true])
-		_err = connect("all_crate_moves_finished",crate_from,"check_for_next_move")
 	# Button signals
 	for button_floor in objects.ButtonFloor:
-		if button_floor.is_level_goal:
-			button_floor.connect("level_goal_completed",self,"check_level_goals_completed")
-			continue
+		_err = connect("level_initialised",button_floor,"update_on_or_off",[false])
 		for door in objects.Door:
 			if button_floor.signal_id == door.signal_id:
-				button_floor.connect("button_pressed",door,"update_open_or_closed")
-				button_floor.connect("button_released",door,"update_open_or_closed")
+				button_floor.connect("button_pressed",door,"open_door")
+				button_floor.connect("button_released",door,"close_door")
+	# Goal signals
+	for goal in objects.Goal:
+		_err = connect("level_initialised",goal,"try_to_complete")
+		goal.connect("level_goal_completed",self,"check_level_goals_completed")
 
 func connect_main_signals():
 	if not get_parent():

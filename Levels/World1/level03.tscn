@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=4]
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=5]
@@ -23,13 +23,20 @@ star_requirements = {
 "flawless": 6
 }
 
-[node name="goal(Red)" parent="." instance=ExtResource( 2 )]
-position = Vector2( 624, 1200 )
-is_level_goal = true
-
 [node name="crate(Red)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 720, 432 )
 crate_type = 1
+crate_type = 1
+snap = false
+weight_id = 1
+is_movable = true
+snap = false
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 624, 912 )
+snap = false
+snap = false
+
+[node name="goal(Red)" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 1200 )
+snap = false

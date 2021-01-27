@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Objects/bodyDoor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/bodyHole.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=6]
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=7]
 
 [node name="TileMap" type="TileMap"]
 z_index = 1
@@ -16,52 +17,50 @@ cell_tile_origin = 1
 centered_textures = true
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 196610, 6, 1, 196611, 6, 196610, 196612, 6, 196610, 196613, 6, 196610, 196614, 6, 2, 196615, 6, 196610, 196616, 6, 3, 262146, 6, 65536, 262147, 7, 1, 262148, 7, 196611, 262150, 6, 65536, 262151, 7, 0, 262152, 6, 65536, 327682, 6, 65536, 327683, 7, 65536, 327684, 6, 8, 327685, 6, 10, 327686, 6, 65543, 327687, 7, 65536, 327688, 6, 65536, 393218, 6, 65536, 393219, 7, 65536, 393220, 6, 65544, 393221, 6, 131081, 393222, 6, 131083, 393223, 7, 65536, 393224, 6, 65536, 458754, 6, 65536, 458755, 7, 65536, 458756, 6, 65544, 458757, 6, 131078, 458758, 6, 196619, 458759, 7, 65536, 458760, 6, 65536, 524290, 6, 65536, 524291, 7, 65536, 524292, 6, 131076, 524293, 6, 196619, 524294, 7, 8, 524295, 7, 65543, 524296, 6, 131073, 524297, 6, 3, 589826, 6, 65536, 589827, 7, 131072, 589828, 6, 131072, 589829, 7, 8, 589830, 7, 65541, 589831, 7, 131083, 589833, 6, 65536, 655362, 6, 65536, 655364, 7, 196609, 655365, 7, 196613, 655366, 7, 196617, 655367, 7, 196619, 655369, 6, 65536, 720898, 6, 131073, 720899, 6, 196610, 720900, 6, 196610, 720901, 6, 196610, 720902, 6, 196610, 720903, 6, 196610, 720904, 6, 196610, 720905, 6, 131075 )
+tile_data = PoolIntArray( 196610, 6, 1, 196611, 6, 196610, 196612, 6, 196610, 196613, 6, 196610, 196614, 6, 2, 196615, 6, 196610, 196616, 6, 3, 262146, 6, 65536, 262147, 7, 1, 262148, 7, 196611, 262150, 6, 65536, 262151, 7, 0, 262152, 6, 65536, 327682, 6, 65536, 327683, 7, 65536, 327684, 6, 8, 327685, 6, 10, 327686, 6, 65543, 327687, 7, 65536, 327688, 6, 65536, 393218, 6, 65536, 393219, 7, 65536, 393220, 6, 65544, 393221, 6, 131081, 393222, 6, 131083, 393223, 7, 65536, 393224, 6, 65536, 458754, 6, 65536, 458755, 7, 65536, 458756, 6, 65544, 458757, 6, 131078, 458758, 6, 196619, 458759, 7, 65536, 458760, 6, 131073, 458761, 6, 3, 524290, 6, 65536, 524291, 7, 65536, 524292, 6, 131076, 524293, 6, 196619, 524294, 7, 8, 524295, 7, 196612, 524296, 7, 196611, 524297, 6, 65536, 589826, 6, 65536, 589827, 7, 131072, 589828, 6, 131072, 589829, 7, 8, 589830, 7, 65541, 589831, 7, 131083, 589833, 6, 65536, 655362, 6, 65536, 655364, 7, 196609, 655365, 7, 196613, 655366, 7, 196617, 655367, 7, 196619, 655369, 6, 65536, 720898, 6, 131073, 720899, 6, 196610, 720900, 6, 196610, 720901, 6, 196610, 720902, 6, 196610, 720903, 6, 196610, 720904, 6, 196610, 720905, 6, 131075 )
 script = ExtResource( 6 )
 star_requirements = {
-"1 star": 18,
-"2 star": 16,
-"3 star": 14,
-"flawless": 12
+"1 star": 17,
+"2 star": 15,
+"3 star": 13,
+"flawless": 11
 }
 
 [node name="door(0)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 720, 720 )
 rotation = 1.5708
-door_mode = null
 
 [node name="door(1)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 720, 624 )
 rotation = 1.5708
 signal_id = 1
 signal_id = 1
-door_mode = null
 
-[node name="button(0)" parent="." instance=ExtResource( 2 )]
+[node name="button(1)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 720, 1008 )
 signal_id = 1
+signal_id = 1
 
-[node name="button(0)2" parent="." instance=ExtResource( 2 )]
+[node name="button(0)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 624, 816 )
-
-[node name="goal(Blue)" parent="." instance=ExtResource( 2 )]
-position = Vector2( 720, 432 )
-is_level_goal = true
-goal_type = 2
 
 [node name="bodyHole" parent="." instance=ExtResource( 5 )]
 position = Vector2( 336, 1008 )
+snap = false
 
 [node name="bodyHole2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 816, 1008 )
+snap = false
 
 [node name="bodyHole3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 528, 432 )
 is_bottomless = true
 is_bottomless = true
+snap = false
 
 [node name="bodyHole4" parent="." instance=ExtResource( 5 )]
 position = Vector2( 816, 912 )
+snap = false
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 336, 816 )
@@ -72,7 +71,25 @@ position = Vector2( 624, 1008 )
 [node name="crate(Red)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 336, 624 )
 crate_type = 1
+crate_type = 1
+weight_id = 1
+is_playable = true
 
 [node name="crate(Blue)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 336, 432 )
 crate_type = 2
+crate_type = 2
+speed_mode = 1
+is_playable = true
+move_time = 0.08
+
+[node name="goal(Blue)" parent="." instance=ExtResource( 7 )]
+position = Vector2( 720, 432 )
+goal_type = 2
+goal_type = 2
+
+[node name="goal(Red)" parent="." instance=ExtResource( 7 )]
+position = Vector2( 816, 816 )
+
+[node name="goal(Red)2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 816, 816 )

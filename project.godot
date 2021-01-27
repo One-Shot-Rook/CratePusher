@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://Objects/GameObject.gd"
 }, {
 "base": "GameObject",
+"class": "Goal",
+"language": "GDScript",
+"path": "res://Objects/bodyGoal.gd"
+}, {
+"base": "GameObject",
 "class": "Hole",
 "language": "GDScript",
 "path": "res://Objects/bodyHole.gd"
@@ -49,6 +54,7 @@ _global_script_class_icons={
 "Crate": "res://icons/Crate.svg",
 "Door": "res://icons/Door.svg",
 "GameObject": "res://icons/GameObject.svg",
+"Goal": "res://icons/Goal.svg",
 "Hole": "res://icons/Hole.svg",
 "LaunchPad": "res://icons/LaunchPad.svg",
 "TileMapLevel": ""

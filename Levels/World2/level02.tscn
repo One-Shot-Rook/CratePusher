@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=1]
-[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/bodyLaunchPad.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Levels/Level.gd" type="Script" id=5]
@@ -17,14 +17,19 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 196610, 6, 1, 196611, 6, 196610, 196612, 6, 196610, 196613, 6, 196610, 196614, 6, 2, 196615, 6, 196610, 196616, 6, 196610, 196617, 6, 196610, 196618, 6, 3, 262146, 6, 65536, 262147, 7, 8, 262148, 7, 10, 262149, 7, 11, 262150, 6, 131072, 262151, 7, 8, 262152, 7, 10, 262153, 7, 11, 262154, 6, 65536, 327682, 6, 65536, 327683, 7, 65544, 327684, 7, 131081, 327685, 7, 65542, 327686, 7, 10, 327687, 7, 65541, 327688, 7, 131081, 327689, 7, 131083, 327690, 6, 65536, 393218, 6, 65536, 393219, 7, 65544, 393220, 7, 131081, 393221, 7, 131081, 393222, 7, 131081, 393223, 7, 131081, 393224, 7, 131081, 393225, 7, 131083, 393226, 6, 65536, 458754, 6, 65536, 458755, 7, 65544, 458756, 7, 131081, 458757, 7, 131081, 458758, 7, 131081, 458759, 7, 131081, 458760, 7, 131081, 458761, 7, 131083, 458762, 6, 65536, 524290, 6, 65536, 524291, 7, 65544, 524292, 7, 131081, 524293, 7, 131081, 524294, 7, 131081, 524295, 7, 131081, 524296, 7, 131081, 524297, 7, 131083, 524298, 6, 65536, 589826, 6, 65536, 589827, 7, 65544, 589828, 7, 131081, 589829, 7, 131081, 589830, 7, 131081, 589831, 7, 131081, 589832, 7, 131081, 589833, 7, 131083, 589834, 6, 65536, 655362, 6, 65536, 655363, 7, 65544, 655364, 7, 131081, 655365, 7, 131081, 655366, 7, 131081, 655367, 7, 131081, 655368, 7, 131081, 655369, 7, 131083, 655370, 6, 65536, 720898, 6, 65536, 720899, 7, 65544, 720900, 7, 131081, 720901, 7, 131081, 720902, 7, 131081, 720903, 7, 131081, 720904, 7, 131081, 720905, 7, 131083, 720906, 6, 65536, 786434, 6, 65536, 786435, 7, 196616, 786436, 7, 196617, 786437, 7, 196617, 786438, 7, 196618, 786439, 7, 196617, 786440, 7, 196617, 786441, 7, 196619, 786442, 6, 65536, 851970, 6, 131073, 851971, 6, 196610, 851972, 6, 196610, 851973, 6, 3, 851974, 7, 131072, 851975, 6, 1, 851976, 6, 196610, 851977, 6, 196610, 851978, 6, 131075, 917509, 6, 131073, 917510, 6, 196610, 917511, 6, 131075 )
 script = ExtResource( 5 )
-
-[node name="goal(Red)" parent="." instance=ExtResource( 2 )]
-position = Vector2( 624, 1296 )
-is_level_goal = true
+star_requirements = {
+"1 star": 15,
+"2 star": 13,
+"3 star": 11,
+"flawless": 10
+}
 
 [node name="crate(Red)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 336, 528 )
 crate_type = 1
+crate_type = 1
+weight_id = 1
+is_playable = true
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 720, 1008 )
@@ -34,18 +39,25 @@ position = Vector2( 336, 624 )
 rotation = 3.14159
 direction = 2
 direction = 2
+snap = false
 
 [node name="bodyLaunchPad2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 336, 1104 )
 rotation = 1.5708
 direction = 1
 direction = 1
+snap = false
 
 [node name="bodyLaunchPad3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 816, 1104 )
+snap = false
 
 [node name="bodyLaunchPad4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 816, 528 )
 rotation = 4.71239
 direction = 3
 direction = 3
+snap = false
+
+[node name="goal(Red)" parent="." instance=ExtResource( 2 )]
+position = Vector2( 624, 1296 )

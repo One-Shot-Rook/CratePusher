@@ -2,17 +2,11 @@ class_name ButtonFloor, "res://icons/ButtonFloor.svg"
 tool
 extends GameObject
 
-signal button_pressed		# Signals doors
-signal button_released		# Signals doors
-signal level_goal_completed	# Signals is_level_complete check
-
-enum GoalType{WOODEN,RED,BLUE,PURPLE}
+signal button_pressed(animate)		# Signals doors
+signal button_released(animate)		# Signals doors
 
 export var signal_id:int setget set_signal_id, get_signal_id
-export var is_level_goal:bool setget set_is_level_goal, get_is_level_goal
-export(GoalType) var goal_type = GoalType.RED setget set_goal_type, get_goal_type
 
-var GoalText = ["Wooden","Red","Blue","Purple"]
 var is_pressed:bool = false
 
 func _get_property_list() -> Array:
@@ -29,18 +23,6 @@ func _get_property_list() -> Array:
 			hint_string = "0,6",
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
-		{
-			name = "is_level_goal",
-			type = TYPE_BOOL,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
-		},
-		{
-			name = "goal_type",
-			type = TYPE_INT,
-			hint = PROPERTY_HINT_ENUM,
-			hint_string = "Wooden,Red,Blue,Purple",
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
-		},
 	]
 
 func get_class() -> String: return "ButtonFloor"
@@ -51,64 +33,36 @@ func set_signal_id(new_signal_id):
 
 func get_signal_id() -> int: return signal_id
 
-func set_is_level_goal(new_is_level_goal):
-	is_level_goal = new_is_level_goal
-	initialise_button()
-
-func get_is_level_goal() -> bool: return is_level_goal
-
-func set_goal_type(new_goal_type) -> void:
-	goal_type = new_goal_type
-	initialise_button()
-
-func get_goal_type() -> int: return goal_type
-
 
 
 func initialise_button():
 	$spriteBase/spriteCenter.modulate = Globals.get_button_color(signal_id)
-	$spriteBase/spriteCenter.modulate.a = int(not is_level_goal)
-	$partGoal.emitting = is_level_goal
-	$partGoal.visible = is_level_goal
-	$partGoal.modulate = Globals.get_crate_color(goal_type)
-	$spriteBase.visible = not is_level_goal
-	if is_level_goal:
-		$audioClick.stream = load("res://Assets/Sounds/snd_alert.wav")
-		name = "goal" + "("+GoalText[goal_type]+")"
-	else:
-		$audioClick.stream = load("res://Assets/Sounds/snd_button.wav")
-		name = "button" + "("+str(signal_id)+")"
+	$audioClick.stream = load("res://Assets/Sounds/snd_button.wav")
+	name = "button" + "("+str(signal_id)+")"
 
-func update_on_or_off(off_only=false):
+func update_on_or_off(animate = true):
 	for crate in Level.objects.Crate:
 		if position == crate.position:
-			if not off_only:
-				activate_button(crate)
+			activate_button(animate)
 			return
-	deactivate_button()
+	deactivate_button(animate)
 
-func activate_button(crate):
-	if not is_pressed: # If the button was just pressed
-		if is_level_goal:
-			if goal_type == crate.crate_type:
-				$audioClick.play()
-		else:
+func update_off(animate = true):
+	for crate in Level.objects.Crate:
+		if position == crate.position:
+			return
+	deactivate_button(animate)
+
+func activate_button(animate = true):
+	if not is_pressed: # If the button wasn't pressed
+		if animate:
 			$audioClick.play()
 	is_pressed = true
-	if is_level_goal_complete(crate):
-		$partGoal.modulate = Color(0.2,0.2,0.2)
-		emit_signal("level_goal_completed")
-	elif not is_level_goal:
-		emit_signal("button_pressed")
+	emit_signal("button_pressed",animate)
 
-func deactivate_button():
+func deactivate_button(animate = true):
 	is_pressed = false
-	emit_signal("button_released")
-
-
-
-func is_level_goal_complete(crate):
-	return (is_level_goal and goal_type == crate.crate_type)
+	emit_signal("button_released",animate)
 
 
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=2]
 [ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/bodyDoor.tscn" type="PackedScene" id=6]
 
 [node name="TileMap" type="TileMap"]
@@ -26,33 +27,57 @@ star_requirements = {
 
 [node name="button(0)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 816, 240 )
+snap = false
 
 [node name="door(0)" parent="." instance=ExtResource( 6 )]
 position = Vector2( 432, 528 )
 rotation = 1.5708
+door_mode = null
+snap = false
 
 [node name="button(1)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 432, 624 )
 signal_id = 1
+signal_id = 1
+snap = false
 
 [node name="door(1)" parent="." instance=ExtResource( 6 )]
 position = Vector2( 816, 528 )
 rotation = 1.5708
 signal_id = 1
 signal_id = 1
-
-[node name="goal(Red)" parent="." instance=ExtResource( 3 )]
-position = Vector2( 240, 1680 )
-is_level_goal = true
+door_mode = null
+snap = false
 
 [node name="crate(Blue)2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 144, 1008 )
 crate_type = 2
+crate_type = 2
+snap = false
+speed_mode = 1
+is_movable = true
+move_time = 0.08
+snap = false
 
 [node name="crate(Blue)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 240, 336 )
 crate_type = 2
+crate_type = 2
+snap = false
+speed_mode = 1
+is_movable = true
+move_time = 0.08
+snap = false
 
 [node name="crate(Red)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 240, 240 )
 crate_type = 1
+crate_type = 1
+snap = false
+weight_id = 1
+is_movable = true
+snap = false
+
+[node name="goal(Red)" parent="." instance=ExtResource( 5 )]
+position = Vector2( 240, 1680 )
+snap = false

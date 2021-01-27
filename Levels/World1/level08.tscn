@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=2]
 [ext_resource path="res://Objects/bodyHole.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=5]
 
 [node name="TileMap" type="TileMap"]
 z_index = 1
@@ -24,16 +24,24 @@ star_requirements = {
 "flawless": 19
 }
 
-[node name="goal(Red)" parent="." instance=ExtResource( 5 )]
-position = Vector2( 720, 528 )
-is_level_goal = true
-
 [node name="bodyHole" parent="." instance=ExtResource( 3 )]
 position = Vector2( 720, 720 )
+snap = false
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 624, 816 )
+snap = false
+snap = false
 
 [node name="crate(Red)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 336, 624 )
 crate_type = 1
+crate_type = 1
+snap = false
+weight_id = 1
+is_movable = true
+snap = false
+
+[node name="goal(Red)" parent="." instance=ExtResource( 5 )]
+position = Vector2( 720, 528 )
+snap = false
