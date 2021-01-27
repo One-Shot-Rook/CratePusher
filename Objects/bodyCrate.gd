@@ -2,20 +2,21 @@ class_name Crate, "res://icons/Crate.svg"
 tool
 extends GameObject
 
-signal crate_move_inputted
-signal crate_move_started
-signal crate_step_finished
-signal crate_move_finished
-
-var keys_pressed = []
-var crate_keys = [KEY_0,KEY_1,KEY_2,KEY_3]
-var moves = []
+signal crate_move_inputted	# Signals increment move_count
+signal crate_move_started	# Singals disable_move_ui
+signal crate_step_finished	# Signals buttons (off-mode)
+signal crate_move_stopped 	# Signals buttons
+signal crate_move_finished	# Signals enable_move_ui check
 
 enum CrateType{WOODEN,RED,BLUE,PURPLE}
 enum SpeedMode{SLOW,FAST}
 enum WeightMode{LIGHT,MEDIUM,HEAVY}
 
 export(CrateType) var crate_type = CrateType.WOODEN setget set_crate_type, get_crate_type
+
+var keys_pressed = []
+var crate_keys = [KEY_0,KEY_1,KEY_2,KEY_3]
+var moves = []
 
 var weight_id:int = WeightMode.MEDIUM
 var speed_mode:int = SpeedMode.SLOW
@@ -109,7 +110,7 @@ func set_is_interactable(new_is_interactable) -> void:
 	else:
 		disable_move_ui()
 
-func set_crate_type(new_crate_type):
+func set_crate_type(new_crate_type) -> void:
 	crate_type = new_crate_type
 	initialise_crate()
 	update_ui()
@@ -123,12 +124,13 @@ func set_mouse_pressed(new_is_mouse_pressed):
 func get_class() -> String: return "Crate"
 
 
-func _ready():
+
+func _ready() -> void:
 	initialise_crate()
 	react_to_currently_colliding()
 	update_ui()
 
-func initialise_crate():
+func initialise_crate() -> void:
 	match crate_type:
 		CrateType.WOODEN:
 			name = "crate(Wooden)"
@@ -163,7 +165,7 @@ func initialise_crate():
 			is_movable = true
 			normal_pitch_scale = 1.5
 
-func update_ui():
+func update_ui() -> void:
 	$trailParticles.emitting = false
 	match crate_type:
 		CrateType.WOODEN:
@@ -190,15 +192,14 @@ func update_ui():
 	$sprite.modulate =			Globals.get_crate_color(crate_type)
 	$sprites/sprHead.modulate =	Globals.get_crate_color(crate_type)
 	$Directions.modulate = 		Globals.get_crate_color(crate_type)
-	#$trailParticles.modulate = 	Globals.get_crate_color(crate_type)
 
-func set_highlight(should_highlight):
+func set_highlight(should_highlight) -> void:
 	$sprite.material.set_shader_param("is_highlighted",should_highlight)
 	$sprites.material.set_shader_param("is_highlighted",should_highlight)
 
 
 
-func start_moving(new_move_direction:Vector2,new_move_distance=move_distance_standard):
+func start_moving(new_move_direction:Vector2,new_move_distance=move_distance_standard) -> bool:
 	# Can the crate move in that direction at all
 	move_direction = new_move_direction
 	if not is_direction_clear(move_direction):
@@ -211,7 +212,7 @@ func start_moving(new_move_direction:Vector2,new_move_distance=move_distance_sta
 	_move()
 	return true
 
-func _move(_object=null, _key=":position"):
+func _move(_object=null, _key=":position") -> void:
 	
 	$trailParticles.emitting = true
 	$trailParticles.direction = -move_direction
@@ -234,10 +235,11 @@ func _move(_object=null, _key=":position"):
 			# React to what we're on
 			react_to_currently_colliding()
 	
-	
 	if should_stop_moving:
 		$trailParticles.emitting = false
 		stop_moving()
+	
+	emit_signal("crate_step_finished")
 	
 	if not is_moving:
 		return
@@ -248,10 +250,8 @@ func _move(_object=null, _key=":position"):
 			null, move_to_position, move_time,
 			Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$twnMove.start()
-	
-	emit_signal("crate_step_finished")
 
-func stop_moving(_reason="wall"):
+func stop_moving(_reason="wall") -> void:
 	if not is_moving:
 		return
 	#print(str(name)+" stopped because "+reason)
@@ -259,15 +259,16 @@ func stop_moving(_reason="wall"):
 	move_direction = Vector2.ZERO
 	move_distance = 0
 	stop_move_sound()
-	emit_signal("crate_move_finished")
+	emit_signal("crate_move_stopped") # Signals buttons
+	emit_signal("crate_move_finished") # Signals enable move ui check
 
-func check_for_next_move():
+func check_for_next_move() -> void:
 	if not moves.empty():
 		direction_pressed(moves.pop_front())
 
 
 
-func react_to_currently_colliding():
+func react_to_currently_colliding() -> void:
 	var object_currently_colliding = get_object_currently_colliding()
 	if object_currently_colliding:
 		#print("currently on: ",object_currently_colliding.get_class())
@@ -304,7 +305,7 @@ func get_object_currently_colliding() -> Node:
 
 
 
-func react_to_move_direction():
+func react_to_move_direction() -> void:
 	var objects = get_objects_in_direction()
 	#print("Objects ahead: ",objects)
 	for object in objects:
@@ -320,7 +321,7 @@ func react_to_move_direction():
 				var push_distance = weight_id-crate.weight_id
 				#print("PUSH ",name," ["+str(weight_id)+"|"+str(crate.weight_id)+"]",str(crate.name))
 				if push_distance > 0:
-					crate.start_moving(move_direction,push_distance)
+					var _moved = crate.start_moving(move_direction,push_distance)
 				should_stop_moving = true
 
 func get_objects_in_direction(direction:Vector2=move_direction) -> Array:
@@ -334,9 +335,7 @@ func get_objects_in_direction(direction:Vector2=move_direction) -> Array:
 		objects.append(Level)
 	return objects
 
-
-
-func is_direction_clear(direction:Vector2=move_direction):
+func is_direction_clear(direction:Vector2=move_direction) -> bool:
 	var objects = get_objects_in_direction(direction)
 	for object in objects:
 		match object.get_class():
@@ -354,14 +353,14 @@ func is_direction_clear(direction:Vector2=move_direction):
 
 
 
-func disappear():
+func disappear() -> void:
 	is_detectable = false
 	is_movable = false
 	visible = false
 	if is_in_group("object"):
 		remove_from_group("object")
 
-func reappear():
+func reappear() -> void:
 	is_detectable = true
 	is_movable = true
 	visible = true
@@ -384,25 +383,27 @@ func disable_move_ui() -> void:
 	$Directions.visible = false
 	is_interactable = false
 
-func face_sprite_in(direction:Vector2):
+func face_sprite_in(direction:Vector2) -> void:
 	$sprites.rotation = -direction.angle_to(Vector2(0,1)) + PI
 
 
 
-func start_move_sound():
+func start_move_sound() -> void:
 	rng.randomize()
 	$audioMove.pitch_scale = normal_pitch_scale + rng.randf_range(-0.2,0.2)
 	$audioMove.play()
 	$sprites/aniPlayer.play("Running")
 
-func stop_move_sound():
+func stop_move_sound() -> void:
 	if crate_type == CrateType.WOODEN:
 		return
 	$audioMove.stop()
 	$sprites/aniPlayer.stop()
 	$sprites/aniPlayer.seek(0.0,true)
 
-func direction_pressed(new_move_direction:Vector2):
+
+
+func direction_pressed(new_move_direction:Vector2) -> void:
 	if not is_interactable:
 		if is_movable:
 			moves.append(new_move_direction)
@@ -410,7 +411,7 @@ func direction_pressed(new_move_direction:Vector2):
 	if start_moving(new_move_direction):
 		emit_signal("crate_move_inputted")
 
-func get_nearest_direction(vector:Vector2):
+func get_nearest_direction(vector:Vector2) -> Vector2:
 	var nearest_direction = directions["U"]
 	for vector_direction in directions.values():
 		var direction_distance = (vector_direction-vector).length()
@@ -421,7 +422,7 @@ func get_nearest_direction(vector:Vector2):
 
 
 
-func _on_mouse_input_event(_viewport, event, _shape_idx):
+func _on_mouse_input_event(_viewport, event, _shape_idx) -> void:
 	
 	if not is_movable or not is_interactable:
 		return
@@ -432,7 +433,7 @@ func _on_mouse_input_event(_viewport, event, _shape_idx):
 		if event.button_index == BUTTON_LEFT:
 			set_mouse_pressed(event.pressed)
 
-func _on_mouse_exited():
+func _on_mouse_exited() -> void:
 	
 	if is_moving or not is_interactable:
 		return
@@ -444,8 +445,7 @@ func _on_mouse_exited():
 		var nearest_direction = get_nearest_direction(local_mouse_position)
 		direction_pressed(nearest_direction)
 
-
-func _unhandled_key_input(event):
+func _unhandled_key_input(event) -> void:
 	
 	if not event.pressed and event.scancode in keys_pressed:
 		keys_pressed.erase(event.scancode)

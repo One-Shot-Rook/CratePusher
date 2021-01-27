@@ -39,7 +39,9 @@ bus = "SFX"
 
 [node name="partGoal" type="Particles2D" parent="."]
 visible = false
+modulate = Color( 0.94, 0.5, 0.5, 1 )
 position = Vector2( 0, 8 )
+emitting = false
 amount = 32
 preprocess = 1.0
 process_material = SubResource( 1 )

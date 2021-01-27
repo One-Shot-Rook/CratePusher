@@ -3,6 +3,7 @@ tool
 extends GameObject
 
 export var signal_id:int setget set_signal_id, get_signal_id
+
 var is_open:bool = false
 
 func _get_property_list() -> Array:
@@ -31,9 +32,12 @@ func _get_property_list() -> Array:
 func set_signal_id(new_signal_id):
 	signal_id = new_signal_id
 	initialise_door()
+
 func get_signal_id() -> int: return signal_id
 
 func get_class() -> String: return "Door"
+
+
 
 func _ready():
 	initialise_door()
@@ -41,6 +45,8 @@ func _ready():
 func initialise_door():
 	name = "door" + "("+str(signal_id)+")"
 	$sprColor.self_modulate = Globals.get_button_color(signal_id)
+
+
 
 func update_open_or_closed(closed_only=false):
 	var button_array = get_tree().get_nodes_in_group("button")

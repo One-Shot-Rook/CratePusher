@@ -85,7 +85,7 @@ func connect_object_signals():
 		for button_floor in objects.ButtonFloor:
 			if crate_from.speed_mode == Crate.SpeedMode.SLOW:
 				crate_from.connect("crate_step_finished",button_floor,"update_on_or_off",[true])
-			crate_from.connect("crate_move_finished",button_floor,"update_on_or_off")
+			crate_from.connect("crate_move_stopped",button_floor,"update_on_or_off")
 		crate_from.connect("crate_move_finished",self,"check_crate_moves_finished")
 		crate_from.connect("crate_move_inputted",self,"increment_move_count")
 		_err = connect("all_crate_moves_finished",crate_from,"set_is_interactable",[true])

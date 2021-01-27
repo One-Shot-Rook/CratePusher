@@ -2,14 +2,10 @@ class_name LaunchPad, "res://icons/LaunchPad.svg"
 tool
 extends GameObject
 
-export(NodePath) var path_sprBack
-onready var sprBack:Sprite
-export(NodePath) var path_aniMiddle
-onready var aniMiddle:AnimatedSprite
+enum Direction{UP,RIGHT,DOWN,LEFT}
 
 export var primary_color:Color setget set_primary_color
 export var secondary_color:Color setget set_secondary_color
-enum Direction{UP,RIGHT,DOWN,LEFT}
 export(Direction) var direction setget set_direction
 
 var direction_vectors = [Vector2.UP,Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT]
@@ -53,6 +49,8 @@ func set_direction(new_direction):
 	update_ui()
 
 func get_class() -> String: return "LaunchPad"
+
+
 
 func update_ui():
 	if Engine.editor_hint:

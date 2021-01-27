@@ -3,6 +3,7 @@ tool
 extends GameObject
 
 export var is_bottomless:bool = false
+
 var is_filled = false
 
 func _get_property_list() -> Array:
@@ -20,6 +21,8 @@ func _get_property_list() -> Array:
 	]
 
 func get_class() -> String: return "Hole"
+
+
 
 func _ready():
 	if is_bottomless:

@@ -2,16 +2,17 @@ class_name ButtonFloor, "res://icons/ButtonFloor.svg"
 tool
 extends GameObject
 
-signal button_pressed
-signal button_released
-signal level_goal_completed
+signal button_pressed		# Signals doors
+signal button_released		# Signals doors
+signal level_goal_completed	# Signals is_level_complete check
+
+enum GoalType{WOODEN,RED,BLUE,PURPLE}
 
 export var signal_id:int setget set_signal_id, get_signal_id
 export var is_level_goal:bool setget set_is_level_goal, get_is_level_goal
-enum GoalType{WOODEN,RED,BLUE,PURPLE}
 export(GoalType) var goal_type = GoalType.RED setget set_goal_type, get_goal_type
-var GoalText = ["Wooden","Red","Blue","Purple"]
 
+var GoalText = ["Wooden","Red","Blue","Purple"]
 var is_pressed:bool = false
 
 func _get_property_list() -> Array:
@@ -47,15 +48,22 @@ func get_class() -> String: return "ButtonFloor"
 func set_signal_id(new_signal_id):
 	signal_id = new_signal_id
 	initialise_button()
+
 func get_signal_id() -> int: return signal_id
+
 func set_is_level_goal(new_is_level_goal):
 	is_level_goal = new_is_level_goal
 	initialise_button()
+
 func get_is_level_goal() -> bool: return is_level_goal
+
 func set_goal_type(new_goal_type) -> void:
 	goal_type = new_goal_type
 	initialise_button()
+
 func get_goal_type() -> int: return goal_type
+
+
 
 func initialise_button():
 	$spriteBase/spriteCenter.modulate = Globals.get_button_color(signal_id)
@@ -96,6 +104,8 @@ func activate_button(crate):
 func deactivate_button():
 	is_pressed = false
 	emit_signal("button_released")
+
+
 
 func is_level_goal_complete(crate):
 	return (is_level_goal and goal_type == crate.crate_type)
