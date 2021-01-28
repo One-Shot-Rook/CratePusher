@@ -39,6 +39,7 @@ snap = false
 modulate = Color( 0.94, 0.5, 0.5, 1 )
 amount = 64
 lifetime = 2.0
+preprocess = 5.0
 speed_scale = 0.15
 explosiveness = 0.5
 randomness = 0.5

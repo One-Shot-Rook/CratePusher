@@ -25,21 +25,16 @@ func center_level():
 	current_level_node.position += - tile_map_rect.position - tile_map_rect.size/2
 	var scale_diff = screen_size/tile_map_rect.size
 	scale = Vector2.ONE * min(scale_diff.x,scale_diff.y)
-	
-	
 
 func _on_btnReset_pressed():
 	startLevel()
 
-
 func _on_btnMenu_pressed():
 	Transition.goto_levels_scene()
-
 
 func _on_btnNext_pressed():
 	LevelData.set_level_next()
 	startLevel()
-
 
 func _on_btnBack_pressed():
 	LevelData.set_level_prev()

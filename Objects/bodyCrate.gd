@@ -450,20 +450,24 @@ func _unhandled_key_input(event) -> void:
 	if ignore_input:
 		return
 	
+	# Erase released key
 	if not event.pressed and event.scancode in keys_pressed:
 		keys_pressed.erase(event.scancode)
 	
+	# Highlight if crate key is pressed
 	if event.scancode == CRATE_KEYS[crate_type]:
 		set_highlight(event.pressed)
 	
+	# If key is already pressed
 	if event.scancode in keys_pressed:
 		return
 	
+	# Append new pressed key
 	if event.pressed:
 		keys_pressed.append(event.scancode)
 	
+	# Interpret direction input
 	if CRATE_KEYS[crate_type] in keys_pressed:
-		
 		if KEY_UP in keys_pressed:
 			direction_pressed(Vector2.UP)
 		elif KEY_RIGHT in keys_pressed:

@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://Objects/bodyDoor.gd"
 }, {
 "base": "Node2D",
+"class": "Electric",
+"language": "GDScript",
+"path": "res://Objects/Electric.gd"
+}, {
+"base": "Node2D",
 "class": "GameObject",
 "language": "GDScript",
 "path": "res://Objects/GameObject.gd"
@@ -53,6 +58,7 @@ _global_script_class_icons={
 "ButtonFloor": "res://icons/ButtonFloor.svg",
 "Crate": "res://icons/Crate.svg",
 "Door": "res://icons/Door.svg",
+"Electric": "",
 "GameObject": "res://icons/GameObject.svg",
 "Goal": "res://icons/Goal.svg",
 "Hole": "res://icons/Hole.svg",

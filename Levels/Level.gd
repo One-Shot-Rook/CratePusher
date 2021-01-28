@@ -160,7 +160,7 @@ func get_tile_map_rect() -> Rect2:
 	
 	return Rect2(start_vector,size)
 
-func get_tilemap_positions(tile_id) -> Array:
+func get_tilemap_positions(tile_id) -> PoolVector2Array:
 	var tile_coord_array = get_used_cells_by_id(tile_id)
 	var tile_position_array = []
 	for tile_coord in tile_coord_array:

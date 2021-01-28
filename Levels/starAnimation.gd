@@ -1,6 +1,7 @@
 extends Node2D
 tool
 onready var sprite_array = [$sprStar0,$sprStar1,$sprStar2]
+onready var electric_array = [$elec0,$elec1,$elec2]
 
 onready var twnRotation:Tween = $twnRotation
 onready var twnFade:Tween = $twnFade
@@ -135,19 +136,35 @@ func start(given_stars_achieved = stars_achieved):
 	for ID in sprite_array.size():
 		
 		var sprStar = sprite_array[ID]
+		var elec:Electric = electric_array[ID]
 		var color_star = get_star_color(ID)
 		
 		var position_start = Vector2.ONE.rotated(ID*PI*2/3) * radius_initial
 		var position_final = Vector2.ONE.rotated(ID*PI*2/3) * radius_final
+		
+		if ID < stars_achieved:
+			elec.points = 14
+		else:
+			elec.points = 2
+		
 		tween_error = twnRotation.interpolate_property(sprStar,"rotation",
 				0,2*PI,rotation_time,
 				Tween.TRANS_QUAD,Tween.EASE_IN_OUT)
+		
 		tween_error = twnRadius.interpolate_property(sprStar,"position",
 				position_start,position_final,radius_time,
 				Tween.TRANS_LINEAR,Tween.EASE_IN)
+		tween_error = twnRadius.interpolate_property(elec,"ending_position",
+				position_start,position_final,radius_time,
+				Tween.TRANS_LINEAR,Tween.EASE_IN)
+		
 		tween_error = twnFade.interpolate_property(sprStar,"modulate",
 				Color(0,0,0,0),color_star,fade_time,
 				Tween.TRANS_LINEAR,Tween.EASE_IN)
+		tween_error = twnFade.interpolate_property(elec,"modulate",
+				Color(0,0,0,0),color_star,fade_time,
+				Tween.TRANS_LINEAR,Tween.EASE_IN)
+	
 	tween_error = twnCycle.interpolate_property(self,"rotation",
 			cycle_rotations*2*PI,0,cycle_time,
 			Tween.TRANS_LINEAR,Tween.EASE_OUT)
