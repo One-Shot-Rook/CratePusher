@@ -1,11 +1,15 @@
 extends Node
 
-var tweenError
+var _tween_error
+var _change_scene_error
 
-func transitionScene(scenePath:String,stopMusic:bool = false):
+enum MetaData{DEFAULT,MENU_NEW_WORLD,MENU_LEVELS}
+var meta_data:int = MetaData.DEFAULT
+
+func _fade_out(scenePath:String,stopMusic:bool = false):
 	if stopMusic:
 		Music.stopTrack()
-	tweenError = $twnChangeScene.connect("tween_all_completed",self,"changeScene",[scenePath],CONNECT_ONESHOT)
+	_tween_error = $twnChangeScene.connect("tween_all_completed",self,"_switch_scene",[scenePath],CONNECT_ONESHOT)
 	$twnChangeScene.interpolate_property(
 			$modFade,"color",
 			Color(1,1,1), Color(0,0,0),
@@ -13,14 +17,35 @@ func transitionScene(scenePath:String,stopMusic:bool = false):
 	)
 	$twnChangeScene.start()
 
-func changeScene(scenePath:String):
-	var _change_scene_error = get_tree().change_scene(scenePath)
-	revealScene()
+func _switch_scene(scenePath:String):
+	_change_scene_error = get_tree().change_scene(scenePath)
+	_fade_in()
 
-func revealScene():
+func _fade_in():
 	$twnChangeScene.interpolate_property(
 			$modFade,"color",
 			Color(0,0,0), Color(1,1,1),
 			0.3,Tween.TRANS_QUAD,Tween.EASE_IN
 	)
 	$twnChangeScene.start()
+
+
+
+func goto_main_scene():
+	meta_data = MetaData.DEFAULT
+	_fade_out("res://Levels/Main.tscn",true)
+
+func goto_menu_scene():
+	meta_data = MetaData.DEFAULT
+	_fade_out("res://MenuScene.tscn",true)
+
+func goto_levels_scene():
+	meta_data = MetaData.MENU_LEVELS
+	_fade_out("res://MenuScene.tscn",true)
+
+func unlock_new_world():
+	meta_data = MetaData.MENU_NEW_WORLD
+	_fade_out("res://MenuScene.tscn",true)
+
+
+

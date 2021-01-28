@@ -33,7 +33,7 @@ func _on_btnReset_pressed():
 
 
 func _on_btnMenu_pressed():
-	Transition.transitionScene("res://MenuScene.tscn",true)
+	Transition.goto_levels_scene()
 
 
 func _on_btnNext_pressed():

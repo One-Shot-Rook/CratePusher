@@ -71,7 +71,7 @@ func close_door(animate:bool):
 func can_close():
 	var crateArray = get_tree().get_nodes_in_group("crate")
 	for crate in crateArray:
-		if (crate.position-position).length() < tile_size/2:
+		if (crate.position-position).length() < 0.5 * tile_size:
 			return false
 	return true
 

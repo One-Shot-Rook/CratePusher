@@ -17,15 +17,20 @@ func levelPressed(levelName:String):
 		return
 	$btnBack.disabled = true
 	changing = true
-	Transition.transitionScene("res://Levels/Main.tscn",true)
 	LevelData.set_current_level(levelName)
+	Transition.goto_main_scene()
 
 
 
 func _on_btn_pressed(world_change:int):
-	get_parent().button_was_pressed()
-	if SaveData.set_current_world(SaveData.current_world + world_change):
-		twnPanel.interpolate_property(
+	Music.button_was_pressed()
+	move_to_world(world_change)
+
+func move_to_world(world_change:int):
+	var new_world = SaveData.current_world + world_change
+	if not SaveData.set_current_world(new_world):
+		return
+	twnPanel.interpolate_property(
 			$hboxWorlds, 
 			"rect_position", 
 			$hboxWorlds.rect_position, 
@@ -33,8 +38,8 @@ func _on_btn_pressed(world_change:int):
 			0.5, 
 			Tween.TRANS_CUBIC, 
 			Tween.EASE_IN_OUT
-		)
-		twnPanel.start()
-		get_parent().update_world_ui()
+	)
+	twnPanel.start()
+	get_parent().update_world_ui()
 	get_tree().call_group("level_select","updateUI")
 	SaveData.saveGame()

@@ -21,4 +21,4 @@ func _on_btnReplay_pressed():
 
 
 func _on_btnMenu_pressed():
-	Transition.transitionScene("res://MenuScene.tscn",true)
+	Transition.goto_levels_scene()

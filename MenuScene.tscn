@@ -192,10 +192,10 @@ __meta__ = {
 }
 
 [node name="worldLabel" type="Label" parent="panelLevels"]
-margin_left = 256.0
+anchor_right = 1.0
 margin_top = 48.0
-margin_right = 768.0
 margin_bottom = 176.0
+text = "World - X"
 align = 1
 valign = 1
 __meta__ = {

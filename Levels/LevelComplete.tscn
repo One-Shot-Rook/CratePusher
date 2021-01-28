@@ -12,13 +12,13 @@
 size = 128
 font_data = ExtResource( 3 )
 
-[sub_resource type="ShortCut" id=3]
+[sub_resource type="ShortCut" id=2]
 shortcut = ExtResource( 6 )
 
-[sub_resource type="ShortCut" id=4]
+[sub_resource type="ShortCut" id=3]
 shortcut = ExtResource( 5 )
 
-[sub_resource type="ShortCut" id=5]
+[sub_resource type="ShortCut" id=4]
 shortcut = ExtResource( 7 )
 
 [node name="LevelComplete" type="Control"]
@@ -57,7 +57,7 @@ margin_left = 50.0
 margin_right = -50.0
 focus_mode = 0
 enabled_focus_mode = 0
-shortcut = SubResource( 3 )
+shortcut = SubResource( 2 )
 text = "Continue"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -73,7 +73,7 @@ margin_right = -50.0
 margin_bottom = 250.0
 focus_mode = 0
 enabled_focus_mode = 0
-shortcut = SubResource( 4 )
+shortcut = SubResource( 3 )
 text = "Replay"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -89,7 +89,7 @@ margin_right = -50.0
 margin_bottom = 500.0
 focus_mode = 0
 enabled_focus_mode = 0
-shortcut = SubResource( 5 )
+shortcut = SubResource( 4 )
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false
