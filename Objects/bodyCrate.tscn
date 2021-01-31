@@ -103,11 +103,7 @@ shader_param/is_highlighted = false
 shader_param/threshold = 0.12
 shader_param/highlight_multiplier = 0.2
 
-[node name="crate(Wooden)" type="Node2D" groups=[
-"crate",
-"movable",
-"object",
-]]
+[node name="crate(Wooden)" type="Node2D"]
 position = Vector2( 48, 48 )
 z_index = 1
 script = ExtResource( 2 )
@@ -116,7 +112,7 @@ __meta__ = {
 }
 weight_id = 0
 speed_mode = 0
-is_playable = false
+is_movable = false
 move_distance_standard = 9999
 move_time = 0.12
 snap = false
@@ -152,6 +148,7 @@ color = Color( 0.282353, 0.282353, 0.282353, 0.682353 )
 
 [node name="sprites" type="Node2D" parent="."]
 material = SubResource( 2 )
+rotation = 1.5708
 
 [node name="sprLegL" type="Sprite" parent="sprites"]
 use_parent_material = true

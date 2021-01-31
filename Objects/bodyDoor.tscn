@@ -26,10 +26,7 @@ animations = [ {
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( 0, -32, 0, 32 )
 
-[node name="door(0)" type="Node2D" groups=[
-"door",
-"object",
-]]
+[node name="door(0)" type="Node2D"]
 position = Vector2( 48, 48 )
 script = ExtResource( 11 )
 __meta__ = {

@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Objects/Electric.gd"
 }, {
+"base": "TileMap",
+"class": "GameLevel",
+"language": "GDScript",
+"path": "res://Levels/Level.gd"
+}, {
 "base": "Node2D",
 "class": "GameObject",
 "language": "GDScript",
@@ -48,22 +53,17 @@ _global_script_classes=[ {
 "class": "LaunchPad",
 "language": "GDScript",
 "path": "res://Objects/bodyLaunchPad.gd"
-}, {
-"base": "TileMap",
-"class": "TileMapLevel",
-"language": "GDScript",
-"path": "res://Levels/Level.gd"
 } ]
 _global_script_class_icons={
 "ButtonFloor": "res://icons/ButtonFloor.svg",
 "Crate": "res://icons/Crate.svg",
 "Door": "res://icons/Door.svg",
 "Electric": "",
+"GameLevel": "",
 "GameObject": "res://icons/GameObject.svg",
 "Goal": "res://icons/Goal.svg",
 "Hole": "res://icons/Hole.svg",
-"LaunchPad": "res://icons/LaunchPad.svg",
-"TileMapLevel": ""
+"LaunchPad": "res://icons/LaunchPad.svg"
 }
 
 [application]
@@ -89,6 +89,19 @@ window/size/test_height=960
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[input]
+
+undo={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
+ ]
+}
+redo={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":89,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [input_devices]
 

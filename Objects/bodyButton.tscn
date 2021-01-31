@@ -17,10 +17,7 @@ radial_accel_random = 0.2
 scale = 9.0
 scale_random = 0.5
 
-[node name="button(0)" type="Node2D" groups=[
-"button",
-"object",
-]]
+[node name="button(0)" type="Node2D"]
 position = Vector2( 48, 48 )
 script = ExtResource( 3 )
 __meta__ = {

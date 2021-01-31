@@ -16,15 +16,15 @@ export(CrateType) var crate_type = CrateType.WOODEN setget set_crate_type, get_c
 
 var keys_pressed = []
 var CRATE_KEYS = [KEY_0,KEY_1,KEY_2,KEY_3]
-var ignore_input := false 
+var allow_input := true 
 var moves = []
 
 var weight_id:int = WeightMode.MEDIUM
 var speed_mode:int = SpeedMode.SLOW
 
-var is_playable := false # Can the user move the crate
+var is_movable := false # Can the user move the crate
 var is_interactable := true setget set_is_interactable # Can we currently give the crate user inputs
-var is_detectable := true # Can other objects get our position
+var invisible := false setget set_invisible
 
 var rng := RandomNumberGenerator.new()
 
@@ -44,6 +44,7 @@ var normal_pitch_scale := 1.0
 var COLLISION_RADIUS := 32
 
 var directions = {"U":Vector2.UP,"R":Vector2.RIGHT,"D":Vector2.DOWN,"L":Vector2.LEFT}
+var facing_direction = Vector2.RIGHT setget set_facing_direction
 
 func _get_property_list() -> Array:
 	return [
@@ -74,7 +75,7 @@ func _get_property_list() -> Array:
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
 		{
-			name = "is_playable",
+			name = "is_movable",
 			type = TYPE_BOOL,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
@@ -113,6 +114,19 @@ func set_crate_type(new_crate_type) -> void:
 	initialise_crate()
 	update_ui()
 
+func set_facing_direction(direction:Vector2) -> void:
+	facing_direction = direction
+	$sprites.rotation = -facing_direction.angle_to(Vector2(0,1)) + PI
+
+func set_invisible(new_value):
+	invisible = new_value
+	$sprite.visible = not invisible
+	$sprites.visible = not invisible
+	if invisible:
+		disable_move_ui()
+	else:
+		enable_move_ui()
+
 func get_crate_type() -> int: return crate_type
 
 func set_mouse_pressed(new_is_mouse_pressed):
@@ -123,9 +137,11 @@ func get_class() -> String: return "Crate"
 
 
 
+func _init():
+	save_variables = PoolStringArray(["position","is_detectable","allow_input","invisible","facing_direction"])
+
 func _ready() -> void:
 	initialise_crate()
-	react_to_currently_colliding()
 	update_ui()
 
 func initialise_crate() -> void:
@@ -136,7 +152,7 @@ func initialise_crate() -> void:
 			speed_mode = SpeedMode.SLOW
 			move_distance_standard = MOVE_DISTANCE_MAX
 			move_time = 0.12
-			is_playable = false
+			is_movable = false
 			normal_pitch_scale = 1.0
 		CrateType.RED:
 			name = "crate(Red)"
@@ -144,7 +160,7 @@ func initialise_crate() -> void:
 			speed_mode = SpeedMode.SLOW
 			move_distance_standard = MOVE_DISTANCE_MAX
 			move_time = 0.12
-			is_playable = true
+			is_movable = true
 			normal_pitch_scale = 2
 		CrateType.BLUE:
 			name = "crate(Blue)"
@@ -152,7 +168,7 @@ func initialise_crate() -> void:
 			speed_mode = SpeedMode.FAST
 			move_distance_standard = MOVE_DISTANCE_MAX
 			move_time = 0.08
-			is_playable = true
+			is_movable = true
 			normal_pitch_scale = 2.5
 		CrateType.PURPLE:
 			name = "crate(Purple)"
@@ -160,7 +176,7 @@ func initialise_crate() -> void:
 			speed_mode = SpeedMode.SLOW
 			move_time = 0.16
 			move_distance_standard = 2
-			is_playable = true
+			is_movable = true
 			normal_pitch_scale = 1.5
 
 func update_ui() -> void:
@@ -174,22 +190,23 @@ func update_ui() -> void:
 			$audioMove.pitch_scale = 1
 		CrateType.RED:
 			$sprite.visible = false
-			$sprite.texture = load("res://Assets/Sprites/svg_crate_red.svg")
+			$sprite.texture = Texture
 			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
 			$audioMove.volume_db = 10
 		CrateType.BLUE:
 			$sprite.visible = false
-			$sprite.texture = load("res://Assets/Sprites/svg_crate_blue.svg")
+			$sprite.texture = Texture
 			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
 			$audioMove.volume_db = 10
 		CrateType.PURPLE:
 			$sprite.visible = false
-			$sprite.texture = load("res://Assets/Sprites/svg_crate_red.svg")
+			$sprite.texture = Texture
 			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
 			$audioMove.volume_db = 10
 	$sprite.modulate =			Globals.get_crate_color(crate_type)
 	$sprites/sprHead.modulate =	Globals.get_crate_color(crate_type)
 	$Directions.modulate = 		Globals.get_crate_color(crate_type)
+	set_facing_direction(facing_direction)
 
 func set_highlight(should_highlight) -> void:
 	$sprite.material.set_shader_param("is_highlighted",should_highlight)
@@ -204,7 +221,7 @@ func start_moving(new_move_direction:Vector2,new_move_distance=move_distance_sta
 		return false
 	move_distance = new_move_distance
 	is_moving = true
-	face_sprite_in(move_direction)
+	set_facing_direction(move_direction)
 	emit_signal("crate_move_started")
 	start_move_sound()
 	_move()
@@ -272,12 +289,12 @@ func react_to_currently_colliding() -> void:
 		#print("currently on: ",object_currently_colliding.get_class())
 		match object_currently_colliding.get_class():
 			"Hole":
-				var hole:Hole = object_currently_colliding
+				var hole = object_currently_colliding
 				if hole.is_filled:
 					continue
 				if speed_mode == SpeedMode.FAST and not should_stop_moving:
 					continue
-				hole.fill_with($sprite.texture.resource_path)
+				hole.fill_with($sprite.texture)
 				should_stop_moving = true
 				disappear()
 			"Goal":
@@ -286,15 +303,14 @@ func react_to_currently_colliding() -> void:
 					should_stop_moving = true
 					disappear()
 			"LaunchPad":
-				var launch_pad:LaunchPad = object_currently_colliding
+				var launch_pad = object_currently_colliding
 				move_direction = launch_pad.get_direction_vector()
 				move_distance = move_distance_standard - 1
 				should_stop_moving = false
-				face_sprite_in(move_direction)
+				set_facing_direction(move_direction)
 
 func get_object_currently_colliding() -> Node:
-	var object_array = get_tree().get_nodes_in_group("object")
-	for object in object_array:
+	for object in Level.get_object_array():
 		if object == self:
 			continue
 		if object.position == position:
@@ -311,7 +327,7 @@ func react_to_move_direction() -> void:
 			"TileMap":
 				should_stop_moving = true
 			"Door":
-				var door:Door = object
+				var door = object
 				if not door.is_open:
 					should_stop_moving = true
 			"Crate":
@@ -324,9 +340,8 @@ func react_to_move_direction() -> void:
 
 func get_objects_in_direction(direction:Vector2=move_direction) -> Array:
 	var objects = []
-	var object_array = get_tree().get_nodes_in_group("object")
 	var scan_position = position + direction * Level.cell_size
-	for object in object_array:
+	for object in Level.get_object_array():
 		if object.position == scan_position:
 			objects.append(object)
 	if scan_position in Level.get_tile_positions(Level.TileID.TILE_WALL):
@@ -340,7 +355,7 @@ func is_direction_clear(direction:Vector2=move_direction) -> bool:
 			"TileMap":
 				return false
 			"Door":
-				var door:Door = object
+				var door = object
 				if not door.is_open:
 					return false
 			"Crate":
@@ -352,39 +367,30 @@ func is_direction_clear(direction:Vector2=move_direction) -> bool:
 
 
 func disappear() -> void:
-	ignore_input = true
+	allow_input = false
 	is_detectable = false
-	is_interactable = false
-	visible = false
-	if is_in_group("object"):
-		remove_from_group("object")
+	set_invisible(true)
 
 func reappear() -> void:
-	ignore_input = false
+	allow_input = true
 	is_detectable = true
-	is_interactable = true
-	visible = true
-	if not is_in_group("object"):
-		add_to_group("object")
+	set_invisible(false)
 
 func has_move_distance() -> bool:
 	return (move_distance > 0)
 
 func enable_move_ui() -> void:
-	if not is_playable or LevelData.level_complete:
+	if not is_movable or Level.is_level_complete or invisible:
 		return
+	is_interactable = true
 	for dir_char in directions:
 		var direction = directions[dir_char]
 		get_node("Directions/spr"+dir_char).visible = is_direction_clear(direction)
 	$Directions.visible = true
-	is_interactable = true
 
 func disable_move_ui() -> void:
 	$Directions.visible = false
 	is_interactable = false
-
-func face_sprite_in(direction:Vector2) -> void:
-	$sprites.rotation = -direction.angle_to(Vector2(0,1)) + PI
 
 
 
@@ -405,7 +411,7 @@ func stop_move_sound() -> void:
 
 func direction_pressed(new_move_direction:Vector2) -> void:
 	if not is_interactable:
-		if is_playable:
+		if is_movable:
 			moves.append(new_move_direction)
 		return
 	if start_moving(new_move_direction):
@@ -424,30 +430,33 @@ func get_nearest_direction(vector:Vector2) -> Vector2:
 
 func _on_mouse_input_event(_viewport, event, _shape_idx) -> void:
 	
-	if not is_playable or not is_interactable or ignore_input:
+	if not is_interactable or not allow_input:
 		return
 	
 	if event is InputEventMouseButton:
-		if get_local_mouse_position().length() > 48:
-			return
 		if event.button_index == BUTTON_LEFT:
-			set_mouse_pressed(event.pressed)
+			if event.pressed:
+				if get_local_mouse_position().length() <= 48:
+					set_mouse_pressed(true)
+			else:
+				set_mouse_pressed(false)
 
 func _on_mouse_exited() -> void:
 	
-	if not is_playable or not is_interactable or ignore_input:
+	if not is_interactable or not allow_input:
 		return
 	
-	if is_mouse_pressed:
+	if is_mouse_pressed and is_movable:
 		
-		set_mouse_pressed(false)
 		var local_mouse_position = get_local_mouse_position()
 		var nearest_direction = get_nearest_direction(local_mouse_position)
 		direction_pressed(nearest_direction)
+	
+	set_mouse_pressed(false)
 
 func _unhandled_key_input(event) -> void:
 	
-	if ignore_input:
+	if not allow_input:
 		return
 	
 	# Erase released key

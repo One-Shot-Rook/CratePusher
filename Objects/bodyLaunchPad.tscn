@@ -24,15 +24,14 @@ animations = [ {
 "speed": 60.0
 } ]
 
-[node name="bodyLaunchPad" type="Node2D" groups=[
-"hole",
-"object",
-]]
+[node name="bodyLaunchPad" type="Node2D"]
+position = Vector2( 48, 48 )
 script = ExtResource( 1 )
 primary_color = Color( 0.447059, 0.701961, 0.890196, 1 )
 secondary_color = Color( 0.309804, 0.533333, 0.917647, 1 )
 primary_color = Color( 0.447059, 0.701961, 0.890196, 1 )
 secondary_color = Color( 0.309804, 0.533333, 0.917647, 1 )
+snap = false
 
 [node name="sprBack" type="Sprite" parent="."]
 modulate = Color( 0.447059, 0.701961, 0.890196, 1 )
@@ -41,7 +40,7 @@ texture = ExtResource( 6 )
 [node name="aniMiddle" type="AnimatedSprite" parent="."]
 modulate = Color( 0.309804, 0.533333, 0.917647, 1 )
 frames = SubResource( 1 )
-frame = 7
+frame = 6
 playing = true
 
 [node name="sprFront" type="Sprite" parent="."]

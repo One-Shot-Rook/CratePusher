@@ -24,7 +24,7 @@ func set_level_prev():
 	var nextLvlName = int(current_level.split("-")[1])-1
 	#print(SaveData.current_world)
 	if nextLvlName < 1:
-		Transition.transitionScene("res://MenuScene.tscn",true)
+		Transition.goto_levels_scene()
 	if nextLvlName < 10:
 		nextLvlName = "0" + str(nextLvlName)
 	nextLvlName = str(SaveData.current_world) + "-" + str(nextLvlName)

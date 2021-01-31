@@ -4,7 +4,10 @@ extends GameObject
 
 export var is_bottomless:bool = false
 
-var is_filled = false
+var is_filled = false setget set_is_filled
+
+func _init():
+	save_variables = PoolStringArray(["is_filled"])
 
 func _get_property_list() -> Array:
 	return [
@@ -20,6 +23,10 @@ func _get_property_list() -> Array:
 		},
 	]
 
+func set_is_filled(new_value):
+	is_filled = new_value
+	$sprSunk.visible = is_filled
+
 func get_class() -> String: return "Hole"
 
 
@@ -30,10 +37,9 @@ func _ready():
 	else:
 		$sprite.texture = load("res://Assets/Sprites/svg_hole_fillable.svg")
 
-func fill_with(resource_path):
+func fill_with(texture):
 	if is_bottomless or is_filled:
 		return
-	is_filled = true
-	$sprSunk.texture = load(resource_path)
-	
+	$sprSunk.texture = texture
+	set_is_filled(true)
 

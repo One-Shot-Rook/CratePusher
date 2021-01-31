@@ -8,8 +8,11 @@ enum GoalType{WOODEN,RED,BLUE,PURPLE}
 
 export(GoalType) var goal_type = GoalType.RED setget set_goal_type, get_goal_type
 
-var is_complete = false
+var is_complete = false setget set_is_complete
 var GoalText = ["Wooden","Red","Blue","Purple"]
+
+func _init():
+	save_variables = PoolStringArray(["is_complete"])
 
 func _get_property_list() -> Array:
 	return [
@@ -29,6 +32,13 @@ func _get_property_list() -> Array:
 
 func get_class() -> String: return "Goal"
 
+func set_is_complete(new_value):
+	is_complete = new_value
+	if is_complete:
+		$partGoal.modulate = Color(0.2,0.2,0.2)
+	else:
+		$partGoal.modulate = Globals.get_crate_color(goal_type)
+
 func set_goal_type(new_goal_type) -> void:
 	goal_type = new_goal_type
 	initialise_goal()
@@ -47,8 +57,7 @@ func try_to_complete():
 	for crate in Level.objects.Crate:
 		if crate.position == position:
 			if is_correct_level_goal(crate):
-				is_complete = true
-				$partGoal.modulate = Color(0.2,0.2,0.2)
+				set_is_complete(true)
 				$audioClick.play()
 				emit_signal("level_goal_completed")
 

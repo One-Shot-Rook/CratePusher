@@ -4,7 +4,7 @@ extends GameObject
 
 export var signal_id:int setget set_signal_id, get_signal_id
 
-var is_open:bool = false
+var is_open:bool = false setget set_is_open
 
 func _get_property_list() -> Array:
 	return [
@@ -35,6 +35,12 @@ func set_signal_id(new_signal_id):
 
 func get_signal_id() -> int: return signal_id
 
+func set_is_open(new_value):
+	if new_value:
+		open_door(false)
+	else:
+		close_door(false)
+
 func get_class() -> String: return "Door"
 
 
@@ -56,6 +62,7 @@ func open_door(animate:bool):
 	if animate:
 		animate_open()
 	else:
+		$sprite.stop()
 		$sprite.frame = $sprite.frames.get_frame_count("default") - 1
 
 func close_door(animate:bool):
@@ -66,11 +73,12 @@ func close_door(animate:bool):
 	if animate:
 		animate_close()
 	else:
+		$sprite.stop()
 		$sprite.frame = 0
 
 func can_close():
-	var crateArray = get_tree().get_nodes_in_group("crate")
-	for crate in crateArray:
+	var crate_array = Level.get_objects_by_class("Crate")
+	for crate in crate_array:
 		if (crate.position-position).length() < 0.5 * tile_size:
 			return false
 	return true

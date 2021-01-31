@@ -7,7 +7,7 @@ signal button_released(animate)		# Signals doors
 
 export var signal_id:int setget set_signal_id, get_signal_id
 
-var is_pressed:bool = false
+var is_pressed:bool = false setget set_is_pressed
 
 func _get_property_list() -> Array:
 	return [
@@ -31,6 +31,12 @@ func set_signal_id(new_signal_id):
 	signal_id = new_signal_id
 	initialise_button()
 
+func set_is_pressed(new_value):
+	if new_value:
+		activate_button(false)
+	else:
+		deactivate_button(false)
+
 func get_signal_id() -> int: return signal_id
 
 
@@ -41,14 +47,14 @@ func initialise_button():
 	name = "button" + "("+str(signal_id)+")"
 
 func update_on_or_off(animate = true):
-	for crate in Level.objects.Crate:
+	for crate in Level.get_objects_by_class("Crate"):
 		if position == crate.position:
 			activate_button(animate)
 			return
 	deactivate_button(animate)
 
 func update_off(animate = true):
-	for crate in Level.objects.Crate:
+	for crate in Level.get_objects_by_class("Crate"):
 		if position == crate.position:
 			return
 	deactivate_button(animate)
