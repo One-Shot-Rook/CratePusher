@@ -179,7 +179,12 @@ func connect_main_signals():
 	errors = 0
 	if not get_parent():
 		return
-	errors += connect("all_level_goals_completed",get_parent().get_node("../LevelUI"),"complete_level",[],CONNECT_ONESHOT)
+	var LevelUI = get_parent().get_node("../LevelUI")
+	errors += connect("all_level_goals_completed",LevelUI,"complete_level",[],CONNECT_ONESHOT)
+	var btnUndo:Button = LevelUI.get_node("topBar/HBoxContainer/btnUndo")
+	var btnRedo:Button = LevelUI.get_node("topBar/HBoxContainer/btnRedo")
+	errors += btnUndo.connect("pressed",self,"undo_timeline",[])
+	errors += btnRedo.connect("pressed",self,"redo_timeline",[])
 	print("  signal connection errors (main): ",errors)
 
 # reset move_count

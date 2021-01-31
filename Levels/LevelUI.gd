@@ -3,7 +3,7 @@ extends Control
 var LevelComplete_load = load("res://Levels/LevelComplete.tscn")
 
 func update_level_name():
-	$topBar/labLevelName.text = LevelData.current_level
+	$bottomBar/labLevelName.text = LevelData.current_level
 
 func update_move_count(move_count):
 	$bottomBar/labMoveCount.text = str(move_count)

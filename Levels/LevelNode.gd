@@ -22,6 +22,7 @@ func center_level():
 	
 	var tile_map_rect:Rect2 = current_level_node.get_tile_map_rect()
 	var screen_size = get_viewport_rect().size
+	screen_size.y -= 250
 	current_level_node.position += - tile_map_rect.position - tile_map_rect.size/2
 	var scale_diff = screen_size/tile_map_rect.size
 	scale = Vector2.ONE * min(scale_diff.x,scale_diff.y)

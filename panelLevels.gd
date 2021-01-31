@@ -11,6 +11,12 @@ func _ready():
 func updateUI():
 	$worldLabel.text = "World - " + str(SaveData.get_current_world())
 	$hboxWorlds.rect_position = Vector2(210, 240) + Vector2((SaveData.current_world-1)*-1080,0)
+	$btnLeft.visible = true
+	$btnRight.visible = true
+	if SaveData.current_world == 1:
+		$btnLeft.visible = false
+	elif SaveData.current_world == SaveData.maxWorlds:
+		$btnRight.visible = false
 
 func levelPressed(levelName:String):
 	if changing:
@@ -25,6 +31,7 @@ func levelPressed(levelName:String):
 func _on_btn_pressed(world_change:int):
 	Music.button_was_pressed()
 	move_to_world(world_change)
+	updateUI()
 
 func move_to_world(world_change:int):
 	var new_world = SaveData.current_world + world_change
