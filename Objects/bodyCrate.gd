@@ -185,22 +185,26 @@ func update_ui() -> void:
 		CrateType.WOODEN:
 			$sprite.visible = true
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_wooden.svg")
+			$sprites.visible = false
 			$audioMove.stream = load("res://Assets/Sounds/snd_crate.wav")
 			$audioMove.volume_db = -5
 			$audioMove.pitch_scale = 1
 		CrateType.RED:
 			$sprite.visible = false
 			$sprite.texture = Texture
+			$sprites.visible = true
 			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
 			$audioMove.volume_db = 10
 		CrateType.BLUE:
 			$sprite.visible = false
 			$sprite.texture = Texture
+			$sprites.visible = true
 			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
 			$audioMove.volume_db = 10
 		CrateType.PURPLE:
 			$sprite.visible = false
 			$sprite.texture = Texture
+			$sprites.visible = true
 			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
 			$audioMove.volume_db = 10
 	$sprite.modulate =			Globals.get_crate_color(crate_type)

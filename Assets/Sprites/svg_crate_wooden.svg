@@ -48,19 +48,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.859375"
-     inkscape:cx="156.91217"
-     inkscape:cy="31.932588"
+     inkscape:zoom="5.4579805"
+     inkscape:cx="52.002554"
+     inkscape:cy="47.855471"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="true"
      inkscape:pagecheckerboard="true"
      units="px"
-     inkscape:window-width="2560"
-     inkscape:window-height="1377"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:window-width="1368"
+     inkscape:window-height="850"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
@@ -90,8 +90,8 @@
        height="25.4"
        x="-8.5058593e-07"
        y="0"
-       rx="1.3229166"
-       ry="1.3229166" />
+       rx="3.175"
+       ry="3.175" />
     <rect
        style="fill:url(#radialGradient4665);fill-opacity:1;stroke-width:0.372071"
        id="rect4397"
@@ -99,8 +99,8 @@
        height="23.8125"
        x="0.79374999"
        y="0.79374999"
-       rx="0.79374999"
-       ry="0.79374999" />
+       rx="3.175"
+       ry="3.175" />
     <rect
        style="fill:#808080;stroke-width:0.256182"
        id="rect4429"
@@ -192,18 +192,18 @@
        ry="0.79374999"
        rx="0.79374999" />
     <rect
-       style="fill:#000000;stroke-width:0.264583"
+       style="fill:#000000;stroke-width:0.251005"
        id="rect5275"
        width="0.79374999"
-       height="21.166666"
+       height="19.049999"
        x="0"
-       y="2.1166666" />
+       y="3.175" />
     <rect
-       style="fill:#000000;stroke-width:0.264583"
+       style="fill:#000000;stroke-width:0.251005"
        id="rect5277"
        width="0.79374999"
-       height="21.166666"
+       height="19.049999"
        x="24.606251"
-       y="2.1166666" />
+       y="3.1749997" />
   </g>
 </svg>

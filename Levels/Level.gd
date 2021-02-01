@@ -1,5 +1,5 @@
 class_name GameLevel
-#tool
+tool
 extends TileMap
 
 signal level_initialised
@@ -12,8 +12,10 @@ enum TileID{
 	TILE_WALL = 9,
 	}
 
-export var tile_set_floor_color:Color setget set_tile_set_floor_color
+export var tile_set_floor_color:Color = Color("595959") setget set_tile_set_floor_color
 export var star_requirements = {"flawless":0,"3 star":0,"2 star":0,"1 star":0}
+
+var dir = [Vector2.UP,Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT,Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)]
 
 var level_name:String
 var timeline = []
@@ -28,7 +30,7 @@ var errors
 
 func set_tile_set_floor_color(new_color):
 	tile_set_floor_color = new_color
-	tile_set.tile_set_modulate(TileID.TILE_WALL,tile_set_floor_color)
+	tile_set.tile_set_modulate(TileID.TILE_FLOOR,tile_set_floor_color)
 
 func _ready():
 	print()
@@ -43,6 +45,7 @@ func _ready():
 	connect_main_signals()
 	emit_signal("level_initialised")
 	save_level_state()
+	get_border_positions()
 
 func undo_timeline():
 	if timeline_index == 0:
@@ -214,10 +217,10 @@ func update_current_stars():
 	get_tree().call_group("UI","update_stars",stars)
 
 func get_tile_map_rect() -> Rect2:
-	var tile_vector_array = get_used_cells()
+	var tile_vector_array = get_used_cells_by_id(TileID.TILE_FLOOR)
 	var x = {"left":tile_vector_array[0].x,	"right":tile_vector_array[0].x}
 	var y = {"top":tile_vector_array[0].y,	"bottom":tile_vector_array[0].y}
-	for tile_vector in get_used_cells():
+	for tile_vector in tile_vector_array:
 		# x checks
 		if tile_vector.x < x.left:
 			x.left = tile_vector.x
@@ -235,6 +238,26 @@ func get_tile_map_rect() -> Rect2:
 	var size = end_vector - start_vector
 	
 	return Rect2(start_vector,size)
+
+func get_border_positions():
+	if Engine.editor_hint:
+		return
+	var border_positions = PoolVector2Array()
+	var wall_tile_positions = get_used_cells_by_id(TileID.TILE_WALL)
+	var floor_tile_positions = get_used_cells_by_id(TileID.TILE_FLOOR)
+	for tile_position in wall_tile_positions:
+		for dir_vector in dir:
+			if not tile_position + dir_vector in wall_tile_positions + floor_tile_positions:
+				border_positions.append((tile_position+Vector2.ONE/2) * cell_size)
+				var col = ColorRect.new()
+				col.rect_position = (tile_position+Vector2.ONE/2) * cell_size
+				col.margin_left = col.rect_position.x - cell_size.x/2 - 8
+				col.margin_right = col.rect_position.x + cell_size.x + 16
+				col.margin_top = col.rect_position.y - cell_size.y/2 - 8
+				col.margin_bottom = col.rect_position.y + cell_size.y + 16
+				col.color = Color("323232")
+				add_child(col)
+				break
 
 func get_tilemap_positions(tile_id) -> PoolVector2Array:
 	var tile_coord_array = get_used_cells_by_id(tile_id)
