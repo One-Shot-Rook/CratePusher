@@ -13,7 +13,7 @@
    width="1152"
    height="384"
    viewBox="0 0 1152 384"
-   sodipodi:docname="final.svg"
+   sodipodi:docname="svg_walls_final.svg"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <metadata
      id="metadata16">
@@ -3600,21 +3600,36 @@
      id="namedview12"
      showgrid="true"
      inkscape:zoom="1.3948786"
-     inkscape:cx="468.37014"
-     inkscape:cy="314.48456"
+     inkscape:cx="793.45074"
+     inkscape:cy="210.80589"
      inkscape:window-x="5752"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      inkscape:snap-bbox="true"
      inkscape:bbox-nodes="true"
      inkscape:snap-others="false"
-     inkscape:snap-nodes="false" />
+     inkscape:snap-nodes="false"
+     inkscape:document-rotation="0" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="floor"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#333333;fill-rule:evenodd;stroke-width:22.2219"
+       id="rect5767"
+       width="1152"
+       height="384"
+       x="0"
+       y="2.6645353e-15" />
+  </g>
   <g
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="tilemap"
-     sodipodi:insensitive="true">
+     sodipodi:insensitive="true"
+     style="display:inline">
     <rect
        style="fill:#333333;fill-rule:evenodd;stroke-width:0.999999"
        id="rect1554"
