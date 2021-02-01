@@ -8,8 +8,8 @@ signal all_level_goals_completed(move_count,stars)
 
 enum TileID{
 	TILE_VOID = 3,
-	TILE_WALL = 6,
 	TILE_FLOOR = 7,
+	TILE_WALL = 9,
 	}
 
 export var tile_set_floor_color:Color setget set_tile_set_floor_color
@@ -33,7 +33,7 @@ func set_tile_set_floor_color(new_color):
 func _ready():
 	print()
 	print(" [LEVEL] ",level_name)
-	tile_set.tile_set_modulate(TileID.TILE_WALL,Color(1,1,1,0))
+	#tile_set.tile_set_modulate(TileID.TILE_WALL,Color(1,1,1,0))
 	get_tree().call_group("UI","update_level_name")
 	initialise_move_count()
 	detect_tile_positions()
