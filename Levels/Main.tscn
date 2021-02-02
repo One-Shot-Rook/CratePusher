@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Levels/LevelNode.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=2]
@@ -16,19 +16,26 @@
 [ext_resource path="res://Objects/Electric.gd" type="Script" id=14]
 [ext_resource path="res://Levels/star.gd" type="Script" id=15]
 [ext_resource path="res://Assets/Resources/curve_basic.tres" type="Curve" id=16]
+[ext_resource path="res://Assets/Shaders/shader_fog.shader" type="Shader" id=17]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 17 )
+shader_param/color = Color( 0.207843, 0.207843, 0.207843, 1 )
+shader_param/detail = 3
+shader_param/zoom_out = 40
+
+[sub_resource type="DynamicFont" id=2]
 size = 200
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 100
 font_data = ExtResource( 9 )
 
-[sub_resource type="ShortCut" id=3]
+[sub_resource type="ShortCut" id=4]
 shortcut = ExtResource( 3 )
 
-[sub_resource type="ShortCut" id=4]
+[sub_resource type="ShortCut" id=5]
 shortcut = ExtResource( 10 )
 
 [node name="Main" type="Control"]
@@ -68,11 +75,20 @@ margin_left = -800.0
 margin_top = -1400.0
 margin_right = 800.0
 margin_bottom = 1400.0
+mouse_filter = 2
 color = Color( 0.196078, 0.196078, 0.196078, 1 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="Fog" type="Sprite" parent="LevelNode"]
+material = SubResource( 1 )
+position = Vector2( 0, -6.72714 )
+scale = Vector2( 22, 22 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 7 )
 
 [node name="sndNarrator" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
@@ -94,7 +110,7 @@ __meta__ = {
 }
 
 [node name="Z_IndexAdjuster" type="Node2D" parent="LevelUI"]
-z_index = 1
+z_index = 2
 
 [node name="levelComplete" type="Control" parent="LevelUI/Z_IndexAdjuster"]
 margin_right = 1080.0
@@ -120,7 +136,7 @@ margin_left = 30.0
 margin_top = -256.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.368627, 0.368627, 0.368627, 1 )
 text = "0"
 valign = 2
@@ -130,6 +146,7 @@ __meta__ = {
 
 [node name="Stars" type="Node2D" parent="LevelUI/bottomBar"]
 position = Vector2( 984, -96 )
+z_index = 1
 __meta__ = {
 "_edit_group_": true
 }
@@ -183,7 +200,7 @@ anchor_bottom = 1.0
 margin_top = -150.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.368627, 0.368627, 0.368627, 1 )
 text = "1-1"
 align = 1
@@ -229,7 +246,7 @@ margin_bottom = 161.0
 focus_mode = 0
 custom_styles/normal = ExtResource( 12 )
 enabled_focus_mode = 0
-shortcut = SubResource( 3 )
+shortcut = SubResource( 4 )
 text = "Undo"
 
 [node name="btnRedo" type="Button" parent="LevelUI/topBar/HBoxContainer"]
@@ -239,7 +256,7 @@ margin_bottom = 161.0
 focus_mode = 0
 custom_styles/normal = ExtResource( 11 )
 enabled_focus_mode = 0
-shortcut = SubResource( 3 )
+shortcut = SubResource( 4 )
 text = "Redo"
 
 [node name="btnReset" type="Button" parent="LevelUI/topBar/HBoxContainer"]
@@ -249,7 +266,7 @@ margin_bottom = 161.0
 focus_mode = 0
 custom_styles/normal = ExtResource( 12 )
 enabled_focus_mode = 0
-shortcut = SubResource( 3 )
+shortcut = SubResource( 4 )
 text = "Reset"
 
 [node name="btnMenu" type="Button" parent="LevelUI/topBar/HBoxContainer"]
@@ -259,7 +276,7 @@ margin_bottom = 161.0
 focus_mode = 0
 custom_styles/normal = ExtResource( 11 )
 enabled_focus_mode = 0
-shortcut = SubResource( 4 )
+shortcut = SubResource( 5 )
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false

@@ -25,6 +25,7 @@ anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 world_colors = [ Color( 0, 0.811765, 1, 1 ), Color( 0, 0.968627, 0.105882, 1 ) ]
@@ -39,6 +40,7 @@ margin_bottom = 3840.0
 texture = ExtResource( 15 )
 expand = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -64,6 +66,7 @@ use_parent_material = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -190,6 +193,7 @@ margin_top = -1920.0
 margin_right = 1080.0
 script = ExtResource( 12 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -295,6 +299,7 @@ margin_left = -1080.0
 margin_bottom = 1920.0
 script = ExtResource( 9 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -307,6 +312,7 @@ margin_right = -50.0
 margin_bottom = -200.0
 columns = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -396,6 +402,7 @@ margin_top = -150.0
 margin_bottom = -15.0
 alignment = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -441,6 +448,10 @@ use_parent_material = true
 margin_left = 1080.0
 margin_right = 2160.0
 margin_bottom = 1920.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 
 [node name="btnBack" type="Button" parent="panelCredits"]
 margin_left = 16.0
@@ -463,6 +474,10 @@ use_parent_material = true
 margin_top = 1920.0
 margin_right = 1080.0
 margin_bottom = 3840.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 
 [node name="btnBack" type="Button" parent="panelShop"]
 margin_left = 476.0
@@ -493,7 +508,7 @@ __meta__ = {
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderMusic" to="panelSettings" method="_on_sliderMusic_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderSFX" to="panelSettings" method="_on_sliderSFX_value_changed"]
 [connection signal="pressed" from="panelSettings/hbox/btnReset" to="." method="_on_btnReset_pressed"]
-[connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelShop/btnBack" to="." method="_on_btnBack_pressed"]
