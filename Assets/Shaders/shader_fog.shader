@@ -6,7 +6,7 @@ uniform int zoom_out = 20;
 const float speed = 0.6;
 
 float rand(vec2 coord){
-	return fract(sin(dot(coord, vec2(56, 345)) * 9000.0) * 800.0);
+	return fract(sin(dot(coord, vec2(56, 35)) * 98.4) * 84.5);
 }
 
 float noise(vec2 coord){
@@ -38,7 +38,7 @@ float fbm(vec2 coord){
 
 void fragment() {
 	vec2 coord = UV * float(zoom_out);
-	vec2 motion = vec2( fbm(coord + speed * vec2(TIME * -0.5, TIME * 0.5)) );
+	vec2 motion = vec2( fbm(coord + vec2(TIME * -0.5, TIME * 0.5)) );
 	float final = fbm(coord + motion);
 	COLOR = vec4(color.rgb, final * 0.5);
 }
