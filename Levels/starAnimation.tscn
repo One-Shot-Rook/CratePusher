@@ -23,6 +23,7 @@ script = ExtResource( 3 )
 ending_position = Vector2( 225, 225 )
 points = 14
 width = 0.258
+fps = 24
 curve = ExtResource( 4 )
 
 [node name="sprStar0" type="Sprite" parent="."]
@@ -36,6 +37,7 @@ script = ExtResource( 3 )
 ending_position = Vector2( -307.356, 82.356 )
 points = 14
 width = 0.258
+fps = 24
 curve = ExtResource( 4 )
 
 [node name="sprStar1" type="Sprite" parent="."]
@@ -49,6 +51,7 @@ script = ExtResource( 3 )
 ending_position = Vector2( 82.356, -307.356 )
 points = 14
 width = 0.258
+fps = 24
 curve = ExtResource( 4 )
 
 [node name="sprStar2" type="Sprite" parent="."]

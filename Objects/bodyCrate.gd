@@ -192,21 +192,21 @@ func update_ui() -> void:
 		CrateType.RED:
 			$sprite.visible = false
 			$sprite.texture = Texture
-			$sprites/sprHead.texture = load("res://Assets/Sprites/Player/svg_" + Globals.get_crate_head_shape(crate_type) + "_head.svg") 
+			$sprites/sprHead.texture = load("res://Assets/Sprites/Player/svg_square_head.svg")
 			$sprites.visible = true
 			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
 			$audioMove.volume_db = 10
 		CrateType.BLUE:
 			$sprite.visible = false
 			$sprite.texture = Texture
-			$sprites/sprHead.texture = load("res://Assets/Sprites/Player/svg_" + Globals.get_crate_head_shape(crate_type) + "_head.svg")
+			$sprites/sprHead.texture = load("res://Assets/Sprites/Player/svg_triangle_head.svg")
 			$sprites.visible = true
 			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
 			$audioMove.volume_db = 10
 		CrateType.PURPLE:
 			$sprite.visible = false
 			$sprite.texture = Texture
-			$sprites/sprHead.texture = load("res://Assets/Sprites/Player/svg_" + Globals.get_crate_head_shape(crate_type) + "_head.svg")
+			$sprites/sprHead.texture = load("res://Assets/Sprites/Player/svg_pentagon_head.svg")
 			$sprites.visible = true
 			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
 			$audioMove.volume_db = 10
