@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://MenuScene.gd" type="Script" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://Assets/Sprites/img_black_bg.png" type="Texture" id=15]
 [ext_resource path="res://Assets/UI/btn_menu_normal_right.tres" type="StyleBox" id=16]
 [ext_resource path="res://Assets/UI/btn_menu_normal_left.tres" type="StyleBox" id=17]
+[ext_resource path="res://Assets/UI/btn_menu_pressed_left.tres" type="StyleBox" id=18]
+[ext_resource path="res://Assets/UI/btn_menu_pressed_right.tres" type="StyleBox" id=19]
 
 [node name="MenuScene" type="Control"]
 material = ExtResource( 14 )
@@ -215,7 +217,7 @@ margin_right = 1038.0
 margin_bottom = 1320.0
 rect_min_size = Vector2( 128, 128 )
 custom_styles/hover = ExtResource( 16 )
-custom_styles/pressed = ExtResource( 16 )
+custom_styles/pressed = ExtResource( 19 )
 custom_styles/focus = ExtResource( 16 )
 custom_styles/normal = ExtResource( 16 )
 __meta__ = {
@@ -229,7 +231,7 @@ margin_right = 170.0
 margin_bottom = 1320.0
 rect_min_size = Vector2( 128, 128 )
 custom_styles/hover = ExtResource( 17 )
-custom_styles/pressed = ExtResource( 17 )
+custom_styles/pressed = ExtResource( 18 )
 custom_styles/focus = ExtResource( 17 )
 custom_styles/normal = ExtResource( 17 )
 __meta__ = {
@@ -508,7 +510,7 @@ __meta__ = {
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderMusic" to="panelSettings" method="_on_sliderMusic_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderSFX" to="panelSettings" method="_on_sliderSFX_value_changed"]
 [connection signal="pressed" from="panelSettings/hbox/btnReset" to="." method="_on_btnReset_pressed"]
-[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelShop/btnBack" to="." method="_on_btnBack_pressed"]

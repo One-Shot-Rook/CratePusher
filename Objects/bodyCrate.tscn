@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Sprites/svg_direction.svg" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/svg_button_center.svg" type="Texture" id=4]
 [ext_resource path="res://Assets/Sounds/snd_crate.wav" type="AudioStream" id=5]
-[ext_resource path="res://Assets/Sprites/player/svg_head.svg" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/player/svg_triangle_head.svg" type="Texture" id=6]
 [ext_resource path="res://Assets/Shaders/shader_highlight.shader" type="Shader" id=7]
 [ext_resource path="res://Assets/Sprites/player/svg_arm.svg" type="Texture" id=8]
 [ext_resource path="res://Assets/Sprites/player/svg_foot.svg" type="Texture" id=9]
@@ -147,6 +147,7 @@ scale_amount_random = 0.2
 color = Color( 0.282353, 0.282353, 0.282353, 0.682353 )
 
 [node name="sprites" type="Node2D" parent="."]
+visible = false
 material = SubResource( 2 )
 rotation = 1.5708
 scale = Vector2( 0.8, 0.8 )
@@ -189,7 +190,6 @@ method_call_mode = 1
 anims/Running = SubResource( 3 )
 
 [node name="sprite" type="Sprite" parent="."]
-visible = false
 modulate = Color( 0.87, 0.72, 0.53, 1 )
 material = SubResource( 4 )
 scale = Vector2( 0.8, 0.8 )

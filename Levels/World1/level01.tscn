@@ -35,3 +35,5 @@ is_movable = true
 
 [node name="goal(Red)" parent="." instance=ExtResource( 1 )]
 position = Vector2( 624, 1200 )
+goal_type = 1
+goal_type = 1

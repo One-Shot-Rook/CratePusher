@@ -3,7 +3,7 @@ extends Sprite
 const DEV = 3
 
 var rng = RandomNumberGenerator.new()
-var dev = 3
+var dev = 1.0
 var col = Color("fcffd6")
 
 export var star_id:int
