@@ -180,7 +180,7 @@ func connect_object_signals():
 
 func connect_main_signals():
 	errors = 0
-	if not get_parent():
+	if get_parent().get_class() == "Viewport":
 		return
 	var LevelUI = get_parent().get_node("../LevelUI")
 	errors += connect("all_level_goals_completed",LevelUI,"complete_level",[],CONNECT_ONESHOT)
