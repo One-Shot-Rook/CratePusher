@@ -13,7 +13,7 @@ enum TileID{
 	}
 
 export var tile_set_floor_color:Color = Color("595959") setget set_tile_set_floor_color
-export var star_requirements = {"flawless":0,"3 star":0,"2 star":0,"1 star":0}
+export var star_requirements = {"flawless":16,"3 star":19,"2 star":22,"1 star":25}
 
 var dir = [Vector2.UP,Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT,Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)]
 
