@@ -143,6 +143,7 @@ func _init():
 func _ready() -> void:
 	initialise_crate()
 	update_ui()
+	GameInput.connect("direction_inputted",self,"direction_pressed")
 
 func initialise_crate() -> void:
 	match crate_type:
@@ -417,9 +418,10 @@ func stop_move_sound() -> void:
 
 
 func direction_pressed(new_move_direction:Vector2) -> void:
+	if not is_movable:
+		return
 	if not is_interactable:
-		if is_movable:
-			moves.append(new_move_direction)
+		moves.append(new_move_direction)
 		return
 	if start_moving(new_move_direction):
 		emit_signal("crate_move_inputted")

@@ -250,6 +250,7 @@ func get_border_positions():
 			if not tile_position + dir_vector in wall_tile_positions + floor_tile_positions:
 				border_positions.append((tile_position+Vector2.ONE/2) * cell_size)
 				var col = ColorRect.new()
+				col.mouse_filter = Control.MOUSE_FILTER_IGNORE
 				col.rect_position = (tile_position+Vector2.ONE/2) * cell_size
 				col.margin_left = col.rect_position.x - cell_size.x/2 - 8
 				col.margin_right = col.rect_position.x + cell_size.x + 16
