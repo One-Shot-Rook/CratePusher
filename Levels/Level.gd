@@ -8,7 +8,7 @@ signal all_level_goals_completed(move_count,stars)
 
 enum TileID{
 	TILE_VOID = 3,
-	TILE_FLOOR = 7,
+	TILE_FLOOR = 14,
 	TILE_WALL = 9,
 	}
 
