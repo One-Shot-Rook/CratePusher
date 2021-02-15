@@ -43,8 +43,6 @@ position = Vector2( 528, 1488 )
 [node name="door(0)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 336, 1008 )
 rotation = 1.5708
-signal_id = 0
-signal_id = 0
 
 [node name="door(1)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 912, 1200 )
@@ -63,3 +61,17 @@ signal_id = 1
 position = Vector2( 240, 432 )
 goal_type = 2
 goal_type = 2
+
+[node name="TileMap_foreground" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 96
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 262145, 13, 0 )
+__meta__ = {
+"_editor_description_": ""
+}

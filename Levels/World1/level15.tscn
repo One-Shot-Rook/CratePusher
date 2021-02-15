@@ -89,3 +89,17 @@ position = Vector2( 816, 816 )
 
 [node name="goal(Red)2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 816, 816 )
+
+[node name="TileMap_foreground" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 96
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 196615, 10, 0 )
+__meta__ = {
+"_editor_description_": ""
+}

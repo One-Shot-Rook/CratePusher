@@ -100,6 +100,8 @@ func check_level_goals_completed():
 func detect_objects():
 	objects = { "Crate":[], "ButtonFloor":[], "Door":[], "Goal":[], "LaunchPad":[] }
 	for object in get_children():
+		if object.name.begins_with("TileMap"):
+			continue
 		if not objects.has(object.get_class()):
 			objects[object.get_class()] = []
 		objects[object.get_class()].append(object)

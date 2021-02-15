@@ -57,3 +57,17 @@ move_time = 0.08
 position = Vector2( 624, 1200 )
 goal_type = 2
 goal_type = 2
+
+[node name="TileMap_foreground" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 96
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 786439, 11, 0 )
+__meta__ = {
+"_editor_description_": ""
+}

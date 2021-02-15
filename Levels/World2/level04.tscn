@@ -39,3 +39,17 @@ direction = 3
 
 [node name="goal(Red)2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 624, 1200 )
+
+[node name="TileMap_foreground" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 96
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 851974, 12, 0 )
+__meta__ = {
+"_editor_description_": ""
+}

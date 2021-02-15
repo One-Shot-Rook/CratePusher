@@ -64,15 +64,27 @@ signal_id = 1
 
 [node name="goal(Red)" parent="." instance=ExtResource( 5 )]
 position = Vector2( 432, 144 )
-snap = false
 
 [node name="goal(Purple)" parent="." instance=ExtResource( 5 )]
 position = Vector2( -48, 528 )
 goal_type = 3
 goal_type = 3
-snap = false
 
 [node name="door(1)" parent="." instance=ExtResource( 6 )]
 position = Vector2( 48, 528 )
 signal_id = 1
 signal_id = 1
+
+[node name="TileMap_foreground" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 96
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 4, 10, 0, 393214, 13, 0 )
+__meta__ = {
+"_editor_description_": ""
+}

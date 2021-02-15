@@ -36,3 +36,16 @@ move_time = 0.16
 position = Vector2( 528, 816 )
 goal_type = 3
 goal_type = 3
+
+[node name="TileMap_foreground" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 96
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+__meta__ = {
+"_editor_description_": ""
+}
