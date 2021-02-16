@@ -2,8 +2,8 @@ class_name ButtonFloor, "res://icons/ButtonFloor.svg"
 tool
 extends GameObject
 
-signal button_pressed(animate)		# Signals doors
-signal button_released(animate)		# Signals doors
+signal button_pressed(animate)	# Signals doors
+signal button_released(animate)				# Signals doors
 
 export var signal_id:int setget set_signal_id, get_signal_id
 
@@ -33,9 +33,9 @@ func set_signal_id(new_signal_id):
 
 func set_is_pressed(new_value):
 	if new_value:
-		activate_button(false)
+		activate_button()
 	else:
-		deactivate_button(false)
+		deactivate_button()
 
 func get_signal_id() -> int: return signal_id
 
@@ -46,29 +46,30 @@ func initialise_button():
 	$audioClick.stream = load("res://Assets/Sounds/snd_button.wav")
 	name = "button" + "("+str(signal_id)+")"
 
-func update_on_or_off(animate = true):
+func update_on_or_off():
 	for crate in Level.get_objects_by_class("Crate"):
 		if position == crate.position:
-			activate_button(animate)
+			activate_button()
 			return
-	deactivate_button(animate)
+	deactivate_button()
 
-func update_off(animate = true):
+func update_off():
 	for crate in Level.get_objects_by_class("Crate"):
 		if position == crate.position:
 			return
-	deactivate_button(animate)
+	deactivate_button()
 
-func activate_button(animate = true):
+func activate_button():
 	if not is_pressed: # If the button wasn't pressed
 		if animate:
 			$audioClick.play()
+		emit_signal("button_pressed")
 	is_pressed = true
-	emit_signal("button_pressed",animate)
 
-func deactivate_button(animate = true):
+func deactivate_button():
+	if is_pressed:
+		emit_signal("button_released")
 	is_pressed = false
-	emit_signal("button_released",animate)
 
 
 

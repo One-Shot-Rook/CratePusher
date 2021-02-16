@@ -58,6 +58,11 @@ _global_script_classes=[ {
 "class": "LaunchPad",
 "language": "GDScript",
 "path": "res://Objects/bodyLaunchPad.gd"
+}, {
+"base": "Node",
+"class": "SignalBus",
+"language": "GDScript",
+"path": "res://Objects/bodySignalBus.gd"
 } ]
 _global_script_class_icons={
 "ButtonFloor": "res://icons/ButtonFloor.svg",
@@ -69,7 +74,8 @@ _global_script_class_icons={
 "Goal": "res://icons/Goal.svg",
 "Hole": "res://icons/Hole.svg",
 "Laser": "",
-"LaunchPad": "res://icons/LaunchPad.svg"
+"LaunchPad": "res://icons/LaunchPad.svg",
+"SignalBus": ""
 }
 
 [application]

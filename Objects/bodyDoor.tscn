@@ -32,7 +32,6 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_group_": true
 }
-door_mode = null
 snap = false
 
 [node name="sprite" type="AnimatedSprite" parent="."]

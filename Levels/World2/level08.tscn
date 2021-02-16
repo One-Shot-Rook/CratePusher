@@ -49,6 +49,7 @@ signal_id = 1
 [node name="door(0)" parent="." instance=ExtResource( 3 )]
 position = Vector2( 720, 48 )
 rotation = 1.5708
+open_mode = 1
 
 [node name="door(0)2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 912 )

@@ -2,7 +2,10 @@ class_name Door, "res://icons/Door.svg"
 tool
 extends GameObject
 
+enum OpenMode{OR,AND}
+
 export var signal_id:int setget set_signal_id, get_signal_id
+export(OpenMode) var open_mode:int = OpenMode.OR
 
 var is_open:bool = false setget set_is_open
 
@@ -20,13 +23,6 @@ func _get_property_list() -> Array:
 			hint_string = "0,6",
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
-		{
-			name = "door_mode",
-			type = TYPE_INT,
-			hint = PROPERTY_HINT_ENUM,
-			hint_string = "Single,All",
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
-		},
 	]
 
 func set_signal_id(new_signal_id):
@@ -37,9 +33,9 @@ func get_signal_id() -> int: return signal_id
 
 func set_is_open(new_value):
 	if new_value:
-		open_door(false)
+		open_door()
 	else:
-		close_door(false)
+		close_door()
 
 func get_class() -> String: return "Door"
 
@@ -54,7 +50,7 @@ func initialise_door():
 
 
 
-func open_door(animate:bool):
+func open_door():
 	if is_open:
 		return
 	is_open = true
@@ -65,7 +61,7 @@ func open_door(animate:bool):
 		$sprite.stop()
 		$sprite.frame = $sprite.frames.get_frame_count("default") - 1
 
-func close_door(animate:bool):
+func close_door():
 	if not is_open or not can_close():
 		return
 	is_open = false
