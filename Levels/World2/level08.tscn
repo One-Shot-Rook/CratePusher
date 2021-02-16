@@ -53,9 +53,6 @@ rotation = 1.5708
 [node name="door(0)2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 912 )
 
-[node name="button(0)2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 144, 1104 )
-
 [node name="button(0)3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 144, 144 )
 
