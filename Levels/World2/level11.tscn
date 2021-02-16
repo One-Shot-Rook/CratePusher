@@ -57,7 +57,7 @@ rotation = 1.5708
 signal_id = 1
 signal_id = 1
 
-[node name="door(0)2" parent="." instance=ExtResource( 4 )]
+[node name="door(0)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 816, 240 )
 rotation = 1.5708
 

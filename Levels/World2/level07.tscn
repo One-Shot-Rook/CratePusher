@@ -50,6 +50,7 @@ position = Vector2( 912, 1200 )
 
 [node name="door(0)" parent="." instance=ExtResource( 5 )]
 position = Vector2( -48, 816 )
+open_mode = 1
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 816, 816 )
