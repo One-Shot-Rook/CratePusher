@@ -15,7 +15,7 @@ func update_move_count(move_count):
 	$bottomBar/labMoveCount.text = str(move_count)
 
 func update_stars(stars):
-	print(stars)
+	#print(stars)
 	for star_node in star_nodes:
 		star_node.update_ui(stars)
 

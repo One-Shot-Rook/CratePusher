@@ -2,6 +2,7 @@ class_name GameLevel
 tool
 extends TileMap
 
+signal initial_react
 signal level_initialised
 signal all_crate_moves_finished
 signal all_level_goals_completed(move_count,stars)
@@ -23,6 +24,7 @@ var timeline_index = -1
 var tiles := {}
 var objects := {}
 
+var signal_buses = {}
 var is_level_complete := false
 var move_count:int
 var stars:int = 4
@@ -33,16 +35,17 @@ func set_tile_set_floor_color(new_color):
 	tile_set.tile_set_modulate(TileID.TILE_FLOOR,tile_set_floor_color)
 
 func _ready():
-	print()
-	print(" [LEVEL] ",level_name)
+	#print()
+	#print(" [LEVEL] ",level_name)
 	#tile_set.tile_set_modulate(TileID.TILE_WALL,Color(1,1,1,0))
 	get_tree().call_group("UI","update_level_name")
 	initialise_move_count()
 	detect_tile_positions()
 	detect_objects()
-	print("  objects = ",objects)
+	#print("  objects = ",objects)
 	connect_object_signals()
 	connect_main_signals()
+	emit_signal("initial_react")
 	emit_signal("level_initialised")
 	save_level_state()
 	get_border_positions()
@@ -66,7 +69,7 @@ func save_level_state(): # Adds the current state to the timeline
 	timeline = timeline.slice(0,timeline_index) # Destroy future
 	timeline.append(current_level_state)
 	timeline_index += 1
-	print("  ",timeline_index,":",current_level_state)
+	#print("  ",timeline_index,":",current_level_state)
 
 func load_level_state(new_timeline_index):
 	if is_level_complete:
@@ -78,7 +81,7 @@ func load_level_state(new_timeline_index):
 	set_move_count(timeline_index)
 	emit_signal("level_initialised")
 	#emit_signal("all_crate_moves_finished")
-	print("  ",timeline_index,":",new_level_state)
+	#print("  ",timeline_index,":",new_level_state)
 
 func check_crate_moves_finished():
 	for crate in objects.Crate:
@@ -104,9 +107,13 @@ func detect_objects():
 			continue
 		if not objects.has(object.get_class()):
 			objects[object.get_class()] = []
+		if "Button" in object.get_class():
+			if not object.signal_id in signal_buses:
+				create_signal_bus(object.signal_id)
 		objects[object.get_class()].append(object)
 		object.snap_to_tile()
 		object.Level = self
+	#print(signal_buses)
 
 func get_objects_by_class(object_class:String):
 	var object_array = []
@@ -151,7 +158,7 @@ func connect_object_signals():
 	errors = 0
 	# Crate signals
 	for crate_from in objects.Crate:
-		errors += connect("level_initialised",crate_from,"react_to_currently_colliding")
+		errors += connect("initial_react",crate_from,"react_to_currently_colliding")
 		errors += connect("level_initialised",crate_from,"set_is_interactable",[true])
 		# Letting other crates know when we've started moving
 		for crate_to in objects.Crate:
@@ -169,16 +176,27 @@ func connect_object_signals():
 		errors += connect("all_crate_moves_finished",crate_from,"set_is_interactable",[true])
 	# Button signals
 	for button_floor in objects.ButtonFloor:
-		errors += connect("level_initialised",button_floor,"update_on_or_off",[false])
-		for door in objects.Door:
-			if button_floor.signal_id == door.signal_id:
-				button_floor.connect("button_pressed",door,"open_door")
-				button_floor.connect("button_released",door,"close_door")
+		errors += connect("level_initialised",button_floor,"set_animate",[true])
+		errors += connect("initial_react",button_floor,"update_on_or_off")
+		var signal_bus = signal_buses[button_floor.signal_id]
+		signal_bus.input_signals += 1
+		button_floor.connect("button_pressed",signal_bus,"set_received_signals",[+1])
+		button_floor.connect("button_released",signal_bus,"set_received_signals",[-1])
+	# Door signals
+	for door in objects.Door:
+		errors += connect("level_initialised",door,"set_animate",[true])
+		var signal_bus = signal_buses[door.signal_id]
+		match door.open_mode:
+			Door.OpenMode.OR:
+				signal_bus.connect("OR_update",door,"set_is_open")
+			Door.OpenMode.AND:
+				signal_bus.connect("AND_update",door,"set_is_open")
+		
 	# Goal signals
 	for goal in objects.Goal:
-		errors += connect("level_initialised",goal,"try_to_complete")
+		errors += connect("initial_react",goal,"try_to_complete")
 		goal.connect("level_goal_completed",self,"check_level_goals_completed")
-	print("  signal connection errors (objects): ",errors)
+	#print("  signal connection errors (objects): ",errors)
 
 func connect_main_signals():
 	errors = 0
@@ -190,7 +208,13 @@ func connect_main_signals():
 	var btnRedo:Button = LevelUI.get_node("topBar/HBoxContainer/btnRedo")
 	errors += btnUndo.connect("pressed",self,"undo_timeline",[])
 	errors += btnRedo.connect("pressed",self,"redo_timeline",[])
-	print("  signal connection errors (main): ",errors)
+	#print("  signal connection errors (main): ",errors)
+
+func create_signal_bus(signal_id):
+	var signal_bus = SignalBus.new()
+	signal_bus.signal_id = signal_id
+	add_child(signal_bus)
+	signal_buses[signal_id] = signal_bus
 
 # reset move_count
 func initialise_move_count():

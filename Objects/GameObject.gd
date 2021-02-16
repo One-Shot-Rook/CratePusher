@@ -5,6 +5,7 @@ var Level = null
 var save_variables:PoolStringArray
 var tile_size := 96
 var snap = false setget editor_snap
+var animate = false setget set_animate
 
 var is_detectable := true # Can other objects get our position
 
@@ -21,6 +22,9 @@ func _get_property_list():
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
 	]
+
+func set_animate(new_value):
+	animate = new_value
 
 func editor_snap(_value):
 	snap_to_tile()

@@ -31,7 +31,7 @@ func updateUI():
 		$star3.modulate = Color(0.3,0.3,0.3)
 	else:
 		for each in get_children():
-			print(each.name)
+			#print(each.name)
 			if int(each.name.trim_prefix("star")) > stars:
 				each.modulate = Color(0.3,0.3,0.3)
 			else:
