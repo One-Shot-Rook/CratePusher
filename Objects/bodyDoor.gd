@@ -20,13 +20,6 @@ func _get_property_list() -> Array:
 			hint_string = "0,6",
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
-		{
-			name = "door_mode",
-			type = TYPE_INT,
-			hint = PROPERTY_HINT_ENUM,
-			hint_string = "Single,All",
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
-		},
 	]
 
 func set_signal_id(new_signal_id):
