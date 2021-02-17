@@ -15,7 +15,6 @@ enum WeightMode{LIGHT,MEDIUM,HEAVY}
 export(CrateType) var crate_type = CrateType.WOODEN setget set_crate_type, get_crate_type
 
 var keys_pressed = []
-var CRATE_KEYS = [KEY_0,KEY_1,KEY_2,KEY_3]
 var allow_input := true 
 var moves = []
 
@@ -434,64 +433,4 @@ func get_nearest_direction(vector:Vector2) -> Vector2:
 		if direction_distance < nearest_distance:
 			nearest_direction = vector_direction
 	return nearest_direction
-
-
-
-func _on_mouse_input_event(_viewport, event, _shape_idx) -> void:
-	
-	if not is_interactable or not allow_input:
-		return
-	
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.pressed:
-				if get_local_mouse_position().length() <= 48:
-					set_mouse_pressed(true)
-			else:
-				set_mouse_pressed(false)
-
-func _on_mouse_exited() -> void:
-	
-	if not is_interactable or not allow_input:
-		return
-	
-	if is_mouse_pressed and is_movable:
-		
-		var local_mouse_position = get_local_mouse_position()
-		var nearest_direction = get_nearest_direction(local_mouse_position)
-		direction_pressed(nearest_direction)
-	
-	set_mouse_pressed(false)
-
-func _unhandled_key_input(event) -> void:
-	
-	if not allow_input:
-		return
-	
-	# Erase released key
-	if not event.pressed and event.scancode in keys_pressed:
-		keys_pressed.erase(event.scancode)
-	
-	# Highlight if crate key is pressed
-	if event.scancode == CRATE_KEYS[crate_type]:
-		set_highlight(event.pressed)
-	
-	# If key is already pressed
-	if event.scancode in keys_pressed:
-		return
-	
-	# Append new pressed key
-	if event.pressed:
-		keys_pressed.append(event.scancode)
-	
-	# Interpret direction input
-	if CRATE_KEYS[crate_type] in keys_pressed:
-		if KEY_UP in keys_pressed:
-			direction_pressed(Vector2.UP)
-		elif KEY_RIGHT in keys_pressed:
-			direction_pressed(Vector2.RIGHT)
-		elif KEY_DOWN in keys_pressed:
-			direction_pressed(Vector2.DOWN)
-		elif KEY_LEFT in keys_pressed:
-			direction_pressed(Vector2.LEFT)
 
