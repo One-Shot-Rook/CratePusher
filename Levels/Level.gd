@@ -49,6 +49,10 @@ func _ready():
 	emit_signal("level_initialised")
 	save_level_state()
 	get_border_positions()
+	GameInput.enable_input_ui(objects.Crate)
+
+func _exit_tree():
+	GameInput.disable_input_ui()
 
 func undo_timeline():
 	if timeline_index == 0:
