@@ -85,7 +85,7 @@ cell_tile_origin = 1
 centered_textures = true
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 4, 10, 0, 393214, 13, 0 )
+tile_data = PoolIntArray( 4, 15, 0, 393214, 13, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
