@@ -30,7 +30,7 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-world_colors = [ Color( 0, 0.811765, 1, 1 ), Color( 0, 0.968627, 0.105882, 1 ) ]
+world_colors = [ Color( 0, 0.811765, 1, 1 ), Color( 0, 0.968627, 0.105882, 1 ), Color( 0.764706, 0.054902, 0.937255, 1 ) ]
 path_particles = NodePath("background/partRain")
 
 [node name="background" type="TextureRect" parent="."]
@@ -102,7 +102,7 @@ rect_min_size = Vector2( 300, 300 )
 
 [node name="btnPlay" type="Button" parent="panelMenu/gridButtons"]
 margin_left = 304.0
-margin_right = 604.0
+margin_right = 618.0
 margin_bottom = 300.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
@@ -113,8 +113,8 @@ enabled_focus_mode = 0
 text = "Play"
 
 [node name="MarginContainer2" type="MarginContainer" parent="panelMenu/gridButtons"]
-margin_left = 608.0
-margin_right = 908.0
+margin_left = 622.0
+margin_right = 922.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 300, 300 )
 
@@ -133,7 +133,7 @@ text = "Settings"
 [node name="MarginContainer3" type="ColorRect" parent="panelMenu/gridButtons"]
 margin_left = 304.0
 margin_top = 304.0
-margin_right = 604.0
+margin_right = 618.0
 margin_bottom = 604.0
 rect_min_size = Vector2( 300, 300 )
 color = Color( 1, 1, 1, 0 )
@@ -156,9 +156,9 @@ __meta__ = {
 }
 
 [node name="btnCredits" type="Button" parent="panelMenu/gridButtons"]
-margin_left = 608.0
+margin_left = 622.0
 margin_top = 304.0
-margin_right = 908.0
+margin_right = 922.0
 margin_bottom = 604.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
@@ -174,24 +174,23 @@ margin_right = 300.0
 margin_bottom = 908.0
 rect_min_size = Vector2( 300, 300 )
 
-[node name="btnShop" type="Button" parent="panelMenu/gridButtons"]
+[node name="btnEditor" type="Button" parent="panelMenu/gridButtons"]
 margin_left = 304.0
 margin_top = 608.0
-margin_right = 604.0
+margin_right = 618.0
 margin_bottom = 908.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 5 )
-disabled = true
 enabled_focus_mode = 0
-text = "Shop"
+text = "Level Editor"
 
 [node name="MarginContainer5" type="MarginContainer" parent="panelMenu/gridButtons"]
-margin_left = 608.0
+margin_left = 622.0
 margin_top = 608.0
-margin_right = 908.0
+margin_right = 922.0
 margin_bottom = 908.0
 rect_min_size = Vector2( 300, 300 )
 
@@ -252,7 +251,7 @@ margin_left = 210.0
 margin_top = 240.0
 margin_right = 1950.0
 margin_bottom = 1320.0
-rect_min_size = Vector2( 1740, 1080 )
+rect_min_size = Vector2( 2820, 1080 )
 mouse_filter = 2
 custom_constants/separation = 420
 __meta__ = {
@@ -274,6 +273,19 @@ __meta__ = {
 [node name="gridLevel2" type="GridContainer" parent="panelLevels/hboxWorlds"]
 margin_left = 1080.0
 margin_right = 1740.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 660, 1080 )
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+columns = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gridLevel3" type="GridContainer" parent="panelLevels/hboxWorlds"]
+margin_left = 2160.0
+margin_right = 2820.0
 margin_bottom = 1080.0
 rect_min_size = Vector2( 660, 1080 )
 custom_constants/vseparation = 20
@@ -489,6 +501,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="customLevelsLabel" type="Label" parent="panelShop"]
+anchor_right = 1.0
+margin_top = 144.0
+margin_bottom = 272.0
+text = "Custom Levels"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="btnBack" type="Button" parent="panelShop"]
 margin_left = 476.0
 margin_top = 16.0
@@ -509,7 +532,7 @@ __meta__ = {
 [connection signal="pressed" from="panelMenu/gridButtons/btnSettings" to="." method="_on_btnSettings_pressed"]
 [connection signal="pressed" from="panelMenu/gridButtons/MarginContainer3/btnNote" to="." method="_on_btnNote_pressed"]
 [connection signal="pressed" from="panelMenu/gridButtons/btnCredits" to="." method="_on_btnCredits_pressed"]
-[connection signal="pressed" from="panelMenu/gridButtons/btnShop" to="." method="_on_btnShop_pressed"]
+[connection signal="pressed" from="panelMenu/gridButtons/btnEditor" to="." method="_on_btnShop_pressed"]
 [connection signal="pressed" from="panelLevels/btnRight" to="panelLevels" method="_on_btn_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="panelLevels/btnLeft" to="panelLevels" method="_on_btn_pressed" binds= [ -1 ]]
 [connection signal="pressed" from="panelLevels/btnBack" to="." method="_on_btnBack_pressed"]
