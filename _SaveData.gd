@@ -42,6 +42,7 @@ func _ready():
 	loadGame()
 
 func initialiseData():
+	levelProgress = {}
 	var dir_world = Directory.new()
 	dir_world.open("res://Levels")
 	dir_world.list_dir_begin(true,true)
