@@ -269,7 +269,7 @@ func _move(_object=null, _key=":position") -> void:
 	# Move to next tile
 	move_to_position = position + move_direction * Level.cell_size
 	$twnMove.interpolate_property(self, "position",
-			null, move_to_position, move_time,
+			null, move_to_position, move_time * int(not testing_mode),
 			Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$twnMove.start()
 
