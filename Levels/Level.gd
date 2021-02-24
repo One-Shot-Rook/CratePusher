@@ -16,6 +16,8 @@ enum TileID{
 export var tile_set_floor_color:Color = Color("595959") setget set_tile_set_floor_color
 export var star_requirements = {"flawless":16,"3 star":19,"2 star":22,"1 star":25}
 
+var testing_mode:bool = false
+
 var dir = [Vector2.UP,Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT,Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)]
 
 var level_name:String
@@ -84,7 +86,6 @@ func load_level_state(new_timeline_index):
 		object.set_save_data(new_level_state[object])
 	set_move_count(timeline_index)
 	emit_signal("level_initialised")
-	#emit_signal("all_crate_moves_finished")
 	#print("  ",timeline_index,":",new_level_state)
 
 func check_crate_moves_finished():
@@ -116,6 +117,7 @@ func detect_objects():
 				create_signal_bus(object.signal_id)
 		objects[object.get_class()].append(object)
 		object.snap_to_tile()
+		object.testing_mode = testing_mode
 		object.Level = self
 	#print(signal_buses)
 
