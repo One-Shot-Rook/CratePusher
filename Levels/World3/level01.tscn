@@ -34,7 +34,7 @@ cell_tile_origin = 1
 centered_textures = true
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 196610, 13, 0, 327691, 14, 0, 393227, 14, 65536, 458763, 14, 131072, 655366, 14, 196608 )
+tile_data = PoolIntArray( 196610, 13, 0 )
 __meta__ = {
 "_editor_description_": ""
 }
