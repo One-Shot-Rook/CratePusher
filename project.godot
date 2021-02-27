@@ -126,13 +126,14 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=1
 threads/thread_model=2
+quality/filters/msaa=5
 quality/filters/anisotropic_filter_level=8
 quality/subsurface_scattering/quality=2
 quality/subsurface_scattering/follow_surface=true
-quality/filters/msaa=5
 
 [world]
 

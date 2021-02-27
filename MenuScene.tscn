@@ -501,17 +501,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="customLevelsLabel" type="Label" parent="panelShop"]
-anchor_right = 1.0
-margin_top = 144.0
-margin_bottom = 272.0
-text = "Custom Levels"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="btnBack" type="Button" parent="panelShop"]
 margin_left = 476.0
 margin_top = 16.0
@@ -541,7 +530,7 @@ __meta__ = {
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderMusic" to="panelSettings" method="_on_sliderMusic_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderSFX" to="panelSettings" method="_on_sliderSFX_value_changed"]
 [connection signal="pressed" from="panelSettings/hbox/btnReset" to="." method="_on_btnReset_pressed"]
-[connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelShop/btnBack" to="." method="_on_btnBack_pressed"]

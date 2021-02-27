@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/bodyDoor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=5]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=6]
+
+[node name="TileMap" type="TileMap"]
+z_index = 1
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 32
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -65534, 9, 8, -65533, 9, 10, -65532, 9, 10, -65531, 9, 10, -65530, 9, 11, 65535, 9, 8, 0, 9, 10, 1, 9, 10, 2, 9, 65541, 3, 9, 131078, 4, 9, 196617, 5, 9, 131077, 6, 9, 65542, 7, 9, 10, 8, 9, 10, 9, 9, 11, 131071, 9, 65544, 65536, 9, 131078, 65537, 9, 196617, 65538, 9, 196617, 65539, 9, 196619, 65540, 14, 0, 65541, 9, 196616, 65542, 9, 196617, 65543, 9, 196617, 65544, 9, 131077, 65545, 9, 65542, 65546, 9, 11, 196607, 9, 65544, 131072, 9, 131083, 131073, 14, 8, 131074, 14, 10, 131075, 14, 10, 131076, 14, 9, 131077, 14, 10, 131078, 14, 10, 131079, 14, 11, 131080, 9, 196616, 131081, 9, 131077, 131082, 9, 131083, 262141, 9, 8, 262142, 9, 10, 262143, 9, 65541, 196608, 9, 131083, 196609, 14, 65544, 196610, 14, 131081, 196611, 14, 131081, 196612, 14, 131078, 196613, 14, 196617, 196614, 14, 131077, 196615, 14, 65542, 196616, 14, 11, 196617, 9, 65544, 196618, 9, 131083, 327677, 9, 65544, 327678, 9, 131078, 327679, 9, 196617, 262144, 9, 196619, 262145, 14, 65544, 262146, 14, 131078, 262147, 14, 196617, 262148, 14, 131079, 262149, 9, 196608, 262150, 14, 65544, 262151, 14, 131081, 262152, 14, 131083, 262153, 9, 65544, 262154, 9, 131083, 393213, 9, 65544, 393214, 9, 131083, 393215, 14, 196609, 327680, 14, 196610, 327681, 14, 131080, 327682, 14, 131083, 327683, 9, 196608, 327684, 14, 65540, 327685, 14, 10, 327686, 14, 65541, 327687, 14, 131081, 327688, 14, 131083, 327689, 9, 65544, 327690, 9, 131083, 458749, 9, 65544, 458750, 9, 65542, 458751, 9, 10, 393216, 9, 11, 393217, 14, 65544, 393218, 14, 65542, 393219, 14, 10, 393220, 14, 65545, 393221, 14, 196617, 393222, 14, 131077, 393223, 14, 131081, 393224, 14, 131083, 393225, 9, 65544, 393226, 9, 131083, 524285, 9, 196616, 524286, 9, 196617, 524287, 9, 131077, 458752, 9, 131083, 458753, 14, 196616, 458754, 14, 196617, 458755, 14, 196617, 458756, 14, 196619, 458757, 9, 0, 458758, 14, 65544, 458759, 14, 131078, 458760, 14, 196619, 458761, 9, 65544, 458762, 9, 131083, 589823, 9, 65544, 524288, 9, 65542, 524289, 9, 10, 524290, 9, 10, 524291, 9, 10, 524292, 9, 10, 524293, 9, 65543, 524294, 14, 196616, 524295, 14, 196619, 524296, 9, 8, 524297, 9, 65541, 524298, 9, 131083, 655359, 9, 196616, 589824, 9, 196617, 589825, 9, 196617, 589826, 9, 196617, 589827, 9, 196617, 589828, 9, 131077, 589829, 9, 65542, 589830, 9, 10, 589831, 9, 10, 589832, 9, 65541, 589833, 9, 131078, 589834, 9, 196619, 655364, 9, 196616, 655365, 9, 196617, 655366, 9, 196617, 655367, 9, 196617, 655368, 9, 196617, 655369, 9, 196619 )
+script = ExtResource( 6 )
+star_requirements = {
+"1 star": 30,
+"2 star": 27,
+"3 star": 25,
+"flawless": 24
+}
+
+[node name="crate(Purple)" parent="." instance=ExtResource( 3 )]
+position = Vector2( 432, 528 )
+crate_type = 3
+crate_type = 3
+weight_id = 2
+is_movable = true
+move_distance_standard = 2
+move_time = 0.16
+
+[node name="crate(Red)" parent="." instance=ExtResource( 3 )]
+position = Vector2( 432, 432 )
+crate_type = 1
+crate_type = 1
+weight_id = 1
+is_movable = true
+
+[node name="crate(Wooden)2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 624, 624 )
+
+[node name="crate(Wooden)" parent="." instance=ExtResource( 3 )]
+position = Vector2( 336, 432 )
+
+[node name="button(1)" parent="." instance=ExtResource( 4 )]
+position = Vector2( 624, 432 )
+signal_id = 1
+signal_id = 1
+
+[node name="button(1)2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 432, 336 )
+signal_id = 1
+signal_id = 1
+
+[node name="button(1)3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 432, 624 )
+signal_id = 1
+signal_id = 1
+
+[node name="goal(Red)" parent="." instance=ExtResource( 1 )]
+position = Vector2( 432, 144 )
+
+[node name="goal(Purple)" parent="." instance=ExtResource( 1 )]
+position = Vector2( -48, 528 )
+goal_type = 3
+goal_type = 3
+
+[node name="door(1)" parent="." instance=ExtResource( 2 )]
+position = Vector2( 48, 528 )
+signal_id = 1
+open_mode = 1
+signal_id = 1
+
+[node name="TileMap_foreground" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 96
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 4, 15, 0, 393214, 13, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
