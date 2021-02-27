@@ -89,6 +89,9 @@ position = Vector2( 336, 816 )
 [node name="crate(Wooden)4" parent="." instance=ExtResource( 5 )]
 position = Vector2( 528, 816 )
 
+[node name="crate(Wooden)9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 528, 624 )
+
 [node name="crate(Wooden)5" parent="." instance=ExtResource( 5 )]
 position = Vector2( 720, 816 )
 
