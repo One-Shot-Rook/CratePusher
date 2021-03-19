@@ -43,7 +43,6 @@ var normal_pitch_scale := 1.0
 var COLLISION_RADIUS := 32
 
 var directions = {"U":Vector2.UP,"R":Vector2.RIGHT,"D":Vector2.DOWN,"L":Vector2.LEFT}
-var facing_direction = Vector2.RIGHT setget set_facing_direction
 
 func _get_property_list() -> Array:
 	return [
@@ -113,14 +112,9 @@ func set_crate_type(new_crate_type) -> void:
 	initialise_crate()
 	update_ui()
 
-func set_facing_direction(direction:Vector2) -> void:
-	facing_direction = direction
-	$sprites.rotation = -facing_direction.angle_to(Vector2(0,1)) + PI
-
 func set_invisible(new_value):
 	invisible = new_value
 	$sprite.visible = not invisible
-	$sprites.visible = not invisible
 	if invisible:
 		disable_move_ui()
 	else:
@@ -161,7 +155,7 @@ func initialise_crate() -> void:
 			move_distance_standard = MOVE_DISTANCE_MAX
 			move_time = 0.12
 			is_movable = true
-			normal_pitch_scale = 2
+			normal_pitch_scale = 1.0
 		CrateType.BLUE:
 			name = "crate(Blue)"
 			weight_id = WeightMode.LIGHT
@@ -169,7 +163,7 @@ func initialise_crate() -> void:
 			move_distance_standard = MOVE_DISTANCE_MAX
 			move_time = 0.08
 			is_movable = true
-			normal_pitch_scale = 2.5
+			normal_pitch_scale = 1.5
 		CrateType.PURPLE:
 			name = "crate(Purple)"
 			weight_id = WeightMode.HEAVY
@@ -177,58 +171,41 @@ func initialise_crate() -> void:
 			move_time = 0.16
 			move_distance_standard = 2
 			is_movable = true
-			normal_pitch_scale = 1.5
+			normal_pitch_scale = 0.8
 
 func update_ui() -> void:
-	$trailParticles.emitting = false
+	
+	$audioMove.stream = load("res://Assets/Sounds/snd_crate.wav")
 	match crate_type:
 		CrateType.WOODEN:
-			$sprite.visible = true
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_wooden.svg")
-			$sprites.visible = false
-			$audioMove.stream = load("res://Assets/Sounds/snd_crate.wav")
 			$audioMove.volume_db = -5
-			$audioMove.pitch_scale = 1
 		CrateType.RED:
-			$sprite.visible = false
-			$sprite.texture = Texture
-			$sprites/sprHead.texture = load("res://Assets/Sprites/Player/svg_square_head.svg")
-			$sprites.visible = true
-			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
+			$sprite.texture = load("res://Assets/Sprites/svg_crate_red.svg")
 			$audioMove.volume_db = 10
 		CrateType.BLUE:
-			$sprite.visible = false
-			$sprite.texture = Texture
-			$sprites/sprHead.texture = load("res://Assets/Sprites/Player/svg_triangle_head.svg")
-			$sprites.visible = true
-			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
+			$sprite.texture = load("res://Assets/Sprites/svg_crate_blue.svg")
 			$audioMove.volume_db = 10
 		CrateType.PURPLE:
-			$sprite.visible = false
-			$sprite.texture = Texture
-			$sprites/sprHead.texture = load("res://Assets/Sprites/Player/svg_pentagon_head.svg")
-			$sprites.visible = true
-			$audioMove.stream = load("res://Assets/Sounds/snd_running.wav")
+			$sprite.texture = load("res://Assets/Sprites/svg_crate_red.svg")
 			$audioMove.volume_db = 10
 	$sprite.modulate =			Globals.get_crate_color(crate_type)
-	$sprites/sprHead.modulate =	Globals.get_crate_color(crate_type)
+	$Particles.modulate = 		Globals.get_crate_color(crate_type)
 	$Directions.modulate = 		Globals.get_crate_color(crate_type)
-	set_facing_direction(facing_direction)
+
+
 
 func set_highlight(should_highlight) -> void:
 	$sprite.material.set_shader_param("is_highlighted",should_highlight)
-	$sprites.material.set_shader_param("is_highlighted",should_highlight)
-
-
 
 func start_moving(new_move_direction:Vector2,new_move_distance=move_distance_standard) -> bool:
 	# Can the crate move in that direction at all
 	move_direction = new_move_direction
 	if not is_direction_clear(move_direction):
 		return false
+	$Particles.emitting = true
 	move_distance = new_move_distance
 	is_moving = true
-	set_facing_direction(move_direction)
 	emit_signal("crate_move_started")
 	start_move_sound()
 	_move()
@@ -236,8 +213,6 @@ func start_moving(new_move_direction:Vector2,new_move_distance=move_distance_sta
 
 func _move(_object=null, _key=":position") -> void:
 	
-	$trailParticles.emitting = true
-	$trailParticles.direction = -move_direction
 	should_stop_moving = false
 	
 	snap_to_tile()
@@ -260,7 +235,6 @@ func _move(_object=null, _key=":position") -> void:
 			react_to_currently_colliding()
 	
 	if should_stop_moving:
-		$trailParticles.emitting = false
 		stop_moving()
 	
 	if not is_moving:
@@ -274,13 +248,13 @@ func _move(_object=null, _key=":position") -> void:
 	$twnMove.start()
 
 func stop_moving(_reason="wall") -> void:
+	$Particles.emitting = false
 	if not is_moving:
 		return
 	#print(str(name)+" stopped because "+reason)
 	is_moving = false
 	move_direction = Vector2.ZERO
 	move_distance = 0
-	stop_move_sound()
 	emit_signal("crate_move_stopped") # Signals buttons
 	emit_signal("crate_move_finished") # Signals enable move ui check
 
@@ -314,7 +288,6 @@ func react_to_currently_colliding() -> void:
 				move_direction = launch_pad.get_direction_vector()
 				move_distance = move_distance_standard - 1
 				should_stop_moving = false
-				set_facing_direction(move_direction)
 
 func get_object_currently_colliding() -> Node:
 	for object in Level.get_object_array():
@@ -405,14 +378,6 @@ func start_move_sound() -> void:
 	rng.randomize()
 	$audioMove.pitch_scale = normal_pitch_scale + rng.randf_range(-0.2,0.2)
 	$audioMove.play()
-	$sprites/aniPlayer.play("Running")
-
-func stop_move_sound() -> void:
-	if crate_type == CrateType.WOODEN:
-		return
-	$audioMove.stop()
-	$sprites/aniPlayer.stop()
-	$sprites/aniPlayer.seek(0.0,true)
 
 
 
