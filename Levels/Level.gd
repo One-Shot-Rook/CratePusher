@@ -50,12 +50,25 @@ func _ready():
 	emit_signal("initial_react")
 	emit_signal("level_initialised")
 	save_level_state()
-	get_border_positions()
 	GameInput.enable_input_ui(objects.Crate)
 
 func _exit_tree():
 	GameInput.disable_input_ui()
 
+func fill_walls():
+	
+	var rect = get_used_rect().grow(8)
+	var used_tiles = get_used_cells()
+	var from = rect.position
+	var to = rect.position + rect.size
+	
+	for x in range(from.x,to.x):
+		for y in range(from.y,to.y):
+			if not Vector2(x,y) in used_tiles:
+				set_cell(x,y,TileID.TILE_WALL)
+	
+	update_bitmask_region(from,to)
+	
 func undo_timeline():
 	if timeline_index == 0:
 		return
@@ -247,29 +260,6 @@ func update_current_stars():
 	else:
 		stars = 0
 	get_tree().call_group("UI","update_stars",stars)
-
-func get_tile_map_rect() -> Rect2:
-	var tile_vector_array = get_used_cells_by_id(TileID.TILE_FLOOR)
-	var x = {"left":tile_vector_array[0].x,	"right":tile_vector_array[0].x}
-	var y = {"top":tile_vector_array[0].y,	"bottom":tile_vector_array[0].y}
-	for tile_vector in tile_vector_array:
-		# x checks
-		if tile_vector.x < x.left:
-			x.left = tile_vector.x
-		elif tile_vector.x > x.right:
-			x.right = tile_vector.x
-		# y checks
-		if tile_vector.y < y.top:
-			y.top = tile_vector.y
-		elif tile_vector.y > y.bottom:
-			y.bottom = tile_vector.y
-	
-	# Convert to Rect2
-	var start_vector = Vector2(x.left,y.top) * cell_size
-	var end_vector = Vector2(x.right+1,y.bottom+1) * cell_size
-	var size = end_vector - start_vector
-	
-	return Rect2(start_vector,size)
 
 func get_border_positions():
 	if Engine.editor_hint:
