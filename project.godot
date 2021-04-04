@@ -103,38 +103,14 @@ window/handheld/orientation="portrait"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
-[input]
-
-undo={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
- ]
-}
-redo={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":89,"unicode":0,"echo":false,"script":null)
- ]
-}
-
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
 
-[physics]
-
-2d/thread_model=2
-
 [rendering]
 
-quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=1
 threads/thread_model=2
-quality/filters/msaa=5
-quality/filters/anisotropic_filter_level=8
-quality/subsurface_scattering/quality=2
-quality/subsurface_scattering/follow_surface=true
-
-[world]
-
-2d/cell_size=96
+vram_compression/import_s3tc=false
+environment/default_environment="res://default_env.tres"

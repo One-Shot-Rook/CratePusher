@@ -14,7 +14,7 @@ dest_files=[ "res://.import/svg_button_center.svg-cfd96f70aee17576ca2c3c23797f8e
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

@@ -14,7 +14,7 @@ dest_files=[ "res://.import/img_temp_logo.png-d044044be7e8a0e16461358662570b9c.s
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

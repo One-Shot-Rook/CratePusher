@@ -14,7 +14,7 @@ dest_files=[ "res://.import/svg_walls_final.svg-6ed978ff7c4272f7d8cda4b3d137df84
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

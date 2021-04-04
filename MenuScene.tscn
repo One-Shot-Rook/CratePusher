@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://MenuScene.gd" type="Script" id=2]
@@ -9,15 +9,13 @@
 [ext_resource path="res://Assets/UI/btn_back_pressed.tres" type="StyleBox" id=7]
 [ext_resource path="res://Assets/UI/btn_back_normal.tres" type="StyleBox" id=8]
 [ext_resource path="res://panelSettings.gd" type="Script" id=9]
-[ext_resource path="res://Assets/Sounds/snd_crate.wav" type="AudioStream" id=10]
-[ext_resource path="res://Assets/Speech/nar_trying_again_clean.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=10]
 [ext_resource path="res://panelLevels.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Sprites/img_note.webp" type="Texture" id=13]
 [ext_resource path="res://Assets/Shaders/shader_background/water_with_shadow_material.tres" type="Material" id=14]
 [ext_resource path="res://Assets/Sprites/img_black_bg.png" type="Texture" id=15]
 [ext_resource path="res://Assets/UI/btn_menu_normal_right.tres" type="StyleBox" id=16]
 [ext_resource path="res://Assets/UI/btn_menu_normal_left.tres" type="StyleBox" id=17]
-[ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=18]
 [ext_resource path="res://RandomTiler.gd" type="Script" id=19]
 
 [node name="MenuScene" type="Control"]
@@ -66,7 +64,7 @@ color = Color( 1, 1, 1, 0.619608 )
 [node name="TileMap" type="TileMap" parent="."]
 modulate = Color( 1, 1, 1, 0.196078 )
 position = Vector2( 492, 912 )
-tile_set = ExtResource( 18 )
+tile_set = ExtResource( 10 )
 cell_size = Vector2( 96, 96 )
 format = 1
 script = ExtResource( 19 )
@@ -457,11 +455,9 @@ __meta__ = {
 }
 
 [node name="sndVoice" type="AudioStreamPlayer" parent="panelSettings"]
-stream = ExtResource( 11 )
 bus = "Voice"
 
 [node name="sndSFX" type="AudioStreamPlayer" parent="panelSettings"]
-stream = ExtResource( 10 )
 volume_db = -5.0
 bus = "SFX"
 
@@ -530,7 +526,7 @@ __meta__ = {
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderMusic" to="panelSettings" method="_on_sliderMusic_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderSFX" to="panelSettings" method="_on_sliderSFX_value_changed"]
 [connection signal="pressed" from="panelSettings/hbox/btnReset" to="." method="_on_btnReset_pressed"]
-[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelShop/btnBack" to="." method="_on_btnBack_pressed"]

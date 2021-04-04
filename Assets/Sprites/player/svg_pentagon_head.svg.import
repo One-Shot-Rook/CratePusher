@@ -14,7 +14,7 @@ dest_files=[ "res://.import/svg_pentagon_head.svg-cb7e530d37c4b0c594612dcf3d6f9d
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

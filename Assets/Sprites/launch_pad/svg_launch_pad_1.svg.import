@@ -14,7 +14,7 @@ dest_files=[ "res://.import/svg_launch_pad_1.svg-64da0b76faf4cb82af4bbf5406fcf03
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

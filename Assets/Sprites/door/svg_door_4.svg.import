@@ -14,7 +14,7 @@ dest_files=[ "res://.import/svg_door_4.svg-16a0603898d2fe18da8c0a0131557c54.stex
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

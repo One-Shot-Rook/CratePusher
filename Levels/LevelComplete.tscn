@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Levels/LevelComplete.gd" type="Script" id=1]
 [ext_resource path="res://Levels/starAnimation.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Fonts/font_main.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Assets/UI/img_chip_4.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Resources/key_backspace.tres" type="InputEventKey" id=5]
 [ext_resource path="res://Assets/Resources/key_enter.tres" type="InputEventKey" id=6]
 [ext_resource path="res://Assets/Resources/key_escape.tres" type="InputEventKey" id=7]
@@ -91,19 +90,6 @@ focus_mode = 0
 enabled_focus_mode = 0
 shortcut = SubResource( 4 )
 text = "Menu"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="texChip" type="TextureRect" parent="."]
-visible = false
-margin_left = 290.0
-margin_top = 340.0
-margin_right = 790.0
-margin_bottom = 840.0
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
