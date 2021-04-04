@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Ovidiu\\Documents\\Godot\\Godot Projects\\CratePusher3\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-lt\\values-lt.xml",
+            "outputFile": "C:\\Users\\Ovidiu\\Documents\\Godot\\Godot Projects\\CratePusher\\CratePusher\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-lt\\values-lt.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Ovidiu\\.gradle\\caches\\transforms-2\\files-2.1\\947833f03979c6d84fcd9a8feba7ce42\\core-1.0.0\\res\\values-lt\\values-lt.xml",
