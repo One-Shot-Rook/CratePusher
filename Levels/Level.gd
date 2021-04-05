@@ -35,6 +35,8 @@ func set_tile_set_floor_color(new_color):
 	tile_set.tile_set_modulate(TileID.TILE_FLOOR,tile_set_floor_color)
 
 func _ready():
+	if Engine.editor_hint:
+		return
 	#print()
 	#print(" [LEVEL] ",level_name)
 	#tile_set.tile_set_modulate(TileID.TILE_WALL,Color(1,1,1,0))
@@ -52,6 +54,8 @@ func _ready():
 	GameInput.enable_input_ui(objects.Crate)
 
 func _exit_tree():
+	if Engine.editor_hint:
+		return
 	GameInput.disable_input_ui()
 
 func undo_timeline():
