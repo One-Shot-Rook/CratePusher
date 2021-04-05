@@ -1,6 +1,6 @@
 extends Node
 
-var maxWorlds = 2
+var maxWorlds = 3
 var current_world:int = 1 setget set_current_world, get_current_world
 var levelProgress = {}
 var audioLevels = {"Master":0,"Voice":0,"Music":0,"SFX":0}
@@ -42,6 +42,7 @@ func _ready():
 	loadGame()
 
 func initialiseData():
+	levelProgress = {}
 	var dir_world = Directory.new()
 	dir_world.open("res://Levels")
 	dir_world.list_dir_begin(true,true)

@@ -7,6 +7,8 @@ var tile_size := 96
 var snap = false setget editor_snap
 var animate = false setget set_animate
 
+var testing_mode:bool = false
+
 var is_detectable := true # Can other objects get our position
 
 func _get_property_list():

@@ -20,12 +20,15 @@ func startLevel(level_name=LevelData.current_level):
 
 func center_level():
 	
-	var tile_map_rect:Rect2 = current_level_node.get_tile_map_rect()
+	var tile_map_rect:Rect2 = current_level_node.get_used_rect()
+	tile_map_rect.position *= current_level_node.cell_size
+	tile_map_rect.size *= current_level_node.cell_size
 	var screen_size = get_viewport_rect().size
 	screen_size -= Vector2(200,600)
 	current_level_node.position += - tile_map_rect.position - tile_map_rect.size/2
 	var scale_diff = screen_size/tile_map_rect.size
-	scale = Vector2.ONE * min(scale_diff.x,scale_diff.y)
+	scale = 1.2 * Vector2.ONE * min(scale_diff.x,scale_diff.y)
+	current_level_node.fill_walls()
 
 func _on_btnReset_pressed():
 	startLevel()

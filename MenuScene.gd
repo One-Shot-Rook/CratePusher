@@ -52,6 +52,7 @@ func _on_btnCredits_pressed():
 func _on_btnShop_pressed():
 	Music.button_was_pressed()
 	move_screen(MENU_POSITIONS.down)
+	#Transition.goto_level_editor_scene()
 
 func _on_btnBack_pressed():
 	Music.button_was_pressed()
