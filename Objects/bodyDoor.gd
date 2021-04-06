@@ -54,7 +54,6 @@ func open_door():
 	if is_open:
 		return
 	is_open = true
-	$occluder.visible = false
 	if animate:
 		animate_open()
 	else:
@@ -65,7 +64,6 @@ func close_door():
 	if not is_open or not can_close():
 		return
 	is_open = false
-	$occluder.visible = true
 	if animate:
 		animate_close()
 	else:

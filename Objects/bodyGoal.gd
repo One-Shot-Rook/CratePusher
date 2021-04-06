@@ -54,7 +54,7 @@ func initialise_goal():
 func try_to_complete():
 	if is_complete:
 		return
-	for crate in Level.objects.Crate:
+	for crate in Level.objects["Crate"]:
 		if crate.position == position:
 			if is_correct_level_goal(crate):
 				set_is_complete(true)

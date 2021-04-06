@@ -5,7 +5,7 @@ var initialChanges = true
 
 func _ready():
 	$gridOptions/sliderMaster.value = AudioServer.get_bus_volume_db(0)
-	$gridOptions/sliderVoice.value = AudioServer.get_bus_volume_db(1)
+	#$gridOptions/sliderVoice.value = AudioServer.get_bus_volume_db(1)
 	$gridOptions/sliderMusic.value = AudioServer.get_bus_volume_db(2)
 	$gridOptions/sliderSFX.value = AudioServer.get_bus_volume_db(3)
 	initialChanges = false

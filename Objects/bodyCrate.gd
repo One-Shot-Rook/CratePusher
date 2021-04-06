@@ -311,7 +311,7 @@ func react_to_move_direction() -> void:
 				if not door.is_open:
 					should_stop_moving = true
 			"Crate":
-				var crate:Crate = object
+				var crate = object
 				var push_distance = weight_id-crate.weight_id
 				#print("PUSH ",name," ["+str(weight_id)+"|"+str(crate.weight_id)+"]",str(crate.name))
 				if push_distance > 0:
@@ -339,7 +339,7 @@ func is_direction_clear(direction:Vector2=move_direction) -> bool:
 				if not door.is_open:
 					return false
 			"Crate":
-				var crate:Crate = object
+				var crate = object
 				if crate.is_detectable:
 					return false
 	return true

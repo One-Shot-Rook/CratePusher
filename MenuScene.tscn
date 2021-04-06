@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://MenuScene.gd" type="Script" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Assets/UI/btn_back_normal.tres" type="StyleBox" id=8]
 [ext_resource path="res://panelSettings.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Sounds/snd_crate.wav" type="AudioStream" id=10]
-[ext_resource path="res://Assets/Speech/nar_trying_again_clean.wav" type="AudioStream" id=11]
 [ext_resource path="res://panelLevels.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Sprites/img_note.webp" type="Texture" id=13]
 [ext_resource path="res://Assets/Shaders/shader_background/water_with_shadow_material.tres" type="Material" id=14]
@@ -165,6 +164,7 @@ custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 5 )
+disabled = true
 enabled_focus_mode = 0
 text = "Credits"
 
@@ -184,6 +184,7 @@ custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 5 )
+disabled = true
 enabled_focus_mode = 0
 text = "Level Editor"
 
@@ -356,39 +357,19 @@ max_value = 24.0
 step = 4.0
 rounded = true
 
-[node name="labVoice" type="Label" parent="panelSettings/gridOptions"]
-margin_top = 65.0
-margin_right = 488.0
-margin_bottom = 126.0
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Voice Volume"
-
-[node name="sliderVoice" type="HSlider" parent="panelSettings/gridOptions"]
-margin_left = 492.0
-margin_top = 65.0
-margin_right = 980.0
-margin_bottom = 126.0
-size_flags_horizontal = 3
-size_flags_vertical = 1
-min_value = -80.0
-max_value = 24.0
-step = 4.0
-rounded = true
-
 [node name="labMusic" type="Label" parent="panelSettings/gridOptions"]
-margin_top = 130.0
+margin_top = 65.0
 margin_right = 488.0
-margin_bottom = 191.0
+margin_bottom = 126.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Music Volume"
 
 [node name="sliderMusic" type="HSlider" parent="panelSettings/gridOptions"]
 margin_left = 492.0
-margin_top = 130.0
+margin_top = 65.0
 margin_right = 980.0
-margin_bottom = 191.0
+margin_bottom = 126.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = -80.0
@@ -397,18 +378,18 @@ step = 4.0
 rounded = true
 
 [node name="labSFX" type="Label" parent="panelSettings/gridOptions"]
-margin_top = 195.0
+margin_top = 130.0
 margin_right = 488.0
-margin_bottom = 256.0
+margin_bottom = 191.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "SFX Volume"
 
 [node name="sliderSFX" type="HSlider" parent="panelSettings/gridOptions"]
 margin_left = 492.0
-margin_top = 195.0
+margin_top = 130.0
 margin_right = 980.0
-margin_bottom = 256.0
+margin_bottom = 191.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = -80.0
@@ -455,10 +436,6 @@ expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="sndVoice" type="AudioStreamPlayer" parent="panelSettings"]
-stream = ExtResource( 11 )
-bus = "Voice"
 
 [node name="sndSFX" type="AudioStreamPlayer" parent="panelSettings"]
 stream = ExtResource( 10 )
@@ -526,11 +503,10 @@ __meta__ = {
 [connection signal="pressed" from="panelLevels/btnLeft" to="panelLevels" method="_on_btn_pressed" binds= [ -1 ]]
 [connection signal="pressed" from="panelLevels/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderMaster" to="panelSettings" method="_on_sliderMaster_value_changed"]
-[connection signal="value_changed" from="panelSettings/gridOptions/sliderVoice" to="panelSettings" method="_on_sliderVoice_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderMusic" to="panelSettings" method="_on_sliderMusic_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderSFX" to="panelSettings" method="_on_sliderSFX_value_changed"]
 [connection signal="pressed" from="panelSettings/hbox/btnReset" to="." method="_on_btnReset_pressed"]
-[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelShop/btnBack" to="." method="_on_btnBack_pressed"]

@@ -5,8 +5,8 @@ onready var twnVolumeDB:Tween = $twnVolumeDB
 
 var twnError
 
-var theme_Menu = load("res://Assets/Sounds/mus_menu.wav")
-var theme_Ambience = load("res://Assets/Sounds/mus_ambience.wav")
+var theme_Menu = load("res://Assets/Sounds/mus_background1.wav")
+var theme_Ambience = load("res://Assets/Sounds/mus_background1.wav")
 var theme_background1 = load("res://Assets/Sounds/mus_background1.wav")
 
 var rng = RandomNumberGenerator.new()
