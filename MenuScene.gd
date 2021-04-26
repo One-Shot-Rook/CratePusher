@@ -75,3 +75,7 @@ func _on_btnNote_pressed():
 	rng.randomize()
 	var randColor = Color(rng.randf_range(0,1),rng.randf_range(0,1),rng.randf_range(0,1))
 	$panelMenu/gridButtons/MarginContainer3/btnNote.modulate = randColor
+
+
+func _on_btnDonate_pressed():
+	OS.shell_open("https://paypal.me/oneshotrook")
