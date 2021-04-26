@@ -27,9 +27,11 @@ var pitchDict = {
 	"G#":pow(p,8), "Ab":pow(p,8),
 	}
 var pitchRanges = [
-	pitchDict["C"],
+	pitchDict["E"],
 	pitchDict["E"],
 	pitchDict["G"],
+	pitchDict["B"],
+	pitchDict["C"],
 	]
 var noteArray = pitchRanges.duplicate(true)
 

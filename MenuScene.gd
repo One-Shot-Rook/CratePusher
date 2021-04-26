@@ -78,4 +78,4 @@ func _on_btnNote_pressed():
 
 
 func _on_btnDonate_pressed():
-	OS.shell_open("https://paypal.me/oneshotrook")
+	var _error = OS.shell_open("https://paypal.me/oneshotrook")

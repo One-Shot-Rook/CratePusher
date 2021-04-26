@@ -142,7 +142,6 @@ func _init():
 func _ready() -> void:
 	initialise_crate()
 	update_ui()
-	GameInput.connect("direction_inputted",self,"direction_pressed")
 
 func initialise_crate() -> void:
 	match crate_type:

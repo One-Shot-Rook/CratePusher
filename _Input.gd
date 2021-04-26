@@ -1,7 +1,5 @@
 extends Node
 
-signal direction_inputted(direction)
-
 const theme = preload("res://Assets/Themes/theme_main.tres")
 const CRATE_KEYS = {
 	"WOOD":KEY_0,
@@ -120,7 +118,6 @@ func enable_input_ui(crate_array):
 			if button == other_button:
 				continue
 			button.connect("pressed",other_button,"set_pressed",[false])
-			button.connect("pressed",button,"set_pressed",[true])
 	button_array[0].emit_signal("pressed")
 	button_array[0].pressed = true
 
@@ -175,8 +172,8 @@ func add_button(crate:Crate):
 		Crate.CrateType.PURPLE:
 			button.text = "PURP"
 	button.modulate = Globals.get_crate_color(crate.crate_type)
-	button.connect("pressed",self,"set_active_crate",[crate])
-	crate.connect("active_state_changed",button,"set_disabled")
+	var _error = button.connect("pressed",self,"set_active_crate",[crate])
+	_error = crate.connect("active_state_changed",button,"set_disabled")
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	container.add_child(button)
 
