@@ -4,11 +4,13 @@ var maxWorlds = 3
 var current_world:int = 1 setget set_current_world, get_current_world
 var levelProgress = {}
 var audioLevels = {"Master":0,"Voice":0,"Music":0,"SFX":0}
+var input_radius = 150.0
 
 var saveVariables = [
 	"levelProgress",
 	"audioLevels",
-	"current_world"
+	"current_world",
+	"input_radius"
 ]
 
 func set_current_world(value) -> bool:

@@ -8,6 +8,7 @@ func _ready():
 	#$gridOptions/sliderVoice.value = AudioServer.get_bus_volume_db(1)
 	$gridOptions/sliderMusic.value = AudioServer.get_bus_volume_db(2)
 	$gridOptions/sliderSFX.value = AudioServer.get_bus_volume_db(3)
+	$gridOptions/sliderInputRadius.value = SaveData.input_radius
 	initialChanges = false
 
 func _on_sliderMaster_value_changed(value):
@@ -36,6 +37,10 @@ func _on_sliderSFX_value_changed(value):
 	$sndSFX.play()
 	settingChanged()
 
+func _on_sliderInputRadius_value_changed(value):
+	SaveData.input_radius = value
+	$sprInputRadius.scale = Vector2.ONE * value/150.0
+	settingChanged()
 
 func settingChanged():
 	$btnBack.text = "Apply"
@@ -48,3 +53,4 @@ func _on_btnBack_pressed():
 		SaveData.updateAudioLevels()
 		SaveData.saveGame()
 	$btnBack.text = "Back"
+

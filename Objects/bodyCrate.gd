@@ -8,6 +8,8 @@ signal crate_step_finished	# Signals buttons (off-mode)
 signal crate_move_stopped 	# Signals buttons
 signal crate_move_finished	# Signals enable_move_ui check
 
+signal active_state_changed(new_allow_input)	# Signals allow_input
+
 enum CrateType{WOODEN,RED,BLUE,PURPLE}
 enum SpeedMode{SLOW,FAST}
 enum WeightMode{LIGHT,MEDIUM,HEAVY}
@@ -15,7 +17,7 @@ enum WeightMode{LIGHT,MEDIUM,HEAVY}
 export(CrateType) var crate_type = CrateType.WOODEN setget set_crate_type, get_crate_type
 
 var keys_pressed = []
-var allow_input := true 
+var allow_input := true setget set_allow_input
 var moves = []
 
 var weight_id:int = WeightMode.MEDIUM
@@ -98,6 +100,10 @@ func _get_property_list() -> Array:
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
 	]
+
+func set_allow_input(new_allow_input):
+	allow_input = new_allow_input
+	emit_signal("active_state_changed",not allow_input)
 
 func set_is_interactable(new_is_interactable) -> void:
 	is_interactable = new_is_interactable
@@ -350,12 +356,12 @@ func is_direction_clear(direction:Vector2=move_direction) -> bool:
 
 
 func disappear() -> void:
-	allow_input = false
+	self.allow_input = false
 	is_detectable = false
 	set_invisible(true)
 
 func reappear() -> void:
-	allow_input = true
+	self.allow_input = true
 	is_detectable = true
 	set_invisible(false)
 
@@ -385,7 +391,7 @@ func start_move_sound() -> void:
 
 
 func direction_pressed(new_move_direction:Vector2) -> void:
-	if not is_movable:
+	if not is_movable or not allow_input:
 		return
 	if not is_interactable:
 		moves.append(new_move_direction)
