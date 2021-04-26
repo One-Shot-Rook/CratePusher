@@ -2,7 +2,7 @@ extends Node
 
 signal direction_inputted(direction)
 
-const drag_distance := 300
+const drag_distance := 300.0
 const theme = preload("res://Assets/Themes/theme_main.tres")
 const CRATE_KEYS = {
 	"WOOD":KEY_0,
@@ -10,17 +10,28 @@ const CRATE_KEYS = {
 	"BLUE":KEY_2,
 	"PURP":KEY_3}
 
-var keys_pressed = []
-var mouse_start:Vector2 = Vector2.ZERO
-var container:HBoxContainer
 var enabled = false
 var active_crate:Crate setget set_active_crate
+
+var keys_pressed = []
+var mouse_start:Vector2 = Vector2.ZERO
+var mouse_end:Vector2 = Vector2.ZERO
+
+var container:HBoxContainer
+
+var line2D:Line2D
+var sprite:Sprite
 
 func set_active_crate(new_crate):
 	if new_crate == active_crate:
 		active_crate = null
 	else:
 		active_crate = new_crate
+
+
+func _ready():
+	add_input_line()
+	add_input_circle()
 
 func _unhandled_input(event):
 	
@@ -34,6 +45,11 @@ func _unhandled_input(event):
 			if mouse_start == Vector2.ZERO:
 				
 				mouse_start = event.position
+				mouse_end = event.position
+			
+			line2D.visible = true
+			sprite.position = mouse_start
+			sprite.visible = true
 			
 		else:
 			var rel_vector = event.position - mouse_start
@@ -41,8 +57,20 @@ func _unhandled_input(event):
 				var angle = rel_vector.angle()
 				angle = stepify(angle,PI/2)
 				var input_vector = Vector2(cos(angle),sin(angle))
-				mouse_start = Vector2.ZERO
 				active_crate.direction_pressed(input_vector)
+			
+			mouse_start = Vector2.ZERO
+			mouse_end = Vector2.ZERO
+			
+			line2D.visible = false
+			sprite.visible = false
+		
+		update_input_line()
+	
+	elif event is InputEventScreenDrag:
+		
+		mouse_end = event.position
+		update_input_line()
 
 func _unhandled_key_input(event) -> void:
 	
@@ -80,23 +108,44 @@ func _unhandled_key_input(event) -> void:
 func enable_input_ui(crate_array):
 	enabled = true
 	add_container()
+	crate_array = sort_crates(crate_array)
 	for object in crate_array:
-		var crate:Crate = object
-		if crate.crate_type == Crate.CrateType.WOODEN:
-			continue
-		add_button(crate)
+		if object:
+			add_button(object)
 	var button_array = container.get_children()
 	for button in button_array:
 		for other_button in button_array:
 			if button == other_button:
 				continue
 			button.connect("pressed",other_button,"set_pressed",[false])
+			button.connect("pressed",button,"set_pressed",[true])
 	button_array[0].emit_signal("pressed")
 	button_array[0].pressed = true
 
 func disable_input_ui():
 	enabled = false
 	container.queue_free()
+
+func add_input_circle():
+	sprite = Sprite.new()
+	sprite.texture = load("res://Assets/Sprites/circle.svg")
+	sprite.scale = Vector2.ONE * drag_distance/150.0
+	sprite.visible = false
+	add_child(sprite)
+
+func add_input_line():
+	line2D = Line2D.new()
+	line2D.width = 4
+	line2D.points = PoolVector2Array([Vector2.ZERO , Vector2.ZERO])
+	add_child(line2D)
+
+func update_input_line():
+	line2D.points[0] = mouse_start
+	line2D.points[1] = mouse_end
+	if (mouse_start-mouse_end).length() >= 300:
+		line2D.default_color = Color.green
+	else:
+		line2D.default_color = Color.red
 
 func add_container():
 	container = HBoxContainer.new()
@@ -125,7 +174,17 @@ func add_button(crate:Crate):
 			button.text = "PURP"
 	button.modulate = Globals.get_crate_color(crate.crate_type)
 	button.connect("pressed",self,"set_active_crate",[crate])
+	crate.connect("active_state_changed",button,"set_disabled")
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	container.add_child(button)
+
+func sort_crates(crate_array):
+	
+	var sorted_array = [null,null,null,null]
+	for crate in crate_array:
+		sorted_array[crate.crate_type] = crate
+	sorted_array[0] = null # Overwrite wooden slot
+	return sorted_array
+
 
 
