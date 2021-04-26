@@ -180,23 +180,23 @@ func initialise_crate() -> void:
 
 func update_ui() -> void:
 	
-	$audioMove.stream = load("res://Assets/Sounds/snd_crate.wav")
 	match crate_type:
 		CrateType.WOODEN:
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_wooden.svg")
+			$audioMove.stream = load("res://Assets/Sounds/snd_crate.wav")
 			$audioMove.volume_db = -5
 		CrateType.RED:
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_red.svg")
 			$audioMove.stream = load("res://Assets/Sounds/snd_red.wav")
-			$audioMove.volume_db = 5
+			$audioMove.volume_db = 0
 		CrateType.BLUE:
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_blue.svg")
 			$audioMove.stream = load("res://Assets/Sounds/snd_blue.wav")
-			$audioMove.volume_db = 5
+			$audioMove.volume_db = 0
 		CrateType.PURPLE:
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_red.svg")
 			$audioMove.stream = load("res://Assets/Sounds/snd_purple.wav")
-			$audioMove.volume_db = 5
+			$audioMove.volume_db = 0
 	$sprite.modulate =			Globals.get_crate_color(crate_type)
 	$Particles.modulate = 		Globals.get_crate_color(crate_type)
 	$Directions.modulate = 		Globals.get_crate_color(crate_type)
@@ -240,7 +240,7 @@ func _move(_object=null, _key=":position") -> void:
 		
 		if should_stop_moving:
 			# React to what we're on
-			react_to_currently_colliding()
+			react_to_currently_colliding_stopped()
 	
 	if should_stop_moving:
 		stop_moving()
@@ -293,9 +293,33 @@ func react_to_currently_colliding() -> void:
 					disappear()
 			"LaunchPad":
 				var launch_pad = object_currently_colliding
-				move_direction = launch_pad.get_direction_vector()
-				move_distance = move_distance_standard - 1
-				should_stop_moving = false
+				if not is_moving:
+					var _error = start_moving(launch_pad.get_direction_vector(),MOVE_DISTANCE_MAX)
+					return
+				else:
+					move_direction = launch_pad.get_direction_vector()
+					move_distance = MOVE_DISTANCE_MAX
+					should_stop_moving = false
+
+func react_to_currently_colliding_stopped() -> void:
+	var object_currently_colliding = get_object_currently_colliding()
+	if object_currently_colliding:
+		#print("currently on: ",object_currently_colliding.get_class())
+		match object_currently_colliding.get_class():
+			"Hole":
+				var hole = object_currently_colliding
+				if hole.is_filled:
+					continue
+				if speed_mode == SpeedMode.FAST and not should_stop_moving:
+					continue
+				hole.fill_with($sprite.texture)
+				should_stop_moving = true
+				disappear()
+			"Goal":
+				var goal:Goal = object_currently_colliding
+				if goal.is_correct_level_goal(self):
+					should_stop_moving = true
+					disappear()
 
 func get_object_currently_colliding() -> Node:
 	for object in Level.get_object_array():

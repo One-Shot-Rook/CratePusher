@@ -186,6 +186,7 @@ func connect_object_signals():
 		# Letting other crates know when we've started moving
 		for crate_to in objects.Crate:
 			crate_from.connect("crate_move_started",crate_to,"set_is_interactable",[false])
+			crate_from.connect("crate_move_stopped",crate_to,"react_to_currently_colliding")
 		# Letting buttons know when we've moved on/off of them
 		for button_floor in objects.ButtonFloor:
 			if crate_from.speed_mode == Crate.SpeedMode.SLOW:
