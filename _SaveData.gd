@@ -4,7 +4,7 @@ var maxWorlds = 3
 var current_world:int = 1 setget set_current_world, get_current_world
 var levelProgress = {}
 var audioLevels = {"Master":0,"Voice":0,"Music":0,"SFX":0}
-var input_radius = 150.0
+var input_radius = 120.0 setget set_input_radius
 
 var saveVariables = [
 	"levelProgress",
@@ -12,6 +12,10 @@ var saveVariables = [
 	"current_world",
 	"input_radius"
 ]
+
+func set_input_radius(new_input_radius):
+	input_radius = new_input_radius
+	GameInput.update_input_circle_scale()
 
 func set_current_world(value) -> bool:
 	if value > maxWorlds or value < 1:
@@ -38,6 +42,7 @@ func applyLoadedVariables():
 	AudioServer.set_bus_volume_db(1,audioLevels["Voice"])
 	AudioServer.set_bus_volume_db(2,audioLevels["Music"])
 	AudioServer.set_bus_volume_db(3,audioLevels["SFX"])
+	GameInput.update_input_circle_scale()
 
 func _ready():
 	initialiseData()

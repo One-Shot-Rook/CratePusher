@@ -82,10 +82,10 @@ config/icon="res://icon.png"
 
 Globals="*res://_Globals.gd"
 LevelData="*res://_LevelData.gd"
-SaveData="*res://_SaveData.gd"
 Music="*res://MusicNode.tscn"
 Transition="*res://TransitionNode.tscn"
 GameInput="*res://_Input.gd"
+SaveData="*res://_SaveData.gd"
 
 [display]
 

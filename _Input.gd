@@ -128,9 +128,12 @@ func disable_input_ui():
 func add_input_circle():
 	sprite = Sprite.new()
 	sprite.texture = load("res://Assets/Sprites/circle.svg")
-	sprite.scale = Vector2.ONE * SaveData.input_radius/150.0
+	update_input_circle_scale()
 	sprite.visible = false
 	add_child(sprite)
+
+func update_input_circle_scale():
+	sprite.scale = Vector2.ONE * SaveData.input_radius/150.0
 
 func add_input_line():
 	line2D = Line2D.new()
