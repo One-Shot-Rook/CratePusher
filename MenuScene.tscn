@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://MenuScene.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=18]
 [ext_resource path="res://RandomTiler.gd" type="Script" id=19]
 [ext_resource path="res://Assets/osr_logo.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/circle.svg" type="Texture" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -403,6 +404,30 @@ max_value = 24.0
 step = 4.0
 rounded = true
 
+[node name="labInputRadius" type="Label" parent="panelSettings/gridOptions"]
+margin_top = 195.0
+margin_right = 488.0
+margin_bottom = 256.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Input Radius"
+
+[node name="sliderInputRadius" type="HSlider" parent="panelSettings/gridOptions"]
+margin_left = 492.0
+margin_top = 195.0
+margin_right = 980.0
+margin_bottom = 256.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 300.0
+step = 5.0
+value = 150.0
+rounded = true
+
+[node name="sprInputRadius" type="Sprite" parent="panelSettings"]
+position = Vector2( 540, 700 )
+texture = ExtResource( 21 )
+
 [node name="hbox" type="HBoxContainer" parent="panelSettings"]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -587,9 +612,10 @@ __meta__ = {
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderMaster" to="panelSettings" method="_on_sliderMaster_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderMusic" to="panelSettings" method="_on_sliderMusic_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderSFX" to="panelSettings" method="_on_sliderSFX_value_changed"]
+[connection signal="value_changed" from="panelSettings/gridOptions/sliderInputRadius" to="panelSettings" method="_on_sliderInputRadius_value_changed"]
 [connection signal="pressed" from="panelSettings/hbox/btnReset" to="." method="_on_btnReset_pressed"]
-[connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/VBoxContainer/btnDonate" to="." method="_on_btnDonate_pressed"]
 [connection signal="pressed" from="panelShop/btnBack" to="." method="_on_btnBack_pressed"]

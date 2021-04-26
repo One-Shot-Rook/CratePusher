@@ -2,7 +2,6 @@ extends Node
 
 signal direction_inputted(direction)
 
-const drag_distance := 300.0
 const theme = preload("res://Assets/Themes/theme_main.tres")
 const CRATE_KEYS = {
 	"WOOD":KEY_0,
@@ -53,7 +52,7 @@ func _unhandled_input(event):
 			
 		else:
 			var rel_vector = event.position - mouse_start
-			if rel_vector.length() >= drag_distance:
+			if rel_vector.length() >= SaveData.input_radius:
 				var angle = rel_vector.angle()
 				angle = stepify(angle,PI/2)
 				var input_vector = Vector2(cos(angle),sin(angle))
@@ -73,6 +72,9 @@ func _unhandled_input(event):
 		update_input_line()
 
 func _unhandled_key_input(event) -> void:
+	
+	if not enabled:
+		return
 	
 	# Erase released key
 	if not event.pressed and event.scancode in keys_pressed:
@@ -129,7 +131,7 @@ func disable_input_ui():
 func add_input_circle():
 	sprite = Sprite.new()
 	sprite.texture = load("res://Assets/Sprites/circle.svg")
-	sprite.scale = Vector2.ONE * drag_distance/150.0
+	sprite.scale = Vector2.ONE * SaveData.input_radius/150.0
 	sprite.visible = false
 	add_child(sprite)
 
@@ -142,7 +144,7 @@ func add_input_line():
 func update_input_line():
 	line2D.points[0] = mouse_start
 	line2D.points[1] = mouse_end
-	if (mouse_start-mouse_end).length() >= 300:
+	if (mouse_start-mouse_end).length() >= SaveData.input_radius:
 		line2D.default_color = Color.green
 	else:
 		line2D.default_color = Color.red
