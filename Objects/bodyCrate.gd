@@ -163,7 +163,7 @@ func initialise_crate() -> void:
 			move_distance_standard = MOVE_DISTANCE_MAX
 			move_time = 0.08
 			is_movable = true
-			normal_pitch_scale = 1.5
+			normal_pitch_scale = 1.0
 		CrateType.PURPLE:
 			name = "crate(Purple)"
 			weight_id = WeightMode.HEAVY
@@ -171,7 +171,7 @@ func initialise_crate() -> void:
 			move_time = 0.16
 			move_distance_standard = 2
 			is_movable = true
-			normal_pitch_scale = 0.8
+			normal_pitch_scale = 1.0
 
 func update_ui() -> void:
 	
@@ -182,13 +182,16 @@ func update_ui() -> void:
 			$audioMove.volume_db = -5
 		CrateType.RED:
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_red.svg")
-			$audioMove.volume_db = 10
+			$audioMove.stream = load("res://Assets/Sounds/snd_red.wav")
+			$audioMove.volume_db = 5
 		CrateType.BLUE:
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_blue.svg")
-			$audioMove.volume_db = 10
+			$audioMove.stream = load("res://Assets/Sounds/snd_blue.wav")
+			$audioMove.volume_db = 5
 		CrateType.PURPLE:
 			$sprite.texture = load("res://Assets/Sprites/svg_crate_red.svg")
-			$audioMove.volume_db = 10
+			$audioMove.stream = load("res://Assets/Sounds/snd_purple.wav")
+			$audioMove.volume_db = 5
 	$sprite.modulate =			Globals.get_crate_color(crate_type)
 	$Particles.modulate = 		Globals.get_crate_color(crate_type)
 	$Directions.modulate = 		Globals.get_crate_color(crate_type)

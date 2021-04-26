@@ -26,8 +26,6 @@ star_requirements = {
 
 [node name="bodyHole" parent="." instance=ExtResource( 3 )]
 position = Vector2( 720, 720 )
-is_bottomless = false
-is_bottomless = false
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 624, 816 )

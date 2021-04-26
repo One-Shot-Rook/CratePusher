@@ -42,8 +42,6 @@ move_time = 0.08
 
 [node name="button(0)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 912, 720 )
-signal_id = 0
-signal_id = 0
 
 [node name="door(0)" parent="." instance=ExtResource( 6 )]
 position = Vector2( 528, 528 )

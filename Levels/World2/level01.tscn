@@ -32,13 +32,9 @@ rotation = 1.5708
 
 [node name="button(0)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 432, 816 )
-signal_id = 0
-signal_id = 0
 
 [node name="bodyHole" parent="." instance=ExtResource( 7 )]
 position = Vector2( 624, 432 )
-is_bottomless = false
-is_bottomless = false
 
 [node name="crate(Wooden)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 528, 816 )

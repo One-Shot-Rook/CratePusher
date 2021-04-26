@@ -88,4 +88,5 @@ volume_db = -5.0
 bus = "SFX"
 
 [node name="twnMove" type="Tween" parent="."]
+
 [connection signal="tween_completed" from="twnMove" to="." method="_move"]
