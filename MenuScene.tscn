@@ -576,7 +576,6 @@ __meta__ = {
 }
 
 [node name="twnPanel" type="Tween" parent="."]
-
 [connection signal="pressed" from="panelMenu/gridButtons/btnPlay" to="." method="_on_btnPlay_pressed"]
 [connection signal="pressed" from="panelMenu/gridButtons/btnSettings" to="." method="_on_btnSettings_pressed"]
 [connection signal="pressed" from="panelMenu/gridButtons/MarginContainer3/btnNote" to="." method="_on_btnNote_pressed"]

@@ -91,9 +91,8 @@ func enable_input_ui(crate_array):
 			if button == other_button:
 				continue
 			button.connect("pressed",other_button,"set_pressed",[false])
-		if button_array.size() == 1:
-			button.emit_signal("pressed")
-			button.pressed = true
+	button_array[0].emit_signal("pressed")
+	button_array[0].pressed = true
 
 func disable_input_ui():
 	enabled = false

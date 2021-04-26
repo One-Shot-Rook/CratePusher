@@ -382,7 +382,7 @@ func start_move_sound() -> void:
 
 
 func direction_pressed(new_move_direction:Vector2) -> void:
-	if not is_movable:
+	if not is_movable or not allow_input:
 		return
 	if not is_interactable:
 		moves.append(new_move_direction)

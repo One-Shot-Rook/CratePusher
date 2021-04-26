@@ -321,7 +321,6 @@ text = ">"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnReset" to="LevelNode" method="_on_btnReset_pressed"]
 [connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnMenu" to="LevelNode" method="_on_btnMenu_pressed"]
 [connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnBack" to="LevelNode" method="_on_btnBack_pressed"]
