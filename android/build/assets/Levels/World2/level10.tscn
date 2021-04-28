@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Levels/Level.gd" type="Script" id=1]
+[ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=2]
+[ext_resource path="res://Objects/bodyDoor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/bodyHole.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=7]
+
+[node name="TileMap" type="TileMap"]
+z_index = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 32
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -131072, 9, 1, -131071, 9, 196610, -131070, 9, 3, -131067, 9, 1, -131066, 9, 196610, -131065, 9, 196610, -131064, 9, 3, -65536, 9, 65536, -65535, 14, 0, -65534, 9, 65536, -65531, 9, 65536, -65530, 14, 196609, -65529, 14, 3, -65528, 9, 65536, 0, 9, 65536, 1, 14, 65536, 2, 9, 131073, 3, 9, 196610, 4, 9, 196610, 5, 9, 131074, 6, 9, 196611, 7, 14, 65536, 8, 9, 65536, 65536, 9, 65536, 65537, 14, 65537, 65538, 14, 196610, 65539, 14, 196610, 65540, 14, 196610, 65541, 14, 196610, 65542, 14, 196610, 65543, 14, 65539, 65544, 9, 65536, 131072, 9, 65536, 131073, 14, 65536, 131074, 9, 1, 131075, 9, 196610, 131076, 9, 196610, 131077, 9, 196610, 131078, 9, 196611, 131079, 14, 65536, 131080, 9, 131073, 131081, 9, 3, 196608, 9, 65536, 196609, 14, 65536, 196610, 9, 65536, 196611, 14, 1, 196612, 14, 196610, 196613, 14, 196610, 196614, 14, 196610, 196615, 14, 196615, 196616, 14, 11, 196617, 9, 65536, 262144, 9, 65536, 262145, 14, 65536, 262146, 9, 65536, 262147, 14, 65536, 262148, 9, 1, 262149, 9, 196610, 262150, 9, 196611, 262151, 14, 65544, 262152, 14, 131083, 262153, 9, 65536, 327680, 9, 65536, 327681, 14, 65536, 327682, 9, 65536, 327683, 14, 65536, 327684, 9, 65536, 327685, 14, 1, 327686, 14, 196610, 327687, 14, 131080, 327688, 14, 131083, 327689, 9, 65536, 393216, 9, 65536, 393217, 14, 65536, 393218, 9, 65536, 393219, 14, 65536, 393220, 9, 65536, 393221, 14, 65536, 393222, 9, 196608, 393223, 14, 65544, 393224, 14, 131083, 393225, 9, 131073, 393226, 9, 3, 458752, 9, 65536, 458753, 14, 65536, 458754, 9, 65536, 458755, 14, 65536, 458756, 9, 65536, 458757, 14, 131073, 458758, 14, 196610, 458759, 14, 196613, 458760, 14, 131082, 458761, 14, 11, 458762, 9, 65536, 524288, 9, 65536, 524289, 14, 65536, 524290, 9, 131072, 524291, 14, 65536, 524292, 9, 131073, 524293, 9, 196610, 524294, 9, 196610, 524295, 9, 196611, 524296, 14, 65544, 524297, 14, 131083, 524298, 9, 65536, 589824, 9, 65536, 589825, 14, 65537, 589826, 14, 196610, 589827, 14, 131074, 589828, 14, 196610, 589829, 14, 196610, 589830, 14, 196610, 589831, 14, 196610, 589832, 14, 7, 589833, 14, 196619, 589834, 9, 65536, 655360, 9, 65536, 655361, 14, 65536, 655362, 9, 196609, 655363, 9, 196610, 655364, 9, 196610, 655365, 9, 196610, 655366, 9, 196610, 655367, 9, 196611, 655368, 14, 65536, 655369, 9, 1, 655370, 9, 131075, 720896, 9, 65536, 720897, 14, 131073, 720898, 14, 196610, 720899, 14, 196610, 720900, 14, 196610, 720901, 14, 196610, 720902, 14, 196610, 720903, 14, 196610, 720904, 14, 131075, 720905, 9, 65536, 786432, 9, 131073, 786433, 9, 196610, 786434, 9, 196610, 786435, 9, 196610, 786436, 9, 196610, 786437, 9, 196610, 786438, 9, 196610, 786439, 9, 196610, 786440, 9, 196610, 786441, 9, 131075 )
+script = ExtResource( 1 )
+star_requirements = {
+"1 star": 26,
+"2 star": 23,
+"3 star": 20,
+"flawless": 18
+}
+
+[node name="TileMap_foreground" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 96
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -131071, 15, 0, -65531, 13, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="door(1)" parent="." instance=ExtResource( 3 )]
+position = Vector2( 144, 48 )
+rotation = 1.5708
+signal_id = 1
+signal_id = 1
+
+[node name="door(0)" parent="." instance=ExtResource( 3 )]
+position = Vector2( 720, 48 )
+rotation = 1.5708
+
+[node name="door(0)2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 240, 912 )
+
+[node name="button(0)3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 144, 144 )
+
+[node name="button(0)4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 144, 1104 )
+
+[node name="button(1)" parent="." instance=ExtResource( 5 )]
+position = Vector2( 720, -48 )
+signal_id = 1
+signal_id = 1
+
+[node name="bodyHole" parent="." instance=ExtResource( 6 )]
+position = Vector2( 720, 1104 )
+
+[node name="bodyHole2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 816, 1008 )
+
+[node name="bodyHole3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 624, 144 )
+
+[node name="bodyHole4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 720, 240 )
+
+[node name="crate(Wooden)" parent="." instance=ExtResource( 4 )]
+position = Vector2( 816, 912 )
+
+[node name="crate(Red)" parent="." instance=ExtResource( 4 )]
+position = Vector2( 624, 720 )
+crate_type = 1
+crate_type = 1
+weight_id = 1
+is_movable = true
+
+[node name="crate(Blue)" parent="." instance=ExtResource( 4 )]
+position = Vector2( 624, 528 )
+crate_type = 2
+crate_type = 2
+speed_mode = 1
+is_movable = true
+move_time = 0.08
+
+[node name="goal(Red)" parent="." instance=ExtResource( 7 )]
+position = Vector2( 144, -48 )
+
+[node name="goal(Blue)" parent="." instance=ExtResource( 7 )]
+position = Vector2( 624, -48 )
+goal_type = 2
+goal_type = 2

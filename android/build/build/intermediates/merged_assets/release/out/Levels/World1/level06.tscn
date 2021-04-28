@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=1]
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/bodyHole.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=6]
+
+[node name="TileMap" type="TileMap"]
+z_index = 1
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 32
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 65536, 9, 1, 65537, 9, 196610, 65538, 9, 196610, 65539, 9, 196610, 65540, 9, 2, 65541, 9, 196610, 65542, 9, 196610, 65543, 9, 196610, 65544, 9, 196610, 65545, 9, 196610, 65546, 9, 3, 131072, 9, 65536, 131073, 14, 8, 131074, 14, 10, 131075, 14, 11, 131076, 9, 131072, 131077, 14, 8, 131078, 14, 10, 131079, 14, 10, 131080, 14, 10, 131081, 14, 11, 131082, 9, 65536, 196608, 9, 65536, 196609, 14, 65544, 196610, 14, 131081, 196611, 14, 65542, 196612, 14, 10, 196613, 14, 65541, 196614, 14, 131081, 196615, 14, 131081, 196616, 14, 131078, 196617, 14, 196619, 196618, 9, 65536, 262144, 9, 65536, 262145, 14, 65544, 262146, 14, 131081, 262147, 14, 131081, 262148, 14, 131081, 262149, 14, 131081, 262150, 14, 131081, 262151, 14, 131081, 262152, 14, 131083, 262153, 9, 196609, 262154, 9, 65539, 327680, 9, 65536, 327681, 14, 131076, 327682, 14, 196617, 327683, 14, 196618, 327684, 14, 196617, 327685, 14, 196618, 327686, 14, 196617, 327687, 14, 196617, 327688, 14, 196614, 327689, 14, 3, 327690, 9, 65536, 393216, 9, 65536, 393217, 14, 65536, 393218, 9, 196608, 393219, 14, 65536, 393220, 9, 196608, 393221, 14, 65536, 393222, 9, 196609, 393223, 9, 196610, 393224, 9, 196611, 393225, 14, 65536, 393226, 9, 65536, 458752, 9, 65536, 458753, 14, 131073, 458754, 14, 196610, 458755, 14, 196615, 458756, 14, 10, 458757, 14, 9, 458758, 14, 10, 458759, 14, 10, 458760, 14, 6, 458761, 14, 131075, 458762, 9, 65536, 524288, 9, 131073, 524289, 9, 196610, 524290, 9, 3, 524291, 14, 196616, 524292, 14, 131077, 524293, 14, 131081, 524294, 14, 131081, 524295, 14, 131081, 524296, 14, 131083, 524297, 9, 1, 524298, 9, 131075, 589826, 9, 131073, 589827, 9, 3, 589828, 14, 196616, 589829, 14, 131077, 589830, 14, 131081, 589831, 14, 131081, 589832, 14, 131083, 589833, 9, 65536, 655363, 9, 131073, 655364, 9, 3, 655365, 14, 65544, 655366, 14, 131081, 655367, 14, 131081, 655368, 14, 131083, 655369, 9, 65536, 720900, 9, 65536, 720901, 14, 196616, 720902, 14, 196617, 720903, 14, 196617, 720904, 14, 196619, 720905, 9, 65536, 786436, 9, 131073, 786437, 9, 196610, 786438, 9, 196610, 786439, 9, 196610, 786440, 9, 196610, 786441, 9, 131075 )
+script = ExtResource( 6 )
+star_requirements = {
+"1 star": 26,
+"2 star": 23,
+"3 star": 20,
+"flawless": 18
+}
+
+[node name="crate(Red)" parent="." instance=ExtResource( 5 )]
+position = Vector2( 528, 240 )
+crate_type = 1
+crate_type = 1
+weight_id = 1
+is_movable = true
+
+[node name="crate(Wooden)" parent="." instance=ExtResource( 5 )]
+position = Vector2( 528, 528 )
+
+[node name="bodyHole" parent="." instance=ExtResource( 3 )]
+position = Vector2( 336, 624 )
+
+[node name="bodyHole2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 528, 624 )
+is_bottomless = true
+is_bottomless = true
+
+[node name="goal(Red)" parent="." instance=ExtResource( 2 )]
+position = Vector2( 528, 1104 )
+
+[node name="TileMap_foreground" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 96, 96 )
+cell_quadrant_size = 96
+cell_tile_origin = 1
+centered_textures = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 720900, 13, 0 )
+__meta__ = {
+"_editor_description_": ""
+}

@@ -1,0 +1,48 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Assets/Sounds/snd_close.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Sprites/door/svg_door_8.svg" type="Texture" id=2]
+[ext_resource path="res://Assets/Sounds/snd_open.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Sprites/door/svg_door_1.svg" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/door/svg_door_3.svg" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/door/svg_door_4.svg" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/door/svg_door_5.svg" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/door/svg_door_signal.svg" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/door/svg_door_0.svg" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/door/svg_door_9.svg" type="Texture" id=10]
+[ext_resource path="res://Objects/bodyDoor.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Sprites/door/svg_door_2.svg" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/door/svg_door_7.svg" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/door/svg_door_6.svg" type="Texture" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 2 ), ExtResource( 10 ) ],
+"loop": false,
+"name": "default",
+"speed": 12.0
+} ]
+
+[node name="door(0)" type="Node2D"]
+position = Vector2( 48, 48 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+snap = false
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+modulate = Color( 0.615686, 0.615686, 0.615686, 1 )
+frames = SubResource( 1 )
+
+[node name="sprColor" type="Sprite" parent="."]
+self_modulate = Color( 1, 0, 0, 1 )
+texture = ExtResource( 8 )
+
+[node name="audioOpen" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "SFX"
+
+[node name="audioClose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+bus = "SFX"

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Sounds/snd_button.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Sprites/svg_button_base.svg" type="Texture" id=2]
+[ext_resource path="res://Objects/bodyButton.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Sprites/svg_button_center.svg" type="Texture" id=4]
+
+[sub_resource type="ParticlesMaterial" id=1]
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 150.0
+orbit_velocity = 1.0
+orbit_velocity_random = 0.0
+radial_accel = 1.0
+radial_accel_random = 0.2
+scale = 9.0
+scale_random = 0.5
+
+[node name="button(0)" type="Node2D"]
+position = Vector2( 48, 48 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+snap = false
+
+[node name="spriteBase" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="spriteCenter" type="Sprite" parent="spriteBase"]
+modulate = Color( 1, 0, 0, 1 )
+texture = ExtResource( 4 )
+
+[node name="audioClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+bus = "SFX"
+
+[node name="partGoal" type="Particles2D" parent="."]
+visible = false
+modulate = Color( 0.94, 0.5, 0.5, 1 )
+position = Vector2( 0, 8 )
+emitting = false
+amount = 32
+preprocess = 1.0
+process_material = SubResource( 1 )

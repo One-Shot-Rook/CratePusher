@@ -1,0 +1,325 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Levels/LevelNode.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=2]
+[ext_resource path="res://Assets/Resources/key_backspace.tres" type="InputEventKey" id=3]
+[ext_resource path="res://Levels/LevelUI.gd" type="Script" id=4]
+[ext_resource path="res://Levels/Main.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Sprites/img_black_bg.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Shaders/shader_background/water_with_shadow_material.tres" type="Material" id=8]
+[ext_resource path="res://Assets/Fonts/font_main.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Assets/Resources/key_escape.tres" type="InputEventKey" id=10]
+[ext_resource path="res://Assets/UI/btn_menu_normal_right.tres" type="StyleBox" id=11]
+[ext_resource path="res://Assets/UI/btn_menu_normal_left.tres" type="StyleBox" id=12]
+[ext_resource path="res://Assets/Sprites/svg_crate_blue.svg" type="Texture" id=13]
+[ext_resource path="res://Objects/Electric.gd" type="Script" id=14]
+[ext_resource path="res://Levels/star.gd" type="Script" id=15]
+[ext_resource path="res://Assets/Resources/curve_basic.tres" type="Curve" id=16]
+[ext_resource path="res://Assets/Shaders/shader_fog.shader" type="Shader" id=17]
+[ext_resource path="res://Assets/UI/btn_menu_pressed_left.tres" type="StyleBox" id=18]
+[ext_resource path="res://Assets/UI/btn_menu_pressed_right.tres" type="StyleBox" id=19]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 17 )
+shader_param/color = Color( 0.207843, 0.207843, 0.207843, 1 )
+shader_param/detail = 4
+shader_param/zoom_out = 20
+
+[sub_resource type="DynamicFont" id=2]
+size = 200
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 100
+font_data = ExtResource( 9 )
+
+[sub_resource type="ShortCut" id=4]
+shortcut = ExtResource( 3 )
+
+[sub_resource type="ShortCut" id=5]
+shortcut = ExtResource( 10 )
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.8877
+margin_right = -1.8877
+mouse_filter = 2
+theme = ExtResource( 2 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="TextureRect" parent="."]
+visible = false
+material = ExtResource( 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelNode" type="Node2D" parent="." groups=[
+"level",
+]]
+position = Vector2( 540, 960 )
+z_index = -2
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="LevelNode"]
+margin_left = -800.0
+margin_top = -1400.0
+margin_right = 800.0
+margin_bottom = 1400.0
+mouse_filter = 2
+color = Color( 0.196078, 0.196078, 0.196078, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Fog" type="Sprite" parent="LevelNode"]
+visible = false
+material = SubResource( 1 )
+scale = Vector2( 22, 22 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LevelUI" type="Control" parent="." groups=[
+"UI",
+"level",
+]]
+light_mask = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Z_IndexAdjuster" type="Node2D" parent="LevelUI"]
+z_index = 2
+
+[node name="levelComplete" type="Control" parent="LevelUI/Z_IndexAdjuster"]
+margin_right = 1080.0
+margin_bottom = 1920.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="bottomBar" type="Control" parent="LevelUI"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -200.0
+margin_bottom = -200.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="labMoveCount" type="Label" parent="LevelUI/bottomBar"]
+anchor_right = 0.25
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -256.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.368627, 0.368627, 0.368627, 1 )
+text = "0"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stars" type="Node2D" parent="LevelUI/bottomBar"]
+visible = false
+position = Vector2( 984, -96 )
+z_index = 1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="star1" type="Sprite" parent="LevelUI/bottomBar/Stars"]
+texture = ExtResource( 13 )
+script = ExtResource( 15 )
+star_id = 1
+
+[node name="Electric" type="Node2D" parent="LevelUI/bottomBar/Stars/star1"]
+visible = false
+z_index = -1
+script = ExtResource( 14 )
+points = 12
+width = 0.2
+fps = 15
+curve = ExtResource( 16 )
+
+[node name="star2" type="Sprite" parent="LevelUI/bottomBar/Stars"]
+position = Vector2( 0, -128 )
+texture = ExtResource( 13 )
+script = ExtResource( 15 )
+star_id = 2
+
+[node name="Electric" type="Node2D" parent="LevelUI/bottomBar/Stars/star2"]
+z_index = -1
+script = ExtResource( 14 )
+ending_position = Vector2( 0, 128 )
+points = 12
+width = 0.2
+fps = 15
+curve = ExtResource( 16 )
+
+[node name="star3" type="Sprite" parent="LevelUI/bottomBar/Stars"]
+position = Vector2( 0, -256 )
+texture = ExtResource( 13 )
+script = ExtResource( 15 )
+star_id = 3
+
+[node name="Electric" type="Node2D" parent="LevelUI/bottomBar/Stars/star3"]
+z_index = -1
+script = ExtResource( 14 )
+ending_position = Vector2( 0, 128 )
+points = 12
+width = 0.2
+fps = 15
+curve = ExtResource( 16 )
+
+[node name="labLevelName" type="Label" parent="LevelUI/bottomBar"]
+anchor_left = 0.25
+anchor_top = 1.0
+anchor_right = 0.75
+anchor_bottom = 1.0
+margin_left = -0.112305
+margin_top = -150.0
+margin_right = -0.112305
+margin_bottom = -0.00012207
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.368627, 0.368627, 0.368627, 1 )
+text = "1-1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="labNarrator" type="Label" parent="LevelUI"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -300.0
+margin_bottom = -100.0
+custom_colors/font_color = Color( 1, 0.309804, 0.309804, 1 )
+text = "trying again are we...?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="topBar" type="Control" parent="LevelUI"]
+anchor_right = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelUI/topBar"]
+anchor_right = 1.0
+margin_top = 10.0
+margin_bottom = 161.0
+custom_constants/separation = 7
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnUndo" type="Button" parent="LevelUI/topBar/HBoxContainer"]
+margin_left = 7.0
+margin_right = 202.0
+margin_bottom = 161.0
+focus_mode = 0
+custom_styles/hover = ExtResource( 12 )
+custom_styles/pressed = ExtResource( 18 )
+custom_styles/normal = ExtResource( 12 )
+shortcut = SubResource( 4 )
+text = "Undo"
+
+[node name="btnRedo" type="Button" parent="LevelUI/topBar/HBoxContainer"]
+margin_left = 209.0
+margin_right = 401.0
+margin_bottom = 161.0
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 19 )
+custom_styles/normal = ExtResource( 11 )
+text = "Redo"
+
+[node name="btnReset" type="Button" parent="LevelUI/topBar/HBoxContainer"]
+margin_left = 408.0
+margin_right = 612.0
+margin_bottom = 161.0
+focus_mode = 0
+custom_styles/hover = ExtResource( 12 )
+custom_styles/pressed = ExtResource( 18 )
+custom_styles/normal = ExtResource( 12 )
+shortcut = SubResource( 4 )
+text = "Reset"
+
+[node name="btnMenu" type="Button" parent="LevelUI/topBar/HBoxContainer"]
+margin_left = 619.0
+margin_right = 823.0
+margin_bottom = 161.0
+focus_mode = 0
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 19 )
+custom_styles/normal = ExtResource( 11 )
+shortcut = SubResource( 5 )
+text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnBack" type="Button" parent="LevelUI/topBar/HBoxContainer"]
+margin_left = 830.0
+margin_right = 948.0
+margin_bottom = 161.0
+focus_mode = 0
+custom_styles/hover = ExtResource( 12 )
+custom_styles/pressed = ExtResource( 18 )
+custom_styles/normal = ExtResource( 12 )
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnNext" type="Button" parent="LevelUI/topBar/HBoxContainer"]
+margin_left = 955.0
+margin_right = 1073.0
+margin_bottom = 161.0
+focus_mode = 0
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 19 )
+custom_styles/normal = ExtResource( 11 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnReset" to="LevelNode" method="_on_btnReset_pressed"]
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnMenu" to="LevelNode" method="_on_btnMenu_pressed"]
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnBack" to="LevelNode" method="_on_btnBack_pressed"]
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnNext" to="LevelNode" method="_on_btnNext_pressed"]

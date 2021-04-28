@@ -1,0 +1,115 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Levels/LevelComplete.gd" type="Script" id=1]
+[ext_resource path="res://Levels/starAnimation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Fonts/font_main.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/UI/img_chip_4.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Resources/key_backspace.tres" type="InputEventKey" id=5]
+[ext_resource path="res://Assets/Resources/key_enter.tres" type="InputEventKey" id=6]
+[ext_resource path="res://Assets/Resources/key_escape.tres" type="InputEventKey" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+font_data = ExtResource( 3 )
+
+[sub_resource type="ShortCut" id=2]
+shortcut = ExtResource( 6 )
+
+[sub_resource type="ShortCut" id=3]
+shortcut = ExtResource( 5 )
+
+[sub_resource type="ShortCut" id=4]
+shortcut = ExtResource( 7 )
+
+[node name="LevelComplete" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.576471 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="."]
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.2
+custom_fonts/font = SubResource( 1 )
+text = "Level Complete"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnContinue" type="Button" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.6
+margin_left = 50.0
+margin_right = -50.0
+focus_mode = 0
+enabled_focus_mode = 0
+shortcut = SubResource( 2 )
+text = "Continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnReplay" type="Button" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.6
+margin_left = 50.0
+margin_top = 250.0
+margin_right = -50.0
+margin_bottom = 250.0
+focus_mode = 0
+enabled_focus_mode = 0
+shortcut = SubResource( 3 )
+text = "Replay"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnMenu" type="Button" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.6
+margin_left = 50.0
+margin_top = 500.0
+margin_right = -50.0
+margin_bottom = 500.0
+focus_mode = 0
+enabled_focus_mode = 0
+shortcut = SubResource( 4 )
+text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="texChip" type="TextureRect" parent="."]
+visible = false
+margin_left = 290.0
+margin_top = 340.0
+margin_right = 790.0
+margin_bottom = 840.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="starAnimation" parent="." instance=ExtResource( 2 )]
+position = Vector2( 540, 600 )
+[connection signal="pressed" from="btnContinue" to="." method="_on_btnContinue_pressed"]
+[connection signal="pressed" from="btnReplay" to="." method="_on_btnReplay_pressed"]
+[connection signal="pressed" from="btnMenu" to="." method="_on_btnMenu_pressed"]
