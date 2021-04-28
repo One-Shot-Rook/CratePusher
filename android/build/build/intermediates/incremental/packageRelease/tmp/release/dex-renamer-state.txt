@@ -1,4 +1,0 @@
-#Tue Apr 06 21:54:24 CEST 2021
-base.0=C\:\\Users\\Ovidiu\\Documents\\Godot\\Godot Projects\\CratePusher\\CratePusher\\android\\build\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
