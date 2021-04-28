@@ -3,7 +3,8 @@ tool
 extends GameObject
 
 signal button_pressed(animate)	# Signals doors
-signal button_released(animate)				# Signals doors
+signal button_released(animate)	# Signals doors
+signal button_changed(animate)
 
 export var signal_id:int setget set_signal_id, get_signal_id
 
@@ -61,15 +62,17 @@ func update_off():
 
 func activate_button():
 	if not is_pressed: # If the button wasn't pressed
-		if animate:
+		if Level.animate:
 			$audioClick.play()
 		emit_signal("button_pressed")
 	is_pressed = true
+	emit_signal("button_changed")
 
 func deactivate_button():
 	if is_pressed:
 		emit_signal("button_released")
 	is_pressed = false
+	emit_signal("button_changed")
 
 
 

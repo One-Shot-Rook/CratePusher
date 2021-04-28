@@ -39,6 +39,9 @@ func _unhandled_input(event):
 		
 		if event.pressed:
 			
+			if event.position.y < 200:
+				return
+			
 			if mouse_start == Vector2.ZERO:
 				
 				mouse_start = event.position

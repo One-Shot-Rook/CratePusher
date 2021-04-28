@@ -8,7 +8,6 @@
 [ext_resource path="res://Levels/Level.gd" type="Script" id=6]
 
 [node name="TileMap" type="TileMap"]
-z_index = 1
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 96, 96 )
 cell_quadrant_size = 32
@@ -52,12 +51,12 @@ position = Vector2( 624, 432 )
 signal_id = 1
 signal_id = 1
 
-[node name="button(1)2" parent="." instance=ExtResource( 4 )]
+[node name="button(1)3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 432, 336 )
 signal_id = 1
 signal_id = 1
 
-[node name="button(1)3" parent="." instance=ExtResource( 4 )]
+[node name="button(1)2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 432, 624 )
 signal_id = 1
 signal_id = 1
@@ -75,17 +74,4 @@ position = Vector2( 48, 528 )
 signal_id = 1
 open_mode = 1
 signal_id = 1
-
-[node name="TileMap_foreground" type="TileMap" parent="."]
-z_index = 1
-tile_set = ExtResource( 5 )
-cell_size = Vector2( 96, 96 )
-cell_quadrant_size = 96
-cell_tile_origin = 1
-centered_textures = true
-collision_mask = 0
-format = 1
-tile_data = PoolIntArray( 4, 15, 0, 393214, 13, 0 )
-__meta__ = {
-"_editor_description_": ""
-}
+open_mode = 1

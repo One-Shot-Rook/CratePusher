@@ -9,7 +9,6 @@
 [ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=7]
 
 [node name="TileMap" type="TileMap"]
-z_index = 1
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 96, 96 )
 cell_quadrant_size = 32
@@ -26,29 +25,11 @@ star_requirements = {
 "flawless": 24
 }
 
-[node name="TileMap_foreground" type="TileMap" parent="."]
-z_index = 1
-tile_set = ExtResource( 4 )
-cell_size = Vector2( 96, 96 )
-cell_quadrant_size = 96
-cell_tile_origin = 1
-centered_textures = true
-collision_mask = 0
-format = 1
-tile_data = PoolIntArray( 983045, 13, 0, 1114116, 12, 0 )
-__meta__ = {
-"_editor_description_": ""
-}
-
 [node name="bodyHole" parent="." instance=ExtResource( 1 )]
 position = Vector2( 336, 528 )
-is_bottomless = false
-is_bottomless = false
 
 [node name="bodyHole2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 912, 720 )
-is_bottomless = false
-is_bottomless = false
 
 [node name="button(1)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 720, 1488 )

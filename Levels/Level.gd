@@ -13,10 +13,11 @@ enum TileID{
 	TILE_WALL = 9,
 	}
 
-export var tile_set_floor_color:Color = Color("595959") setget set_tile_set_floor_color
+export var hint_text:String = ""
 export var star_requirements = {"flawless":16,"3 star":19,"2 star":22,"1 star":25}
 
 var testing_mode:bool = false
+var animate:bool = true
 
 var dir = [Vector2.UP,Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT,Vector2(1,1),Vector2(1,-1),Vector2(-1,1),Vector2(-1,-1)]
 
@@ -32,9 +33,8 @@ var move_count:int
 var stars:int = 4
 var errors
 
-func set_tile_set_floor_color(new_color):
-	tile_set_floor_color = new_color
-	tile_set.tile_set_modulate(TileID.TILE_FLOOR,tile_set_floor_color)
+func _init():
+	z_index = 0
 
 func _ready():
 	if Engine.editor_hint:
@@ -49,8 +49,10 @@ func _ready():
 	#print("  objects = ",objects)
 	connect_object_signals()
 	connect_main_signals()
+	animate = false
 	emit_signal("initial_react")
 	emit_signal("level_initialised")
+	animate = true
 	save_level_state()
 	GameInput.enable_input_ui(objects.Crate)
 
@@ -102,7 +104,10 @@ func load_level_state(new_timeline_index):
 	for object in new_level_state:
 		object.set_save_data(new_level_state[object])
 	set_move_count(timeline_index)
-	emit_signal("level_initialised")
+	animate = false
+	#emit_signal("level_initialised")
+	emit_signal("initial_react")
+	animate = true
 	#print("  ",timeline_index,":",new_level_state)
 
 func check_crate_moves_finished():
@@ -200,22 +205,23 @@ func connect_object_signals():
 		errors += connect("all_crate_moves_finished",crate_from,"set_is_interactable",[true])
 	# Button signals
 	for button_floor in objects.ButtonFloor:
-		errors += connect("level_initialised",button_floor,"set_animate",[true])
 		errors += connect("initial_react",button_floor,"update_on_or_off")
 		var signal_bus = signal_buses[button_floor.signal_id]
 		signal_bus.input_signals += 1
 		button_floor.connect("button_pressed",signal_bus,"set_received_signals",[+1])
 		button_floor.connect("button_released",signal_bus,"set_received_signals",[-1])
+		button_floor.connect("button_changed",signal_bus,"set_received_signals",[+0])
 	# Door signals
 	for door in objects.Door:
-		errors += connect("level_initialised",door,"set_animate",[true])
 		var signal_bus = signal_buses[door.signal_id]
 		match door.open_mode:
 			Door.OpenMode.OR:
 				signal_bus.connect("OR_update",door,"set_is_open")
 			Door.OpenMode.AND:
 				signal_bus.connect("AND_update",door,"set_is_open")
-		
+#	#SingalBus signals
+#	for signal_bus in signal_buses.values():
+#		errors += connect("level_initialised",signal_bus,"check_signals")
 	# Goal signals
 	for goal in objects.Goal:
 		errors += connect("initial_react",goal,"try_to_complete")

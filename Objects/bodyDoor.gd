@@ -2,10 +2,12 @@ class_name Door, "res://icons/Door.svg"
 tool
 extends GameObject
 
+const OR_color = Color.gray
+const AND_color = Color(0.3,0.3,0.3)
 enum OpenMode{OR,AND}
 
 export var signal_id:int setget set_signal_id, get_signal_id
-export(OpenMode) var open_mode:int = OpenMode.OR
+export(OpenMode) var open_mode:int = OpenMode.OR setget set_open_mode
 
 var is_open:bool = false setget set_is_open
 
@@ -23,6 +25,13 @@ func _get_property_list() -> Array:
 			hint_string = "0,6",
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		},
+		{
+			name = "open_mode",
+			type = TYPE_INT,
+			hint = PROPERTY_HINT_ENUM,
+			hint_string = "OR,AND",
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		},
 	]
 
 func set_signal_id(new_signal_id):
@@ -30,6 +39,10 @@ func set_signal_id(new_signal_id):
 	initialise_door()
 
 func get_signal_id() -> int: return signal_id
+
+func set_open_mode(new_open_mode):
+	open_mode = new_open_mode
+	initialise_door()
 
 func set_is_open(new_value):
 	if new_value:
@@ -47,6 +60,10 @@ func _ready():
 func initialise_door():
 	name = "door" + "("+str(signal_id)+")"
 	$sprColor.self_modulate = Globals.get_button_color(signal_id)
+	if open_mode == OpenMode.OR:
+		$sprite.self_modulate = OR_color
+	else:
+		$sprite.self_modulate = AND_color
 
 
 
@@ -54,7 +71,7 @@ func open_door():
 	if is_open:
 		return
 	is_open = true
-	if animate:
+	if Level.animate:
 		animate_open()
 	else:
 		$sprite.stop()
@@ -64,7 +81,7 @@ func close_door():
 	if not is_open or not can_close():
 		return
 	is_open = false
-	if animate:
+	if Level.animate:
 		animate_close()
 	else:
 		$sprite.stop()
