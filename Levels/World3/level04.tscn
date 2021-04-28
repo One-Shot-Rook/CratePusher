@@ -7,7 +7,6 @@
 [ext_resource path="res://Levels/Level.gd" type="Script" id=5]
 
 [node name="TileMap" type="TileMap"]
-z_index = 1
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 96, 96 )
 cell_quadrant_size = 32
@@ -24,24 +23,8 @@ star_requirements = {
 "flawless": 24
 }
 
-[node name="TileMap_foreground" type="TileMap" parent="."]
-z_index = 1
-tile_set = ExtResource( 4 )
-cell_size = Vector2( 96, 96 )
-cell_quadrant_size = 96
-cell_tile_origin = 1
-centered_textures = true
-collision_mask = 0
-format = 1
-tile_data = PoolIntArray( 524298, 11, 0, 851977, 11, 0 )
-__meta__ = {
-"_editor_description_": ""
-}
-
 [node name="bodyHole" parent="." instance=ExtResource( 1 )]
 position = Vector2( 720, 1296 )
-is_bottomless = false
-is_bottomless = false
 
 [node name="goal(Purple)" parent="." instance=ExtResource( 2 )]
 position = Vector2( 912, 816 )

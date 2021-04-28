@@ -1,11 +1,7 @@
-[gd_resource type="TileSet" load_steps=54 format=2]
+[gd_resource type="TileSet" load_steps=50 format=2]
 
-[ext_resource path="res://Assets/TileMaps/svg_door_west.svg" type="Texture" id=4]
 [ext_resource path="res://Assets/TileMaps/svg_walls_final.svg" type="Texture" id=5]
-[ext_resource path="res://Assets/TileMaps/svg_door_north.svg" type="Texture" id=6]
-[ext_resource path="res://Assets/TileMaps/svg_door_east.svg" type="Texture" id=7]
 [ext_resource path="res://Assets/TileMaps/svg_floor_autotile.svg" type="Texture" id=8]
-[ext_resource path="res://Assets/TileMaps/svg_door_south.svg" type="Texture" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 96, 0, 96, 96, 0, 96 )
@@ -455,48 +451,6 @@ points = PoolVector2Array( 0, 0, 96, 0, 96, 96, 0, 96 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 9/z_index = 0
-11/name = "svg_door_west.svg 11"
-11/texture = ExtResource( 4 )
-11/tex_offset = Vector2( 0, 0 )
-11/modulate = Color( 1, 1, 1, 1 )
-11/region = Rect2( 0, 0, 96, 96 )
-11/tile_mode = 0
-11/occluder_offset = Vector2( 0, 0 )
-11/navigation_offset = Vector2( 0, 0 )
-11/shape_offset = Vector2( 0, 0 )
-11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-11/shape_one_way = false
-11/shape_one_way_margin = 0.0
-11/shapes = [  ]
-11/z_index = 0
-12/name = "svg_door_north.svg 12"
-12/texture = ExtResource( 6 )
-12/tex_offset = Vector2( 0, 0 )
-12/modulate = Color( 1, 1, 1, 1 )
-12/region = Rect2( 0, 0, 96, 96 )
-12/tile_mode = 0
-12/occluder_offset = Vector2( 0, 0 )
-12/navigation_offset = Vector2( 0, 0 )
-12/shape_offset = Vector2( 0, 0 )
-12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-12/shape_one_way = false
-12/shape_one_way_margin = 0.0
-12/shapes = [  ]
-12/z_index = 0
-13/name = "svg_door_east.svg 13"
-13/texture = ExtResource( 7 )
-13/tex_offset = Vector2( 0, 0 )
-13/modulate = Color( 1, 1, 1, 1 )
-13/region = Rect2( 0, 0, 96, 96 )
-13/tile_mode = 0
-13/occluder_offset = Vector2( 0, 0 )
-13/navigation_offset = Vector2( 0, 0 )
-13/shape_offset = Vector2( 0, 0 )
-13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-13/shape_one_way = false
-13/shape_one_way_margin = 0.0
-13/shapes = [  ]
-13/z_index = 0
 14/name = "svg_floor_autotile.svg 14"
 14/texture = ExtResource( 8 )
 14/tex_offset = Vector2( 0, 0 )
@@ -520,17 +474,3 @@ points = PoolVector2Array( 0, 0, 96, 0, 96, 96, 0, 96 )
 14/shape_one_way_margin = 0.0
 14/shapes = [  ]
 14/z_index = 0
-15/name = "svg_door_south.svg 15"
-15/texture = ExtResource( 9 )
-15/tex_offset = Vector2( 0, 0 )
-15/modulate = Color( 1, 1, 1, 1 )
-15/region = Rect2( 0, 0, 96, 96 )
-15/tile_mode = 0
-15/occluder_offset = Vector2( 0, 0 )
-15/navigation_offset = Vector2( 0, 0 )
-15/shape_offset = Vector2( 0, 0 )
-15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-15/shape_one_way = false
-15/shape_one_way_margin = 0.0
-15/shapes = [  ]
-15/z_index = 0

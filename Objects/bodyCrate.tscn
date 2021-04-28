@@ -31,7 +31,7 @@ shader_param/highlight_multiplier = 0.2
 
 [node name="crate(Wooden)" type="Node2D"]
 position = Vector2( 48, 48 )
-z_index = 3
+z_index = 5
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

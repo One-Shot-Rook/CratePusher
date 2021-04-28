@@ -1,11 +1,11 @@
 extends Node2D
 
-var current_level_node
+var current_level_node:GameLevel
 
 func _ready():
 	startLevel()
 
-func startLevel(level_name=LevelData.current_level):
+func startLevel(is_first=true,level_name=LevelData.current_level):
 	if current_level_node:
 		current_level_node.free()
 	LevelData.set_current_level(level_name)
@@ -14,9 +14,12 @@ func startLevel(level_name=LevelData.current_level):
 	var levelXX:GameLevel = load(loadpath).instance()
 	levelXX.level_name = level_name
 	current_level_node = levelXX
+	current_level_node.show_behind_parent = true
 	add_child(current_level_node)
 	
 	center_level()
+	if is_first:
+		check_for_popup()
 
 func center_level():
 	
@@ -30,8 +33,14 @@ func center_level():
 	scale = 1.2 * Vector2.ONE * min(scale_diff.x,scale_diff.y)
 	current_level_node.fill_walls()
 
+func check_for_popup():
+	if current_level_node.hint_text == "":
+		return
+	get_node("../LevelUI/Hint/Label").text = current_level_node.hint_text
+	get_node("../LevelUI/Hint").popup_centered()
+
 func _on_btnReset_pressed():
-	startLevel()
+	startLevel(false)
 
 func _on_btnMenu_pressed():
 	Transition.goto_levels_scene()
