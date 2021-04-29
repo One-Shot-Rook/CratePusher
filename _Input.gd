@@ -1,5 +1,7 @@
 extends Node
 
+signal key_inputted
+
 const theme = preload("res://Assets/Themes/theme_main.tres")
 const CRATE_KEYS = {
 	"WOOD":KEY_0,
@@ -76,6 +78,8 @@ func _unhandled_key_input(event) -> void:
 	
 	if not enabled:
 		return
+	
+	emit_signal("key_inputted")
 	
 	# Erase released key
 	if not event.pressed and event.scancode in keys_pressed:
