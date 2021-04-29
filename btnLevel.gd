@@ -12,6 +12,10 @@ func _ready():
 	updateUI()
 
 func updateUI():
+	if SaveData.is_world_locked():
+		self.disabled = true
+	else:
+		self.disabled = false
 	display_name = level_name.split("-")[1].trim_prefix("0")
 	text = display_name
 #	if int(text) < 10:

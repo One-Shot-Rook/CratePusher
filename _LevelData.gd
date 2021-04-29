@@ -3,7 +3,7 @@ extends Node
 var level_complete:bool = false
 
 var current_level:String
-var levels_per_world := 10
+var levels_per_world := 11
 
 func set_current_level(levelName):
 	level_complete = false

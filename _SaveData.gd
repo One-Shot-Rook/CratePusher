@@ -5,6 +5,8 @@ var current_world:int = 1 setget set_current_world, get_current_world
 var levelProgress = {}
 var audioLevels = {"Master":0,"Voice":0,"Music":0,"SFX":0}
 var input_radius = 120.0 setget set_input_radius
+var total_stars:int = 132
+var achieved_stars:int = 0
 
 var saveVariables = [
 	"levelProgress",
@@ -12,6 +14,9 @@ var saveVariables = [
 	"current_world",
 	"input_radius"
 ]
+
+func is_world_locked() -> bool:
+	return (current_world-1) > (int(achieved_stars/24))
 
 func set_input_radius(new_input_radius):
 	input_radius = new_input_radius
@@ -24,6 +29,11 @@ func set_current_world(value) -> bool:
 	return true
 
 func get_current_world() -> int: return current_world
+
+func update_achieved_stars():
+	achieved_stars = 0
+	for each in levelProgress.values():
+		achieved_stars += each["Stars"]
 
 func updateAudioLevels():
 	audioLevels["Master"] = AudioServer.get_bus_volume_db(0)
@@ -89,6 +99,7 @@ func saveGame(): # Create save file
 	saveFile.open("user://saveFile.json", File.WRITE)
 	saveFile.store_line(to_json(saveData))
 	saveFile.close()
+	update_achieved_stars()
 
 func loadGame(): # Load save file
 	var saveFile = File.new()
@@ -99,3 +110,4 @@ func loadGame(): # Load save file
 	saveFile.close()
 	loadSaveData(saveData)
 	get_tree().call_group("level_select","updateUI")
+	update_achieved_stars()

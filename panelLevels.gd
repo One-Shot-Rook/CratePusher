@@ -13,10 +13,16 @@ func updateUI():
 	$hboxWorlds.rect_position = Vector2(210, 240) + Vector2((SaveData.current_world-1)*-1080,0)
 	$btnLeft.visible = true
 	$btnRight.visible = true
+	if SaveData.is_world_locked():
+		$world_lock.visible = true
+		$world_lock/Label.text = String(24 * (SaveData.get_current_world() - 1)) + " stars needed to \nunlock world"
+	else:
+		$world_lock.visible = false
 	if SaveData.current_world == 1:
 		$btnLeft.visible = false
 	elif SaveData.current_world == SaveData.maxWorlds:
 		$btnRight.visible = false
+	$starAmount.text = String(SaveData.achieved_stars) + "/132 Stars" 
 
 func levelPressed(levelName:String):
 	if changing:

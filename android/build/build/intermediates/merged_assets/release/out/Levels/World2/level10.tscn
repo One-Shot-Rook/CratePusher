@@ -9,7 +9,6 @@
 [ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=7]
 
 [node name="TileMap" type="TileMap"]
-z_index = 1
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 96, 96 )
 cell_quadrant_size = 32
@@ -24,20 +23,6 @@ star_requirements = {
 "2 star": 23,
 "3 star": 20,
 "flawless": 18
-}
-
-[node name="TileMap_foreground" type="TileMap" parent="."]
-z_index = 1
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 96, 96 )
-cell_quadrant_size = 96
-cell_tile_origin = 1
-centered_textures = true
-collision_mask = 0
-format = 1
-tile_data = PoolIntArray( -131071, 15, 0, -65531, 13, 0 )
-__meta__ = {
-"_editor_description_": ""
 }
 
 [node name="door(1)" parent="." instance=ExtResource( 3 )]
