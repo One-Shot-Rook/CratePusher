@@ -39,7 +39,7 @@ shortcut = ExtResource( 3 )
 [sub_resource type="ShortCut" id=5]
 shortcut = ExtResource( 10 )
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=6]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -324,7 +324,7 @@ margin_left = 30.0
 margin_top = 30.0
 margin_right = -30.0
 margin_bottom = -30.0
-custom_styles/normal = SubResource( 7 )
+custom_styles/normal = SubResource( 6 )
 text = "Example"
 align = 1
 valign = 1

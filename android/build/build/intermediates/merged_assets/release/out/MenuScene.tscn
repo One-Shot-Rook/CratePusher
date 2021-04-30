@@ -112,10 +112,12 @@ rect_min_size = Vector2( 300, 300 )
 margin_left = 304.0
 margin_right = 604.0
 margin_bottom = 300.0
+focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 5 )
+enabled_focus_mode = 0
 text = "Play"
 
 [node name="MarginContainer2" type="MarginContainer" parent="panelMenu/gridButtons"]
@@ -128,10 +130,12 @@ rect_min_size = Vector2( 300, 300 )
 margin_top = 304.0
 margin_right = 300.0
 margin_bottom = 604.0
+focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 5 )
+enabled_focus_mode = 0
 text = "Settings"
 
 [node name="MarginContainer3" type="ColorRect" parent="panelMenu/gridButtons"]
@@ -164,10 +168,12 @@ margin_left = 608.0
 margin_top = 304.0
 margin_right = 908.0
 margin_bottom = 604.0
+focus_mode = 0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 5 )
+enabled_focus_mode = 0
 text = "Credits"
 
 [node name="MarginContainer4" type="MarginContainer" parent="panelMenu/gridButtons"]
@@ -205,6 +211,27 @@ margin_right = 1080.0
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="world_lock" type="Panel" parent="panelLevels"]
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.6
+rect_min_size = Vector2( 420, 240 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="panelLevels/world_lock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "24 Stars needed to
+unlock World 2"
+align = 1
+valign = 1
+__meta__ = {
 "_edit_use_anchors_": false
 }
 
@@ -314,6 +341,13 @@ expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="starAmount" type="Label" parent="panelLevels"]
+anchor_right = 1.0
+margin_top = 1504.0
+text = "132/132 Stars"
+align = 1
+valign = 1
 
 [node name="panelSettings" type="Control" parent="."]
 use_parent_material = true
@@ -615,8 +649,8 @@ __meta__ = {
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderSFX" to="panelSettings" method="_on_sliderSFX_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderInputRadius" to="panelSettings" method="_on_sliderInputRadius_value_changed"]
 [connection signal="pressed" from="panelSettings/hbox/btnReset" to="." method="_on_btnReset_pressed"]
-[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/VBoxContainer/btnDonate" to="." method="_on_btnDonate_pressed"]
 [connection signal="pressed" from="panelShop/btnBack" to="." method="_on_btnBack_pressed"]
