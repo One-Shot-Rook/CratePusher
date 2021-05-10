@@ -47,6 +47,12 @@ func updateLevelStars(levelID, stars):
 	levelProgress[levelID]["Stars"] = stars
 	saveGame()
 
+func updateLevelMoves(levelID, moves):
+	if levelProgress[levelID]["Moves"] < moves and levelProgress[levelID]["Moves"] != 0:
+		return
+	levelProgress[levelID]["Moves"] = moves
+	saveGame()
+
 func applyLoadedVariables():
 	AudioServer.set_bus_volume_db(0,audioLevels["Master"])
 	AudioServer.set_bus_volume_db(1,audioLevels["Voice"])
@@ -74,7 +80,7 @@ func initialiseData():
 				if "level" in path_string_level:
 					#var levelID = path_string_level.split(".")[0]#.trim_prefix("level")
 					var level_key = (str(path_string_world.trim_prefix("World")) + "-" + str(path_string_level.trim_prefix("level"))).trim_suffix(".tscn")
-					levelProgress[level_key] = {"Stars":0, "Coins":[0]}
+					levelProgress[level_key] = {"Stars":0, "Moves":0}
 				path_string_level = dir_level.get_next()
 		path_string_world = dir_world.get_next()
 

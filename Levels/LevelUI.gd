@@ -7,6 +7,7 @@ func _ready():
 
 func update_level_name():
 	$bottomBar/labLevelName.text = LevelData.current_level
+	$topBar/HBoxContainer/labMoveRecord.text = str(SaveData.levelProgress[LevelData.current_level]["Moves"])
 
 func update_move_count(move_count):
 	$bottomBar/labMoveCount.text = str(move_count)

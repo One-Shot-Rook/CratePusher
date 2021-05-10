@@ -3,7 +3,6 @@ extends Control
 export var dimColor:Color
 
 func _ready():
-	#$texChip.texture = load("res://Assets/UI/img_chip_" + str(LevelData.stars) + ".png")
 	get_tree().call_group("UI","updateUI")
 
 func update_ui(_move_count,stars):

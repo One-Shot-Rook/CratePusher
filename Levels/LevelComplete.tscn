@@ -110,6 +110,7 @@ __meta__ = {
 
 [node name="starAnimation" parent="." instance=ExtResource( 2 )]
 position = Vector2( 540, 600 )
+
 [connection signal="pressed" from="btnContinue" to="." method="_on_btnContinue_pressed"]
 [connection signal="pressed" from="btnReplay" to="." method="_on_btnReplay_pressed"]
 [connection signal="pressed" from="btnMenu" to="." method="_on_btnMenu_pressed"]

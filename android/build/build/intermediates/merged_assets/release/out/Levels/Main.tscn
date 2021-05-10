@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Levels/LevelNode.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=2]
@@ -11,10 +11,6 @@
 [ext_resource path="res://Assets/Resources/key_escape.tres" type="InputEventKey" id=10]
 [ext_resource path="res://Assets/UI/btn_menu_normal_right.tres" type="StyleBox" id=11]
 [ext_resource path="res://Assets/UI/btn_menu_normal_left.tres" type="StyleBox" id=12]
-[ext_resource path="res://Assets/Sprites/svg_crate_blue.svg" type="Texture" id=13]
-[ext_resource path="res://Objects/Electric.gd" type="Script" id=14]
-[ext_resource path="res://Levels/star.gd" type="Script" id=15]
-[ext_resource path="res://Assets/Resources/curve_basic.tres" type="Curve" id=16]
 [ext_resource path="res://Assets/Shaders/shader_fog.shader" type="Shader" id=17]
 [ext_resource path="res://Assets/UI/btn_menu_pressed_left.tres" type="StyleBox" id=18]
 [ext_resource path="res://Assets/UI/btn_menu_pressed_right.tres" type="StyleBox" id=19]
@@ -131,58 +127,6 @@ valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Stars" type="Node2D" parent="LevelUI/bottomBar"]
-visible = false
-position = Vector2( 984, -96 )
-z_index = 1
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="star1" type="Sprite" parent="LevelUI/bottomBar/Stars"]
-texture = ExtResource( 13 )
-script = ExtResource( 15 )
-star_id = 1
-
-[node name="Electric" type="Node2D" parent="LevelUI/bottomBar/Stars/star1"]
-visible = false
-z_index = -1
-script = ExtResource( 14 )
-points = 12
-width = 0.2
-fps = 15
-curve = ExtResource( 16 )
-
-[node name="star2" type="Sprite" parent="LevelUI/bottomBar/Stars"]
-position = Vector2( 0, -128 )
-texture = ExtResource( 13 )
-script = ExtResource( 15 )
-star_id = 2
-
-[node name="Electric" type="Node2D" parent="LevelUI/bottomBar/Stars/star2"]
-z_index = -1
-script = ExtResource( 14 )
-ending_position = Vector2( 0, 128 )
-points = 12
-width = 0.2
-fps = 15
-curve = ExtResource( 16 )
-
-[node name="star3" type="Sprite" parent="LevelUI/bottomBar/Stars"]
-position = Vector2( 0, -256 )
-texture = ExtResource( 13 )
-script = ExtResource( 15 )
-star_id = 3
-
-[node name="Electric" type="Node2D" parent="LevelUI/bottomBar/Stars/star3"]
-z_index = -1
-script = ExtResource( 14 )
-ending_position = Vector2( 0, 128 )
-points = 12
-width = 0.2
-fps = 15
-curve = ExtResource( 16 )
 
 [node name="labLevelName" type="Label" parent="LevelUI/bottomBar"]
 anchor_left = 0.25
@@ -307,7 +251,6 @@ __meta__ = {
 }
 
 [node name="Hint" type="PopupDialog" parent="LevelUI"]
-visible = true
 margin_left = 140.0
 margin_top = 760.0
 margin_right = 940.0

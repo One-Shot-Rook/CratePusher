@@ -125,6 +125,7 @@ func check_level_goals_completed():
 	#print("all_level_goals_completed")
 	emit_signal("all_level_goals_completed",move_count,stars)
 	SaveData.updateLevelStars(LevelData.current_level,stars)
+	SaveData.updateLevelMoves(LevelData.current_level,move_count)
 	is_level_complete = true
 
 func detect_objects():
