@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Levels/LevelNode.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/theme_main.tres" type="Theme" id=2]
 [ext_resource path="res://Assets/Resources/key_backspace.tres" type="InputEventKey" id=3]
 [ext_resource path="res://Levels/LevelUI.gd" type="Script" id=4]
+[ext_resource path="res://Levels/LevelSelector.gd" type="Script" id=5]
 [ext_resource path="res://Levels/Main.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Sprites/img_black_bg.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Shaders/shader_background/water_with_shadow_material.tres" type="Material" id=8]
@@ -32,10 +33,63 @@ font_data = ExtResource( 9 )
 [sub_resource type="ShortCut" id=4]
 shortcut = ExtResource( 3 )
 
-[sub_resource type="ShortCut" id=5]
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 50.0
+content_margin_right = 50.0
+content_margin_top = 50.0
+content_margin_bottom = 50.0
+bg_color = Color( 0, 0.0941176, 0.180392, 1 )
+draw_center = false
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 0.992157, 0.937255, 0.831373, 1 )
+border_blend = true
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
+corner_detail = 20
+anti_aliasing_size = 2
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 50.0
+content_margin_right = 50.0
+content_margin_top = 50.0
+content_margin_bottom = 50.0
+bg_color = Color( 0.992157, 0.937255, 0.831373, 1 )
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 0.2, 0.2, 0.2, 1 )
+border_blend = true
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
+corner_detail = 20
+anti_aliasing_size = 2
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 50.0
+content_margin_right = 50.0
+content_margin_top = 50.0
+content_margin_bottom = 50.0
+bg_color = Color( 0, 0.0941176, 0.180392, 1 )
+draw_center = false
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 0.992157, 0.937255, 0.831373, 1 )
+border_blend = true
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
+corner_detail = 20
+anti_aliasing_size = 2
+
+[sub_resource type="ShortCut" id=8]
 shortcut = ExtResource( 10 )
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=9]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -179,8 +233,8 @@ __meta__ = {
 }
 
 [node name="btnUndo" type="Button" parent="LevelUI/topBar/HBoxContainer"]
-margin_left = 28.0
-margin_right = 223.0
+margin_left = 20.0
+margin_right = 215.0
 margin_bottom = 161.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 12 )
@@ -201,16 +255,31 @@ custom_styles/normal = ExtResource( 11 )
 text = "Redo"
 
 [node name="labMoveRecord" type="Label" parent="LevelUI/topBar/HBoxContainer"]
-margin_left = 230.0
-margin_right = 380.0
+margin_left = 222.0
+margin_right = 417.0
 margin_bottom = 161.0
-rect_min_size = Vector2( 150, 150 )
+rect_min_size = Vector2( 195, 150 )
 custom_styles/normal = ExtResource( 11 )
 align = 1
 
+[node name="btnLevels" type="Button" parent="LevelUI/topBar/HBoxContainer"]
+margin_left = 424.0
+margin_right = 637.0
+margin_bottom = 161.0
+rect_min_size = Vector2( 195, 150 )
+focus_mode = 0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+enabled_focus_mode = 0
+text = "Levels"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="btnReset" type="Button" parent="LevelUI/topBar/HBoxContainer"]
-margin_left = 387.0
-margin_right = 591.0
+margin_left = 644.0
+margin_right = 848.0
 margin_bottom = 161.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 12 )
@@ -220,20 +289,21 @@ shortcut = SubResource( 4 )
 text = "Reset"
 
 [node name="btnMenu" type="Button" parent="LevelUI/topBar/HBoxContainer"]
-margin_left = 598.0
-margin_right = 802.0
+margin_left = 855.0
+margin_right = 1059.0
 margin_bottom = 161.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 19 )
 custom_styles/normal = ExtResource( 11 )
-shortcut = SubResource( 5 )
+shortcut = SubResource( 8 )
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="btnBack" type="Button" parent="LevelUI/topBar/HBoxContainer"]
+visible = false
 margin_left = 809.0
 margin_right = 927.0
 margin_bottom = 161.0
@@ -247,8 +317,9 @@ __meta__ = {
 }
 
 [node name="btnNext" type="Button" parent="LevelUI/topBar/HBoxContainer"]
-margin_left = 934.0
-margin_right = 1052.0
+visible = false
+margin_left = 871.0
+margin_right = 989.0
 margin_bottom = 161.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 11 )
@@ -276,12 +347,26 @@ margin_left = 30.0
 margin_top = 30.0
 margin_right = -30.0
 margin_bottom = -30.0
-custom_styles/normal = SubResource( 6 )
+custom_styles/normal = SubResource( 9 )
 text = "Example"
 align = 1
 valign = 1
 autowrap = true
 
+[node name="LevelSelector" type="PopupPanel" parent="LevelUI"]
+margin_right = 16.0
+margin_bottom = 16.0
+theme = ExtResource( 2 )
+script = ExtResource( 5 )
+
+[node name="grid" type="GridContainer" parent="LevelUI/LevelSelector"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 50.0
+margin_bottom = 50.0
+columns = 3
+
+[connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnLevels" to="LevelNode" method="_on_btnLevels_pressed"]
 [connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnReset" to="LevelNode" method="_on_btnReset_pressed"]
 [connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnMenu" to="LevelNode" method="_on_btnMenu_pressed"]
 [connection signal="pressed" from="LevelUI/topBar/HBoxContainer/btnBack" to="LevelNode" method="_on_btnBack_pressed"]

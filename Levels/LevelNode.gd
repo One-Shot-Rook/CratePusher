@@ -39,6 +39,11 @@ func check_for_popup():
 	get_node("../LevelUI/Hint/Label").text = current_level_node.hint_text
 	get_node("../LevelUI/Hint").popup_centered()
 
+func level_pressed(levelName):
+	LevelData.set_current_level(levelName)
+	get_node("../LevelUI/LevelSelector").visible = false
+	startLevel()
+
 func _on_btnReset_pressed():
 	startLevel(false)
 
@@ -52,3 +57,7 @@ func _on_btnNext_pressed():
 func _on_btnBack_pressed():
 	LevelData.set_level_prev()
 	startLevel()
+
+
+func _on_btnLevels_pressed():
+	get_node("../LevelUI/LevelSelector").popup_centered()

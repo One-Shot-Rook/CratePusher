@@ -179,8 +179,8 @@ __meta__ = {
 }
 
 [node name="btnUndo" type="Button" parent="LevelUI/topBar/HBoxContainer"]
-margin_left = 7.0
-margin_right = 202.0
+margin_left = 28.0
+margin_right = 223.0
 margin_bottom = 161.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 12 )
@@ -190,6 +190,7 @@ shortcut = SubResource( 4 )
 text = "Undo"
 
 [node name="btnRedo" type="Button" parent="LevelUI/topBar/HBoxContainer"]
+visible = false
 margin_left = 209.0
 margin_right = 401.0
 margin_bottom = 161.0
@@ -199,9 +200,17 @@ custom_styles/pressed = ExtResource( 19 )
 custom_styles/normal = ExtResource( 11 )
 text = "Redo"
 
+[node name="labMoveRecord" type="Label" parent="LevelUI/topBar/HBoxContainer"]
+margin_left = 230.0
+margin_right = 380.0
+margin_bottom = 161.0
+rect_min_size = Vector2( 150, 150 )
+custom_styles/normal = ExtResource( 11 )
+align = 1
+
 [node name="btnReset" type="Button" parent="LevelUI/topBar/HBoxContainer"]
-margin_left = 408.0
-margin_right = 612.0
+margin_left = 387.0
+margin_right = 591.0
 margin_bottom = 161.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 12 )
@@ -211,8 +220,8 @@ shortcut = SubResource( 4 )
 text = "Reset"
 
 [node name="btnMenu" type="Button" parent="LevelUI/topBar/HBoxContainer"]
-margin_left = 619.0
-margin_right = 823.0
+margin_left = 598.0
+margin_right = 802.0
 margin_bottom = 161.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 11 )
@@ -225,8 +234,8 @@ __meta__ = {
 }
 
 [node name="btnBack" type="Button" parent="LevelUI/topBar/HBoxContainer"]
-margin_left = 830.0
-margin_right = 948.0
+margin_left = 809.0
+margin_right = 927.0
 margin_bottom = 161.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 12 )
@@ -238,8 +247,8 @@ __meta__ = {
 }
 
 [node name="btnNext" type="Button" parent="LevelUI/topBar/HBoxContainer"]
-margin_left = 955.0
-margin_right = 1073.0
+margin_left = 934.0
+margin_right = 1052.0
 margin_bottom = 161.0
 focus_mode = 0
 custom_styles/hover = ExtResource( 11 )
