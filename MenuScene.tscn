@@ -347,9 +347,12 @@ __meta__ = {
 [node name="starAmount" type="Label" parent="panelLevels"]
 anchor_right = 1.0
 margin_top = 1504.0
-text = "132/132 Stars"
+text = "0/99 Stars"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="panelSettings" type="Control" parent="."]
 use_parent_material = true
@@ -561,12 +564,12 @@ margin_bottom = 674.0
 text = "a game by OneShotRook:
 
 - Daniel Thomas Jorden:
-Lead Gameplay Programmer
-Lead Sound Designer
+Gameplay Programmer
+Sound Designer
 
 - Ovidiu-Alexandru Parfene
-Lead Level Designer
-Lead UI/UX Designer"
+Level Designer
+UI/UX Designer"
 align = 1
 
 [node name="TextureRect" type="TextureRect" parent="panelCredits/VBoxContainer"]

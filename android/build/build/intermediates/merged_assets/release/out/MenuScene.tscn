@@ -335,6 +335,8 @@ margin_bottom = -16.0
 rect_min_size = Vector2( 128, 128 )
 custom_styles/hover = ExtResource( 8 )
 custom_styles/pressed = ExtResource( 7 )
+custom_styles/focus = ExtResource( 8 )
+custom_styles/disabled = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
 text = "Back"
 expand_icon = true
@@ -555,45 +557,51 @@ align = 1
 [node name="labThanks2" type="Label" parent="panelCredits/VBoxContainer"]
 margin_top = 101.0
 margin_right = 882.0
-margin_bottom = 290.0
+margin_bottom = 674.0
 text = "a game by OneShotRook:
-- Daniel Thomas Jorden
-- Ovidiu-Alexandru Parfene"
+
+- Daniel Thomas Jorden:
+Lead Gameplay Programmer
+Lead Sound Designer
+
+- Ovidiu-Alexandru Parfene
+Lead Level Designer
+Lead UI/UX Designer"
 align = 1
 
 [node name="TextureRect" type="TextureRect" parent="panelCredits/VBoxContainer"]
-margin_top = 310.0
+margin_top = 694.0
 margin_right = 882.0
-margin_bottom = 670.0
+margin_bottom = 1054.0
 rect_min_size = Vector2( 640, 360 )
 texture = ExtResource( 20 )
 expand = true
 stretch_mode = 6
 
 [node name="MarginContainer2" type="MarginContainer" parent="panelCredits/VBoxContainer"]
-margin_top = 690.0
+margin_top = 1074.0
 margin_right = 882.0
-margin_bottom = 750.0
+margin_bottom = 1134.0
 rect_min_size = Vector2( 0, 60 )
 
 [node name="labFeedback" type="Label" parent="panelCredits/VBoxContainer"]
-margin_top = 770.0
+margin_top = 1154.0
 margin_right = 882.0
-margin_bottom = 895.0
+margin_bottom = 1279.0
 text = "any feedback is appreciated at:
 oneshotrook@gmail.com"
 align = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="panelCredits/VBoxContainer"]
-margin_top = 915.0
+margin_top = 1299.0
 margin_right = 882.0
-margin_bottom = 975.0
+margin_bottom = 1359.0
 rect_min_size = Vector2( 0, 60 )
 
 [node name="labDonate" type="Label" parent="panelCredits/VBoxContainer"]
-margin_top = 995.0
+margin_top = 1379.0
 margin_right = 882.0
-margin_bottom = 1248.0
+margin_bottom = 1632.0
 text = "This is our first published game
 on the road to many more.
 
@@ -648,8 +656,8 @@ __meta__ = {
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderSFX" to="panelSettings" method="_on_sliderSFX_value_changed"]
 [connection signal="value_changed" from="panelSettings/gridOptions/sliderInputRadius" to="panelSettings" method="_on_sliderInputRadius_value_changed"]
 [connection signal="pressed" from="panelSettings/hbox/btnReset" to="." method="_on_btnReset_pressed"]
-[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelSettings/btnBack" to="." method="_on_btnBack_pressed"]
+[connection signal="pressed" from="panelSettings/btnBack" to="panelSettings" method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/btnBack" to="." method="_on_btnBack_pressed"]
 [connection signal="pressed" from="panelCredits/VBoxContainer/btnDonate" to="." method="_on_btnDonate_pressed"]
 [connection signal="pressed" from="panelShop/btnBack" to="." method="_on_btnBack_pressed"]

@@ -22,7 +22,7 @@ func updateUI():
 		$btnLeft.visible = false
 	elif SaveData.current_world == SaveData.maxWorlds:
 		$btnRight.visible = false
-	$starAmount.text = String(SaveData.achieved_stars) + "/132 Stars" 
+	$starAmount.text = String(SaveData.achieved_stars) + "/99 Stars" 
 
 func levelPressed(levelName:String):
 	if changing:

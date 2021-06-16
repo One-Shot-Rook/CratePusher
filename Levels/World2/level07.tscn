@@ -1,69 +1,59 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Objects/bodyDoor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/bodyLaunchPad.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Objects/bodyHole.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=7]
-[ext_resource path="res://Levels/Level.gd" type="Script" id=8]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=1]
+[ext_resource path="res://Objects/bodyButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/bodyGoal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/bodyCrate.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/bodyDoor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/TileMaps/tilemap_default.tres" type="TileSet" id=6]
 
 [node name="TileMap" type="TileMap"]
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 6 )
 cell_size = Vector2( 96, 96 )
 cell_quadrant_size = 32
 cell_tile_origin = 1
 centered_textures = true
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 131077, 9, 1, 131078, 9, 196610, 131079, 9, 2, 131080, 9, 196610, 131081, 9, 196610, 131082, 9, 3, 196611, 9, 1, 196612, 9, 196610, 196613, 9, 131075, 196614, 14, 0, 196615, 9, 131072, 196616, 14, 8, 196617, 14, 11, 196618, 9, 65536, 262145, 9, 1, 262146, 9, 196610, 262147, 9, 131075, 262148, 14, 8, 262149, 14, 10, 262150, 14, 9, 262151, 14, 10, 262152, 14, 65541, 262153, 14, 131083, 262154, 9, 65536, 327681, 9, 65536, 327682, 14, 196609, 327683, 14, 5, 327684, 14, 65541, 327685, 14, 131081, 327686, 14, 131081, 327687, 14, 131081, 327688, 14, 131081, 327689, 14, 131083, 327690, 9, 65536, 393216, 9, 1, 393217, 9, 131074, 393218, 9, 3, 393219, 14, 196616, 393220, 14, 196617, 393221, 14, 196617, 393222, 14, 196617, 393223, 14, 196618, 393224, 14, 196617, 393225, 14, 196619, 393226, 9, 65536, 458752, 9, 65536, 458753, 14, 0, 458754, 9, 131073, 458755, 9, 196610, 458756, 9, 196610, 458757, 9, 196610, 458758, 9, 196611, 458759, 14, 65536, 458760, 9, 196609, 458761, 9, 2, 458762, 9, 131075, 524288, 9, 65536, 524289, 14, 65540, 524290, 14, 6, 524291, 14, 196610, 524292, 14, 5, 524293, 14, 10, 524294, 14, 10, 524295, 14, 9, 524296, 14, 11, 524297, 9, 65536, 589824, 9, 65536, 589825, 14, 65544, 589826, 14, 131083, 589827, 9, 0, 589828, 14, 131076, 589829, 14, 196617, 589830, 14, 131077, 589831, 14, 131081, 589832, 14, 131083, 589833, 9, 65536, 655360, 9, 65536, 655361, 14, 65544, 655362, 14, 131083, 655363, 9, 131072, 655364, 14, 65536, 655365, 9, 0, 655366, 14, 65544, 655367, 14, 131081, 655368, 14, 131083, 655369, 9, 65536, 720896, 9, 65536, 720897, 14, 196616, 720898, 14, 196614, 720899, 14, 196610, 720900, 14, 131075, 720901, 9, 131072, 720902, 14, 65544, 720903, 14, 131081, 720904, 14, 131083, 720905, 9, 65536, 786432, 9, 131073, 786433, 9, 196610, 786434, 9, 196610, 786435, 9, 196610, 786436, 9, 3, 786437, 14, 8, 786438, 14, 65541, 786439, 14, 131081, 786440, 14, 131083, 786441, 9, 65536, 851972, 9, 65536, 851973, 14, 196616, 851974, 14, 196617, 851975, 14, 131077, 851976, 14, 131083, 851977, 9, 65536, 917508, 9, 131073, 917509, 9, 196610, 917510, 9, 3, 917511, 14, 196616, 917512, 14, 196619, 917513, 9, 65536, 983046, 9, 131073, 983047, 9, 196610, 983048, 9, 196610, 983049, 9, 131075 )
-script = ExtResource( 8 )
+tile_data = PoolIntArray( 196609, 9, 1, 196610, 9, 196610, 196611, 9, 196610, 196612, 9, 196610, 196613, 9, 196610, 196614, 9, 3, 262145, 9, 65536, 262146, 14, 8, 262147, 14, 10, 262148, 14, 10, 262149, 14, 11, 262150, 9, 131073, 262151, 9, 196610, 262152, 9, 196610, 262153, 9, 196610, 262154, 9, 3, 327681, 9, 65536, 327682, 14, 196616, 327683, 14, 131077, 327684, 14, 131078, 327685, 14, 196614, 327686, 14, 5, 327687, 14, 10, 327688, 14, 10, 327689, 14, 11, 327690, 9, 65536, 393217, 9, 65540, 393218, 9, 11, 393219, 14, 65544, 393220, 14, 131083, 393221, 9, 0, 393222, 14, 196616, 393223, 14, 196618, 393224, 14, 196617, 393225, 14, 196619, 393226, 9, 65536, 458753, 9, 131076, 458754, 9, 196619, 458755, 14, 65544, 458756, 14, 131083, 458757, 9, 65540, 458758, 9, 11, 458759, 14, 65536, 458760, 9, 8, 458761, 9, 10, 458762, 9, 65543, 524289, 9, 65536, 524290, 14, 8, 524291, 14, 65541, 524292, 14, 131083, 524293, 9, 196616, 524294, 9, 196619, 524295, 14, 65536, 524296, 9, 196616, 524297, 9, 196617, 524298, 9, 196614, 524299, 9, 3, 589824, 9, 1, 589825, 9, 131075, 589826, 14, 65544, 589827, 14, 131078, 589828, 14, 196614, 589829, 14, 196610, 589830, 14, 196610, 589831, 14, 196615, 589832, 14, 10, 589833, 14, 10, 589834, 14, 11, 589835, 9, 65536, 655360, 9, 65536, 655361, 14, 8, 655362, 14, 65541, 655363, 14, 131083, 655364, 9, 196609, 655365, 9, 196610, 655366, 9, 196611, 655367, 14, 131076, 655368, 14, 196617, 655369, 14, 196618, 655370, 14, 196619, 655371, 9, 65536, 720896, 9, 65536, 720897, 14, 65544, 720898, 14, 131081, 720899, 14, 65542, 720900, 14, 10, 720901, 14, 10, 720902, 14, 10, 720903, 14, 65543, 720904, 9, 196608, 720905, 14, 65536, 720906, 9, 1, 720907, 9, 131075, 786432, 9, 65536, 786433, 14, 196616, 786434, 14, 196617, 786435, 14, 196617, 786436, 14, 196617, 786437, 14, 196617, 786438, 14, 196617, 786439, 14, 4, 786440, 14, 196610, 786441, 14, 131075, 786442, 9, 65536, 851968, 9, 131073, 851969, 9, 196610, 851970, 9, 196610, 851971, 9, 196610, 851972, 9, 196610, 851973, 9, 196610, 851974, 9, 3, 851975, 14, 65536, 851976, 9, 1, 851977, 9, 196610, 851978, 9, 131075, 917510, 9, 65536, 917511, 14, 131072, 917512, 9, 65536, 983046, 9, 131073, 983047, 9, 196610, 983048, 9, 131075 )
+script = ExtResource( 1 )
 star_requirements = {
-"1 star": 25,
-"2 star": 21,
+"1 star": 23,
+"2 star": 20,
 "3 star": 18,
 "flawless": 16
 }
 
-[node name="crate(Red)" parent="." instance=ExtResource( 6 )]
-position = Vector2( 528, 1200 )
+[node name="crate(Red)" parent="." instance=ExtResource( 4 )]
+position = Vector2( 624, 1104 )
 crate_type = 1
 crate_type = 1
 weight_id = 1
 is_movable = true
 
-[node name="crate(Blue)" parent="." instance=ExtResource( 6 )]
-position = Vector2( 240, 528 )
-crate_type = 2
-crate_type = 2
-speed_mode = 1
-is_movable = true
-move_time = 0.08
-
-[node name="crate(Wooden)" parent="." instance=ExtResource( 6 )]
+[node name="crate(Wooden)" parent="." instance=ExtResource( 4 )]
 position = Vector2( 720, 720 )
 
-[node name="button(0)" parent="." instance=ExtResource( 1 )]
-position = Vector2( 720, 528 )
+[node name="crate(Wooden)2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 336, 624 )
 
-[node name="door(0)" parent="." instance=ExtResource( 2 )]
-position = Vector2( 432, 1008 )
+[node name="button(0)" parent="." instance=ExtResource( 2 )]
+position = Vector2( 336, 624 )
+
+[node name="button(1)" parent="." instance=ExtResource( 2 )]
+position = Vector2( 624, 624 )
+signal_id = 1
+signal_id = 1
+
+[node name="door(1)" parent="." instance=ExtResource( 5 )]
+position = Vector2( 720, 1296 )
+rotation = 1.5708
+signal_id = 1
+signal_id = 1
+
+[node name="door(0)" parent="." instance=ExtResource( 5 )]
+position = Vector2( 720, 816 )
 rotation = 1.5708
 
-[node name="bodyLaunchPad" parent="." instance=ExtResource( 3 )]
-position = Vector2( 432, 816 )
-rotation = 3.14159
-direction = 2
-direction = 2
-
-[node name="bodyHole" parent="." instance=ExtResource( 4 )]
-position = Vector2( 624, 528 )
-
-[node name="goal(Red)" parent="." instance=ExtResource( 5 )]
-position = Vector2( 144, 720 )
-
-[node name="goal(Blue)" parent="." instance=ExtResource( 5 )]
-position = Vector2( 624, 336 )
-goal_type = 2
-goal_type = 2
+[node name="goal(Red)" parent="." instance=ExtResource( 3 )]
+position = Vector2( 720, 1392 )

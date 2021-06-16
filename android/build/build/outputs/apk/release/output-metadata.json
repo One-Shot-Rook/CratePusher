@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "properties": [],
-      "versionCode": 7,
-      "versionName": "2.1",
+      "versionCode": 9,
+      "versionName": "2.3",
       "enabled": true,
       "outputFile": "android_release.apk"
     }

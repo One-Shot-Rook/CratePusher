@@ -10,8 +10,8 @@
       "apkData": {
         "type": "MAIN",
         "splits": [],
-        "versionCode": 7,
-        "versionName": "2.1",
+        "versionCode": 9,
+        "versionName": "2.3",
         "outputFile": "android_release.apk",
         "fullName": "release",
         "baseName": "release",

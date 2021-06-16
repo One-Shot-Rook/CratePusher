@@ -5,7 +5,7 @@ var current_world:int = 1 setget set_current_world, get_current_world
 var levelProgress = {}
 var audioLevels = {"Master":0,"Voice":0,"Music":0,"SFX":0}
 var input_radius = 120.0 setget set_input_radius
-var total_stars:int = 132
+var total_stars:int = 99
 var achieved_stars:int = 0
 
 var saveVariables = [
